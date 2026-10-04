@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import GalleryFilter from '../components/GalleryFilter.astro';
+import LightboxModal from '../components/LightboxModal.astro';
+import { GALLERY_ITEMS } from '../data/gallery';
+import { CONTACT } from '../data/siteData';
+
+const breadcrumbItems = [
+  { label: 'Galerija' },
+];
+---
+
+<BaseLayout
+  title="Galerija sistema i realizacija"
+  description="Pregled rešenja i detalja ugradnje: inox drenažne kanalice, arhitektonska rasveta i modularne podne površine. Vizuelna tehnička arhiva brenda MODULARNI SISTEMI."
+>
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <!-- Hero & Filter Header -->
+  <section class="pt-14 pb-12 bg-navy bg-grid-pattern border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+        <div>
+          <SectionHeading
+            eyebrow="Vizuelna arhiva"
+            title="Galerija sistema i realizacija"
+            subtitle="Fotografije i renderi primene naših modularnih sistema na stambenim, javnim i industrijskim objektima."
+            class="mb-0 lg:mb-0"
+          />
+        </div>
+
+        <div class="self-start lg:self-end">
+          <GalleryFilter />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Gallery Grid Section -->
+  <section class="py-16 lg:py-24 bg-navy-dark border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-main-grid">
+        {GALLERY_ITEMS.map((item) => (
+          <article
+            class="gallery-card group bg-navy border border-white/10 hover:border-accent/60 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer shadow-lg"
+            data-gallery-category={item.category}
+            onclick={`window.openModularLightbox && window.openModularLightbox({ src: '${item.image}', title: '${item.title}', desc: '${item.description}', category: '${item.categoryLabel}' })`}
+            tabindex="0"
+            role="button"
+            aria-label={`Uvećaj detalj: ${item.title}`}
+          >
+            <div>
+              <!-- Image frame with CAD fallback -->
+              <div class="relative aspect-[16/10] overflow-hidden bg-navy-surface flex items-center justify-center border-b border-white/10">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                />
+
+                <div class="hidden absolute inset-0 bg-navy-surface p-5 flex flex-col justify-between" aria-hidden="true">
+                  <div class="flex justify-between items-start">
+                    <span class="px-2 py-0.5 bg-navy border border-accent/40 text-accent font-mono text-[9px] uppercase tracking-architectural">
+                      CAD ARHIVA
+                    </span>
+                    <span class="w-2.5 h-2.5 border-t border-r border-accent"></span>
+                  </div>
+                  <div>
+                    <span class="text-xs font-mono font-bold text-white block">{item.title}</span>
+                    <span class="text-[10px] font-mono text-slate-muted block mt-1 break-all">{item.image}</span>
+                  </div>
+                  <div class="border-t border-white/10 pt-2 flex justify-between items-center text-[9px] font-mono text-slate-muted">
+                    <span>MODULARNI SISTEMI</span>
+                    <span class="text-accent uppercase">{item.category}</span>
+                  </div>
+                </div>
+
+                <!-- Hover Overlay -->
+                <div class="absolute inset-0 bg-navy/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span class="px-3.5 py-1.5 bg-navy/90 text-accent font-mono text-[10px] uppercase tracking-architectural border border-accent font-bold">
+                    Uvećaj prikaz
+                  </span>
+                </div>
+              </div>
+
+              <!-- Content details -->
+              <div class="p-6 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-mono text-accent uppercase tracking-architectural font-bold">
+                    {item.categoryLabel}
+                  </span>
+                  <span class="text-[10px] font-mono text-slate-muted uppercase">
+                    DETALJ #{item.id}
+                  </span>
+                </div>
+
+                <h2 class="text-base font-bold text-white group-hover:text-accent transition-colors leading-snug">
+                  {item.title}
+                </h2>
+
+                <p class="text-xs text-slate-muted leading-relaxed pt-1">
+                  {item.description}
+                </p>
+              </div>
+            </div>
+
+            <!-- Footer of card -->
+            <div class="p-6 pt-0">
+              <div class="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-surface/60 group-hover:text-white transition-colors">
+                <span>Kliknite za uvećanje</span>
+                <span class="text-accent">&rarr;</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Project Submission Callout -->
+  <section class="py-16 bg-navy bg-grid-pattern">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
+      <span class="text-accent font-mono text-xs uppercase tracking-architectural font-bold block">
+        Prilagođena proizvodnja
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+        Zainteresovani ste za primenu ovih rešenja na vašem objektu?
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-muted max-w-xl mx-auto leading-relaxed">
+        Pošaljite nam arhitektonske podloge i dimenzije. Naš tim priprema specifikaciju sistema u skladu sa zadatim rasporedom.
+      </p>
+      <div class="pt-3 flex flex-col sm:flex-row justify-center items-center gap-4">
+        <a
+          href="/posaljite-projekat/"
+          class="px-8 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent"
+        >
+          Pošaljite nam projekat
+        </a>
+        <a
+          href={`tel:${CONTACT.phoneFormatted}`}
+          class="px-8 py-3.5 bg-navy-surface hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/20 transition-all font-mono"
+        >
+          {CONTACT.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal instance -->
+  <LightboxModal />
+
+</BaseLayout>

@@ -1,0 +1,227 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { CATEGORIES_DATA } from '../../data/products';
+import { CONTACT } from '../../data/siteData';
+
+const rasveta = CATEGORIES_DATA.rasveta;
+
+const breadcrumbItems = [
+  { label: 'Proizvodi', href: '/proizvodi/' },
+  { label: 'Moderna rasveta' },
+];
+
+const technicalSpecs = [
+  {
+    title: 'Termička stabilnost kućišta',
+    description: 'Konstrukcija tela sa integrisanim rashladnim rebrima omogućava efikasno odvođenje toplote sa LED modula, obezbeđujući stabilan svetlosni fluks i dug vek trajanja.',
+  },
+  {
+    title: 'Fotometrijska preciznost',
+    description: 'Optički sklopovi projektovani da usmere svetlosni snop tačno na korisnu površinu, eliminišući svetlosno zagađenje i neželjeno rasipanje.',
+  },
+  {
+    title: 'Otpornost na atmosferske uticaje',
+    description: 'Zaštita kućišta prilagođena za spoljnu montažu uz visoku otpornost na prodiranje vlage, prašine i mehanička oštećenja.',
+  },
+  {
+    title: 'Arhitektonska estetika',
+    description: 'Minimalistička geometrija bez suvišnih ukrasa koja se neutralno i prirodno stapa sa modernim fasadama, popločanjima i urbanim mobilijarom.',
+  },
+];
+---
+
+<BaseLayout
+  title="Moderna rasveta · Arhitektonska rasveta za javne i privatne objekte"
+  description="Arhitektonska rasveta koja spaja funkciju i estetiku. Moderna LED rasveta za platoe, šetališta, stambene komplekse i partere. MODULARNI SISTEMI."
+>
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <!-- Hero sekcija -->
+  <section class="pt-14 pb-20 bg-navy bg-grid-pattern border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-5">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-navy-surface border border-accent/40 text-accent font-mono text-[11px] uppercase tracking-architectural font-bold">
+            <span class="w-2 h-2 bg-accent inline-block" aria-hidden="true"></span>
+            <span>MODERNA RASVETA</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            Arhitektonska rasveta koja spaja funkciju i estetiku.
+          </h1>
+
+          <p class="text-base sm:text-lg font-mono text-accent font-bold">
+            "Svetlost kao prostorni i konstruktivni element."
+          </p>
+
+          <p class="text-sm sm:text-base text-slate-surface font-medium leading-relaxed">
+            {rasveta.description}
+          </p>
+
+          <p class="text-xs sm:text-sm text-slate-muted leading-relaxed">
+            Razvijamo svetlosna tela koja pružaju fotometrijsku ravnotežu, stabilan rad u spoljašnjim uslovima i vizuelnu čistotu koja prati geometriju objekta.
+          </p>
+
+          <div class="pt-4 flex flex-col sm:flex-row gap-4">
+            <a
+              href="/posaljite-projekat/"
+              class="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent shadow-md text-center"
+            >
+              Pošaljite upit za rasvetu
+            </a>
+            <a
+              href={`mailto:${CONTACT.projectEmail}`}
+              class="inline-flex items-center justify-center px-8 py-4 bg-navy-surface hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/20 transition-all font-mono text-center"
+            >
+              {CONTACT.projectEmail}
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="relative bg-navy-dark border border-white/15 p-2 shadow-2xl">
+            <div class="relative aspect-[4/3] bg-navy-surface border border-white/10 overflow-hidden flex items-center justify-center">
+              <img
+                src={rasveta.heroImage}
+                alt="Moderna arhitektonska rasveta u spoljašnjem prostoru"
+                class="w-full h-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+              />
+              <div class="hidden absolute inset-0 bg-navy-surface p-6 flex flex-col justify-between" aria-hidden="true">
+                <span class="text-accent font-mono text-[10px] tracking-architectural uppercase">ARHITEKTONSKA RASVETA</span>
+                <p class="text-xs font-mono text-white font-bold leading-tight">Spoljna i parterna svetlosna tela</p>
+                <span class="text-[10px] font-mono text-slate-muted">{rasveta.heroImage}</span>
+              </div>
+            </div>
+            <div class="p-3 bg-navy-surface border-t border-white/10 flex justify-between items-center font-mono text-[11px]">
+              <span class="text-slate-muted">Program: Urbana i linijska rasveta</span>
+              <span class="text-accent uppercase font-bold">MODULARNO</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Modeli rasvete iz baze podataka -->
+  <section class="py-16 lg:py-24 bg-navy-dark border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Portfolio modela"
+        title="Sistemi arhitektonske rasvete"
+        subtitle="Rasvetna tela za definisanje javnih površina, komunikacija i objekata."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {rasveta.subtypes.map((sub) => (
+          <ProductCard
+            title={sub.name}
+            summary={sub.summary}
+            image={sub.image}
+            application={sub.application}
+            badge="MODERNA RASVETA"
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Inženjerska konstrukcija i fotometrija -->
+  <section class="py-16 lg:py-24 bg-navy border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Tehnički pristup"
+        title="Fotometrija, upravljanje toplotom i trajnost kućišta"
+        subtitle="Rasveta projektovana da izdrži dugotrajni rad u spoljnim uslovima uz minimalno održavanje."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {technicalSpecs.map((item, index) => (
+          <div class="p-6 bg-navy-surface border border-white/10 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <span class="text-accent font-mono text-xs font-bold block">
+                TEHNOLOGIJA 0{index + 1}
+              </span>
+              <h3 class="text-base font-bold text-white tracking-tight">
+                {item.title}
+              </h3>
+              <p class="text-xs text-slate-muted leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+            <div class="pt-3 border-t border-white/10 text-[10px] font-mono text-slate-surface/60 uppercase">
+              MODULARNI SISTEMI
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Područja primene -->
+  <section class="py-16 lg:py-24 bg-navy-dark border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-6 space-y-5">
+          <SectionHeading
+            eyebrow="Ambijentalna integracija"
+            title="Gde se primenjuju naši sistemi rasvete"
+            subtitle="Od partera stambenih kompleksa do velikih otvorenih trgova i šetališta."
+          />
+          <p class="text-xs sm:text-sm text-slate-muted leading-relaxed">
+            Arhitektonska rasveta obezbeđuje sigurnost kretanja tokom noći, ali istovremeno oblikuje percepciju prostora. Naša rešenja omogućavaju usklađivanje stubnih i linijskih elemenata sa drenažnim rasterom i podnim oblogama.
+          </p>
+        </div>
+
+        <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {rasveta.applications.map((app, index) => (
+            <div class="p-6 bg-navy border border-white/10 space-y-2">
+              <span class="text-accent font-mono text-xs font-bold block">0{index + 1}</span>
+              <h3 class="text-sm font-bold text-white uppercase tracking-wider">{app}</h3>
+              <p class="text-xs text-slate-muted">Usklađena visina montaže i distribucija svetla prilagođena dinamici kretanja u prostoru.</p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-navy bg-grid-pattern">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-navy-surface border border-accent text-accent font-mono text-xs uppercase tracking-architectural font-bold">
+        <span>PROJEKTI OSVETLJENJA</span>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+        Planirate spoljašnje ili parterno osvetljenje?
+      </h2>
+
+      <p class="text-xs sm:text-sm text-slate-muted max-w-xl mx-auto leading-relaxed">
+        Dostavite situaciju objekta i svetlosne zahteve. Naš inženjerski tim radi predlog rasporeda rasvetnih tela i tehničku specifikaciju.
+      </p>
+
+      <div class="pt-3 flex flex-col sm:flex-row justify-center items-center gap-4">
+        <a
+          href="/posaljite-projekat/"
+          class="px-8 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent shadow-md"
+        >
+          Pošaljite zahtev za rasvetu
+        </a>
+        <a
+          href={`tel:${CONTACT.phoneFormatted}`}
+          class="px-8 py-3.5 bg-navy-surface hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/20 transition-all font-mono"
+        >
+          {CONTACT.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

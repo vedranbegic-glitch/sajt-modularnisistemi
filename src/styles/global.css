@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-navy: #031C2C;
+    --color-navy-dark: #02131F;
+    --color-navy-surface: #07283E;
+    --color-orange: #FF6900;
+    --color-white: #FFFFFF;
+    --color-gray: #F1F4F6;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Manrope', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #031C2C;
+    color: #F1F4F6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background-color: #031C2C;
+  }
+
+  ::selection {
+    background-color: #FF6900;
+    color: #FFFFFF;
+  }
+
+  :focus-visible {
+    outline: 2px solid #FF6900;
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .bg-grid-pattern,
+  .arch-grid-pattern {
+    background-size: 32px 32px;
+    background-image: 
+      linear-gradient(to right, rgba(241, 244, 246, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(241, 244, 246, 0.04) 1px, transparent 1px);
+  }
+
+  .arch-border {
+    border-color: rgba(241, 244, 246, 0.12);
+  }
+
+  .arch-border-accent {
+    border-color: rgba(255, 105, 0, 0.35);
+  }
+}

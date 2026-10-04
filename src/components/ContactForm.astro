@@ -1,0 +1,149 @@
+---
+import { CONTACT } from '../data/siteData';
+---
+
+<div class="bg-navy-surface border border-white/10 p-6 sm:p-8">
+  <div class="border-b border-white/10 pb-5 mb-6">
+    <span class="text-accent font-mono text-xs uppercase tracking-architectural font-bold block mb-1">
+      B2B Komunikacija
+    </span>
+    <h3 class="text-xl font-extrabold text-white tracking-tight">
+      Uputite zahtev inženjerskom timu
+    </h3>
+    <p class="text-xs text-slate-muted mt-2 leading-relaxed">
+      Za direktan kontakt koristite <a href={`mailto:${CONTACT.generalEmail}`} class="text-white hover:text-accent font-mono underline">{CONTACT.generalEmail}</a> ili telefon <a href={`tel:${CONTACT.phoneFormatted}`} class="text-white hover:text-accent font-mono underline">{CONTACT.phone}</a>.
+    </p>
+  </div>
+
+  <form id="contact-form" class="space-y-5" onsubmit="event.preventDefault(); window.handleContactSubmit();">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div>
+        <label for="contact-name" class="block text-xs uppercase tracking-architectural font-semibold text-slate-surface mb-2">
+          Ime i prezime *
+        </label>
+        <input
+          type="text"
+          id="contact-name"
+          name="name"
+          required
+          class="w-full bg-navy border border-white/15 px-4 py-3 text-xs sm:text-sm text-white focus:border-accent focus:outline-none transition-colors"
+          placeholder="npr. Marko Jovanović"
+        />
+      </div>
+
+      <div>
+        <label for="contact-company" class="block text-xs uppercase tracking-architectural font-semibold text-slate-surface mb-2">
+          Kompanija / Biro
+        </label>
+        <input
+          type="text"
+          id="contact-company"
+          name="company"
+          class="w-full bg-navy border border-white/15 px-4 py-3 text-xs sm:text-sm text-white focus:border-accent focus:outline-none transition-colors"
+          placeholder="npr. Studio Arch d.o.o."
+        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div>
+        <label for="contact-email" class="block text-xs uppercase tracking-architectural font-semibold text-slate-surface mb-2">
+          Email adresa *
+        </label>
+        <input
+          type="email"
+          id="contact-email"
+          name="email"
+          required
+          class="w-full bg-navy border border-white/15 px-4 py-3 text-xs sm:text-sm text-white focus:border-accent focus:outline-none transition-colors font-mono"
+          placeholder="kontakt@biro.rs"
+        />
+      </div>
+
+      <div>
+        <label for="contact-phone" class="block text-xs uppercase tracking-architectural font-semibold text-slate-surface mb-2">
+          Telefon *
+        </label>
+        <input
+          type="tel"
+          id="contact-phone"
+          name="phone"
+          required
+          class="w-full bg-navy border border-white/15 px-4 py-3 text-xs sm:text-sm text-white focus:border-accent focus:outline-none transition-colors font-mono"
+          placeholder="+381 6..."
+        />
+      </div>
+    </div>
+
+    <div>
+      <label for="contact-system" class="block text-xs uppercase tracking-architectural font-semibold text-slate-surface mb-2">
+        Sistem od interesa *
+      </label>
+      <select
+        id="contact-system"
+        name="system"
+        required
+        class="w-full bg-navy border border-white/15 px-4 py-3 text-xs sm:text-sm text-white focus:border-accent focus:outline-none transition-colors"
+      >
+        <option value="" disabled selected>Izaberite kategoriju sistema</option>
+        <option value="inox-odvodnjavanje">Inox sistemi odvodnjavanja</option>
+        <option value="moderna-rasveta">Moderna rasveta</option>
+        <option value="podni-sistemi">Modularni podni sistemi</option>
+        <option value="saradnja">B2B projektantska saradnja</option>
+        <option value="ostalo">Opšte tehničke konsultacije</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="contact-message" class="block text-xs uppercase tracking-architectural font-semibold text-slate-surface mb-2">
+        Poruka / Specifikacija zahteva *
+      </label>
+      <textarea
+        id="contact-message"
+        name="message"
+        rows="5"
+        required
+        class="w-full bg-navy border border-white/15 px-4 py-3 text-xs sm:text-sm text-white focus:border-accent focus:outline-none transition-colors"
+        placeholder="Opišite zahteve prostora, potrebne dužine, specifičnosti geometrije ili rokove..."
+      ></textarea>
+    </div>
+
+    <div id="contact-status-box" class="hidden p-4 border text-xs font-mono"></div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+      <span class="text-[11px] text-slate-muted">
+        Za slanje nacrta (DWG/PDF) koristite <a href="/posaljite-projekat/" class="text-accent underline">formu za projekte</a>.
+      </span>
+      <button
+        type="submit"
+        class="w-full sm:w-auto px-8 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent"
+      >
+        Pošaljite poruku
+      </button>
+    </div>
+  </form>
+</div>
+
+<script is:inline>
+  window.handleContactSubmit = function () {
+    const statusBox = document.getElementById('contact-status-box');
+    const name = document.getElementById('contact-name').value;
+    const email = document.getElementById('contact-email').value;
+
+    if (statusBox) {
+      statusBox.classList.remove('hidden');
+      statusBox.classList.add('bg-navy', 'border-accent', 'text-slate-surface');
+      statusBox.innerHTML = `
+        <div class="space-y-2">
+          <p class="text-accent font-bold uppercase tracking-wider">Poruka pripremljena za: ${name} (${email})</p>
+          <p class="text-xs text-slate-muted">
+            Podaci su validirani na klijentu. Za automatski prijem putem Netlify forme, dodajte atribut <code>data-netlify="true"</code> u &lt;form&gt; tag.
+          </p>
+          <p class="text-xs">
+            Direktno slanje upita: <a href="mailto:kontakt@modularnisistemi.com" class="text-white underline">kontakt@modularnisistemi.com</a>
+          </p>
+        </div>
+      `;
+    }
+  };
+</script>

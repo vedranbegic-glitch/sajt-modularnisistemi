@@ -1,0 +1,221 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { CATEGORIES_DATA } from '../../data/products';
+import { CONTACT } from '../../data/siteData';
+
+export async function getStaticPaths() {
+  const subtypes = CATEGORIES_DATA.inox.subtypes;
+  return subtypes.map((sub) => ({
+    params: { slug: sub.id },
+    props: { product: sub },
+  }));
+}
+
+const { product } = Astro.props;
+const otherProducts = CATEGORIES_DATA.inox.subtypes.filter((s) => s.id !== product.id);
+
+const breadcrumbItems = [
+  { label: 'Proizvodi', href: '/proizvodi/' },
+  { label: 'Inox sistemi odvodnjavanja', href: '/inox-sistemi-odvodnjavanja/' },
+  { label: product.name },
+];
+---
+
+<BaseLayout
+  title={`${product.name} · Inox sistemi odvodnjavanja`}
+  description={`${product.name} — ${product.summary} Proizvodnja po meri i geometriji objekta od nerđajućeg čelika AISI 304 i AISI 316.`}
+>
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <!-- Hero sekcija artikla -->
+  <section class="pt-14 pb-16 bg-navy bg-grid-pattern border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-5">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-navy-surface border border-accent/40 text-accent font-mono text-[11px] uppercase tracking-architectural font-bold">
+            <span class="w-2 h-2 bg-accent inline-block" aria-hidden="true"></span>
+            <span>INOX ODVODNJAVANJE · PO MERI</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            {product.name}
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-surface font-medium leading-relaxed">
+            {product.summary}
+          </p>
+
+          <div class="p-4 bg-navy-surface border-l-2 border-accent border-y border-r border-white/10 space-y-1">
+            <span class="text-[10px] font-mono uppercase tracking-architectural text-accent font-bold block">
+              Karakteristična primena modela:
+            </span>
+            <p class="text-xs text-white font-mono">
+              {product.application}
+            </p>
+          </div>
+
+          <div class="pt-2 flex flex-col sm:flex-row gap-4">
+            <a
+              href="/posaljite-projekat/"
+              class="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent shadow-md text-center"
+            >
+              Zatražite predmer za ovaj model
+            </a>
+            <a
+              href={`tel:${CONTACT.phoneFormatted}`}
+              class="inline-flex items-center justify-center px-8 py-4 bg-navy-surface hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/20 transition-all font-mono text-center"
+            >
+              {CONTACT.phone}
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="relative bg-navy-dark border border-white/15 p-2 shadow-2xl">
+            <div class="relative aspect-[4/3] bg-navy-surface border border-white/10 overflow-hidden flex items-center justify-center">
+              <img
+                src={product.image}
+                alt={product.name}
+                class="w-full h-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+              />
+              <div class="hidden absolute inset-0 bg-navy-surface p-6 flex flex-col justify-between" aria-hidden="true">
+                <span class="text-accent font-mono text-[10px] tracking-architectural uppercase">CAD CRTEŽ / RENDER</span>
+                <p class="text-xs font-mono text-white font-bold leading-tight">{product.name}</p>
+                <span class="text-[10px] font-mono text-slate-muted">{product.image}</span>
+              </div>
+            </div>
+            <div class="p-3 bg-navy-surface border-t border-white/10 flex justify-between items-center font-mono text-[11px]">
+              <span class="text-slate-muted">Konfiguracija: Po nacrtu</span>
+              <span class="text-accent uppercase font-bold">AISI 304 / 316</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Tehnički opis i inženjerski detalji -->
+  <section class="py-16 lg:py-24 bg-navy-dark border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <div class="lg:col-span-6 space-y-6">
+          <SectionHeading
+            eyebrow="Specifikacija izrade"
+            title="Inženjerske osobine i ugradnja"
+          />
+
+          <p class="text-xs sm:text-sm text-slate-muted leading-relaxed">
+            Element se projektuje prema geometriji objekta. Svaki segment poseduje integrisani nagib koji omogućava nesmetano gravitaciono oticanje vode bez stvaranja taloga u telu kanala.
+          </p>
+
+          <p class="text-xs sm:text-sm text-slate-muted leading-relaxed">
+            Izrada se prilagođava zadatoj debljini podne obloge (keramika, kamen, liveni pod) sa opcijom integrisanih hidroizolacionih prirubnica za siguran spoj sa folijama ili premazima.
+          </p>
+
+          <div class="space-y-3 font-mono text-xs">
+            <div class="p-4 bg-navy border border-white/10">
+              <span class="text-accent block font-bold mb-1">MATERIJAL I ZAVRŠNA OBRADA</span>
+              <p class="text-slate-muted">Nerđajući čelik AISI 304 ili AISI 316, debljina lima prema klasi opterećenja, pasivizirani varovi, elektrohemijski polirane ili četkane vidne ivice.</p>
+            </div>
+            <div class="p-4 bg-navy border border-white/10">
+              <span class="text-accent block font-bold mb-1">SPAJANJE I NIVELACIJA</span>
+              <p class="text-slate-muted">Prirubnički spoj sa EPDM zaptivkama i vijcima. Ugrađene nožice sa finim navojnim podešavanjem visine pre betoniranja.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 space-y-4">
+          <div class="p-6 bg-navy border border-white/10 space-y-2">
+            <span class="text-accent font-mono text-xs font-bold block">01 / GEOMETRIJA</span>
+            <h3 class="text-sm font-bold text-white uppercase tracking-wider">Potpuno prilagođavanje trasi</h3>
+            <p class="text-xs text-slate-muted leading-relaxed">Mogućnost izrade pravih segmenata proizvoljnih dužina, uglova pod specifičnim stepenom i radijalnih segmenata sa zadatim poluprečnikom.</p>
+          </div>
+
+          <div class="p-6 bg-navy border border-white/10 space-y-2">
+            <span class="text-accent font-mono text-xs font-bold block">02 / PROTOK</span>
+            <h3 class="text-sm font-bold text-white uppercase tracking-wider">Optimizovan hidraulički profil</h3>
+            <p class="text-xs text-slate-muted leading-relaxed">Proračun unutrašnjeg pada i prečnika izlivnih grla prema očekivanom prilivu vode i priključcima na kanalizacionu mrežu.</p>
+          </div>
+
+          <div class="p-6 bg-navy border border-white/10 space-y-2">
+            <span class="text-accent font-mono text-xs font-bold block">03 / ODRŽAVANJE</span>
+            <h3 class="text-sm font-bold text-white uppercase tracking-wider">Jednostavan pristup reviziji</h3>
+            <p class="text-xs text-slate-muted leading-relaxed">Lako skidanje rešetki i pristup sifonskim korpicama za sakupljanje nečistoća bez upotrebe specijalnih alata.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Ostali modeli iz kategorije -->
+  <section class="py-16 lg:py-24 bg-navy border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        eyebrow="Povezani sistemi"
+        title="Ostali inox drenažni modeli"
+        subtitle="Pogledajte druga konfiguraciona rešenja iz programa inox odvodnjavanja."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {otherProducts.map((other) => (
+          <a
+            href={`/inox-sistemi-odvodnjavanja/${other.id}/`}
+            class="p-6 bg-navy-surface border border-white/10 hover:border-accent transition-colors flex flex-col justify-between group"
+          >
+            <div class="space-y-3">
+              <span class="text-[10px] font-mono text-accent uppercase tracking-architectural font-bold block">
+                INOX DRENAŽA
+              </span>
+              <h3 class="text-base font-bold text-white group-hover:text-accent transition-colors">
+                {other.name}
+              </h3>
+              <p class="text-xs text-slate-muted leading-relaxed">
+                {other.summary}
+              </p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-white/10 text-xs font-mono text-accent flex items-center justify-between">
+              <span>Detalji modela</span>
+              <span>&rarr;</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-navy-dark bg-grid-pattern">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
+      <span class="text-accent font-mono text-xs uppercase tracking-architectural font-bold block">
+        Izrada predmera
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+        Dostavite crtež za izradu: {product.name}
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-muted max-w-xl mx-auto leading-relaxed">
+        Pošaljite nam situaciju sa dužinama i visinama. Naš tim priprema specifikaciju segmenata u roku od 24-48h.
+      </p>
+      <div class="pt-3 flex flex-col sm:flex-row justify-center items-center gap-4">
+        <a
+          href="/posaljite-projekat/"
+          class="px-8 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent shadow-md"
+        >
+          Pošaljite nacrt na analizu
+        </a>
+        <a
+          href={`tel:${CONTACT.phoneFormatted}`}
+          class="px-8 py-3.5 bg-navy-surface hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/20 transition-all font-mono"
+        >
+          {CONTACT.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

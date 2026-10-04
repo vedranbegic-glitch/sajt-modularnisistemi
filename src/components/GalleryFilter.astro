@@ -1,0 +1,66 @@
+---
+export interface FilterOption {
+  id: string;
+  label: string;
+}
+
+const filters: FilterOption[] = [
+  { id: 'all', label: 'ALL' },
+  { id: 'inox', label: 'INOX' },
+  { id: 'rasveta', label: 'RASVETA' },
+  { id: 'podni-sistemi', label: 'PODNI SISTEMI' },
+  { id: 'projekti', label: 'PROJEKTI' },
+];
+---
+
+<div class="flex flex-wrap gap-2" id="gallery-filter-bar" role="tablist" aria-label="Filteri galerije">
+  {filters.map((filter, index) => (
+    <button
+      type="button"
+      role="tab"
+      data-filter-target={filter.id}
+      aria-selected={index === 0 ? 'true' : 'false'}
+      class={`gallery-filter-btn px-5 py-2.5 text-xs font-mono uppercase tracking-architectural font-bold transition-all duration-200 border ${
+        index === 0
+          ? 'bg-accent text-white border-accent'
+          : 'bg-navy-surface text-slate-surface border-white/10 hover:border-white/30 hover:text-white'
+      }`}
+    >
+      {filter.label}
+    </button>
+  ))}
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.gallery-filter-btn');
+    const items = document.querySelectorAll('[data-gallery-category]');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-filter-target');
+
+        buttons.forEach((b) => {
+          b.setAttribute('aria-selected', 'false');
+          b.classList.remove('bg-accent', 'text-white', 'border-accent');
+          b.classList.add('bg-navy-surface', 'text-slate-surface', 'border-white/10');
+        });
+
+        btn.setAttribute('aria-selected', 'true');
+        btn.classList.remove('bg-navy-surface', 'text-slate-surface', 'border-white/10');
+        btn.classList.add('bg-accent', 'text-white', 'border-accent');
+
+        items.forEach((item) => {
+          const category = item.getAttribute('data-gallery-category');
+          if (target === 'all' || category === target) {
+            item.classList.remove('hidden');
+            item.classList.add('flex');
+          } else {
+            item.classList.add('hidden');
+            item.classList.remove('flex');
+          }
+        });
+      });
+    });
+  });
+</script>

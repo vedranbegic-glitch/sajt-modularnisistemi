@@ -1,0 +1,161 @@
+---
+import { CONTACT, NAVIGATION, SITE } from '../data/siteData';
+
+const currentYear = new Date().getFullYear();
+
+const productLinks = [
+  { label: 'Inox sistemi odvodnjavanja', href: '/inox-sistemi-odvodnjavanja/' },
+  { label: 'Moderna rasveta', href: '/moderna-rasveta/' },
+  { label: 'Modularni podni sistemi', href: '/modularni-podni-sistemi/' },
+];
+---
+
+<footer class="bg-navy-dark border-t border-white/10 text-slate-surface">
+  
+  <!-- Architectural Banner / Action Callout -->
+  <div class="border-b border-white/10 bg-navy/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8 space-y-3">
+          <div class="inline-flex items-center gap-2 text-accent text-xs font-mono uppercase tracking-architectural">
+            <span class="w-2 h-2 bg-accent inline-block"></span>
+            <span>Inženjerska razrada &amp; Proračun</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight">
+            Projektujete prostor specifične geometrije?
+          </h2>
+          <p class="text-sm text-slate-muted max-w-2xl leading-relaxed">
+            Dostavite arhitektonske osnove ili tehničke skice u PDF/DWG formatu. Naš inženjerski tim radi analizu padova, radijusa i predlaže optimalnu modularnu razradu.
+          </p>
+        </div>
+        <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-end">
+          <a
+            href="/posaljite-projekat/"
+            class="inline-flex items-center justify-center px-6 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all text-center border border-accent"
+          >
+            Pošaljite nam projekat
+          </a>
+          <a
+            href={`mailto:${CONTACT.projectEmail}`}
+            class="text-xs font-mono text-slate-muted hover:text-white transition-colors text-center sm:text-left lg:text-right"
+          >
+            {CONTACT.projectEmail}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Footer Structure -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+      
+      <!-- Company Brand & Slogan -->
+      <div class="lg:col-span-4 space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 bg-accent flex items-center justify-center font-extrabold text-navy text-xs border border-accent">
+            MS
+          </span>
+          <span class="font-extrabold text-lg tracking-tight text-white">
+            {SITE.name}
+          </span>
+        </div>
+        
+        <p class="text-xs uppercase font-mono tracking-architectural text-accent font-bold">
+          "{SITE.tagline}"
+        </p>
+
+        <p class="text-xs text-slate-muted leading-relaxed max-w-sm">
+          {SITE.description}
+        </p>
+
+        <div class="pt-2">
+          <span class="inline-block px-2.5 py-1 bg-navy border border-white/10 text-[10px] font-mono tracking-architectural text-slate-muted uppercase">
+            Inženjering · Prefabrikacija · B2B
+          </span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <div class="lg:col-span-2 space-y-3">
+        <h3 class="text-xs uppercase font-bold tracking-architectural text-white">
+          Navigacija
+        </h3>
+        <ul class="space-y-2 text-xs">
+          {NAVIGATION.map((item) => (
+            <li>
+              <a href={item.href} class="text-slate-muted hover:text-accent transition-colors block py-0.5">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Product Systems -->
+      <div class="lg:col-span-3 space-y-3">
+        <h3 class="text-xs uppercase font-bold tracking-architectural text-white">
+          Program sistema
+        </h3>
+        <ul class="space-y-2.5 text-xs">
+          {productLinks.map((prod) => (
+            <li>
+              <a href={prod.href} class="text-slate-muted hover:text-accent transition-colors block py-0.5">
+                {prod.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div class="pt-3 border-t border-white/10">
+          <a href="/proizvodi/" class="text-[11px] font-mono text-accent hover:text-white uppercase tracking-wider transition-colors inline-flex items-center gap-1">
+            <span>Svi proizvodi i detalji</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Official Contact Details -->
+      <div class="lg:col-span-3 space-y-3">
+        <h3 class="text-xs uppercase font-bold tracking-architectural text-white">
+          Kontakt
+        </h3>
+        
+        <div class="space-y-3 text-xs font-mono text-slate-muted">
+          <div>
+            <span class="block text-[10px] text-slate-surface uppercase tracking-architectural">Telefon</span>
+            <a href={`tel:${CONTACT.phoneFormatted}`} class="text-white hover:text-accent transition-colors text-sm font-semibold">
+              {CONTACT.phone}
+            </a>
+          </div>
+
+          <div>
+            <span class="block text-[10px] text-slate-surface uppercase tracking-architectural">Opšti kontakt</span>
+            <a href={`mailto:${CONTACT.generalEmail}`} class="text-white hover:text-accent transition-colors break-all">
+              {CONTACT.generalEmail}
+            </a>
+          </div>
+
+          <div>
+            <span class="block text-[10px] text-slate-surface uppercase tracking-architectural">Projekti i nacrti</span>
+            <a href={`mailto:${CONTACT.projectEmail}`} class="text-white hover:text-accent transition-colors break-all">
+              {CONTACT.projectEmail}
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Copyright & Legal Grid -->
+    <div class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-muted">
+      <div>
+        &copy; {currentYear} {SITE.name}. Sva prava zadržana.
+      </div>
+      <div class="font-mono text-[11px] text-slate-muted">
+        {SITE.domain} · Precizni modularni sistemi
+      </div>
+    </div>
+  </div>
+
+</footer>

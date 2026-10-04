@@ -1,0 +1,559 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const breadcrumbItems = [
+  { label: 'Proizvodi', href: '/proizvodi/' },
+  { label: 'Inox sistemi odvodnjavanja' },
+];
+---
+
+<BaseLayout
+  title="Inox sistemi odvodnjavanja · Forme po meri partera"
+  description="Odvodnjavanje koje prati oblik prostora bez geometrijskog ograničenja. Lučni, kružni, elipsasti i S-forma inox kanali sa integrisanim padom i nivelirajućim stopama."
+>
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <!-- 1. HERO SEKCIJA — FOTOGRAFIJA PARTERA SA LEVIM TEGET GRADIENTOM KAO NA MOCKUPU -->
+  <section class="relative bg-navy overflow-hidden border-b border-white/10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[460px] lg:min-h-[520px]">
+      
+      <!-- Leva strana: Tekstualni sadržaj na tamno-plavoj podlozi -->
+      <div class="lg:col-span-6 z-10 flex flex-col justify-center px-6 sm:px-10 lg:px-14 py-12 lg:py-16 bg-navy/95 lg:bg-gradient-to-r lg:from-navy lg:via-navy lg:to-navy/80">
+        <div class="max-w-xl space-y-4">
+          
+          <div class="inline-flex items-center gap-2 text-slate-surface font-mono text-[10px] sm:text-[11px] uppercase tracking-architectural">
+            <span class="w-2 h-2 bg-accent inline-block"></span>
+            <span>MODULARNI SISTEMI · PREMIUM INOX LINIJSKA DRENAŽA</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.12]">
+            Odvodnjavanje koje prati <br class="hidden sm:inline" />
+            <span class="text-accent">oblik prostora bez geometrijskog ograničenja.</span>
+          </h1>
+
+          <p class="text-xs sm:text-sm text-slate-surface/90 leading-relaxed font-normal">
+            Modularni inox sistemi sa integrisanim fabričkim padom i nivelirajućim stopama. Kreirajte slobodne i zahtevne forme — ravne, lučne, kružne ili kompleksne S-linije — bez kompromisa u pogledu čvrstoće konstrukcije, protoka vode i krajnje estetike partera.
+          </p>
+
+          <div class="pt-2 flex flex-wrap items-center gap-3">
+            <a
+              href="#forme-partera"
+              class="inline-flex items-center justify-center px-6 py-3 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent shadow-md"
+            >
+              POGLEDAJTE SPECIFIKACIJE &rarr;
+            </a>
+            <a
+              href="/posaljite-projekat/"
+              class="inline-flex items-center justify-center px-5 py-3 bg-transparent hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/40 transition-all gap-2"
+            >
+              <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              <span>POŠALJITE NAM NACRT</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Desna strana: Glavna hero fotografija lučnog kanala uz parter -->
+      <div class="lg:col-span-6 relative min-h-[300px] lg:min-h-full">
+        <img
+          src="/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp"
+          alt="Odvodnjavanje koje prati oblik prostora bez geometrijskog ograničenja"
+          class="absolute inset-0 w-full h-full object-cover object-center"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent lg:hidden"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. TRI BELE KARTICE — AISI 304, NIVELIRAJUĆE STOPE, ČVRSTOĆA (Kao na mockupu) -->
+  <section class="bg-[#F8FAFC] py-6 sm:py-8 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Kartica 1 -->
+        <div class="bg-white p-6 border border-gray-200/80 shadow-sm flex items-start gap-4">
+          <div class="w-10 h-10 rounded-sm bg-accent/10 border border-accent/30 flex items-center justify-center flex-shrink-0 text-accent font-bold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-xs font-black text-navy uppercase tracking-wider">AISI 304 / 316 INOX</h3>
+            <p class="text-[11px] text-gray-600 leading-relaxed">
+              Maksimalna otpornost na koroziju, hloride, agresivne kućne hemikalije i habanje. Namenjeno za dugovečnost u zahtevnim urbanim, rezidencijalnim i priobalnim ambijentima.
+            </p>
+          </div>
+        </div>
+
+        <!-- Kartica 2 -->
+        <div class="bg-white p-6 border border-gray-200/80 shadow-sm flex items-start gap-4">
+          <div class="w-10 h-10 rounded-sm bg-accent/10 border border-accent/30 flex items-center justify-center flex-shrink-0 text-accent font-bold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+            </svg>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-xs font-black text-navy uppercase tracking-wider">NIVELIRAJUĆE STOPE</h3>
+            <p class="text-[11px] text-gray-600 leading-relaxed">
+              Precizni navojni sistemi sa integrisanim stopama za milimetarsko ravnanje kanala sa nivoom gotovog poda i olakšano fiksiranje pre zalivanja betonom.
+            </p>
+          </div>
+        </div>
+
+        <!-- Kartica 3 -->
+        <div class="bg-white p-6 border border-gray-200/80 shadow-sm flex items-start gap-4">
+          <div class="w-10 h-10 rounded-sm bg-accent/10 border border-accent/30 flex items-center justify-center flex-shrink-0 text-accent font-bold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-xs font-black text-navy uppercase tracking-wider">ČVRSTOĆA KONSTRUKCIJE</h3>
+            <p class="text-[11px] text-gray-600 leading-relaxed">
+              Rigidno projektovana šasija od sertifikovanog inox lima debljine 2.0 mm koja garantuje apsolutnu stabilnost i otpornost na vertikalna opterećenja i pritisak podloge.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. FORME PREMA GEOMETRIJI PARTERA (Bela pozadina, 4 forme u jednom redu kao na mockupu) -->
+  <section id="forme-partera" class="py-12 lg:py-16 bg-white text-navy border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-10 space-y-1.5">
+        <span class="text-accent font-mono text-[11px] uppercase tracking-architectural font-bold block">
+          NE MORA SVAKA KANALICA DA BUDE PRAVA.
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy tracking-tight">
+          Izaberite formu prema <span class="text-accent">geometriji partera.</span>
+        </h2>
+        <p class="text-xs text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          Vi zadajete arhitektonske linije prostora. Mi ih pretvaramo u funkcionalan, trajan i stoprocentno precizan sistem za odvodnjavanje.
+        </p>
+      </div>
+
+      <!-- 4 Kartice: 01 Lučni, 02 Kružni, 03 Elipsasti, 04 S-forma -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <!-- 01 Lučni inox kanal -->
+        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between group hover:border-accent transition-colors shadow-sm">
+          <div>
+            <div class="aspect-[4/3] bg-white border border-gray-200/80 mb-3 flex items-center justify-center p-2 overflow-hidden">
+              <img
+                src="/images/inox/lucni-inox-kanal-linijsko-odvodnjavanje.webp"
+                alt="01 Lučni inox kanal"
+                class="max-h-full max-w-full object-contain transition-transform group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono font-black text-navy">01</span>
+              <h3 class="text-xs font-black text-navy uppercase tracking-wider group-hover:text-accent transition-colors">
+                LUČNI INOX KANAL
+              </h3>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-gray-200 mt-2">
+            <a href="/posaljite-projekat/" class="text-[10px] font-mono font-bold text-accent hover:text-navy uppercase">
+              Naručite po meri &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 02 Kružni prohromski kanal -->
+        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between group hover:border-accent transition-colors shadow-sm">
+          <div>
+            <div class="aspect-[4/3] bg-white border border-gray-200/80 mb-3 flex items-center justify-center p-2 overflow-hidden">
+              <img
+                src="/images/inox/kruzni-prohromski-kanal-za-odvodnjavanje.webp"
+                alt="02 Kružni prohromski kanal"
+                class="max-h-full max-w-full object-contain transition-transform group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono font-black text-navy">02</span>
+              <h3 class="text-xs font-black text-navy uppercase tracking-wider group-hover:text-accent transition-colors">
+                KRUŽNI PROHROMSKI KANAL
+              </h3>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-gray-200 mt-2">
+            <a href="/posaljite-projekat/" class="text-[10px] font-mono font-bold text-accent hover:text-navy uppercase">
+              Naručite po meri &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 03 Elipsasti inox kanal -->
+        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between group hover:border-accent transition-colors shadow-sm">
+          <div>
+            <div class="aspect-[4/3] bg-white border border-gray-200/80 mb-3 flex items-center justify-center p-2 overflow-hidden">
+              <img
+                src="/images/inox/elipsasti-inox-kanal-za-odvodnjavanje.webp"
+                alt="03 Elipsasti inox kanal"
+                class="max-h-full max-w-full object-contain transition-transform group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono font-black text-navy">03</span>
+              <h3 class="text-xs font-black text-navy uppercase tracking-wider group-hover:text-accent transition-colors">
+                ELIPSASTI INOX KANAL
+              </h3>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-gray-200 mt-2">
+            <a href="/posaljite-projekat/" class="text-[10px] font-mono font-bold text-accent hover:text-navy uppercase">
+              Naručite po meri &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- 04 S-forma kanalica -->
+        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between group hover:border-accent transition-colors shadow-sm">
+          <div>
+            <div class="aspect-[4/3] bg-white border border-gray-200/80 mb-3 flex items-center justify-center p-2 overflow-hidden">
+              <img
+                src="/images/inox/s-forma-lucni-inox-kanal-odvodnjavanje.webp"
+                alt="04 S-forma kanalica"
+                class="max-h-full max-w-full object-contain transition-transform group-hover:scale-105"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='/images/inox/lucni-inox-kanal-linijsko-odvodnjavanje.webp';"
+              />
+            </div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-mono font-black text-navy">04</span>
+              <h3 class="text-xs font-black text-navy uppercase tracking-wider group-hover:text-accent transition-colors">
+                S-FORMA KANALICA
+              </h3>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-gray-200 mt-2">
+            <a href="/posaljite-projekat/" class="text-[10px] font-mono font-bold text-accent hover:text-navy uppercase">
+              Naručite po meri &rarr;
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. TEHNIČKI DETALJI — KVALITET U SVAKOM DETALJU (Teget sekcija kao na mockupu) -->
+  <section class="py-12 lg:py-16 bg-navy text-white border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Levo: Slika profila kanalice -->
+        <div class="lg:col-span-4 flex justify-center">
+          <div class="bg-navy-surface border border-white/10 p-4 max-w-sm w-full flex items-center justify-center">
+            <img
+              src="/images/inox/ravni-modularni-inox-kanal-odvodnjavanje-drenaza.webp"
+              alt="Tehnički detalj inox kanalice i komore"
+              class="max-h-56 w-auto object-contain"
+              loading="lazy"
+              onerror="this.onerror=null; this.src='/images/inox/lucni-inox-kanal-linijsko-odvodnjavanje.webp';"
+            />
+          </div>
+        </div>
+
+        <!-- Sredina: Naslov i 3 kružne ikonice -->
+        <div class="lg:col-span-4 space-y-4">
+          <div class="space-y-1">
+            <span class="text-accent font-mono text-[10px] uppercase tracking-architectural font-bold block">
+              TEHNIČKI DETALJI
+            </span>
+            <h3 class="text-2xl font-extrabold text-white tracking-tight">
+              Kvalitet u svakom detalju.
+            </h3>
+            <p class="text-xs text-slate-muted leading-relaxed">
+              Naše inox kanalice izrađene su od vrhunskog nerđajućeg čelika AISI 304, debljine 2 mm, sa satin-brušenom završnom obradom.
+            </p>
+          </div>
+
+          <div class="space-y-3 pt-2">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full border border-accent flex items-center justify-center text-accent flex-shrink-0">
+                <span class="text-xs font-mono font-bold">%</span>
+              </div>
+              <span class="text-xs text-slate-surface font-medium">Fabrički integrisan pad 0.5% – 1%</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full border border-accent flex items-center justify-center text-accent flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <span class="text-xs text-slate-surface font-medium">Saten-brušena završna obrada</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full border border-accent flex items-center justify-center text-accent flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+              </div>
+              <span class="text-xs text-slate-surface font-medium">Sistemski spoj sa hidroizolacijom i flanšnom</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desno: Boks sa unikatnim projektovanjem -->
+        <div class="lg:col-span-4 bg-navy-dark border border-white/15 p-6 space-y-3">
+          <h4 class="text-sm font-bold text-white tracking-tight">
+            Projektovanje bez standarda. Svaka kanalica je unikat.
+          </h4>
+          <p class="text-xs text-slate-muted leading-relaxed">
+            U modernoj arhitekturi serijski standardi često predstavljaju ograničenje. Naši sistemi se ne proizvode masovno na traci — svaki segment se projektuje i izrađuje zasebno, prema specifičnim zahtevima vašeg prostora. Vi zadajete parametre, mi isporučujemo inženjersku preciznost.
+          </p>
+          <div class="pt-1">
+            <a href="/posaljite-projekat/" class="text-xs font-mono font-bold text-accent hover:text-white uppercase tracking-wider inline-flex items-center gap-1">
+              <span>POŠALJITE PARAMETRE PROSTORA</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PRIMENA IZ PRAKSE (Bela sekcija sa 4 fotografije kao na mockupu) -->
+  <section class="py-12 lg:py-16 bg-white text-navy border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="mb-8 space-y-1">
+        <span class="text-accent font-mono text-[11px] uppercase tracking-architectural font-bold block">
+          PRIMENA IZ PRAKSE
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy tracking-tight">
+          Od ideje do <span class="text-accent">stvarnosti.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <!-- Primer 1: Bazen S-forma -->
+        <div class="space-y-2">
+          <div class="aspect-[16/11] bg-gray-100 overflow-hidden border border-gray-200">
+            <img
+              src="/images/inox/skriveni-modularni-inox-kanal-s-forma-bazen-suva-plaza.webp"
+              alt="Skriveni modularni inox kanal — S-forma / bazen / suva plaža"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <h3 class="text-xs font-bold text-navy">Skriveni modularni inox kanal</h3>
+            <p class="text-[11px] text-gray-500 font-mono">S-forma / bazen / suva plaža</p>
+          </div>
+        </div>
+
+        <!-- Primer 2: Zalazak sunca -->
+        <div class="space-y-2">
+          <div class="aspect-[16/11] bg-gray-100 overflow-hidden border border-gray-200">
+            <img
+              src="/images/inox/lucni-skriveni-inox-kanal-zalazak-sunca.webp"
+              alt="Lučni skriveni inox kanal — zalazak sunca"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <h3 class="text-xs font-bold text-navy">Lučni skriveni inox kanal</h3>
+            <p class="text-[11px] text-gray-500 font-mono">zalazak sunca</p>
+          </div>
+        </div>
+
+        <!-- Primer 3: Žardinjera -->
+        <div class="space-y-2">
+          <div class="aspect-[16/11] bg-gray-100 overflow-hidden border border-gray-200">
+            <img
+              src="/images/inox/kruzni-skriveni-inox-kanal-oko-zardinjere.webp"
+              alt="Kružni skriveni inox kanal — oko žardinjere"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <h3 class="text-xs font-bold text-navy">Kružni skriveni inox kanal</h3>
+            <p class="text-[11px] text-gray-500 font-mono">oko žardinjere</p>
+          </div>
+        </div>
+
+        <!-- Primer 4: Poslovni centar -->
+        <div class="space-y-2">
+          <div class="aspect-[16/11] bg-gray-100 overflow-hidden border border-gray-200">
+            <img
+              src="/images/inox/elipsasti-skriveni-inox-kanal-poslovni-centar.webp"
+              alt="Elipsasti skriveni inox kanal — poslovni centar"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <h3 class="text-xs font-bold text-navy">Elipsasti skriveni inox kanal</h3>
+            <p class="text-[11px] text-gray-500 font-mono">poslovni centar</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. GRADSKI TRG — PRAVI FOTOGRAFSKI SHOWCASE BANER -->
+  <section class="relative py-14 lg:py-16 bg-navy text-white overflow-hidden border-b border-white/10">
+    <img
+      src="/images/inox/lucni-inox-kanal-sa-perforiranom-resetkom-gradski-trg.webp"
+      alt="Lučni inox kanal sa perforiranom rešetkom — Gradski trg"
+      class="absolute inset-0 w-full h-full object-cover object-center"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/85 to-transparent"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div class="lg:col-span-8 space-y-2">
+          <span class="text-accent font-mono text-[10px] uppercase tracking-architectural font-bold block">
+            LUČNI INOX KANAL SA PERFORIRANOM REŠETKOM
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            Gradski trg.
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-surface/90 max-w-2xl leading-relaxed">
+            Elegantno rešenje za javne površine, trgove i moderne urbane ambijente, sa maksimalnim protokom vode i diskretnim, estetskim izgledom.
+          </p>
+        </div>
+        <div class="lg:col-span-4 flex lg:justify-end">
+          <a
+            href="/posaljite-projekat/"
+            class="px-6 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent shadow-md text-center"
+          >
+            ZATRAŽITE PRORAČUN ZA TRG &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. PET KORAKA DO SAVRŠENOG REŠENJA (Kompaktan beli red kao na mockupu) -->
+  <section class="py-12 lg:py-16 bg-white text-navy border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="mb-8 space-y-1">
+        <span class="text-accent font-mono text-[11px] uppercase tracking-architectural font-bold block">
+          OD IDEJE DO UGRADNJE
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy tracking-tight">
+          Pet koraka do <span class="text-accent">savršenog rešenja.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        
+        <!-- Korak 1 -->
+        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between space-y-2">
+          <div>
+            <div class="w-7 h-7 rounded-full bg-accent text-white font-mono text-xs font-bold flex items-center justify-center mb-2">1</div>
+            <h3 class="text-xs font-bold text-navy uppercase leading-snug mb-1">Dostavljanje projekta ili skice</h3>
+            <p class="text-[11px] text-gray-600 leading-relaxed">
+              Pošaljite nam vaš DWG crtež, idejni projekat partera ili običnu skicu prostora sa dimenzijama na <span class="text-accent font-mono">projekti@modularnisistemi.com</span>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Korak 2 -->
+        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between space-y-2">
+          <div>
+            <div class="w-7 h-7 rounded-full bg-accent text-white font-mono text-xs font-bold flex items-center justify-center mb-2">2</div>
+            <h3 class="text-xs font-bold text-navy uppercase leading-snug mb-1">Inženjerska razrada forme</h3>
+            <p class="text-[11px] text-gray-600 leading-relaxed">
+              Naš projektni biro analizira geometriju, vrši proračune i razrađuje modularne segmente i krivine idealno prilagođene vašem objektu.
+            </p>
+          </div>
+        </div>
+
+        <!-- Korak 3 -->
+        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between space-y-2">
+          <div>
+            <div class="w-7 h-7 rounded-full bg-accent text-white font-mono text-xs font-bold flex items-center justify-center mb-2">3</div>
+            <h3 class="text-xs font-bold text-navy uppercase leading-snug mb-1">Proračun nagiba i izliva</h3>
+            <p class="text-[11px] text-gray-600 leading-relaxed">
+              Precizno definišemo unutrašnje padove za optimalan protok fluida i pozicioniramo mesta za slivnike i vertikalne odvode prema predmeru.
+            </p>
+          </div>
+        </div>
+
+        <!-- Korak 4 -->
+        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between space-y-2">
+          <div>
+            <div class="w-7 h-7 rounded-full bg-accent text-white font-mono text-xs font-bold flex items-center justify-center mb-2">4</div>
+            <h3 class="text-xs font-bold text-navy uppercase leading-snug mb-1">Laserska izrada i obrada</h3>
+            <p class="text-[11px] text-gray-600 leading-relaxed">
+              Vrhunska mašinska proizvodnja od visoko-kvalitetnog nerđajućeg čelika debljine 2 mm u našem pogonu, uz lasersko sečenje i precizno varenje spojeva.
+            </p>
+          </div>
+        </div>
+
+        <!-- Korak 5 -->
+        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between space-y-2">
+          <div>
+            <div class="w-7 h-7 rounded-full bg-accent text-white font-mono text-xs font-bold flex items-center justify-center mb-2">5</div>
+            <h3 class="text-xs font-bold text-navy uppercase leading-snug mb-1">Isporuka sistema na gradilište</h3>
+            <p class="text-[11px] text-gray-600 leading-relaxed">
+              Gotovi modularni segmenti stižu na lokaciju kompletirani sa nivelirajućim stopama, spremni za brzo ankerisanje i bezbedno betoniranje.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 8. JEDAN USKI TAMNI BANER SA HEKSAGON IKONOM (Tačno kao na dnu mockupa) -->
+  <section class="py-8 bg-navy text-white border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+        
+        <!-- Levo: Narandžasta ikona heksagona + Tekst -->
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-sm bg-accent/15 border border-accent/40 flex items-center justify-center flex-shrink-0 text-accent">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z"></path>
+            </svg>
+          </div>
+          <div class="space-y-0.5">
+            <h2 class="text-sm sm:text-base font-extrabold text-white tracking-tight">
+              IMATE KRUŽNI BAZEN, LUČNU TERASU ILI SPECIFIČNU GEOMETRIJU U PROJEKTU?
+            </h2>
+            <p class="text-[11px] text-slate-muted max-w-3xl leading-relaxed">
+              Pošaljite nam DWG crtež, skicu ili idejno rešenje partera. Naš inženjerski tim će u najkraćem roku razraditi modularne segmente koji se idealno uklapaju u linije i oblike vašeg prostora.
+            </p>
+          </div>
+        </div>
+
+        <!-- Desno: Narandžasto dugme -->
+        <div class="flex-shrink-0 w-full lg:w-auto">
+          <a
+            href="/posaljite-projekat/"
+            class="block w-full sm:w-auto text-center px-8 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent shadow-md whitespace-nowrap"
+          >
+            ZATRAŽITE KONSULTACIJU &rarr;
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

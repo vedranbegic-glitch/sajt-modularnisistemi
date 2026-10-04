@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ProjectForm from '../components/ProjectForm.astro';
+import { CONTACT } from '../data/siteData';
+
+const breadcrumbItems = [
+  { label: 'Pošaljite projekat' },
+];
+---
+
+<BaseLayout
+  title="Pošaljite nam projekat · Inženjerska analiza i predmer"
+  description="Imate projekat? Pošaljite nam nacrt u PDF, DWG ili ZIP formatu. Inženjerski tim MODULARNI SISTEMI radi predmer i specifikaciju elemenata po meri."
+>
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <!-- Hero sekcija -->
+  <section class="pt-14 pb-16 bg-navy bg-grid-pattern border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-navy-surface border border-accent/40 text-accent font-mono text-[11px] uppercase tracking-architectural font-bold">
+          <span class="w-2 h-2 bg-accent inline-block" aria-hidden="true"></span>
+          <span>Inženjerski prijem tehničke dokumentacije</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          IMATE PROJEKAT? POŠALJITE NAM NACRT.
+        </h1>
+
+        <p class="text-sm sm:text-base text-slate-muted leading-relaxed">
+          Pošaljite nam osnove, preseke, skice ili situacione planove. Naš tim analizira geometriju, visinske kote i padove, pripremajući preciznu specifikaciju modularnih elemenata.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Forma i prateće smernice -->
+  <section class="py-16 lg:py-24 bg-navy-dark">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <!-- Direktni operativni kontakt bar -->
+      <div class="p-6 bg-navy border border-white/10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-mono text-xs shadow-md">
+        <div>
+          <span class="text-slate-muted block text-[10px] uppercase tracking-architectural">Email za nacrte</span>
+          <a href={`mailto:${CONTACT.projectEmail}`} class="text-white hover:text-accent font-bold block mt-1 break-all">
+            {CONTACT.projectEmail}
+          </a>
+        </div>
+        <div>
+          <span class="text-slate-muted block text-[10px] uppercase tracking-architectural">Telefon za hitne upite</span>
+          <a href={`tel:${CONTACT.phoneFormatted}`} class="text-accent hover:text-white font-bold block mt-1">
+            {CONTACT.phone}
+          </a>
+        </div>
+        <div>
+          <span class="text-slate-muted block text-[10px] uppercase tracking-architectural">Podržani formati</span>
+          <span class="text-white font-bold block mt-1">PDF · DWG · DXF · ZIP</span>
+        </div>
+      </div>
+
+      <!-- Projektna forma -->
+      <ProjectForm />
+
+      <!-- Smernice za pripremu priloga -->
+      <div class="p-8 bg-navy border border-white/10 space-y-4">
+        <h3 class="text-base font-bold text-white uppercase tracking-wider flex items-center gap-2">
+          <span class="w-2 h-2 bg-accent inline-block" aria-hidden="true"></span>
+          Preporuke za bržu izradu ponude
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-slate-muted leading-relaxed">
+          <div class="p-4 bg-navy-surface border border-white/5 space-y-1">
+            <span class="text-white font-bold block">1. Geometrija i padovi</span>
+            <p>Ukoliko šaljete drenažni projekat, označite pozicije slivnika, pravce padova i planiranu visinu podloge.</p>
+          </div>
+          <div class="p-4 bg-navy-surface border border-white/5 space-y-1">
+            <span class="text-white font-bold block">2. Radijusi kod krivina</span>
+            <p>Za bazene i kružne platoe navedite poluprečnik krivine (R) kako bismo predvideli tačan radijalni alat.</p>
+          </div>
+          <div class="p-4 bg-navy-surface border border-white/5 space-y-1">
+            <span class="text-white font-bold block">3. Zahtevana nosivost</span>
+            <p>Navedite tip saobraćaja: isključivo pešački prolaz, bazensko sunčalište ili prelaz putničkih i teretnih vozila.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

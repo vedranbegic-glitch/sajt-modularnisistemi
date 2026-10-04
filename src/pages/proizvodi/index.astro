@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { PRODUCT_CATEGORIES_LIST } from '../../data/products';
+import { CONTACT } from '../../data/siteData';
+
+const breadcrumbItems = [
+  { label: 'Proizvodi' },
+];
+---
+
+<BaseLayout
+  title="Proizvodi i inženjerski sistemi"
+  description="Pregled modularnih sistema za savremenu arhitekturu: Inox sistemi odvodnjavanja, moderna rasveta i modularni podni sistemi. Izrada i konfiguracija prema geometriji prostora."
+>
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <!-- Hero sekcija -->
+  <section class="pt-14 pb-16 bg-navy bg-grid-pattern border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-navy-surface border border-accent/40 text-accent font-mono text-[11px] uppercase tracking-architectural font-bold">
+          <span class="w-2 h-2 bg-accent inline-block" aria-hidden="true"></span>
+          <span>PROIZVODNI PROGRAM · MODULARNI SISTEMI</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          Inženjerski i modularni sistemi za savremenu arhitekturu.
+        </h1>
+
+        <p class="text-sm sm:text-base text-slate-muted leading-relaxed">
+          Strukturisani portfolio od tri specijalizovana proizvodna pravca razvijena sa fokusom na preciznu geometriju, otpornost materijala i jednostavnu ugradnju na objektu.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Glavni katalog kategorija -->
+  <section class="py-16 lg:py-24 bg-navy-dark border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      {PRODUCT_CATEGORIES_LIST.map((category, index) => (
+        <article class={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center p-8 sm:p-12 bg-navy border border-white/10 ${index % 2 === 1 ? 'lg:grid-flow-dense' : ''}`}>
+          
+          <!-- Tekstualni opis kategorije -->
+          <div class={`lg:col-span-6 space-y-5 ${index % 2 === 1 ? 'lg:col-start-7' : ''}`}>
+            <div class="flex items-center justify-between">
+              <span class="text-accent font-mono text-xs uppercase tracking-architectural font-bold">
+                KATEGORIJA 0{index + 1}
+              </span>
+              <span class="text-[11px] font-mono text-slate-muted uppercase">
+                MODULARNI PROGRAM
+              </span>
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug">
+              {category.title}
+            </h2>
+
+            <p class="text-xs sm:text-sm font-mono text-accent uppercase tracking-wider font-semibold">
+              "{category.headline}"
+            </p>
+
+            <p class="text-xs sm:text-sm text-slate-muted leading-relaxed">
+              {category.description}
+            </p>
+
+            <!-- Karakteristike -->
+            <div class="pt-3 border-t border-white/10 space-y-2">
+              <span class="text-[10px] font-mono uppercase tracking-architectural text-slate-surface font-semibold block mb-2">
+                Inženjerske karakteristike:
+              </span>
+              <ul class="space-y-1.5">
+                {category.highlights.map((highlight) => (
+                  <li class="text-xs text-slate-surface flex items-start gap-2">
+                    <span class="w-1.5 h-1.5 bg-accent mt-1.5 flex-shrink-0" aria-hidden="true"></span>
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Akcione veze -->
+            <div class="pt-4 flex flex-col sm:flex-row gap-4">
+              <a
+                href={category.slug}
+                class="inline-flex items-center justify-center px-6 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent text-center"
+              >
+                Kompletna specifikacija sistema &rarr;
+              </a>
+              <a
+                href="/posaljite-projekat/"
+                class="inline-flex items-center justify-center px-6 py-3.5 bg-navy-surface hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/15 transition-all text-center"
+              >
+                Zatražite predmer
+              </a>
+            </div>
+          </div>
+
+          <!-- Vizuelni prikaz kategorije -->
+          <div class={`lg:col-span-6 ${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
+            <div class="relative aspect-[16/10] bg-navy-dark border border-white/15 overflow-hidden group shadow-2xl flex items-center justify-center">
+              <img
+                src={category.heroImage}
+                alt={category.title}
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+              />
+
+              <div class="hidden absolute inset-0 bg-navy-surface p-6 flex flex-col justify-between" aria-hidden="true">
+                <div class="flex justify-between items-start">
+                  <span class="px-2 py-0.5 bg-navy border border-accent/40 text-accent font-mono text-[9px] uppercase tracking-architectural">
+                    TEHNIČKI MODEL
+                  </span>
+                  <span class="w-2.5 h-2.5 border-t border-r border-accent"></span>
+                </div>
+                <div>
+                  <span class="text-sm font-mono font-bold text-white block">{category.title}</span>
+                  <span class="text-[10px] font-mono text-slate-muted block mt-1 break-all">{category.heroImage}</span>
+                </div>
+                <div class="border-t border-white/10 pt-2 flex justify-between items-center text-[9px] font-mono text-slate-muted">
+                  <span>MODULARNI SISTEMI</span>
+                  <span class="text-accent uppercase">PREFABRIKACIJA</span>
+                </div>
+              </div>
+
+              <div class="absolute bottom-0 inset-x-0 bg-navy/90 border-t border-white/10 px-4 py-2 flex items-center justify-between text-[10px] font-mono text-slate-muted">
+                <span>{category.title}</span>
+                <span class="text-accent uppercase font-bold">KATEGORIJA 0{index + 1}</span>
+              </div>
+            </div>
+          </div>
+
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA za tehničku razradu -->
+  <section class="py-16 bg-navy bg-grid-pattern">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
+      <span class="text-accent font-mono text-xs uppercase tracking-architectural font-bold block">
+        Prilagođavanje geometrije
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+        Potrebno vam je rešenje po meri objekta?
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-muted max-w-xl mx-auto leading-relaxed">
+        Dostavite arhitektonske podloge i dimenzije. Naš tim priprema specifikaciju sistema u skladu sa zadatim rasporedom padova i kota.
+      </p>
+      <div class="pt-3 flex flex-col sm:flex-row justify-center items-center gap-4">
+        <a
+          href="/posaljite-projekat/"
+          class="px-8 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent"
+        >
+          Pošaljite nam projekat
+        </a>
+        <a
+          href={`tel:${CONTACT.phoneFormatted}`}
+          class="px-8 py-3.5 bg-navy-surface hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/20 transition-all font-mono"
+        >
+          {CONTACT.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,100 @@
+---
+interface Props {
+  title: string;
+  summary: string;
+  image: string;
+  application?: string;
+  href?: string;
+  badge?: string;
+}
+
+const {
+  title,
+  summary,
+  image,
+  application,
+  href,
+  badge = 'MODULARNI SISTEM',
+} = Astro.props;
+---
+
+<article class="bg-navy border border-white/10 hover:border-accent/50 transition-all duration-300 flex flex-col justify-between group h-full">
+  <div>
+    <!-- Image Box with Visual Fallback -->
+    <div class="relative aspect-[16/10] overflow-hidden bg-navy-dark border-b border-white/10 flex items-center justify-center">
+      <img
+        src={image}
+        alt={title}
+        loading="lazy"
+        decoding="async"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+      />
+
+      <div class="hidden absolute inset-0 bg-navy-surface p-5 flex flex-col justify-between border border-white/10" aria-hidden="true">
+        <div class="flex justify-between items-start">
+          <span class="px-2 py-0.5 bg-navy border border-accent/30 text-accent font-mono text-[9px] uppercase tracking-architectural">
+            TEHNIČKI MODEL
+          </span>
+          <span class="w-2.5 h-2.5 border-t border-r border-accent"></span>
+        </div>
+        <div>
+          <span class="text-xs font-mono font-bold text-white block">{title}</span>
+          <span class="text-[10px] font-mono text-slate-muted block mt-1 break-all">{image}</span>
+        </div>
+        <div class="border-t border-white/10 pt-2 flex justify-between items-center text-[9px] font-mono text-slate-muted">
+          <span>MODULARNI SISTEMI</span>
+          <span class="text-accent">SPEC</span>
+        </div>
+      </div>
+
+      <div class="absolute top-3 left-3 pointer-events-none">
+        <span class="px-2 py-1 bg-navy/90 border border-white/15 text-[10px] font-mono uppercase tracking-architectural text-white font-semibold">
+          {badge}
+        </span>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="p-6 space-y-3">
+      <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors leading-snug">
+        {title}
+      </h3>
+      <p class="text-xs text-slate-muted leading-relaxed">
+        {summary}
+      </p>
+
+      {application && (
+        <div class="pt-3 border-t border-white/10">
+          <span class="block text-[10px] font-mono uppercase tracking-architectural text-slate-surface mb-1">
+            Karakteristična primena:
+          </span>
+          <p class="text-xs font-mono text-accent">
+            {application}
+          </p>
+        </div>
+      )}
+    </div>
+  </div>
+
+  <!-- Card Action -->
+  <div class="p-6 pt-0">
+    {href ? (
+      <a
+        href={href}
+        class="inline-flex items-center justify-between w-full px-4 py-2.5 bg-navy-surface hover:bg-accent text-white text-xs uppercase tracking-architectural font-bold border border-white/15 hover:border-accent transition-all duration-200"
+      >
+        <span>Detalji sistema</span>
+        <span>&rarr;</span>
+      </a>
+    ) : (
+      <a
+        href="/posaljite-projekat/"
+        class="inline-flex items-center justify-between w-full px-4 py-2.5 bg-navy-surface hover:bg-accent text-white text-xs uppercase tracking-architectural font-bold border border-white/15 hover:border-accent transition-all duration-200"
+      >
+        <span>Zatražite predmer</span>
+        <span>&rarr;</span>
+      </a>
+    )}
+  </div>
+</article>

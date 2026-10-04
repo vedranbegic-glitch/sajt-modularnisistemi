@@ -1,0 +1,130 @@
+---
+import { CONTACT, NAVIGATION, SITE } from '../data/siteData';
+
+const currentPath = Astro.url.pathname;
+const cleanPath = currentPath.endsWith('/') && currentPath !== '/' ? currentPath : `${currentPath}/`;
+---
+
+<header id="site-header" class="sticky top-0 z-50 w-full bg-navy/95 backdrop-blur-md border-b border-white/10 transition-colors">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Pravi zvanični brend Logo -->
+      <a href="/" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-accent" aria-label={`${SITE.name} — Početna`}>
+        <img
+          src="/images/brand/modularni-sistemi-logo.png"
+          alt="MODULARNI SISTEMI - Jedan sistem. Bezbroj mogućnosti."
+          class="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-102"
+          onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+        />
+        <!-- Rezervni tekstualni logo ukoliko fajl još nije ubačen -->
+        <div class="hidden flex-col">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 bg-accent text-navy font-black text-xs flex items-center justify-center">MS</span>
+            <span class="font-extrabold text-lg text-white">MODULARNI <span class="text-accent">SISTEMI</span></span>
+          </div>
+          <span class="text-[9px] font-mono tracking-architectural text-slate-muted uppercase mt-0.5">JEDAN SISTEM. BEZBROJ MOGUĆNOSTI.</span>
+        </div>
+      </a>
+
+      <!-- Desktop navigacija -->
+      <nav class="hidden xl:flex items-center space-x-1" aria-label="Glavna navigacija">
+        {NAVIGATION.map((item) => {
+          const isActive = cleanPath === item.href || (item.href !== '/' && cleanPath.startsWith(item.href));
+          return (
+            <a
+              href={item.href}
+              class={`px-3 py-2 text-xs uppercase tracking-architectural font-semibold transition-all duration-150 ${
+                isActive
+                  ? 'text-accent border-b-2 border-accent bg-white/5'
+                  : 'text-slate-surface hover:text-white hover:bg-white/5'
+              }`}
+            >
+              {item.label}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- CTA dugme i telefon -->
+      <div class="hidden lg:flex items-center gap-5">
+        <a 
+          href={`tel:${CONTACT.phoneFormatted}`} 
+          class="text-xs font-mono text-slate-surface hover:text-accent transition-colors tracking-wider flex items-center gap-2"
+        >
+          <span class="w-1.5 h-1.5 bg-accent inline-block"></span>
+          <span>{CONTACT.phone}</span>
+        </a>
+        <a
+          href="/posaljite-projekat/"
+          class="inline-flex items-center justify-center px-4 py-2.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent shadow-sm"
+        >
+          Pošaljite nam projekat
+        </a>
+      </div>
+
+      <!-- Mobilni meni taster -->
+      <div class="flex items-center lg:hidden gap-3">
+        <a
+          href="/posaljite-projekat/"
+          class="px-3 py-1.5 bg-accent hover:bg-accent-hover text-white text-[11px] uppercase tracking-architectural font-bold border border-accent"
+        >
+          Projekat
+        </a>
+        <button
+          type="button"
+          id="mobile-menu-toggle"
+          class="p-2 text-slate-surface hover:text-white focus:outline-none focus:ring-2 focus:ring-accent border border-white/10 bg-navy-surface"
+          aria-label="Meni"
+          aria-expanded="false"
+        >
+          <svg class="w-6 h-6 block" id="icon-open" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg class="w-6 h-6 hidden" id="icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobilni padajući panel -->
+  <div id="mobile-nav-panel" class="hidden lg:hidden border-t border-white/10 bg-navy-dark px-4 py-6">
+    <nav class="flex flex-col space-y-1">
+      {NAVIGATION.map((item) => {
+        const isActive = cleanPath === item.href || (item.href !== '/' && cleanPath.startsWith(item.href));
+        return (
+          <a
+            href={item.href}
+            class={`px-3 py-2.5 text-xs uppercase tracking-architectural font-semibold border-l-2 transition-all ${
+              isActive
+                ? 'border-accent text-accent bg-white/5 font-bold'
+                : 'border-transparent text-slate-surface hover:text-white hover:bg-white/5'
+            }`}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const panel = document.getElementById('mobile-nav-panel');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  if (toggleBtn && panel && iconOpen && iconClose) {
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', String(!isOpen));
+      panel.classList.toggle('hidden');
+      iconOpen.classList.toggle('hidden');
+      iconClose.classList.toggle('hidden');
+    });
+  }
+</script>

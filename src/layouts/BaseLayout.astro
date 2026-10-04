@@ -1,0 +1,119 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import { SITE, CONTACT } from '../data/siteData';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = SITE.description,
+  canonical,
+  ogImage = '/images/brand/og-share.jpg',
+} = Astro.props;
+
+const pageTitle = title ? `${title} · ${SITE.name}` : `${SITE.name} · ${SITE.tagline}`;
+const canonicalUrl = canonical || new URL(Astro.url.pathname, SITE.url).href;
+const socialImageUrl = ogImage.startsWith('http') ? ogImage : `${SITE.url}${ogImage}`;
+
+const schemaData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${SITE.url}/#organization`,
+      name: SITE.name,
+      url: SITE.url,
+      slogan: SITE.tagline,
+      email: CONTACT.generalEmail,
+      telephone: CONTACT.phone,
+      logo: `${SITE.url}/favicon.svg`,
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          telephone: CONTACT.phone,
+          contactType: 'technical support',
+          email: CONTACT.projectEmail,
+        },
+        {
+          '@type': 'ContactPoint',
+          telephone: CONTACT.phone,
+          contactType: 'customer service',
+          email: CONTACT.generalEmail,
+        },
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE.url}/#website`,
+      url: SITE.url,
+      name: SITE.name,
+      description: SITE.description,
+      publisher: {
+        '@id': `${SITE.url}/#organization`,
+      },
+      inLanguage: 'sr-RS',
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: pageTitle,
+      description: description,
+      isPartOf: {
+        '@id': `${SITE.url}/#website`,
+      },
+      inLanguage: 'sr-RS',
+    },
+  ],
+};
+---
+
+<!DOCTYPE html>
+<html lang="sr" class="scroll-smooth bg-navy text-slate-surface">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#031C2C" />
+
+    <!-- Primary Meta Tags -->
+    <title>{pageTitle}</title>
+    <meta name="title" content={pageTitle} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content="sr_RS" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={socialImageUrl} />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+  </head>
+  <body class="min-h-screen flex flex-col bg-navy text-slate-surface selection:bg-accent selection:text-white">
+    <Header />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

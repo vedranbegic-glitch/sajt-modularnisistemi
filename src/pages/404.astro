@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, CONTACT } from '../data/siteData';
+---
+
+<BaseLayout
+  title="404 — Stranica nije pronađena"
+  description="Tražena stranica ne postoji na serveru MODULARNI SISTEMI. Vratite se na početnu stranu ili pogledajte naše sisteme."
+>
+  <section class="min-h-[75vh] flex items-center justify-center py-20 bg-navy bg-grid-pattern relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-8">
+      
+      <!-- Architectural Status Badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-navy-surface border border-accent/40 text-accent font-mono text-xs uppercase tracking-architectural font-bold">
+        <span class="w-2 h-2 bg-accent inline-block" aria-hidden="true"></span>
+        <span>GREŠKA 404 · NEPOSTOJEĆA LOKACIJA</span>
+      </div>
+
+      <!-- Geometry Visual Indicator -->
+      <div class="relative py-4">
+        <span class="text-7xl sm:text-9xl font-extrabold text-white tracking-tightest font-mono select-none opacity-20 block">
+          404
+        </span>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Stranica nije pronađena
+          </h1>
+        </div>
+      </div>
+
+      <p class="text-sm sm:text-base text-slate-muted max-w-xl mx-auto leading-relaxed">
+        Adresa koju ste zatražili ne postoji, promenjena je ili je uklonjena iz arhitekture sajta. Izaberite neku od osnovnih sekcija ili nam pošaljite upit.
+      </p>
+
+      <!-- Technical Quick Links -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto pt-2 text-xs font-mono">
+        <a
+          href="/inox-sistemi-odvodnjavanja/"
+          class="p-3 bg-navy-surface border border-white/10 hover:border-accent text-white transition-colors"
+        >
+          Inox odvodnjavanje &rarr;
+        </a>
+        <a
+          href="/moderna-rasveta/"
+          class="p-3 bg-navy-surface border border-white/10 hover:border-accent text-white transition-colors"
+        >
+          Moderna rasveta &rarr;
+        </a>
+        <a
+          href="/modularni-podni-sistemi/"
+          class="p-3 bg-navy-surface border border-white/10 hover:border-accent text-white transition-colors"
+        >
+          Podni sistemi &rarr;
+        </a>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="pt-6 flex flex-col sm:flex-row justify-center items-center gap-4">
+        <a
+          href="/"
+          class="w-full sm:w-auto px-8 py-4 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent shadow-md text-center"
+        >
+          Povratak na početnu stranu
+        </a>
+        <a
+          href="/kontakt/"
+          class="w-full sm:w-auto px-8 py-4 bg-navy-surface hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/20 transition-all text-center"
+        >
+          Kontakt inženjeringa
+        </a>
+      </div>
+
+      <div class="pt-4 font-mono text-[11px] text-slate-muted">
+        Direktna tehnička podrška: <a href={`tel:${CONTACT.phoneFormatted}`} class="text-white hover:text-accent font-semibold">{CONTACT.phone}</a>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
