@@ -16,10 +16,19 @@ const staticRoutes = [
   '/posaljite-projekat/',
 ];
 
+// Ravna kanalica se dodaje u [slug].astro, pa je dodajemo i ovde
+const EXTRA_INOX_IDS = ['ravni-modularni-inox-kanal'];
+
 export const GET: APIRoute = async () => {
   const inoxSubtypes = CATEGORIES_DATA.inox.subtypes;
-  const dynamicInoxRoutes = inoxSubtypes.map(
-    (item) => `/inox-sistemi-odvodnjavanja/${item.id}/`
+
+  // Spaja ID-jeve iz podataka sa dodatnim, bez duplikata
+  const inoxIds = Array.from(
+    new Set([...EXTRA_INOX_IDS, ...inoxSubtypes.map((item) => item.id)])
+  );
+
+  const dynamicInoxRoutes = inoxIds.map(
+    (id) => `/inox-sistemi-odvodnjavanja/${id}/`
   );
 
   const allUrls = [...staticRoutes, ...dynamicInoxRoutes];

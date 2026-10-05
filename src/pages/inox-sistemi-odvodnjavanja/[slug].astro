@@ -6,15 +6,29 @@ import { CATEGORIES_DATA } from '../../data/products';
 import { CONTACT } from '../../data/siteData';
 
 export async function getStaticPaths() {
-  const subtypes = CATEGORIES_DATA.inox.subtypes;
-  return subtypes.map((sub) => ({
+  // Ravna kanalica – dodaje se ako je nema u podacima (products.ts)
+  const ravniModel = {
+    id: 'ravni-modularni-inox-kanal',
+    name: 'Ravna inox kanalica',
+    summary:
+      'Ravni modularni inox kanal čiste linije, izrađen u dužinama prema projektu, sa integrisanim padom i nivelirajućim stopama.',
+    application: 'Terase, pešačke staze, ulazi u objekte, parkinzi i javni trgovi.',
+    image: '/images/inox/ravni-modularni-inox-kanal-odvodnjavanje-drenaza.webp',
+  };
+
+  const existing = CATEGORIES_DATA.inox.subtypes;
+  const allProducts = existing.some((s) => s.id === ravniModel.id)
+    ? existing
+    : [ravniModel, ...existing];
+
+  return allProducts.map((sub) => ({
     params: { slug: sub.id },
-    props: { product: sub },
+    props: { product: sub, allProducts },
   }));
 }
 
-const { product } = Astro.props;
-const otherProducts = CATEGORIES_DATA.inox.subtypes.filter((s) => s.id !== product.id);
+const { product, allProducts } = Astro.props;
+const otherProducts = allProducts.filter((s) => s.id !== product.id);
 
 const breadcrumbItems = [
   { label: 'Proizvodi', href: '/proizvodi/' },
@@ -163,7 +177,7 @@ const breadcrumbItems = [
         subtitle="Pogledajte druga konfiguraciona rešenja iz programa inox odvodnjavanja."
       />
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {otherProducts.map((other) => (
           <a
             href={`/inox-sistemi-odvodnjavanja/${other.id}/`}
