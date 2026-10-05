@@ -1,341 +1,1155 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionHeading from '../components/SectionHeading.astro';
 import LightboxModal from '../components/LightboxModal.astro';
-import { SITE, CONTACT, ENGINEERING_STEPS } from '../data/siteData';
-import { PRODUCT_CATEGORIES_LIST, CATEGORIES_DATA } from '../data/products';
+import { SITE, ENGINEERING_STEPS } from '../data/siteData';
+import { PRODUCT_CATEGORIES_LIST } from '../data/products';
 import { GALLERY_ITEMS } from '../data/gallery';
 
-// Prikazujemo samo 4 reprezentativna primera na početnoj (ostalo je na /galerija/)
 const featuredGallery = GALLERY_ITEMS.slice(0, 4);
+
+// Hero slajder – slike se menjaju na svake 3 sekunde
+const heroSlides = [
+  {
+    src: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
+    alt: 'Modularni sistemi — lučni inox kanal u pejzažnom partera',
+    position: 'center',
+  },
+  {
+    src: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp',
+    alt: 'Z lampa — moderna LED rasveta za dvorište i ulicu',
+    position: '70% center',
+  },
+];
+
+const fallbackCategories = [
+  {
+    title: 'Inox sistemi odvodnjavanja',
+    headline: 'Precizno odvodnjavanje koje prati geometriju prostora',
+    description: 'Modularni inox sistemi sa integrisanim fabričkim padom i nivelirajućim stopama za ravne, lučne, kružne i S-forme partera.',
+    slug: '/inox-sistemi-odvodnjavanja/',
+    heroImage: '/images/inox/elipsasti-inox-kanal-za-odvodnjavanje.webp',
+  },
+  {
+    title: 'Moderna rasveta',
+    headline: 'Arhitektonska rasveta koja spaja funkciju i estetiku',
+    description: 'Arhitektonska Z-lampa u visinama od 3m, 4m i 5m, sa IP65 zaštitom i podesivom snagom, namenjena za dvorišta, parkinge, poslovne zone i javne površine.',
+    slug: '/moderna-rasveta/',
+    heroImage: '/images/rasveta/z-lampa-dimenzije-visina-tehnicki-detalji.webp',
+  },
+  {
+    title: 'Modularni podni sistemi',
+    headline: 'Fleksibilna podna rešenja za različite prostore i namene',
+    description: 'Modularne podne obloge sa brzim sistemom sklapanja, namenjene za formiranje stabilnih, provetrenih i lako održivih podnih površina.',
+    slug: '/modularni-podni-sistemi/',
+    heroImage: '/images/podni-sistemi/podni-sistemi-glavna.jpg',
+  },
+];
+
+const sourceCategories = PRODUCT_CATEGORIES_LIST?.length
+  ? PRODUCT_CATEGORIES_LIST
+  : fallbackCategories;
+
+// Inox kartica koristi sliku elipsastog kanala, a Moderna rasveta sliku sa tri visine Z lampe
+const categories = sourceCategories.map((cat, i) => {
+  if (i === 0 || cat.slug?.includes('inox')) {
+    return {
+      ...cat,
+      heroImage: '/images/inox/elipsasti-inox-kanal-za-odvodnjavanje.webp',
+    };
+  }
+  if (cat.slug?.includes('rasveta')) {
+    return {
+      ...cat,
+      heroImage: '/images/rasveta/z-lampa-dimenzije-visina-tehnicki-detalji.webp',
+    };
+  }
+  return cat;
+});
+
+const steps = ENGINEERING_STEPS?.length
+  ? ENGINEERING_STEPS
+  : [
+      { number: '01', title: 'Analiza geometrije', description: 'Pregledamo crtež, podlogu i ograničenja prostora.' },
+      { number: '02', title: 'Inženjerska konfiguracija', description: 'Definišemo formume, radijuse i spojeve sistema.' },
+      { number: '03', title: 'Precizna izrada', description: 'Prefabrikacija inox segmenata prema dogovorenom rešenju.' },
+      { number: '04', title: 'Koordinacija ugradnje', description: 'Pripremljene komponente stižu spremne za montažu.' },
+    ];
 ---
 
 <BaseLayout
   title="Početna"
-  description="Modularna rešenja za odvodnjavanje, rasvetu i podne sisteme — projektovana za savremenu arhitekturu i konkretan prostor. Jedan sistem. Bezbroj mogućnosti."
+  description="Modularna rešenja za odvodnjavanje, rasvetu i podne sisteme — projektovana za savremenu arhitekturu. Jedan sistem. Bezbroj mogućnosti."
 >
+  <div class="home-page">
 
-  <!-- 1. HERO SEKCIJA -->
-  <section class="relative pt-12 pb-16 lg:pt-20 lg:pb-24 bg-navy bg-grid-pattern border-b border-white/10 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-        
-        <div class="lg:col-span-7 space-y-5">
-          <div class="inline-flex items-center gap-2 px-3 py-1 bg-navy-surface border border-accent/40 text-accent font-mono text-[11px] uppercase tracking-architectural font-bold">
-            <span class="w-2 h-2 bg-accent inline-block" aria-hidden="true"></span>
-            <span>{SITE.heroEyebrow}</span>
+    <!-- HERO (slajder) -->
+    <section class="hero">
+      <div class="hero__slides">
+        {heroSlides.map((slide, i) => (
+          <img
+            class={`hero__slide ${i === 0 ? 'is-active' : ''}`}
+            src={slide.src}
+            alt={slide.alt}
+            style={`object-position: ${slide.position};`}
+            fetchpriority={i === 0 ? 'high' : 'auto'}
+            loading={i === 0 ? 'eager' : 'lazy'}
+          />
+        ))}
+      </div>
+      <div class="hero__shade"></div>
+      <div class="hero__grid"></div>
+
+      <div class="hero__content wrap">
+        <div class="hero__copy">
+          <div class="eyebrow">
+            <span></span>
+            Modularni sistemi · Rešenja za savremenu arhitekturu
           </div>
 
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
+          <h1>
             Jedan sistem.<br />
-            <span class="text-accent">Bezbroj mogućnosti.</span>
+            <em>Bezbroj mogućnosti.</em>
           </h1>
 
-          <p class="text-sm sm:text-base text-slate-muted max-w-2xl leading-relaxed">
-            {SITE.heroSubtitle}
+          <p class="hero__lead">
+            Modularna rešenja za odvodnjavanje, rasvetu i podne sisteme — projektovana
+            za savremenu arhitekturu i konkretan prostor.
           </p>
 
-          <!-- B2B metrike -->
-          <div class="grid grid-cols-3 gap-3 pt-4 border-t border-white/10 font-mono text-xs max-w-xl">
-            <div class="border-l-2 border-accent pl-2.5">
-              <span class="text-white font-bold block text-base sm:text-lg">100%</span>
-              <span class="text-slate-muted text-[10px] uppercase tracking-wider">Po meri objekta</span>
-            </div>
-            <div class="border-l-2 border-accent pl-2.5">
-              <span class="text-white font-bold block text-base sm:text-lg">AISI INOX</span>
-              <span class="text-slate-muted text-[10px] uppercase tracking-wider">Legure 304 / 316</span>
-            </div>
-            <div class="border-l-2 border-accent pl-2.5">
-              <span class="text-white font-bold block text-base sm:text-lg">CAD / BIM</span>
-              <span class="text-slate-muted text-[10px] uppercase tracking-wider">Tehnička podrška</span>
-            </div>
-          </div>
-
-          <div class="flex flex-col sm:flex-row gap-3 pt-3">
-            <a
-              href="/proizvodi/"
-              class="inline-flex items-center justify-center px-7 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent shadow-md text-center"
-            >
-              {SITE.primaryCtaText}
-            </a>
-            <a
-              href="/posaljite-projekat/"
-              class="inline-flex items-center justify-center px-7 py-3.5 bg-navy-surface hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/20 transition-all text-center"
-            >
-              {SITE.secondaryCtaText}
-            </a>
-          </div>
-        </div>
-
-        <!-- Hero vizuelni prikaz -->
-        <div class="lg:col-span-5">
-          <div class="relative bg-navy-dark border border-white/15 p-2 shadow-xl">
-            <div class="relative aspect-[16/10] overflow-hidden bg-navy-surface flex items-center justify-center border border-white/10">
-              <img
-                src="/images/inox/inox-odvodnjavanje-glavna.jpg"
-                alt="Inox drenažni sistem ugrađen uz geometriju bazena"
-                class="w-full h-full object-cover"
-                onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
-              />
-              <div class="hidden absolute inset-0 bg-navy-surface p-5 flex flex-col justify-between" aria-hidden="true">
-                <span class="px-2 py-0.5 bg-navy text-[9px] font-mono text-accent uppercase tracking-architectural border border-accent/40 self-start">
-                  SISTEMSKI PROFIL
-                </span>
-                <div>
-                  <span class="text-xs font-mono font-bold text-white block">Inox linijsko odvodnjavanje po meri</span>
-                  <span class="text-[10px] font-mono text-slate-muted block mt-1">/images/inox/inox-odvodnjavanje-glavna.jpg</span>
-                </div>
-                <div class="border-t border-white/10 pt-2 flex justify-between items-center text-[9px] font-mono text-slate-muted">
-                  <span>MODULARNI SISTEMI</span>
-                  <span class="text-accent">AISI 304 / 316</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-3 bg-navy-surface border-t border-white/10 flex items-center justify-between text-xs font-mono">
-              <span class="text-slate-surface text-[11px] font-bold">RAD POLJA: GEOMETRIJA</span>
-              <span class="text-accent uppercase tracking-architectural text-[10px]">PREFABRIKACIJA</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. TRI KATEGORIJE PROIZVODA -->
-  <section class="py-14 lg:py-20 bg-navy-dark border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionHeading
-        eyebrow="Portfolio"
-        title="Tri primarna inženjerska pravca"
-        subtitle="Specijalizovane linije projektovane za precizno uklapanje u savremene objekte."
-      />
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {PRODUCT_CATEGORIES_LIST.map((category, index) => (
-          <article class="bg-navy border border-white/10 hover:border-accent/50 transition-all duration-300 flex flex-col justify-between group">
+          <div class="hero__metrics">
             <div>
-              <div class="relative aspect-[16/10] overflow-hidden bg-navy-surface border-b border-white/10 flex items-center justify-center">
-                <img
-                  src={category.heroImage}
-                  alt={category.title}
-                  loading="lazy"
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
-                />
-                <div class="hidden absolute inset-0 bg-navy-surface p-4 flex flex-col justify-between" aria-hidden="true">
-                  <span class="px-2 py-0.5 bg-navy border border-accent/30 text-accent font-mono text-[9px] uppercase self-start">
-                    KAT 0{index + 1}
-                  </span>
-                  <p class="text-xs font-mono font-bold text-white">{category.title}</p>
-                  <span class="text-[9px] font-mono text-slate-muted">{category.heroImage}</span>
-                </div>
-                <div class="absolute top-2.5 left-2.5 pointer-events-none">
-                  <span class="px-2 py-0.5 bg-navy/90 border border-white/15 text-[9px] font-mono uppercase tracking-architectural text-accent font-bold">
-                    0{index + 1}
-                  </span>
-                </div>
-              </div>
-
-              <div class="p-5 space-y-3">
-                <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors leading-tight">
-                  {category.title}
-                </h3>
-                
-                <p class="text-xs font-semibold text-accent font-mono uppercase tracking-wider">
-                  "{category.headline}"
-                </p>
-
-                <p class="text-xs text-slate-muted leading-relaxed line-clamp-2">
-                  {category.description}
-                </p>
-              </div>
+              <strong>100%</strong>
+              <span>Po meri objekta</span>
             </div>
-
-            <div class="p-5 pt-0">
-              <a
-                href={category.slug}
-                class="inline-flex items-center justify-between w-full px-4 py-2.5 bg-navy-surface hover:bg-accent text-white text-xs uppercase tracking-architectural font-bold border border-white/15 hover:border-accent transition-all"
-              >
-                <span>Pregled sistema</span>
-                <span>&rarr;</span>
-              </a>
+            <div>
+              <strong>AISI INOX</strong>
+              <span>Legure 304 / 316</span>
             </div>
-          </article>
+            <div>
+              <strong>CAD / BIM</strong>
+              <span>Tehnička podrška</span>
+            </div>
+          </div>
+
+          <div class="hero__actions">
+            <a class="btn btn--orange" href="/proizvodi/">
+              Pogledajte proizvode <b>→</b>
+            </a>
+            <a class="btn btn--ghost" href="/posaljite-projekat/">
+              Pošaljite nam projekat <b>↗</b>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__dots" role="tablist" aria-label="Izbor slike">
+        {heroSlides.map((_, i) => (
+          <button
+            type="button"
+            class={`hero__dot ${i === 0 ? 'is-active' : ''}`}
+            aria-label={`Slika ${i + 1}`}
+            data-index={i}
+          ></button>
         ))}
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 3. FILOZOFIJA BRENDA I ISTAKNUTO REŠENJE (KOMPAKTNO SPOJENO) -->
-  <section class="py-14 lg:py-20 bg-navy bg-grid-pattern border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
-        <div class="lg:col-span-7 space-y-4">
-          <div class="inline-flex items-center gap-2 text-accent font-mono text-xs uppercase tracking-architectural font-bold">
-            <span class="w-2 h-2 bg-accent inline-block"></span>
-            <span>Inženjerski manifest</span>
+    <!-- TRI PRAVCA (PORTFOLIO) -->
+    <section class="categories">
+      <div class="categories__wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow eyebrow--dark">
+              <span></span>
+              Portfolio
+            </div>
+            <h2>Tri primarna <em>inženjerska pravca.</em></h2>
           </div>
-          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
-            Ne prodajemo samo proizvod. Projektujemo rešenje prema prostoru.
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-muted leading-relaxed">
-            Standardna serijska rešenja nameću nepotrebne rezove i rizične kompromise na terenu. Pristup brenda <strong class="text-white">MODULARNI SISTEMI</strong> polazi od geometrije vašeg crteža — kanale, radijuse i prelaze proizvodimo tako da se besprekorno uklope u zadate linije.
+          <p>
+            Specijalizovane linije projektovane za precizno uklapanje u savremene objekte.
           </p>
         </div>
 
-        <div class="lg:col-span-5 grid grid-cols-2 gap-3 text-xs font-mono">
-          <div class="p-4 bg-navy-surface border border-white/10">
-            <span class="text-accent font-bold block mb-1">PRECIZNOST</span>
-            <p class="text-slate-muted text-[11px]">Nema sečenja na terenu. Izrada po tačnoj meri crteža.</p>
-          </div>
-          <div class="p-4 bg-navy-surface border border-white/10">
-            <span class="text-accent font-bold block mb-1">MATERIJALI</span>
-            <p class="text-slate-muted text-[11px]">Nerđajući čelici AISI 304 i kiselootporni AISI 316.</p>
-          </div>
-          <div class="p-4 bg-navy-surface border border-white/10">
-            <span class="text-accent font-bold block mb-1">MODULARNOST</span>
-            <p class="text-slate-muted text-[11px]">Standardizovani prirubnički spojevi za brzu montažu.</p>
-          </div>
-          <div class="p-4 bg-navy-surface border border-white/10">
-            <span class="text-accent font-bold block mb-1">B2B CAD</span>
-            <p class="text-slate-muted text-[11px]">Podrška projektantima kroz 2D/3D preseke i predmere.</p>
-          </div>
-        </div>
-      </div>
+        <div class="categories__grid">
+          {categories.map((cat, i) => (
+            <a href={cat.slug} class="cat-card">
+              <div class="cat-card__image">
+                <img src={cat.heroImage} alt={cat.title} loading="lazy" />
+                <span>0{i + 1}</span>
 
-      <!-- Izdvojeni radijalni kanal -->
-      <div class="bg-navy-surface border border-accent/40 p-6 sm:p-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <div class="lg:col-span-8 space-y-2">
-            <span class="text-accent font-mono text-[10px] uppercase tracking-architectural font-bold block">
-              Istaknuta tehnologija
-            </span>
-            <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">
-              Ne mora svaka kanalica da bude prava.
-            </h3>
-            <p class="text-xs text-slate-muted leading-relaxed">
-              Izaberite formu prema geometriji prostora. Izrađujemo radijalne inox kanale po tačnom radijusu (R) bazena ili zaobljene terase bez nepravilnih lomova i bez improvizacija.
-            </p>
-          </div>
-          <div class="lg:col-span-4 flex lg:justify-end">
-            <a
-              href="/inox-sistemi-odvodnjavanja/"
-              class="px-6 py-3 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent text-center w-full lg:w-auto"
-            >
-              Radijalni sistemi &rarr;
+                {i === 0 && (
+                  <div class="cat-card__art">
+                    <div class="cat-card__ring"></div>
+                    <div class="cat-card__art-content">
+                      <span class="cat-card__art-eyebrow">— PROJEKTOVANO PREMA VAŠOJ GEOMETRIJI</span>
+                      <strong class="cat-card__art-title">Bez geometrijskih <em>ograničenja.</em></strong>
+                    </div>
+                  </div>
+                )}
+
+                {cat.slug?.includes('rasveta') && (
+                  <div class="cat-card__art cat-card__art--lamp">
+                    <div class="cat-card__art-content">
+                      <span class="cat-card__art-eyebrow">— TEHNIČKI DETALJI</span>
+                      <strong class="cat-card__art-title">Tri visine, <em>jedan dizajn.</em></strong>
+                      <ul class="cat-card__specs">
+                        <li><b>3 / 4 / 5 m</b><span>visine stuba</span></li>
+                        <li><b>50–100 W</b><span>LED snaga</span></li>
+                        <li><b>IP65</b><span>zaštita</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div class="cat-card__body">
+                <div class="cat-card__tag">{cat.headline}</div>
+                <h3>{cat.title}</h3>
+                <p>{cat.description}</p>
+                <span class="cat-card__link">Pregled sistema <b>→</b></span>
+              </div>
             </a>
-          </div>
+          ))}
         </div>
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- 4. FOKUSIRANA GALERIJA (SAMO 4 REPREZENTATIVNE STAVKE) -->
-  <section class="py-14 lg:py-20 bg-navy-dark border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-        <div>
-          <SectionHeading
-            eyebrow="Galerija"
-            title="Karakteristična rešenja i detalji"
-            subtitle="Izdvojeni primeri ugradnje iz našeg inženjerskog portfolija."
-            class="mb-0 lg:mb-0"
-          />
+    <!-- FILOZOFIJA -->
+    <section class="philosophy wrap">
+      <div class="philosophy__head">
+        <div class="eyebrow eyebrow--dark">
+          <span></span>
+          Inženjerski manifest
         </div>
-        <a
-          href="/galerija/"
-          class="inline-flex items-center gap-1.5 text-xs uppercase tracking-architectural font-bold text-accent hover:text-white transition-colors"
-        >
-          <span>Pogledajte celu arhivu</span>
-          <span>&rarr;</span>
+        <h2>
+          Ne prodajemo samo proizvod.<br />
+          <em>Projektujemo rešenje prema prostoru.</em>
+        </h2>
+        <p>
+          Standardna serijska rešenja nameću nepotrebne rezove i kompromise na terenu.
+          Mi polazimo od geometrije vašeg crteža — kanale, radijuse i prelaze proizvodimo
+          tako da se besprekorno uklope u zadate linije.
+        </p>
+      </div>
+
+      <div class="philosophy__grid">
+        <div>
+          <strong>Preciznost</strong>
+          <span>Nema sečenja na terenu. Izrada po tačnoj meri crteža.</span>
+        </div>
+        <div>
+          <strong>Materijali</strong>
+          <span>Nerđajući čelici AISI 304 i kiselootporni AISI 316.</span>
+        </div>
+        <div>
+          <strong>Modularnost</strong>
+          <span>Standardizovani prirubnički spojevi za brzu montažu.</span>
+        </div>
+        <div>
+          <strong>B2B CAD</strong>
+          <span>Podrška projektantima kroz 2D/3D preseke i predmere.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIJA -->
+    <section class="gallery">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow eyebrow--dark">
+              <span></span>
+              Galerija
+            </div>
+            <h2>Karakteristična rešenja <em>i detalji.</em></h2>
+          </div>
+          <a class="section-link" href="/galerija/">
+            Pogledajte celu arhivu <b>→</b>
+          </a>
+        </div>
+
+        <div class="gallery__grid">
+          {featuredGallery.map((item) => (
+            <figure
+              class="gallery-card"
+              onclick={`window.openModularLightbox && window.openModularLightbox({ src: '${item.image}', title: '${item.title}', desc: '${item.description || ''}', category: '${item.categoryLabel || ''}' })`}
+              tabindex="0"
+              role="button"
+              aria-label={`Uvećaj: ${item.title}`}
+            >
+              <div class="gallery-card__image">
+                <img src={item.image} alt={item.title} loading="lazy" />
+              </div>
+              <figcaption>
+                <span>{item.categoryLabel}</span>
+                <strong>{item.title}</strong>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCES -->
+    <section class="process">
+      <div class="wrap">
+        <div class="process__head">
+          <div class="eyebrow eyebrow--dark">
+            <span></span>
+            Metodologija
+          </div>
+          <h2>Strukturisan proces od <em>crteža do gradilišta.</em></h2>
+        </div>
+
+        <div class="steps">
+          {steps.map((step) => (
+            <article>
+              <span class="step-num">{step.number}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <img
+        src="/images/inox/cta-parter-zardinjera.webp"
+        alt="Pošaljite nam projekat"
+        loading="lazy"
+      />
+      <div class="cta__shade"></div>
+      <div class="wrap cta__inner">
+        <div>
+          <div class="eyebrow">
+            <span></span>
+            Za arhitekte, projektante i izvođače
+          </div>
+          <h2>Projektujete prostor <em>specifične geometrije?</em></h2>
+          <p>
+            Pošaljite nam DWG, skicu ili osnovu prostora. Razradićemo formu
+            i predložiti rešenje koje prati vaš projekat.
+          </p>
+        </div>
+        <a class="btn btn--orange" href="/posaljite-projekat/">
+          Pošaljite nam projekat <b>→</b>
         </a>
       </div>
+    </section>
 
-      <!-- 4 kompaktne kartice -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {featuredGallery.map((item) => (
-          <div
-            class="group bg-navy border border-white/10 hover:border-accent/60 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer"
-            onclick={`window.openModularLightbox && window.openModularLightbox({ src: '${item.image}', title: '${item.title}', desc: '${item.description}', category: '${item.categoryLabel}' })`}
-            tabindex="0"
-            role="button"
-            aria-label={`Uvećaj: ${item.title}`}
-          >
-            <div class="relative aspect-[16/10] overflow-hidden bg-navy-surface flex items-center justify-center border-b border-white/10">
-              <img
-                src={item.image}
-                alt={item.title}
-                loading="lazy"
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
-              />
-              <div class="hidden absolute inset-0 bg-navy-surface p-3 flex flex-col justify-between" aria-hidden="true">
-                <span class="text-[9px] font-mono text-accent uppercase">MS DETALJ</span>
-                <p class="text-[11px] font-mono text-white font-bold">{item.title}</p>
-                <span class="text-[9px] font-mono text-slate-muted">{item.categoryLabel}</span>
-              </div>
-              <div class="absolute inset-0 bg-navy/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="px-2.5 py-1 bg-navy/90 text-accent font-mono text-[9px] uppercase tracking-architectural border border-accent">
-                  Uvećaj
-                </span>
-              </div>
-            </div>
+  </div>
 
-            <div class="p-4 space-y-1">
-              <span class="text-[9px] font-mono text-accent uppercase tracking-architectural block font-bold">
-                {item.categoryLabel}
-              </span>
-              <h4 class="text-xs font-bold text-white group-hover:text-accent transition-colors leading-snug">
-                {item.title}
-              </h4>
-            </div>
-          </div>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 5. KAKO RADIMO (KOMPAKTAN HORIZONTALNI RED) -->
-  <section class="py-14 lg:py-18 bg-navy border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="max-w-2xl mb-8">
-        <span class="text-accent font-mono text-xs uppercase tracking-architectural font-bold block mb-1">
-          Metodologija
-        </span>
-        <h2 class="text-2xl font-extrabold text-white tracking-tight">
-          Strukturisan proces od crteža do gradilišta
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {ENGINEERING_STEPS.map((step) => (
-          <div class="p-5 bg-navy-surface border border-white/10 flex flex-col justify-between space-y-3">
-            <div>
-              <span class="text-2xl font-extrabold text-accent/60 font-mono block">
-                {step.number}
-              </span>
-              <h3 class="text-xs font-bold text-white uppercase tracking-wider mt-1 mb-1.5">
-                {step.title}
-              </h3>
-              <p class="text-[11px] text-slate-muted leading-relaxed">
-                {step.description}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Lightbox Modal instance -->
   <LightboxModal />
 
+  <style>
+    :global(html) { scroll-behavior: smooth; }
+    :global(body) {
+      margin: 0;
+      background: #f6f7f9;
+      color: #07111e;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .home-page {
+      --navy: #06131f;
+      --orange: #ff6900;
+      --orange-hover: #e85e00;
+      --line: #dce2e7;
+      --muted: #64717c;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .wrap {
+      width: min(1280px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .eyebrow span {
+      display: inline-block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+    .eyebrow--dark { color: var(--orange); }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 em, h2 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .btn {
+      min-height: 48px;
+      padding: 0 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.25s ease;
+    }
+    .btn b { font-size: 15px; font-weight: 600; }
+    .btn--orange { background: var(--orange); color: #fff; }
+    .btn--orange:hover { background: var(--orange-hover); transform: translateY(-2px); }
+    .btn--ghost {
+      border: 1px solid rgba(255,255,255,0.45);
+      color: #fff;
+      background: rgba(0,0,0,0.12);
+    }
+    .btn--ghost:hover { background: #fff; color: var(--navy); border-color: #fff; }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      min-height: 680px;
+      background: var(--navy);
+      color: #fff;
+      isolation: isolate;
+      display: flex;
+      align-items: flex-end;
+    }
+    .hero__slides {
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+    }
+    .hero__slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .hero__slide.is-active {
+      opacity: 1;
+    }
+    .hero__shade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(105deg, rgba(2,12,20,0.93) 0%, rgba(2,12,20,0.78) 35%, rgba(2,14,22,0.3) 65%, rgba(2,14,22,0.06) 100%),
+        linear-gradient(0deg, rgba(2,12,20,0.7) 0%, transparent 48%);
+      z-index: -2;
+    }
+    .hero__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(90deg, black, transparent 68%);
+      z-index: -1;
+    }
+    .hero__content {
+      padding-top: 130px;
+      padding-bottom: 64px;
+    }
+    .hero h1 {
+      margin-top: 20px;
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+      color: #fff;
+    }
+    .hero__lead {
+      margin-top: 20px;
+      max-width: 560px;
+      color: #d4dee4;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    .hero__metrics {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 28px;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      max-width: 520px;
+    }
+    .hero__metrics strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .hero__metrics span {
+      display: block;
+      margin-top: 4px;
+      color: #94a3ad;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .hero__actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    /* Tačkice slajdera */
+    .hero__dots {
+      position: absolute;
+      right: max(20px, calc((100% - 1280px) / 2));
+      bottom: 28px;
+      display: flex;
+      gap: 8px;
+      z-index: 3;
+    }
+    .hero__dot {
+      width: 28px;
+      height: 4px;
+      padding: 0;
+      border: 0;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+      transition: background 0.3s ease, width 0.3s ease;
+    }
+    .hero__dot:hover {
+      background: rgba(255, 255, 255, 0.7);
+    }
+    .hero__dot.is-active {
+      width: 44px;
+      background: var(--orange);
+    }
+    .hero__dot:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero__slide { transition: none; }
+    }
+
+    /* ========== SECTION HEAD ========== */
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 36px;
+      margin-bottom: 36px;
+    }
+    .section-head h2 {
+      margin-top: 12px;
+      font-size: clamp(30px, 3.4vw, 46px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      color: #07111e;
+    }
+    .section-head > p {
+      max-width: 360px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+      padding-bottom: 4px;
+    }
+    .section-link {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .section-link:hover { opacity: 0.8; }
+    .section-link b { margin-left: 4px; }
+
+    /* ========== CATEGORIES (PORTFOLIO) ========== */
+    .categories {
+      background: #eef1f4;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 72px 0 80px;
+    }
+    .categories__wrap {
+      width: min(1360px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+    .categories__grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+    .cat-card {
+      background: #fff;
+      color: var(--navy);
+      text-decoration: none;
+      border: 1px solid #dce2e7;
+      border-radius: 3px;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-shadow: 0 4px 16px rgba(6,19,31,0.04);
+    }
+    .cat-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--orange);
+      box-shadow: 0 20px 42px rgba(6,19,31,0.12);
+    }
+    .cat-card__image {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #0a131c;
+    }
+    .cat-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      display: block;
+    }
+    .cat-card:hover img { transform: scale(1.06); }
+    .cat-card__image > span {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      color: #fff;
+      background: var(--orange);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 10px;
+      border-radius: 2px;
+      letter-spacing: 0.06em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      z-index: 4;
+    }
+
+    /* Grafički sloj na prvoj kartici */
+    .cat-card__art {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px 20px;
+      background: linear-gradient(
+        135deg,
+        rgba(4, 14, 23, 0.05) 0%,
+        rgba(4, 14, 23, 0.35) 40%,
+        rgba(4, 14, 23, 0.9) 100%
+      );
+    }
+    .cat-card__ring {
+      position: absolute;
+      width: 76%;
+      height: 72%;
+      left: 8%;
+      top: 8%;
+      border: 1.5px solid rgba(255, 105, 0, 0.7);
+      border-radius: 50%;
+      transform: rotate(-9deg);
+      pointer-events: none;
+      box-shadow: 0 0 16px rgba(255, 105, 0, 0.2);
+    }
+    .cat-card__ring::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(255, 105, 0, 0.25);
+      border-radius: 50%;
+    }
+    .cat-card__art-content {
+      position: relative;
+      z-index: 3;
+    }
+    .cat-card__art-eyebrow {
+      display: block;
+      color: var(--orange);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .cat-card__art-title {
+      display: block;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .cat-card__art-title em {
+      color: var(--orange);
+      font-style: normal;
+    }
+
+    /* Infografika na kartici Moderna rasveta */
+    .cat-card__art--lamp {
+      background: linear-gradient(
+        0deg,
+        rgba(4, 14, 23, 0.96) 0%,
+        rgba(4, 14, 23, 0.75) 32%,
+        rgba(4, 14, 23, 0) 64%
+      );
+    }
+    .cat-card__specs {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      justify-content: start;
+      margin: 10px 0 0;
+      padding: 8px 0 0;
+      list-style: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .cat-card__specs li {
+      padding: 0 14px;
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .cat-card__specs li:first-child {
+      padding-left: 0;
+      border-left: 0;
+    }
+    .cat-card__specs b {
+      display: block;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .cat-card__specs span {
+      display: block;
+      margin-top: 2px;
+      color: #9fb0bb;
+      font-size: 10px;
+    }
+
+    .cat-card__body {
+      padding: 24px 22px 26px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .cat-card__tag {
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.45;
+    }
+    .cat-card h3 {
+      margin-top: 10px;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      line-height: 1.3;
+      color: var(--navy);
+    }
+    .cat-card p {
+      margin-top: 10px;
+      color: #55636e;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+    .cat-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 22px;
+      color: #4b5863;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: color 0.2s ease;
+    }
+    .cat-card__link b {
+      color: var(--orange);
+      font-size: 14px;
+      transition: transform 0.2s ease;
+    }
+    .cat-card:hover .cat-card__link {
+      color: var(--orange);
+    }
+    .cat-card:hover .cat-card__link b {
+      transform: translateX(4px);
+    }
+
+    /* ========== PHILOSOPHY ========== */
+    .philosophy {
+      padding: 70px 0;
+    }
+    .philosophy__head {
+      max-width: 720px;
+      margin-bottom: 36px;
+    }
+    .philosophy__head h2 {
+      margin-top: 12px;
+      font-size: clamp(28px, 3.2vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      color: #07111e;
+    }
+    .philosophy__head p {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .philosophy__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .philosophy__grid div {
+      padding: 20px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+    }
+    .philosophy__grid strong {
+      display: block;
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    .philosophy__grid span {
+      color: #3d4a55;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* ========== GALLERY ========== */
+    .gallery {
+      background: #eef1f4;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 60px 0;
+    }
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .gallery-card {
+      margin: 0;
+      cursor: pointer;
+      background: #fff;
+      border: 1px solid #e2e7eb;
+      border-radius: 2px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .gallery-card:hover {
+      border-color: var(--orange);
+      box-shadow: 0 12px 28px rgba(6,19,31,0.08);
+    }
+    .gallery-card__image {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #151a1e;
+    }
+    .gallery-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s ease;
+      display: block;
+    }
+    .gallery-card:hover img { transform: scale(1.05); }
+    .gallery-card figcaption {
+      padding: 12px 14px 14px;
+    }
+    .gallery-card figcaption span {
+      display: block;
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .gallery-card figcaption strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #07111e;
+    }
+
+    /* ========== PROCESS ========== */
+    .process {
+      padding: 60px 0;
+      background: #f6f7f9;
+    }
+    .process__head {
+      max-width: 560px;
+      margin-bottom: 36px;
+    }
+    .process__head h2 {
+      margin-top: 12px;
+      font-size: clamp(28px, 3.2vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      color: #07111e;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .steps article {
+      position: relative;
+      border-left: 1px solid #c9d2d8;
+      padding: 0 18px 0 20px;
+      min-height: 130px;
+    }
+    .steps article:first-child {
+      border-left: 0;
+      padding-left: 0;
+    }
+    .step-num {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+    .steps h3 {
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #07111e;
+    }
+    .steps p {
+      margin-top: 8px;
+      color: #66747d;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .steps article:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -7px;
+      top: 0;
+      color: #a8b4bc;
+      background: #f6f7f9;
+      padding: 0 3px;
+      font-size: 13px;
+    }
+
+    /* ========== CTA ========== */
+    .cta {
+      position: relative;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
+      background: var(--navy);
+    }
+    .cta > img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .cta__shade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, rgba(2,12,20,0.94) 0%, rgba(2,12,20,0.7) 55%, rgba(2,12,20,0.42) 100%);
+    }
+    .cta__inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+      padding: 48px 0;
+    }
+    .cta h2 {
+      margin-top: 12px;
+      font-size: clamp(26px, 3.3vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      color: #fff;
+    }
+    .cta p {
+      margin-top: 12px;
+      max-width: 520px;
+      color: #b5c2ca;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .categories__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .philosophy__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .gallery__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 0;
+      }
+      .steps article {
+        border-left: 0;
+        border-top: 1px solid #c9d2d8;
+        padding: 18px 0 0;
+      }
+      .steps article:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+      .steps article:not(:last-child)::after {
+        display: none;
+      }
+      .cta__inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .section-head > p {
+        margin-top: 12px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .categories__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap,
+      .categories__wrap {
+        width: min(100% - 24px, 1280px);
+      }
+      .hero {
+        min-height: 560px;
+      }
+      .hero__content {
+        padding-top: 110px;
+        padding-bottom: 40px;
+      }
+      .hero h1 {
+        font-size: 32px;
+      }
+      .hero__lead {
+        font-size: 14px;
+      }
+      .hero__metrics {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .hero__dots {
+        right: 12px;
+        bottom: 16px;
+      }
+      .categories,
+      .philosophy,
+      .gallery,
+      .process {
+        padding: 48px 0;
+      }
+      .philosophy__grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery__grid {
+        grid-template-columns: 1fr;
+      }
+      .steps {
+        grid-template-columns: 1fr;
+      }
+      .cta {
+        min-height: 340px;
+      }
+      .cta__inner {
+        padding: 40px 0;
+      }
+    }
+  </style>
+
+  <script>
+    // Hero slajder: promena slike na svake 3 sekunde
+    const slides = document.querySelectorAll<HTMLElement>('.hero__slide');
+    const dots = document.querySelectorAll<HTMLButtonElement>('.hero__dot');
+
+    if (slides.length > 1) {
+      let current = 0;
+      let timer: number | undefined;
+
+      const show = (index: number) => {
+        current = (index + slides.length) % slides.length;
+        slides.forEach((s, i) => s.classList.toggle('is-active', i === current));
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
+      };
+
+      const stop = () => {
+        if (timer) window.clearInterval(timer);
+      };
+      const start = () => {
+        stop();
+        timer = window.setInterval(() => show(current + 1), 3000);
+      };
+
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          show(Number(dot.dataset.index));
+          start(); // restartuje odbrojavanje od 3 sekunde
+        });
+      });
+
+      // Bez automatske promene ako korisnik ima uključeno smanjenje animacija
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        start();
+      }
+    }
+  </script>
 </BaseLayout>

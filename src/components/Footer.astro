@@ -1,161 +1,300 @@
 ---
-import { CONTACT, NAVIGATION, SITE } from '../data/siteData';
-
 const currentYear = new Date().getFullYear();
 
-const productLinks = [
-  { label: 'Inox sistemi odvodnjavanja', href: '/inox-sistemi-odvodnjavanja/' },
-  { label: 'Moderna rasveta', href: '/moderna-rasveta/' },
-  { label: 'Modularni podni sistemi', href: '/modularni-podni-sistemi/' },
+const footerLinks = [
+  { label: 'Početna', href: '/' },
+  { label: 'Proizvodi', href: '/proizvodi/' },
+  { label: 'Galerija', href: '/galerija/' },
+  { label: 'O nama', href: '/o-nama/' },
+  { label: 'Partneri', href: '/partneri/' },
+  { label: 'Kontakt', href: '/kontakt/' },
+];
+
+const legalLinks = [
+  { label: 'Uslovi korišćenja', href: '/uslovi-koriscenja/' },
+  { label: 'Privatnost', href: '/privatnost/' },
+  { label: 'Impressum', href: '/impressum/' },
 ];
 ---
 
-<footer class="bg-navy-dark border-t border-white/10 text-slate-surface">
-  
-  <!-- Architectural Banner / Action Callout -->
-  <div class="border-b border-white/10 bg-navy/60">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-8 space-y-3">
-          <div class="inline-flex items-center gap-2 text-accent text-xs font-mono uppercase tracking-architectural">
-            <span class="w-2 h-2 bg-accent inline-block"></span>
-            <span>Inženjerska razrada &amp; Proračun</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight">
-            Projektujete prostor specifične geometrije?
-          </h2>
-          <p class="text-sm text-slate-muted max-w-2xl leading-relaxed">
-            Dostavite arhitektonske osnove ili tehničke skice u PDF/DWG formatu. Naš inženjerski tim radi analizu padova, radijusa i predlaže optimalnu modularnu razradu.
-          </p>
-        </div>
-        <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-end">
-          <a
-            href="/posaljite-projekat/"
-            class="inline-flex items-center justify-center px-6 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all text-center border border-accent"
-          >
-            Pošaljite nam projekat
+<footer class="site-footer">
+  <div class="footer-inner">
+    <!-- GORNJI DEO -->
+    <div class="footer-top">
+      <!-- LOGO -->
+      <a href="/" class="footer-logo" aria-label="Modularni Sistemi – Početna">
+        <img
+          src="/images/brand/logo.png"
+          alt="Modularni Sistemi"
+          width="140"
+          height="40"
+          class="footer-logo__img"
+        />
+      </a>
+
+      <!-- LINKOVI -->
+      <nav class="footer-nav" aria-label="Footer navigacija">
+        {footerLinks.map((link, i) => (
+          <>
+            {i > 0 && <span class="footer-nav__sep" aria-hidden="true">|</span>}
+            <a href={link.href} class="footer-nav__link">{link.label}</a>
+          </>
+        ))}
+      </nav>
+
+      <!-- KONTAKT + SOCIAL -->
+      <div class="footer-contact">
+        <div class="footer-social">
+          <a href="https://facebook.com/" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.7 5H18V0h-3.8C10.5 0 9 1.5 9 4.667V8z"/>
+            </svg>
           </a>
-          <a
-            href={`mailto:${CONTACT.projectEmail}`}
-            class="text-xs font-mono text-slate-muted hover:text-white transition-colors text-center sm:text-left lg:text-right"
-          >
-            {CONTACT.projectEmail}
+          <a href="https://instagram.com/" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://youtube.com/" class="social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
           </a>
         </div>
+
+        <a href="mailto:projekti@modularnisistemi.com" class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+          </svg>
+          <span>projekti@modularnisistemi.com</span>
+        </a>
+
+        <a href="tel:+38166241386" class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+          </svg>
+          <span>+381 (0) 66 241 386</span>
+        </a>
       </div>
+    </div>
+
+    <!-- DONJA LINIJA -->
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        &copy; {currentYear} Modularni Sistemi. Sva prava zadržana.
+      </p>
+
+      <nav class="footer-legal" aria-label="Pravne informacije">
+        {legalLinks.map((link, i) => (
+          <>
+            {i > 0 && <span class="footer-legal__sep" aria-hidden="true">|</span>}
+            <a href={link.href}>{link.label}</a>
+          </>
+        ))}
+      </nav>
     </div>
   </div>
-
-  <!-- Primary Footer Structure -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
-      
-      <!-- Company Brand & Slogan -->
-      <div class="lg:col-span-4 space-y-4">
-        <div class="flex items-center gap-3">
-          <span class="w-8 h-8 bg-accent flex items-center justify-center font-extrabold text-navy text-xs border border-accent">
-            MS
-          </span>
-          <span class="font-extrabold text-lg tracking-tight text-white">
-            {SITE.name}
-          </span>
-        </div>
-        
-        <p class="text-xs uppercase font-mono tracking-architectural text-accent font-bold">
-          "{SITE.tagline}"
-        </p>
-
-        <p class="text-xs text-slate-muted leading-relaxed max-w-sm">
-          {SITE.description}
-        </p>
-
-        <div class="pt-2">
-          <span class="inline-block px-2.5 py-1 bg-navy border border-white/10 text-[10px] font-mono tracking-architectural text-slate-muted uppercase">
-            Inženjering · Prefabrikacija · B2B
-          </span>
-        </div>
-      </div>
-
-      <!-- Navigation Links -->
-      <div class="lg:col-span-2 space-y-3">
-        <h3 class="text-xs uppercase font-bold tracking-architectural text-white">
-          Navigacija
-        </h3>
-        <ul class="space-y-2 text-xs">
-          {NAVIGATION.map((item) => (
-            <li>
-              <a href={item.href} class="text-slate-muted hover:text-accent transition-colors block py-0.5">
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <!-- Product Systems -->
-      <div class="lg:col-span-3 space-y-3">
-        <h3 class="text-xs uppercase font-bold tracking-architectural text-white">
-          Program sistema
-        </h3>
-        <ul class="space-y-2.5 text-xs">
-          {productLinks.map((prod) => (
-            <li>
-              <a href={prod.href} class="text-slate-muted hover:text-accent transition-colors block py-0.5">
-                {prod.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <div class="pt-3 border-t border-white/10">
-          <a href="/proizvodi/" class="text-[11px] font-mono text-accent hover:text-white uppercase tracking-wider transition-colors inline-flex items-center gap-1">
-            <span>Svi proizvodi i detalji</span>
-            <span>&rarr;</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Official Contact Details -->
-      <div class="lg:col-span-3 space-y-3">
-        <h3 class="text-xs uppercase font-bold tracking-architectural text-white">
-          Kontakt
-        </h3>
-        
-        <div class="space-y-3 text-xs font-mono text-slate-muted">
-          <div>
-            <span class="block text-[10px] text-slate-surface uppercase tracking-architectural">Telefon</span>
-            <a href={`tel:${CONTACT.phoneFormatted}`} class="text-white hover:text-accent transition-colors text-sm font-semibold">
-              {CONTACT.phone}
-            </a>
-          </div>
-
-          <div>
-            <span class="block text-[10px] text-slate-surface uppercase tracking-architectural">Opšti kontakt</span>
-            <a href={`mailto:${CONTACT.generalEmail}`} class="text-white hover:text-accent transition-colors break-all">
-              {CONTACT.generalEmail}
-            </a>
-          </div>
-
-          <div>
-            <span class="block text-[10px] text-slate-surface uppercase tracking-architectural">Projekti i nacrti</span>
-            <a href={`mailto:${CONTACT.projectEmail}`} class="text-white hover:text-accent transition-colors break-all">
-              {CONTACT.projectEmail}
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Bottom Copyright & Legal Grid -->
-    <div class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-muted">
-      <div>
-        &copy; {currentYear} {SITE.name}. Sva prava zadržana.
-      </div>
-      <div class="font-mono text-[11px] text-slate-muted">
-        {SITE.domain} · Precizni modularni sistemi
-      </div>
-    </div>
-  </div>
-
 </footer>
+
+<style>
+  .site-footer {
+    background: #040a12;
+    color: #94a3b8;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 36px 0 28px;
+  }
+
+  .footer-inner {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
+
+  /* ========== TOP ========== */
+  .footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px 40px;
+    padding-bottom: 28px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .footer-logo__img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* NAV */
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px 10px;
+  }
+
+  .footer-nav__link {
+    font-size: 12px;
+    font-weight: 500;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-nav__link:hover {
+    color: #fff;
+  }
+
+  .footer-nav__sep {
+    color: #334155;
+    font-size: 11px;
+    user-select: none;
+  }
+
+  /* CONTACT + SOCIAL */
+  .footer-contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px 28px;
+  }
+
+  .footer-social {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .social-link {
+    display: flex;
+    color: #94a3b8;
+    transition: color 0.2s ease;
+  }
+
+  .social-link:hover {
+    color: #fff;
+  }
+
+  .social-link svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .contact-item:hover {
+    color: #fff;
+  }
+
+  .contact-item svg {
+    width: 15px;
+    height: 15px;
+    color: #ff6900;
+    flex-shrink: 0;
+  }
+
+  /* ========== BOTTOM ========== */
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 24px;
+  }
+
+  .footer-copy {
+    margin: 0;
+    font-size: 11px;
+    color: #64748b;
+  }
+
+  .footer-legal {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+  }
+
+  .footer-legal a {
+    font-size: 11px;
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-legal a:hover {
+    color: #cbd5e1;
+  }
+
+  .footer-legal__sep {
+    color: #334155;
+    font-size: 10px;
+    user-select: none;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .footer-top {
+      flex-direction: column;
+      text-align: center;
+      gap: 24px;
+    }
+
+    .footer-nav {
+      justify-content: center;
+    }
+
+    .footer-contact {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .site-footer {
+      padding: 28px 0 24px;
+    }
+
+    .footer-inner {
+      padding-inline: 16px;
+    }
+
+    .footer-logo__img {
+      height: 34px;
+    }
+
+    .footer-nav {
+      gap: 4px 8px;
+    }
+
+    .footer-nav__link {
+      font-size: 11px;
+    }
+  }
+</style>

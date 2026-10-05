@@ -6,554 +6,1264 @@ const breadcrumbItems = [
   { label: 'Proizvodi', href: '/proizvodi/' },
   { label: 'Inox sistemi odvodnjavanja' },
 ];
+
+const canonicalURL = 'https://modularnisistemi.com/inox-sistemi-odvodnjavanja/';
+const pageTitle = 'Inox sistemi odvodnjavanja | Modularni Sistemi';
+const pageDescription = 'Inox sistemi odvodnjavanja za savremenu arhitekturu — ravne, lučne, kružne, elipsaste i S-forme prema geometriji prostora.';
+
+const forms = [
+  { number: '01', name: 'Ravna kanalica', short: 'Čista linija', image: '/images/inox/ravni-modularni-inox-kanal-odvodnjavanje-drenaza.webp', alt: 'Ravni modularni inox kanal za odvodnjavanje', href: '/inox-sistemi-odvodnjavanja/ravni-modularni-inox-kanal/' },
+  { number: '02', name: 'Lučna kanalica', short: 'Kontinualni radijus', image: '/images/inox/lucni-inox-kanal-linijsko-odvodnjavanje.webp', alt: 'Lučni inox kanal za linijsko odvodnjavanje', href: '/inox-sistemi-odvodnjavanja/lucni-inox-kanal/' },
+  { number: '03', name: 'Kružna kanalica', short: 'Zatvorena geometrija', image: '/images/inox/kruzni-prohromski-kanal-za-odvodnjavanje.webp', alt: 'Kružni prohromski kanal za odvodnjavanje', href: '/inox-sistemi-odvodnjavanja/kruzni-prohromski-kanal/' },
+  { number: '04', name: 'Elipsasta kanalica', short: 'Fluidna forma', image: '/images/inox/elipsasti-inox-kanal-za-odvodnjavanje.webp', alt: 'Elipsasti inox kanal za odvodnjavanje', href: '/inox-sistemi-odvodnjavanja/elipsasti-inox-kanal/' },
+  { number: '05', name: 'S-forma kanalica', short: 'Slobodna geometrija', image: '/images/inox/s-forma-inox-kanalica-odvodnjavanje.webp', alt: 'S-forma inox kanalica za odvodnjavanje', href: '/inox-sistemi-odvodnjavanja/s-forma-inox-kanal/' },
+];
+
+const applications = [
+  { image: '/images/inox/skriveni-modularni-inox-kanal-s-forma-bazen-suva-plaza.webp', title: 'Bazen i suva plaža', meta: 'S-forma / bazen' },
+  { image: '/images/inox/lucni-skriveni-inox-kanal-zalazak-sunca.webp', title: 'Lučni parter', meta: 'Lučna geometrija' },
+  { image: '/images/inox/kruzni-skriveni-inox-kanal-oko-zardinjere.webp', title: 'Kružna žardinjera', meta: 'Kružna geometrija' },
+  { image: '/images/inox/elipsasti-skriveni-inox-kanal-poslovni-centar.webp', title: 'Savremeni objekat', meta: 'Elipsasta geometrija' },
+];
+
+const steps = [
+  ['01', 'Pošaljite nacrt', 'Osnovu, DWG, skicu ili dimenzije prostora.'],
+  ['02', 'Definišemo formu', 'Geometriju pretvaramo u jasne modularne segmente.'],
+  ['03', 'Određujemo pad i odvod', 'Usklađujemo pad, završnu kotu i poziciju odvoda.'],
+  ['04', 'Izrađujemo sistem', 'Precizna izrada inox segmenata prema dogovorenom rešenju.'],
+  ['05', 'Spremno za ugradnju', 'Komponente stižu pripremljene za montažu na objektu.'],
+];
 ---
 
-<BaseLayout
-  title="Inox sistemi odvodnjavanja · Forme po meri partera"
-  description="Odvodnjavanje koje prati oblik prostora bez geometrijskog ograničenja. Lučni, kružni, elipsasti i S-forma inox kanali sa integrisanim padom i nivelirajućim stopama."
->
-  <Breadcrumbs items={breadcrumbItems} />
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Fragment slot="head">
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://modularnisistemi.com/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp" />
+  </Fragment>
 
-  <!-- 1. HERO SEKCIJA — FOTOGRAFIJA PARTERA SA LEVIM TEGET GRADIENTOM KAO NA MOCKUPU -->
-  <section class="relative bg-navy overflow-hidden border-b border-white/10">
-    <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[460px] lg:min-h-[520px]">
-      
-      <!-- Leva strana: Tekstualni sadržaj na tamno-plavoj podlozi -->
-      <div class="lg:col-span-6 z-10 flex flex-col justify-center px-6 sm:px-10 lg:px-14 py-12 lg:py-16 bg-navy/95 lg:bg-gradient-to-r lg:from-navy lg:via-navy lg:to-navy/80">
-        <div class="max-w-xl space-y-4">
-          
-          <div class="inline-flex items-center gap-2 text-slate-surface font-mono text-[10px] sm:text-[11px] uppercase tracking-architectural">
-            <span class="w-2 h-2 bg-accent inline-block"></span>
-            <span>MODULARNI SISTEMI · PREMIUM INOX LINIJSKA DRENAŽA</span>
+  <div class="inox-page">
+    <div class="inox-breadcrumbs">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <img
+        class="hero__image"
+        src="/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp"
+        alt="Lučni inox kanal koji prati oblik savremenog partera"
+        fetchpriority="high"
+      />
+      <div class="hero__shade"></div>
+      <div class="hero__grid"></div>
+
+      <div class="hero__content wrap">
+        <div class="hero__copy">
+          <div class="eyebrow">
+            <span></span>
+            Modularni sistemi · Premium inox linijska drenaža
           </div>
 
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.12]">
-            Odvodnjavanje koje prati <br class="hidden sm:inline" />
-            <span class="text-accent">oblik prostora bez geometrijskog ograničenja.</span>
+          <h1>
+            Odvodnjavanje koje prati<br />
+            <em>oblik prostora</em><br />
+            bez geometrijskog ograničenja.
           </h1>
 
-          <p class="text-xs sm:text-sm text-slate-surface/90 leading-relaxed font-normal">
-            Modularni inox sistemi sa integrisanim fabričkim padom i nivelirajućim stopama. Kreirajte slobodne i zahtevne forme — ravne, lučne, kružne ili kompleksne S-linije — bez kompromisa u pogledu čvrstoće konstrukcije, protoka vode i krajnje estetike partera.
+          <p class="hero__lead">
+            Modularni inox sistemi sa integrisanim fabričkim padom i nivelirajućim stopama.
+            Ravne, lučne, kružne, elipsaste i S-forme projektujemo prema stvarnoj geometriji prostora.
           </p>
 
-          <div class="pt-2 flex flex-wrap items-center gap-3">
-            <a
-              href="#forme-partera"
-              class="inline-flex items-center justify-center px-6 py-3 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent shadow-md"
-            >
-              POGLEDAJTE SPECIFIKACIJE &rarr;
+          <div class="hero__actions">
+            <a class="btn btn--orange" href="#specifikacije">
+              Pogledajte specifikacije <b>→</b>
             </a>
-            <a
-              href="/posaljite-projekat/"
-              class="inline-flex items-center justify-center px-5 py-3 bg-transparent hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/40 transition-all gap-2"
-            >
-              <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-              <span>POŠALJITE NAM NACRT</span>
+            <a class="btn btn--ghost" href="/posaljite-projekat/">
+              Pošaljite nam nacrt <b>↗</b>
             </a>
           </div>
+        </div>
 
+        <div class="hero__specs">
+          <div>
+            <strong>AISI 304 / 316</strong>
+            <span>Nerđajući čelik</span>
+          </div>
+          <div>
+            <strong>0.5% – 1%</strong>
+            <span>Integrisani pad</span>
+          </div>
+          <div>
+            <strong>2.0 mm</strong>
+            <span>Debljina lima</span>
+          </div>
+          <div>
+            <strong>± mm</strong>
+            <span>Precizno nivelisanje</span>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- Desna strana: Glavna hero fotografija lučnog kanala uz parter -->
-      <div class="lg:col-span-6 relative min-h-[300px] lg:min-h-full">
-        <img
-          src="/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp"
-          alt="Odvodnjavanje koje prati oblik prostora bez geometrijskog ograničenja"
-          class="absolute inset-0 w-full h-full object-cover object-center"
-          loading="eager"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent lg:hidden"></div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 2. TRI BELE KARTICE — AISI 304, NIVELIRAJUĆE STOPE, ČVRSTOĆA (Kao na mockupu) -->
-  <section class="bg-[#F8FAFC] py-6 sm:py-8 border-b border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <!-- Kartica 1 -->
-        <div class="bg-white p-6 border border-gray-200/80 shadow-sm flex items-start gap-4">
-          <div class="w-10 h-10 rounded-sm bg-accent/10 border border-accent/30 flex items-center justify-center flex-shrink-0 text-accent font-bold">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-            </svg>
-          </div>
-          <div class="space-y-1">
-            <h3 class="text-xs font-black text-navy uppercase tracking-wider">AISI 304 / 316 INOX</h3>
-            <p class="text-[11px] text-gray-600 leading-relaxed">
-              Maksimalna otpornost na koroziju, hloride, agresivne kućne hemikalije i habanje. Namenjeno za dugovečnost u zahtevnim urbanim, rezidencijalnim i priobalnim ambijentima.
-            </p>
-          </div>
+    <!-- INTRO -->
+    <section class="intro wrap" id="specifikacije">
+      <div class="intro__heading">
+        <div class="eyebrow eyebrow--dark">
+          <span></span>
+          Ne mora svaka kanalica da bude prava
         </div>
-
-        <!-- Kartica 2 -->
-        <div class="bg-white p-6 border border-gray-200/80 shadow-sm flex items-start gap-4">
-          <div class="w-10 h-10 rounded-sm bg-accent/10 border border-accent/30 flex items-center justify-center flex-shrink-0 text-accent font-bold">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-            </svg>
-          </div>
-          <div class="space-y-1">
-            <h3 class="text-xs font-black text-navy uppercase tracking-wider">NIVELIRAJUĆE STOPE</h3>
-            <p class="text-[11px] text-gray-600 leading-relaxed">
-              Precizni navojni sistemi sa integrisanim stopama za milimetarsko ravnanje kanala sa nivoom gotovog poda i olakšano fiksiranje pre zalivanja betonom.
-            </p>
-          </div>
-        </div>
-
-        <!-- Kartica 3 -->
-        <div class="bg-white p-6 border border-gray-200/80 shadow-sm flex items-start gap-4">
-          <div class="w-10 h-10 rounded-sm bg-accent/10 border border-accent/30 flex items-center justify-center flex-shrink-0 text-accent font-bold">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-            </svg>
-          </div>
-          <div class="space-y-1">
-            <h3 class="text-xs font-black text-navy uppercase tracking-wider">ČVRSTOĆA KONSTRUKCIJE</h3>
-            <p class="text-[11px] text-gray-600 leading-relaxed">
-              Rigidno projektovana šasija od sertifikovanog inox lima debljine 2.0 mm koja garantuje apsolutnu stabilnost i otpornost na vertikalna opterećenja i pritisak podloge.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. FORME PREMA GEOMETRIJI PARTERA (Bela pozadina, 4 forme u jednom redu kao na mockupu) -->
-  <section id="forme-partera" class="py-12 lg:py-16 bg-white text-navy border-b border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-10 space-y-1.5">
-        <span class="text-accent font-mono text-[11px] uppercase tracking-architectural font-bold block">
-          NE MORA SVAKA KANALICA DA BUDE PRAVA.
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy tracking-tight">
-          Izaberite formu prema <span class="text-accent">geometriji partera.</span>
+        <h2>
+          Forma prostora<br />
+          <em>postaje deo rešenja.</em>
         </h2>
-        <p class="text-xs text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          Vi zadajete arhitektonske linije prostora. Mi ih pretvaramo u funkcionalan, trajan i stoprocentno precizan sistem za odvodnjavanje.
+      </div>
+
+      <div class="intro__text">
+        <p>
+          Kada odvodnjavanje prati liniju terase, bazena, partera ili druge arhitektonske površine,
+          tehnički element postaje deo ukupne kompozicije. Vi zadajete geometriju — mi je pretvaramo
+          u funkcionalan i precizan sistem.
         </p>
+
+        <div class="intro__metrics">
+          <div>
+            <strong>01</strong>
+            <span>Geometrija prema projektu</span>
+          </div>
+          <div>
+            <strong>02</strong>
+            <span>Precizno nivelisanje</span>
+          </div>
+          <div>
+            <strong>03</strong>
+            <span>Diskretna završna obrada</span>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <!-- 4 Kartice: 01 Lučni, 02 Kružni, 03 Elipsasti, 04 S-forma -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        
-        <!-- 01 Lučni inox kanal -->
-        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between group hover:border-accent transition-colors shadow-sm">
+    <!-- FORMS -->
+    <section class="forms-section">
+      <div class="wrap">
+        <div class="section-head">
           <div>
-            <div class="aspect-[4/3] bg-white border border-gray-200/80 mb-3 flex items-center justify-center p-2 overflow-hidden">
-              <img
-                src="/images/inox/lucni-inox-kanal-linijsko-odvodnjavanje.webp"
-                alt="01 Lučni inox kanal"
-                class="max-h-full max-w-full object-contain transition-transform group-hover:scale-105"
-                loading="lazy"
-              />
+            <div class="eyebrow eyebrow--dark">
+              <span></span>
+              Izbor forme prema geometriji partera
             </div>
-            <div class="flex items-center gap-2 mb-1">
-              <span class="text-xs font-mono font-black text-navy">01</span>
-              <h3 class="text-xs font-black text-navy uppercase tracking-wider group-hover:text-accent transition-colors">
-                LUČNI INOX KANAL
-              </h3>
-            </div>
+            <h2>Izaberite formu prema <em>geometriji prostora.</em></h2>
           </div>
-          <div class="pt-2 border-t border-gray-200 mt-2">
-            <a href="/posaljite-projekat/" class="text-[10px] font-mono font-bold text-accent hover:text-navy uppercase">
-              Naručite po meri &rarr;
-            </a>
-          </div>
-        </div>
-
-        <!-- 02 Kružni prohromski kanal -->
-        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between group hover:border-accent transition-colors shadow-sm">
-          <div>
-            <div class="aspect-[4/3] bg-white border border-gray-200/80 mb-3 flex items-center justify-center p-2 overflow-hidden">
-              <img
-                src="/images/inox/kruzni-prohromski-kanal-za-odvodnjavanje.webp"
-                alt="02 Kružni prohromski kanal"
-                class="max-h-full max-w-full object-contain transition-transform group-hover:scale-105"
-                loading="lazy"
-              />
-            </div>
-            <div class="flex items-center gap-2 mb-1">
-              <span class="text-xs font-mono font-black text-navy">02</span>
-              <h3 class="text-xs font-black text-navy uppercase tracking-wider group-hover:text-accent transition-colors">
-                KRUŽNI PROHROMSKI KANAL
-              </h3>
-            </div>
-          </div>
-          <div class="pt-2 border-t border-gray-200 mt-2">
-            <a href="/posaljite-projekat/" class="text-[10px] font-mono font-bold text-accent hover:text-navy uppercase">
-              Naručite po meri &rarr;
-            </a>
-          </div>
-        </div>
-
-        <!-- 03 Elipsasti inox kanal -->
-        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between group hover:border-accent transition-colors shadow-sm">
-          <div>
-            <div class="aspect-[4/3] bg-white border border-gray-200/80 mb-3 flex items-center justify-center p-2 overflow-hidden">
-              <img
-                src="/images/inox/elipsasti-inox-kanal-za-odvodnjavanje.webp"
-                alt="03 Elipsasti inox kanal"
-                class="max-h-full max-w-full object-contain transition-transform group-hover:scale-105"
-                loading="lazy"
-              />
-            </div>
-            <div class="flex items-center gap-2 mb-1">
-              <span class="text-xs font-mono font-black text-navy">03</span>
-              <h3 class="text-xs font-black text-navy uppercase tracking-wider group-hover:text-accent transition-colors">
-                ELIPSASTI INOX KANAL
-              </h3>
-            </div>
-          </div>
-          <div class="pt-2 border-t border-gray-200 mt-2">
-            <a href="/posaljite-projekat/" class="text-[10px] font-mono font-bold text-accent hover:text-navy uppercase">
-              Naručite po meri &rarr;
-            </a>
-          </div>
-        </div>
-
-        <!-- 04 S-forma kanalica -->
-        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between group hover:border-accent transition-colors shadow-sm">
-          <div>
-            <div class="aspect-[4/3] bg-white border border-gray-200/80 mb-3 flex items-center justify-center p-2 overflow-hidden">
-              <img
-                src="/images/inox/s-forma-lucni-inox-kanal-odvodnjavanje.webp"
-                alt="04 S-forma kanalica"
-                class="max-h-full max-w-full object-contain transition-transform group-hover:scale-105"
-                loading="lazy"
-                onerror="this.onerror=null; this.src='/images/inox/lucni-inox-kanal-linijsko-odvodnjavanje.webp';"
-              />
-            </div>
-            <div class="flex items-center gap-2 mb-1">
-              <span class="text-xs font-mono font-black text-navy">04</span>
-              <h3 class="text-xs font-black text-navy uppercase tracking-wider group-hover:text-accent transition-colors">
-                S-FORMA KANALICA
-              </h3>
-            </div>
-          </div>
-          <div class="pt-2 border-t border-gray-200 mt-2">
-            <a href="/posaljite-projekat/" class="text-[10px] font-mono font-bold text-accent hover:text-navy uppercase">
-              Naručite po meri &rarr;
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 4. TEHNIČKI DETALJI — KVALITET U SVAKOM DETALJU (Teget sekcija kao na mockupu) -->
-  <section class="py-12 lg:py-16 bg-navy text-white border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        
-        <!-- Levo: Slika profila kanalice -->
-        <div class="lg:col-span-4 flex justify-center">
-          <div class="bg-navy-surface border border-white/10 p-4 max-w-sm w-full flex items-center justify-center">
-            <img
-              src="/images/inox/ravni-modularni-inox-kanal-odvodnjavanje-drenaza.webp"
-              alt="Tehnički detalj inox kanalice i komore"
-              class="max-h-56 w-auto object-contain"
-              loading="lazy"
-              onerror="this.onerror=null; this.src='/images/inox/lucni-inox-kanal-linijsko-odvodnjavanje.webp';"
-            />
-          </div>
-        </div>
-
-        <!-- Sredina: Naslov i 3 kružne ikonice -->
-        <div class="lg:col-span-4 space-y-4">
-          <div class="space-y-1">
-            <span class="text-accent font-mono text-[10px] uppercase tracking-architectural font-bold block">
-              TEHNIČKI DETALJI
-            </span>
-            <h3 class="text-2xl font-extrabold text-white tracking-tight">
-              Kvalitet u svakom detalju.
-            </h3>
-            <p class="text-xs text-slate-muted leading-relaxed">
-              Naše inox kanalice izrađene su od vrhunskog nerđajućeg čelika AISI 304, debljine 2 mm, sa satin-brušenom završnom obradom.
-            </p>
-          </div>
-
-          <div class="space-y-3 pt-2">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-full border border-accent flex items-center justify-center text-accent flex-shrink-0">
-                <span class="text-xs font-mono font-bold">%</span>
-              </div>
-              <span class="text-xs text-slate-surface font-medium">Fabrički integrisan pad 0.5% – 1%</span>
-            </div>
-
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-full border border-accent flex items-center justify-center text-accent flex-shrink-0">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-              </div>
-              <span class="text-xs text-slate-surface font-medium">Saten-brušena završna obrada</span>
-            </div>
-
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-full border border-accent flex items-center justify-center text-accent flex-shrink-0">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-              </div>
-              <span class="text-xs text-slate-surface font-medium">Sistemski spoj sa hidroizolacijom i flanšnom</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Desno: Boks sa unikatnim projektovanjem -->
-        <div class="lg:col-span-4 bg-navy-dark border border-white/15 p-6 space-y-3">
-          <h4 class="text-sm font-bold text-white tracking-tight">
-            Projektovanje bez standarda. Svaka kanalica je unikat.
-          </h4>
-          <p class="text-xs text-slate-muted leading-relaxed">
-            U modernoj arhitekturi serijski standardi često predstavljaju ograničenje. Naši sistemi se ne proizvode masovno na traci — svaki segment se projektuje i izrađuje zasebno, prema specifičnim zahtevima vašeg prostora. Vi zadajete parametre, mi isporučujemo inženjersku preciznost.
-          </p>
-          <div class="pt-1">
-            <a href="/posaljite-projekat/" class="text-xs font-mono font-bold text-accent hover:text-white uppercase tracking-wider inline-flex items-center gap-1">
-              <span>POŠALJITE PARAMETRE PROSTORA</span>
-              <span>&rarr;</span>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. PRIMENA IZ PRAKSE (Bela sekcija sa 4 fotografije kao na mockupu) -->
-  <section class="py-12 lg:py-16 bg-white text-navy border-b border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="mb-8 space-y-1">
-        <span class="text-accent font-mono text-[11px] uppercase tracking-architectural font-bold block">
-          PRIMENA IZ PRAKSE
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy tracking-tight">
-          Od ideje do <span class="text-accent">stvarnosti.</span>
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        
-        <!-- Primer 1: Bazen S-forma -->
-        <div class="space-y-2">
-          <div class="aspect-[16/11] bg-gray-100 overflow-hidden border border-gray-200">
-            <img
-              src="/images/inox/skriveni-modularni-inox-kanal-s-forma-bazen-suva-plaza.webp"
-              alt="Skriveni modularni inox kanal — S-forma / bazen / suva plaža"
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-          <div>
-            <h3 class="text-xs font-bold text-navy">Skriveni modularni inox kanal</h3>
-            <p class="text-[11px] text-gray-500 font-mono">S-forma / bazen / suva plaža</p>
-          </div>
-        </div>
-
-        <!-- Primer 2: Zalazak sunca -->
-        <div class="space-y-2">
-          <div class="aspect-[16/11] bg-gray-100 overflow-hidden border border-gray-200">
-            <img
-              src="/images/inox/lucni-skriveni-inox-kanal-zalazak-sunca.webp"
-              alt="Lučni skriveni inox kanal — zalazak sunca"
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-          <div>
-            <h3 class="text-xs font-bold text-navy">Lučni skriveni inox kanal</h3>
-            <p class="text-[11px] text-gray-500 font-mono">zalazak sunca</p>
-          </div>
-        </div>
-
-        <!-- Primer 3: Žardinjera -->
-        <div class="space-y-2">
-          <div class="aspect-[16/11] bg-gray-100 overflow-hidden border border-gray-200">
-            <img
-              src="/images/inox/kruzni-skriveni-inox-kanal-oko-zardinjere.webp"
-              alt="Kružni skriveni inox kanal — oko žardinjere"
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-          <div>
-            <h3 class="text-xs font-bold text-navy">Kružni skriveni inox kanal</h3>
-            <p class="text-[11px] text-gray-500 font-mono">oko žardinjere</p>
-          </div>
-        </div>
-
-        <!-- Primer 4: Poslovni centar -->
-        <div class="space-y-2">
-          <div class="aspect-[16/11] bg-gray-100 overflow-hidden border border-gray-200">
-            <img
-              src="/images/inox/elipsasti-skriveni-inox-kanal-poslovni-centar.webp"
-              alt="Elipsasti skriveni inox kanal — poslovni centar"
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-          <div>
-            <h3 class="text-xs font-bold text-navy">Elipsasti skriveni inox kanal</h3>
-            <p class="text-[11px] text-gray-500 font-mono">poslovni centar</p>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 6. GRADSKI TRG — PRAVI FOTOGRAFSKI SHOWCASE BANER -->
-  <section class="relative py-14 lg:py-16 bg-navy text-white overflow-hidden border-b border-white/10">
-    <img
-      src="/images/inox/lucni-inox-kanal-sa-perforiranom-resetkom-gradski-trg.webp"
-      alt="Lučni inox kanal sa perforiranom rešetkom — Gradski trg"
-      class="absolute inset-0 w-full h-full object-cover object-center"
-      loading="lazy"
-    />
-    <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/85 to-transparent"></div>
-
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-        <div class="lg:col-span-8 space-y-2">
-          <span class="text-accent font-mono text-[10px] uppercase tracking-architectural font-bold block">
-            LUČNI INOX KANAL SA PERFORIRANOM REŠETKOM
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Gradski trg.
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-surface/90 max-w-2xl leading-relaxed">
-            Elegantno rešenje za javne površine, trgove i moderne urbane ambijente, sa maksimalnim protokom vode i diskretnim, estetskim izgledom.
+          <p>
+            Ravna, lučna, kružna, elipsasta ili S-forma — sistem prati arhitektonsku liniju
+            umesto da je ograničava.
           </p>
         </div>
-        <div class="lg:col-span-4 flex lg:justify-end">
-          <a
-            href="/posaljite-projekat/"
-            class="px-6 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent shadow-md text-center"
-          >
-            ZATRAŽITE PRORAČUN ZA TRG &rarr;
-          </a>
+
+        <div class="forms-grid">
+          {forms.map((item) => (
+            <a href={item.href} class="form-card">
+              <div class="form-card__image">
+                <img src={item.image} alt={item.alt} loading="lazy" />
+                <span>{item.number}</span>
+              </div>
+              <div class="form-card__body">
+                <div class="form-card__tag">{item.short}</div>
+                <h3>{item.name}</h3>
+                <span class="form-card__link">Više o proizvodu <b>→</b></span>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 7. PET KORAKA DO SAVRŠENOG REŠENJA (Kompaktan beli red kao na mockupu) -->
-  <section class="py-12 lg:py-16 bg-white text-navy border-b border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="mb-8 space-y-1">
-        <span class="text-accent font-mono text-[11px] uppercase tracking-architectural font-bold block">
-          OD IDEJE DO UGRADNJE
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy tracking-tight">
-          Pet koraka do <span class="text-accent">savršenog rešenja.</span>
-        </h2>
+    <!-- FEATURE DUO -->
+    <section class="feature-duo">
+      <div class="wrap feature-duo__grid">
+        <article class="feature-card feature-card--technical">
+          <img
+            src="/images/inox/ravni-modularni-inox-kanal-odvodnjavanje-drenaza.webp"
+            alt="Detalj ravnog modularnog inox kanala"
+            loading="lazy"
+          />
+          <div class="feature-card__shade"></div>
+          <div class="feature-card__content">
+            <div class="eyebrow">
+              <span></span>
+              Tehnički detalji
+            </div>
+            <h2>Kvalitet u svakom <em>detalju.</em></h2>
+            <p>
+              Ravni inox kanal prikazuje osnovu sistema: precizna izrada, saten-brušena završna obrada,
+              nivelisanje i detalji koji omogućavaju pouzdanu ugradnju.
+            </p>
+            <div class="feature-card__facts">
+              <span><b>2.0 mm</b> inox lim</span>
+              <span><b>0.5–1%</b> integrisani pad</span>
+              <span><b>AISI 304 / 316</b> nerđajući čelik</span>
+              <span><b>± mm</b> precizno nivelisanje</span>
+            </div>
+            <a class="feature-card__link" href="#specifikacije">
+              Pogledajte tehničke detalje <b>→</b>
+            </a>
+          </div>
+        </article>
+
+        <article class="feature-card feature-card--geometry">
+          <img
+            src="/images/inox/elipsasti-inox-kanal-za-odvodnjavanje.webp"
+            alt="Elipsasti inox kanal prema geometriji prostora"
+            loading="lazy"
+          />
+          <div class="feature-card__shade"></div>
+          <div class="feature-card__ring"></div>
+          <div class="feature-card__content">
+            <div class="eyebrow">
+              <span></span>
+              Projektovano prema vašoj geometriji
+            </div>
+            <h2>Bez geometrijskih <em>ograničenja.</em></h2>
+            <p>
+              Elipsasta forma pokazuje ono što standardne kanalice ne mogu: sistem prati arhitektonsku
+              liniju prostora, a ne obrnuto.
+            </p>
+            <div class="feature-card__facts">
+              <span>Vanstandardne dubine</span>
+              <span>Prilagođene širine</span>
+              <span>Posebni radijusi</span>
+              <span>Kompleksne forme</span>
+            </div>
+            <a class="btn btn--orange" href="/posaljite-projekat/">
+              Projektujte sa nama <b>→</b>
+            </a>
+          </div>
+        </article>
       </div>
+    </section>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-        
-        <!-- Korak 1 -->
-        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between space-y-2">
+    <!-- APPLICATIONS -->
+    <section class="applications">
+      <div class="wrap">
+        <div class="section-head">
           <div>
-            <div class="w-7 h-7 rounded-full bg-accent text-white font-mono text-xs font-bold flex items-center justify-center mb-2">1</div>
-            <h3 class="text-xs font-bold text-navy uppercase leading-snug mb-1">Dostavljanje projekta ili skice</h3>
-            <p class="text-[11px] text-gray-600 leading-relaxed">
-              Pošaljite nam vaš DWG crtež, idejni projekat partera ili običnu skicu prostora sa dimenzijama na <span class="text-accent font-mono">projekti@modularnisistemi.com</span>.
-            </p>
+            <div class="eyebrow eyebrow--dark">
+              <span></span>
+              Primena u praksi
+            </div>
+            <h2>Od terase do <em>javnog prostora.</em></h2>
           </div>
+          <p>
+            Rešenja za savremene eksterijere u kojima funkcija i arhitektonska linija moraju da rade zajedno.
+          </p>
         </div>
 
-        <!-- Korak 2 -->
-        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between space-y-2">
-          <div>
-            <div class="w-7 h-7 rounded-full bg-accent text-white font-mono text-xs font-bold flex items-center justify-center mb-2">2</div>
-            <h3 class="text-xs font-bold text-navy uppercase leading-snug mb-1">Inženjerska razrada forme</h3>
-            <p class="text-[11px] text-gray-600 leading-relaxed">
-              Naš projektni biro analizira geometriju, vrši proračune i razrađuje modularne segmente i krivine idealno prilagođene vašem objektu.
-            </p>
-          </div>
+        <div class="applications__grid">
+          {applications.map((item) => (
+            <figure>
+              <div class="application__image">
+                <img src={item.image} alt={item.title} loading="lazy" />
+              </div>
+              <figcaption>
+                <strong>{item.title}</strong>
+                <span>{item.meta}</span>
+              </figcaption>
+            </figure>
+          ))}
         </div>
-
-        <!-- Korak 3 -->
-        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between space-y-2">
-          <div>
-            <div class="w-7 h-7 rounded-full bg-accent text-white font-mono text-xs font-bold flex items-center justify-center mb-2">3</div>
-            <h3 class="text-xs font-bold text-navy uppercase leading-snug mb-1">Proračun nagiba i izliva</h3>
-            <p class="text-[11px] text-gray-600 leading-relaxed">
-              Precizno definišemo unutrašnje padove za optimalan protok fluida i pozicioniramo mesta za slivnike i vertikalne odvode prema predmeru.
-            </p>
-          </div>
-        </div>
-
-        <!-- Korak 4 -->
-        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between space-y-2">
-          <div>
-            <div class="w-7 h-7 rounded-full bg-accent text-white font-mono text-xs font-bold flex items-center justify-center mb-2">4</div>
-            <h3 class="text-xs font-bold text-navy uppercase leading-snug mb-1">Laserska izrada i obrada</h3>
-            <p class="text-[11px] text-gray-600 leading-relaxed">
-              Vrhunska mašinska proizvodnja od visoko-kvalitetnog nerđajućeg čelika debljine 2 mm u našem pogonu, uz lasersko sečenje i precizno varenje spojeva.
-            </p>
-          </div>
-        </div>
-
-        <!-- Korak 5 -->
-        <div class="bg-[#F8FAFC] border border-gray-200 p-4 flex flex-col justify-between space-y-2">
-          <div>
-            <div class="w-7 h-7 rounded-full bg-accent text-white font-mono text-xs font-bold flex items-center justify-center mb-2">5</div>
-            <h3 class="text-xs font-bold text-navy uppercase leading-snug mb-1">Isporuka sistema na gradilište</h3>
-            <p class="text-[11px] text-gray-600 leading-relaxed">
-              Gotovi modularni segmenti stižu na lokaciju kompletirani sa nivelirajućim stopama, spremni za brzo ankerisanje i bezbedno betoniranje.
-            </p>
-          </div>
-        </div>
-
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- 8. JEDAN USKI TAMNI BANER SA HEKSAGON IKONOM (Tačno kao na dnu mockupa) -->
-  <section class="py-8 bg-navy text-white border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
-        
-        <!-- Levo: Narandžasta ikona heksagona + Tekst -->
-        <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-sm bg-accent/15 border border-accent/40 flex items-center justify-center flex-shrink-0 text-accent">
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z"></path>
-            </svg>
+    <!-- PROCESS -->
+    <section class="process">
+      <div class="wrap">
+        <div class="process__head">
+          <div class="eyebrow eyebrow--dark">
+            <span></span>
+            Od ideje do ugradnje
           </div>
-          <div class="space-y-0.5">
-            <h2 class="text-sm sm:text-base font-extrabold text-white tracking-tight">
-              IMATE KRUŽNI BAZEN, LUČNU TERASU ILI SPECIFIČNU GEOMETRIJU U PROJEKTU?
-            </h2>
-            <p class="text-[11px] text-slate-muted max-w-3xl leading-relaxed">
-              Pošaljite nam DWG crtež, skicu ili idejno rešenje partera. Naš inženjerski tim će u najkraćem roku razraditi modularne segmente koji se idealno uklapaju u linije i oblike vašeg prostora.
-            </p>
-          </div>
+          <h2>Pet koraka do <em>gotovog rešenja.</em></h2>
         </div>
 
-        <!-- Desno: Narandžasto dugme -->
-        <div class="flex-shrink-0 w-full lg:w-auto">
-          <a
-            href="/posaljite-projekat/"
-            class="block w-full sm:w-auto text-center px-8 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent shadow-md whitespace-nowrap"
-          >
-            ZATRAŽITE KONSULTACIJU &rarr;
-          </a>
+        <div class="steps">
+          {steps.map(([num, title, text]) => (
+            <article>
+              <span class="step-num">{num}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
         </div>
-
       </div>
-    </div>
-  </section>
+    </section>
 
+    <!-- CTA -->
+    <section class="cta">
+      <img
+        src="/images/inox/lucni-inox-kanal-sa-perforiranom-resetkom-gradski-trg.webp"
+        alt="Lučni inox kanal sa perforiranom rešetkom na gradskom trgu"
+        loading="lazy"
+      />
+      <div class="cta__shade"></div>
+      <div class="wrap cta__inner">
+        <div>
+          <div class="eyebrow">
+            <span></span>
+            Za arhitekte, projektante i izvođače
+          </div>
+          <h2>Projektujete prostor <em>specifične geometrije?</em></h2>
+          <p>
+            Pošaljite nam DWG, skicu ili osnovu prostora. Razradićemo formu i predložiti rešenje
+            koje prati vaš projekat.
+          </p>
+        </div>
+        <a class="btn btn--orange" href="/posaljite-projekat/">
+          Pošaljite nam projekat <b>→</b>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    :global(html) {
+      scroll-behavior: smooth;
+    }
+
+    :global(body) {
+      margin: 0;
+      background: #f6f7f9;
+      color: #07111e;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .inox-page {
+      --navy: #06131f;
+      --navy2: #0b1d2b;
+      --orange: #ff6900;
+      --orange-hover: #e85e00;
+      --line: #dce2e7;
+      --muted: #64717c;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .wrap {
+      width: min(1280px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .inox-breadcrumbs {
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      left: 0;
+      right: 0;
+      opacity: 0.5;
+      font-size: 10px;
+      color: #fff;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      min-height: 680px;
+      background: var(--navy);
+      color: #fff;
+      isolation: isolate;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero__image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: -3;
+    }
+
+    .hero__shade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(105deg, rgba(2, 12, 20, 0.93) 0%, rgba(2, 14, 22, 0.78) 32%, rgba(2, 14, 22, 0.32) 62%, rgba(2, 14, 22, 0.06) 100%),
+        linear-gradient(0deg, rgba(2, 12, 20, 0.72) 0%, transparent 48%);
+      z-index: -2;
+    }
+
+    .hero__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(90deg, black, transparent 68%);
+      z-index: -1;
+    }
+
+    .hero__content {
+      padding-top: 130px;
+      padding-bottom: 56px;
+      display: grid;
+      grid-template-columns: minmax(0, 700px) 1fr;
+      gap: 50px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow span {
+      display: inline-block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    .eyebrow--dark {
+      color: var(--orange);
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    .hero h1 {
+      margin-top: 20px;
+      max-width: 860px;
+      font-size: clamp(38px, 4.6vw, 62px);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .hero h1 em,
+    .intro h2 em,
+    .section-head h2 em,
+    .feature-card h2 em,
+    .applications h2 em,
+    .process h2 em,
+    .cta h2 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .hero__lead {
+      margin-top: 20px;
+      max-width: 620px;
+      color: #d4dee4;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      min-height: 48px;
+      padding: 0 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.25s ease;
+    }
+
+    .btn b {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .btn--orange {
+      background: var(--orange);
+      color: #fff;
+    }
+
+    .btn--orange:hover {
+      background: var(--orange-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn--ghost {
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: #fff;
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    .btn--ghost:hover {
+      background: #fff;
+      color: var(--navy);
+      border-color: #fff;
+    }
+
+    .hero__specs {
+      border-left: 1px solid rgba(255, 255, 255, 0.18);
+      padding-left: 26px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .hero__specs div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero__specs strong {
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      font-weight: 700;
+    }
+
+    .hero__specs span {
+      margin-top: 4px;
+      color: #94a3ad;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    /* ========== INTRO ========== */
+    .intro {
+      padding: 60px 0;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    .intro h2,
+    .section-head h2,
+    .applications h2,
+    .process h2 {
+      margin-top: 12px;
+      font-size: clamp(30px, 3.4vw, 46px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      color: #07111e;
+    }
+
+    .intro__text {
+      padding-top: 12px;
+    }
+
+    .intro__text > p,
+    .section-head > p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .intro__metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 28px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .intro__metrics div {
+      padding: 16px 14px 16px 0;
+      border-right: 1px solid var(--line);
+    }
+
+    .intro__metrics div + div {
+      padding-left: 14px;
+    }
+
+    .intro__metrics div:last-child {
+      border-right: 0;
+    }
+
+    .intro__metrics strong {
+      display: block;
+      color: var(--orange);
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .intro__metrics span {
+      display: block;
+      margin-top: 4px;
+      color: #3d4a55;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    /* ========== FORMS ========== */
+    .forms-section {
+      background: #eef1f4;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 60px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 36px;
+      margin-bottom: 28px;
+    }
+
+    .section-head > div {
+      max-width: 680px;
+    }
+
+    .section-head > p {
+      max-width: 340px;
+      padding-bottom: 4px;
+    }
+
+    .forms-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .form-card {
+      background: #fff;
+      color: var(--navy);
+      text-decoration: none;
+      border: 1px solid #e2e7eb;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--orange);
+      box-shadow: 0 16px 36px rgba(6, 19, 31, 0.1);
+    }
+
+    .form-card__image {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #0d1216;
+      flex-shrink: 0;
+    }
+
+    .form-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.55s ease;
+      display: block;
+    }
+
+    .form-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .form-card__image span {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      color: #fff;
+      background: var(--orange);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 7px;
+      letter-spacing: 0.04em;
+      z-index: 2;
+    }
+
+    .form-card__body {
+      padding: 14px 12px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-card__tag {
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .form-card h3 {
+      margin-top: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .form-card__link {
+      display: block;
+      margin-top: auto;
+      padding-top: 14px;
+      color: #5c6a74;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .form-card__link b {
+      color: var(--orange);
+      margin-left: 4px;
+    }
+
+    /* ========== FEATURE DUO ========== */
+    .feature-duo {
+      background: var(--navy);
+      padding: 60px 0;
+    }
+
+    .feature-duo__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .feature-card {
+      position: relative;
+      min-height: 520px;
+      overflow: hidden;
+      background: #0a1620;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 2px;
+    }
+
+    .feature-card > img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    .feature-card:hover > img {
+      transform: scale(1.03);
+    }
+
+    .feature-card__shade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(4, 14, 23, 0.05) 0%,
+        rgba(4, 14, 23, 0.15) 28%,
+        rgba(4, 14, 23, 0.85) 68%,
+        rgba(4, 14, 23, 0.97) 100%
+      );
+    }
+
+    .feature-card__content {
+      position: absolute;
+      z-index: 3;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 32px;
+    }
+
+    .feature-card__content h2 {
+      margin-top: 12px;
+      max-width: 480px;
+      font-size: clamp(28px, 2.8vw, 42px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .feature-card__content > p {
+      margin-top: 12px;
+      max-width: 480px;
+      color: #b8c4cb;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .feature-card__facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .feature-card__facts span {
+      padding: 12px 12px 0 0;
+      color: #a0b0b9;
+      font-size: 11px;
+      line-height: 1.4;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .feature-card__facts span:nth-child(2n) {
+      padding-left: 12px;
+      border-right: 0;
+    }
+
+    .feature-card__facts span:nth-child(n + 3) {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 12px;
+    }
+
+    .feature-card__facts b {
+      display: block;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .feature-card__link {
+      display: inline-flex;
+      margin-top: 22px;
+      color: #fff;
+      text-decoration: none;
+      border-bottom: 1px solid var(--orange);
+      padding-bottom: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+
+    .feature-card__link:hover {
+      opacity: 0.85;
+    }
+
+    .feature-card__link b {
+      color: var(--orange);
+      margin-left: 8px;
+    }
+
+    .feature-card--technical .feature-card__shade {
+      background: linear-gradient(
+        180deg,
+        rgba(4, 14, 23, 0.02) 0%,
+        rgba(4, 14, 23, 0.1) 30%,
+        rgba(4, 14, 23, 0.88) 66%,
+        rgba(4, 14, 23, 0.98) 100%
+      );
+    }
+
+    .feature-card--geometry .feature-card__shade {
+      background: linear-gradient(
+        100deg,
+        rgba(4, 14, 23, 0.12) 0%,
+        rgba(4, 14, 23, 0.25) 38%,
+        rgba(4, 14, 23, 0.92) 100%
+      );
+    }
+
+    .feature-card--geometry .feature-card__content {
+      left: auto;
+      width: 56%;
+      padding: 32px;
+    }
+
+    .feature-card__ring {
+      position: absolute;
+      width: 70%;
+      height: 42%;
+      right: 7%;
+      top: 22%;
+      border: 1px solid rgba(255, 105, 0, 0.55);
+      border-radius: 50%;
+      transform: rotate(-7deg);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .feature-card__ring::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(255, 105, 0, 0.18);
+      border-radius: 50%;
+    }
+
+    /* ========== APPLICATIONS – svetla ========== */
+    .applications {
+      padding: 60px 0;
+      background: #f6f7f9;
+    }
+
+    .applications h2 {
+      color: #07111e;
+    }
+
+    .applications__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .applications figure {
+      margin: 0;
+    }
+
+    .application__image {
+      overflow: hidden;
+      aspect-ratio: 5 / 4;
+      background: #d8dde2;
+      border-radius: 2px;
+    }
+
+    .application__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s ease;
+    }
+
+    .applications figure:hover img {
+      transform: scale(1.04);
+    }
+
+    .applications figcaption {
+      padding-top: 12px;
+    }
+
+    .applications figcaption strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #07111e;
+    }
+
+    .applications figcaption span {
+      display: block;
+      margin-top: 3px;
+      color: #7a8791;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ========== PROCESS ========== */
+    .process {
+      background: #eef1f4;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 60px 0;
+    }
+
+    .process__head {
+      max-width: 520px;
+    }
+
+    .process h2 {
+      color: #07111e;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      margin-top: 36px;
+      gap: 0;
+    }
+
+    .steps article {
+      position: relative;
+      border-left: 1px solid #c9d2d8;
+      padding: 0 16px 0 18px;
+      min-height: 130px;
+    }
+
+    .steps article:first-child {
+      border-left: 0;
+      padding-left: 0;
+    }
+
+    .step-num {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .steps h3 {
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #07111e;
+    }
+
+    .steps p {
+      margin-top: 8px;
+      color: #66747d;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .steps article:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -7px;
+      top: 0;
+      color: #a8b4bc;
+      background: #eef1f4;
+      padding: 0 3px;
+      font-size: 13px;
+    }
+
+    /* ========== CTA ========== */
+    .cta {
+      position: relative;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
+    .cta > img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .cta__shade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, rgba(2, 12, 20, 0.94) 0%, rgba(2, 12, 20, 0.7) 55%, rgba(2, 12, 20, 0.42) 100%);
+    }
+
+    .cta__inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+      padding: 48px 0;
+    }
+
+    .cta h2 {
+      margin-top: 12px;
+      font-size: clamp(26px, 3.3vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .cta p {
+      margin-top: 12px;
+      max-width: 520px;
+      color: #b5c2ca;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1100px) {
+      .forms-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero__content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .hero__specs {
+        display: none;
+      }
+
+      .intro {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .feature-duo__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card {
+        min-height: 480px;
+      }
+
+      .feature-card--geometry .feature-card__content {
+        width: 70%;
+      }
+
+      .applications__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 0;
+      }
+
+      .steps article {
+        border-left: 0;
+        border-top: 1px solid #c9d2d8;
+        padding: 18px 0 0;
+      }
+
+      .steps article:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .steps article:not(:last-child)::after {
+        display: none;
+      }
+
+      .cta__inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        width: min(100% - 24px, 1280px);
+      }
+
+      .hero {
+        min-height: 580px;
+      }
+
+      .hero__content {
+        padding-top: 110px;
+        padding-bottom: 40px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero__lead {
+        font-size: 14px;
+      }
+
+      .intro,
+      .forms-section,
+      .feature-duo,
+      .applications,
+      .process {
+        padding: 48px 0;
+      }
+
+      .section-head {
+        display: block;
+        margin-bottom: 24px;
+      }
+
+      .section-head > p {
+        margin-top: 14px;
+      }
+
+      .forms-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .feature-card {
+        min-height: 440px;
+      }
+
+      .feature-card__content,
+      .feature-card--geometry .feature-card__content {
+        padding: 24px;
+        width: 100%;
+      }
+
+      .feature-card--geometry .feature-card__shade {
+        background: linear-gradient(
+          180deg,
+          rgba(4, 14, 23, 0.1) 0%,
+          rgba(4, 14, 23, 0.3) 35%,
+          rgba(4, 14, 23, 0.95) 75%
+        );
+      }
+
+      .feature-card__facts {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card__facts span,
+      .feature-card__facts span:nth-child(2n) {
+        border-right: 0;
+        padding-left: 0;
+      }
+
+      .feature-card__facts span:nth-child(n + 2) {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .feature-card__ring {
+        width: 80%;
+        height: 30%;
+        right: 10%;
+        top: 16%;
+      }
+
+      .applications__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .cta {
+        min-height: 340px;
+      }
+
+      .cta > img {
+        object-position: 60% center;
+      }
+
+      .cta__inner {
+        padding: 40px 0;
+      }
+    }
+  </style>
 </BaseLayout>

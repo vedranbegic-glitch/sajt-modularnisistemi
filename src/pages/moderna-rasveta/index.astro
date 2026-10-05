@@ -1,227 +1,229 @@
 ---
+// src/pages/moderna-rasveta/index.astro
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
-import ProductCard from '../../components/ProductCard.astro';
-import { CATEGORIES_DATA } from '../../data/products';
-import { CONTACT } from '../../data/siteData';
 
-const rasveta = CATEGORIES_DATA.rasveta;
+const img = '/images/rasveta/';
 
-const breadcrumbItems = [
-  { label: 'Proizvodi', href: '/proizvodi/' },
-  { label: 'Moderna rasveta' },
+const visine = [
+  { m: '3 m', opis: 'Idealna za manje prostore i privatne dvorišne površine.' },
+  { m: '4 m', opis: 'Najčešći izbor za parkinge, poslovne objekte i pešačke zone.' },
+  { m: '5 m', opis: 'Za veće površine, javne zone i industrijske objekte.' },
 ];
 
-const technicalSpecs = [
-  {
-    title: 'Termička stabilnost kućišta',
-    description: 'Konstrukcija tela sa integrisanim rashladnim rebrima omogućava efikasno odvođenje toplote sa LED modula, obezbeđujući stabilan svetlosni fluks i dug vek trajanja.',
-  },
-  {
-    title: 'Fotometrijska preciznost',
-    description: 'Optički sklopovi projektovani da usmere svetlosni snop tačno na korisnu površinu, eliminišući svetlosno zagađenje i neželjeno rasipanje.',
-  },
-  {
-    title: 'Otpornost na atmosferske uticaje',
-    description: 'Zaštita kućišta prilagođena za spoljnu montažu uz visoku otpornost na prodiranje vlage, prašine i mehanička oštećenja.',
-  },
-  {
-    title: 'Arhitektonska estetika',
-    description: 'Minimalistička geometrija bez suvišnih ukrasa koja se neutralno i prirodno stapa sa modernim fasadama, popločanjima i urbanim mobilijarom.',
-  },
+const karakteristike = [
+  { naziv: 'Materijal', opis: 'Kvalitetan čelik (pocinčavanje / farbanje po izboru)', ikona: 'layers' },
+  { naziv: 'LED rasveta', opis: 'Od 50 W do 100 W (uz mogućnost podešavanja)', ikona: 'bulb' },
+  { naziv: 'Temperatura boje', opis: '3000 K / 4000 K / 6000 K', ikona: 'sun' },
+  { naziv: 'IP zaštita', opis: 'IP65 (otpornost na vremenske uslove)', ikona: 'shield' },
+  { naziv: 'Montaža', opis: 'Tip: na ploču / ankerisanje', ikona: 'wrench' },
 ];
+
+const detalji = [
+  { slika: `${img}z-profil-led-lampa-detalj-konstrukcij-1.webp`, naslov: 'LED modul', opis: 'Visoka efikasnost i dug radni vek.' },
+  { slika: `${img}z-profil-led-lampa-detalj-konstrukcij-2.webp`, naslov: 'Z profil', opis: 'Čiste linije i moderan izgled.' },
+  { slika: `${img}z-profil-led-lampa-detalj-konstrukcij-3.webp`, naslov: 'Baza', opis: 'Stabilnost i sigurnost u svim uslovima.' },
+];
+
+const primena = ['Parking', 'Poslovne objekte', 'Javne površine', 'Dvorišta'];
+
+const prednosti = ['LED tehnologija', 'Niska potrošnja', 'Robusna konstrukcija', 'Jednostavna montaža'];
+
+// SVG putanje (lucide stil)
+const icons: Record<string, string> = {
+  layers: '<path d="m12 2 10 6-10 6L2 8z"/><path d="m2 14 10 6 10-6"/><path d="m2 11 10 6 10-6"/>',
+  bulb: '<path d="M15 14c.2-1 .7-1.7 1.5-2.5A6 6 0 1 0 7.5 11.5c.8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>',
+  wrench: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/>',
+};
 ---
 
 <BaseLayout
-  title="Moderna rasveta · Arhitektonska rasveta za javne i privatne objekte"
-  description="Arhitektonska rasveta koja spaja funkciju i estetiku. Moderna LED rasveta za platoe, šetališta, stambene komplekse i partere. MODULARNI SISTEMI."
+  title="Z lampa / bandera – moderna LED rasveta | Modularni sistemi"
+  description="Elegantna i funkcionalna Z lampa / bandera sa LED rasvetom u visinama 3 m, 4 m i 5 m. Idealna za urbane i privatne prostore."
 >
-  <Breadcrumbs items={breadcrumbItems} />
+  <!-- ================= HERO ================= -->
+  <section class="relative overflow-hidden bg-[#0c101d] text-white">
+    <img
+      src={`${img}z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp`}
+      alt="Z lampa moderna LED rasveta za dvorište i ulicu"
+      class="absolute inset-0 h-full w-full object-cover object-right"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0c101d] via-[#0c101d]/80 to-transparent"></div>
 
-  <!-- Hero sekcija -->
-  <section class="pt-14 pb-20 bg-navy bg-grid-pattern border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <div class="lg:col-span-7 space-y-5">
-          <div class="inline-flex items-center gap-2 px-3 py-1 bg-navy-surface border border-accent/40 text-accent font-mono text-[11px] uppercase tracking-architectural font-bold">
-            <span class="w-2 h-2 bg-accent inline-block" aria-hidden="true"></span>
-            <span>MODERNA RASVETA</span>
-          </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24 min-h-[520px] flex flex-col justify-center">
+      <p class="text-xs sm:text-sm tracking-[0.3em] uppercase text-slate-300 mb-4">Moderan rasvetni sistem</p>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black uppercase leading-tight">
+        Z lampa / bandera
+        <span class="block text-[#ff6a13]">Moderan dizajn<br />za svaki prostor</span>
+      </h1>
+      <p class="mt-6 max-w-md text-base sm:text-lg text-slate-200">
+        Elegantna i funkcionalna Z lampa / bandera sa LED rasvetom, idealna za moderne urbane i privatne prostore.
+      </p>
 
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Arhitektonska rasveta koja spaja funkciju i estetiku.
-          </h1>
-
-          <p class="text-base sm:text-lg font-mono text-accent font-bold">
-            "Svetlost kao prostorni i konstruktivni element."
-          </p>
-
-          <p class="text-sm sm:text-base text-slate-surface font-medium leading-relaxed">
-            {rasveta.description}
-          </p>
-
-          <p class="text-xs sm:text-sm text-slate-muted leading-relaxed">
-            Razvijamo svetlosna tela koja pružaju fotometrijsku ravnotežu, stabilan rad u spoljašnjim uslovima i vizuelnu čistotu koja prati geometriju objekta.
-          </p>
-
-          <div class="pt-4 flex flex-col sm:flex-row gap-4">
-            <a
-              href="/posaljite-projekat/"
-              class="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent shadow-md text-center"
-            >
-              Pošaljite upit za rasvetu
-            </a>
-            <a
-              href={`mailto:${CONTACT.projectEmail}`}
-              class="inline-flex items-center justify-center px-8 py-4 bg-navy-surface hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/20 transition-all font-mono text-center"
-            >
-              {CONTACT.projectEmail}
-            </a>
-          </div>
-        </div>
-
-        <div class="lg:col-span-5">
-          <div class="relative bg-navy-dark border border-white/15 p-2 shadow-2xl">
-            <div class="relative aspect-[4/3] bg-navy-surface border border-white/10 overflow-hidden flex items-center justify-center">
-              <img
-                src={rasveta.heroImage}
-                alt="Moderna arhitektonska rasveta u spoljašnjem prostoru"
-                class="w-full h-full object-cover"
-                onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
-              />
-              <div class="hidden absolute inset-0 bg-navy-surface p-6 flex flex-col justify-between" aria-hidden="true">
-                <span class="text-accent font-mono text-[10px] tracking-architectural uppercase">ARHITEKTONSKA RASVETA</span>
-                <p class="text-xs font-mono text-white font-bold leading-tight">Spoljna i parterna svetlosna tela</p>
-                <span class="text-[10px] font-mono text-slate-muted">{rasveta.heroImage}</span>
-              </div>
-            </div>
-            <div class="p-3 bg-navy-surface border-t border-white/10 flex justify-between items-center font-mono text-[11px]">
-              <span class="text-slate-muted">Program: Urbana i linijska rasveta</span>
-              <span class="text-accent uppercase font-bold">MODULARNO</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Modeli rasvete iz baze podataka -->
-  <section class="py-16 lg:py-24 bg-navy-dark border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionHeading
-        eyebrow="Portfolio modela"
-        title="Sistemi arhitektonske rasvete"
-        subtitle="Rasvetna tela za definisanje javnih površina, komunikacija i objekata."
-      />
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {rasveta.subtypes.map((sub) => (
-          <ProductCard
-            title={sub.name}
-            summary={sub.summary}
-            image={sub.image}
-            application={sub.application}
-            badge="MODERNA RASVETA"
-          />
+      <ul class="mt-10 flex flex-wrap gap-x-8 gap-y-4">
+        {prednosti.map((p) => (
+          <li class="flex items-center gap-3 text-sm text-slate-200">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full border border-[#ff6a13] text-[#ff6a13]">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7" /></svg>
+            </span>
+            {p}
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   </section>
 
-  <!-- Inženjerska konstrukcija i fotometrija -->
-  <section class="py-16 lg:py-24 bg-navy border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionHeading
-        eyebrow="Tehnički pristup"
-        title="Fotometrija, upravljanje toplotom i trajnost kućišta"
-        subtitle="Rasveta projektovana da izdrži dugotrajni rad u spoljnim uslovima uz minimalno održavanje."
-      />
+  <!-- ================= VISINE + KARAKTERISTIKE ================= -->
+  <section class="bg-slate-50 py-14 lg:py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+      <!-- Leva kolona -->
+      <div>
+        <p class="text-sm font-bold uppercase tracking-wider text-[#0c101d]">Dostupne visine</p>
+        <h2 class="mt-2 text-4xl sm:text-5xl font-black text-[#ff6a13]">3 m / 4 m / 5 m</h2>
+        <p class="mt-4 text-lg text-slate-600 max-w-sm">Tri opcije visine za savršeno uklapanje u svaki prostor.</p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {technicalSpecs.map((item, index) => (
-          <div class="p-6 bg-navy-surface border border-white/10 flex flex-col justify-between space-y-4">
-            <div class="space-y-3">
-              <span class="text-accent font-mono text-xs font-bold block">
-                TEHNOLOGIJA 0{index + 1}
+        <div class="mt-8 grid grid-cols-3 gap-3">
+          {visine.map((v) => (
+            <div class="rounded-lg border border-slate-200 bg-white p-3">
+              <span class="flex h-9 w-9 items-center justify-center rounded-full bg-[#ff6a13] text-white">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M8 7l4-4 4 4M8 17l4 4 4-4" /></svg>
               </span>
-              <h3 class="text-base font-bold text-white tracking-tight">
-                {item.title}
-              </h3>
-              <p class="text-xs text-slate-muted leading-relaxed">
-                {item.description}
-              </p>
-            </div>
-            <div class="pt-3 border-t border-white/10 text-[10px] font-mono text-slate-surface/60 uppercase">
-              MODULARNI SISTEMI
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Područja primene -->
-  <section class="py-16 lg:py-24 bg-navy-dark border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <div class="lg:col-span-6 space-y-5">
-          <SectionHeading
-            eyebrow="Ambijentalna integracija"
-            title="Gde se primenjuju naši sistemi rasvete"
-            subtitle="Od partera stambenih kompleksa do velikih otvorenih trgova i šetališta."
-          />
-          <p class="text-xs sm:text-sm text-slate-muted leading-relaxed">
-            Arhitektonska rasveta obezbeđuje sigurnost kretanja tokom noći, ali istovremeno oblikuje percepciju prostora. Naša rešenja omogućavaju usklađivanje stubnih i linijskih elemenata sa drenažnim rasterom i podnim oblogama.
-          </p>
-        </div>
-
-        <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {rasveta.applications.map((app, index) => (
-            <div class="p-6 bg-navy border border-white/10 space-y-2">
-              <span class="text-accent font-mono text-xs font-bold block">0{index + 1}</span>
-              <h3 class="text-sm font-bold text-white uppercase tracking-wider">{app}</h3>
-              <p class="text-xs text-slate-muted">Usklađena visina montaže i distribucija svetla prilagođena dinamici kretanja u prostoru.</p>
+              <p class="mt-3 text-xl font-black text-[#0c101d]">{v.m}</p>
+              <p class="mt-1 text-xs leading-snug text-slate-500">{v.opis}</p>
             </div>
           ))}
         </div>
 
+        <h3 class="mt-12 text-sm font-bold uppercase tracking-wider text-[#0c101d]">Tehničke karakteristike</h3>
+        <ul class="mt-4 divide-y divide-slate-200">
+          {karakteristike.map((k) => (
+            <li class="flex items-start gap-4 py-4">
+              <svg viewBox="0 0 24 24" class="h-9 w-9 shrink-0 text-[#0c101d]" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[k.ikona]} />
+              <div>
+                <p class="font-bold text-[#0c101d]">{k.naziv}</p>
+                <p class="text-sm text-[#ff6a13]/90">{k.opis}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Desna kolona -->
+      <div class="space-y-6">
+        <article class="relative overflow-hidden rounded-lg border border-white/10 bg-[#0c101d] text-white">
+          <img
+            src={`${img}z-lampa-dimenzije-visina-tehnicki-detalji.webp`}
+            alt="Z lampa u visinama 3 m, 4 m i 5 m – tehnički detalji"
+            class="w-full h-auto"
+            loading="lazy"
+          />
+          <!-- prelaz slike u tamnu podlogu -->
+          <div class="pointer-events-none absolute inset-x-0 top-[40%] bottom-0 bg-gradient-to-b from-transparent via-[#0c101d]/90 to-[#0c101d]"></div>
+
+          <div class="relative z-10 -mt-24 sm:-mt-32 px-6 pb-6 sm:px-8 sm:pb-8">
+            <p class="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#ff6a13]">
+              <span class="h-px w-6 bg-[#ff6a13]"></span>
+              Tehnički detalji
+            </p>
+            <h3 class="mt-3 text-3xl sm:text-4xl font-black leading-tight tracking-tight">
+              Tri visine,
+              <span class="block text-[#ff6a13]">jedan dizajn.</span>
+            </h3>
+            <p class="mt-3 max-w-xl text-sm sm:text-base text-slate-300">
+              Ista Z linija u svakoj visini: od dvorišne staze do velikog parkinga, uz LED snagu i temperaturu boje prilagođene prostoru.
+            </p>
+
+            <dl class="mt-6 grid grid-cols-2 border-t border-white/15 sm:grid-cols-4">
+              {[
+                { v: '3 / 4 / 5 m', l: 'visine stuba' },
+                { v: '50–100 W', l: 'LED snaga' },
+                { v: '3000–6000 K', l: 'temperatura boje' },
+                { v: 'IP65', l: 'zaštita od vremena' },
+              ].map((s, i) => (
+                <div class={`py-4 pr-4 border-b border-white/15 sm:border-b-0 ${i > 0 ? 'sm:border-l sm:pl-4' : ''} ${i % 2 === 1 ? 'border-l pl-4 sm:pl-4' : ''}`}>
+                  <dt class="text-sm sm:text-base font-bold text-white">{s.v}</dt>
+                  <dd class="mt-0.5 text-xs text-slate-400">{s.l}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <a
+              href="/kontakt/"
+              class="mt-5 inline-flex items-center gap-2 border-b border-[#ff6a13] pb-1 text-xs font-bold uppercase tracking-wider text-white transition hover:text-[#ff6a13] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            >
+              Zatražite ponudu <span class="text-[#ff6a13]">&rarr;</span>
+            </a>
+          </div>
+        </article>
+
+        <div class="rounded-lg bg-[#0c101d] p-6 text-white">
+          <h3 class="border-l-4 border-[#ff6a13] pl-3 text-sm font-bold uppercase tracking-wider">Detalji koji prave razliku</h3>
+          <div class="mt-5 grid gap-5 sm:grid-cols-3">
+            {detalji.map((d) => (
+              <figure>
+                <img src={d.slika} alt={d.naslov} class="aspect-[4/3] w-full rounded object-cover" loading="lazy" />
+                <figcaption class="mt-3">
+                  <p class="font-bold">{d.naslov}</p>
+                  <p class="text-sm text-slate-300">{d.opis}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="py-16 bg-navy bg-grid-pattern">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
-      <div class="inline-flex items-center gap-2 px-3 py-1 bg-navy-surface border border-accent text-accent font-mono text-xs uppercase tracking-architectural font-bold">
-        <span>PROJEKTI OSVETLJENJA</span>
+  <!-- ================= PRIMENA ================= -->
+  <section class="bg-white py-12 border-t border-slate-100">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] items-center">
+      <div class="border-l-4 border-[#ff6a13] pl-4">
+        <p class="text-xs font-bold uppercase tracking-wider text-[#0c101d]">Primena</p>
+        <h2 class="mt-1 text-3xl font-black text-[#0c101d] leading-tight">Idealno rešenje za različite prostore.</h2>
+        <p class="mt-3 text-slate-600">Moderan izgled, pouzdana rasveta i dug vek trajanja.</p>
       </div>
 
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-        Planirate spoljašnje ili parterno osvetljenje?
-      </h2>
+      <ul class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-slate-200">
+        {primena.map((p, i) => (
+          <li class="flex flex-col items-center gap-3 px-4 py-4 text-center">
+            <svg viewBox="0 0 24 24" class="h-10 w-10 text-[#ff6a13]" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              {i === 0 && (<Fragment><path d="M5 17h14M3 13l2-6h14l2 6v4H3z" /><circle cx="7.5" cy="15" r=".8" /><circle cx="16.5" cy="15" r=".8" /></Fragment>)}
+              {i === 1 && (<Fragment><path d="M4 21V5l9-2v18M13 8h7v13M3 21h18M7 8h2M7 12h2M7 16h2M16 12h1M16 16h1" /></Fragment>)}
+              {i === 2 && (<Fragment><path d="M12 22v-8" /><circle cx="12" cy="8" r="6" /></Fragment>)}
+              {i === 3 && (<Fragment><path d="m3 11 9-8 9 8" /><path d="M5 10v11h14V10M10 21v-6h4v6" /></Fragment>)}
+            </svg>
+            <span class="font-semibold text-[#0c101d]">{p}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
 
-      <p class="text-xs sm:text-sm text-slate-muted max-w-xl mx-auto leading-relaxed">
-        Dostavite situaciju objekta i svetlosne zahteve. Naš inženjerski tim radi predlog rasporeda rasvetnih tela i tehničku specifikaciju.
-      </p>
+  <!-- ================= DONJI BANER ================= -->
+  <section class="relative overflow-hidden bg-[#0c101d] py-16 overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img
+        src={`${img}led-rasveta-za-setalista-i-parkove.webp`}
+        alt="LED rasveta za šetališta i parkove"
+        class="h-full w-full object-cover"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0b0b19] via-[#0b0b19]/80 to-transparent"></div>
+    </div>
 
-      <div class="pt-3 flex flex-col sm:flex-row justify-center items-center gap-4">
-        <a
-          href="/posaljite-projekat/"
-          class="px-8 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent shadow-md"
-        >
-          Pošaljite zahtev za rasvetu
-        </a>
-        <a
-          href={`tel:${CONTACT.phoneFormatted}`}
-          class="px-8 py-3.5 bg-navy-surface hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/20 transition-all font-mono"
-        >
-          {CONTACT.phone}
-        </a>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+      <div class="space-y-2">
+        <p class="text-sm sm:text-base font-bold uppercase tracking-wider text-white">Kvalitet, dizajn, funkcionalnost</p>
+        <h2 class="text-3xl sm:text-5xl font-black uppercase text-[#ff6a13]">U jednom.</h2>
       </div>
+      <a
+        href="/kontakt/"
+        class="inline-flex items-center justify-center gap-2 rounded bg-[#ff6a13] px-8 py-4 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-[#e55a0a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      >
+        Kontaktirajte nas &rarr;
+      </a>
     </div>
   </section>
 </BaseLayout>
