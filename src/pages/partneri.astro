@@ -1,15 +1,38 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import SectionHeading from '../components/SectionHeading.astro';
 import { CONTACT } from '../data/siteData';
 
 const breadcrumbItems = [
   { label: 'Partneri' },
 ];
 
+const canonicalURL = 'https://modularnisistemi.com/partneri/';
+const pageTitle = 'Partneri · B2B Saradnja sa Arhitektama i Izvođačima | Modularni Sistemi';
+const pageDescription = 'B2B saradnja za arhitektonske biroe, inženjere, izvođače radova i investitore. Inženjerska razrada i tehnička podrška brenda MODULARNI SISTEMI.';
+
+// Hero slajder sa 3 slike koje se rotiraju na svake 3 sekunde
+const heroSlides = [
+  {
+    src: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
+    alt: 'Modularni sistemi — lučni inox kanal u pejzažnom parteru',
+    position: 'center',
+  },
+  {
+    src: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp',
+    alt: 'Z lampa — moderna LED rasveta za dvorište i ulicu',
+    position: '70% center',
+  },
+  {
+    src: '/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp',
+    alt: 'Modularni podni sistemi — fabrički sklopljeni paneli za terase i partere',
+    position: 'center',
+  },
+];
+
 const targetProfiles = [
   {
+    num: '01',
     role: 'Arhitekti i projektanti',
     subtitle: 'Autorska sloboda i čiste linije',
     description: 'Pomažemo vam da realizujete složene geometrije bez vizuelnih kompromisa. Obezbeđujemo 2D i 3D CAD detalje koji se direktno ugrađuju u tehničku dokumentaciju.',
@@ -21,9 +44,10 @@ const targetProfiles = [
     ],
   },
   {
+    num: '02',
     role: 'Građevinski izvođači i instalateri',
     subtitle: 'Brza montaža bez improvizacija na terenu',
-    description: 'Isporučujemo prefabrikovane sisteme sa numerisanim segmentima, pripremljenim spojevima i zaptivnim setovima. Eliminišemo potrebu za doradom i sečenjem na licu mesta.',
+    description: 'Isporučujemo prefabrikovane sisteme sa numerisanim segmentima, pripremljenim spojevima i nivelirajućim stopama. Eliminišemo potrebu za doradom i sečenjem na licu mesta.',
     benefits: [
       'Numerisani elementi usklađeni sa montažnom šemom',
       'Zaptivni prirubnički spojevi sa EPDM dihtunzima',
@@ -32,192 +56,1003 @@ const targetProfiles = [
     ],
   },
   {
+    num: '03',
     role: 'Investitori i Facility menadžeri',
     subtitle: 'Dugoročna eksploataciona sigurnost',
     description: 'Konstrukcije od visokokvalitetnog nerđajućeg čelika i otpornih legura štite objekat od prodiranja vode i obezbeđuju lako održavanje tokom višegodišnjeg korišćenja.',
     benefits: [
-      'Trajna postojanost materijala bez korozije',
+      'Trajna postojanost materijala bez korozije i propadanja',
       'Jednostavan pristup sifonskim korpicama i revizijama',
       'Modularna zamenljivost pojedinačnih segmenata rešetki',
-      'Optimizacija troškova kroz prefabrikovana rešenja',
+      'Optimizacija troškova kroz prefabrikovana tipska rešenja',
     ],
   },
 ];
 ---
 
-<BaseLayout
-  title="Partneri · Saradnja sa arhitektama i izvođačima"
-  description="B2B saradnja za arhitektonske biroe, inženjere, izvođače radova i investitore. Inženjerska razrada i tehnička podrška brenda MODULARNI SISTEMI."
->
-  <Breadcrumbs items={breadcrumbItems} />
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Fragment slot="head">
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+  </Fragment>
 
-  <!-- Hero sekcija -->
-  <section class="pt-14 pb-16 bg-navy bg-grid-pattern border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl space-y-4">
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-navy-surface border border-accent/40 text-accent font-mono text-[11px] uppercase tracking-architectural font-bold">
-          <span class="w-2 h-2 bg-accent inline-block" aria-hidden="true"></span>
-          <span>B2B Partnerstvo &amp; Inženjering</span>
+  <div class="partneri-page">
+    <div class="wrap breadcrumbs-container">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+
+    <!-- HERO SEKCIJA (AUTOMATSKI SLAJDER SA 3 SLIKE) -->
+    <section class="hero">
+      <div class="hero__slides">
+        {heroSlides.map((slide, i) => (
+          <img
+            class={`hero__slide ${i === 0 ? 'is-active' : ''}`}
+            src={slide.src}
+            alt={slide.alt}
+            style={`object-position: ${slide.position};`}
+            fetchpriority={i === 0 ? 'high' : 'auto'}
+            loading={i === 0 ? 'eager' : 'lazy'}
+          />
+        ))}
+      </div>
+      <div class="hero__shade"></div>
+      <div class="hero__grid"></div>
+
+      <div class="hero__content wrap">
+        <div class="hero__copy">
+          <div class="eyebrow">
+            <span></span>
+            B2B Partnerstvo & Inženjering
+          </div>
+
+          <h1>
+            Pouzdan partner u realizaciji<br />
+            <em>arhitektonskih zamisli.</em>
+          </h1>
+
+          <p class="hero__lead">
+            Nudimo namensku tehničku i operativnu podršku projektantima, inženjerima i građevinskim kompanijama. 
+            Sarađujemo na objektu od idejnog crteža do završne ugradnje bez zastoja.
+          </p>
+
+          <div class="hero__badges">
+            <span class="badge-tag">Arhitektonski biroi</span>
+            <span class="badge-tag">Glavni izvođači</span>
+            <span class="badge-tag">Investitori & Developeri</span>
+          </div>
+
+          <div class="hero__actions">
+            <a class="btn btn--orange" href="/posaljite-projekat/">
+              Pošaljite nam projekat <b>→</b>
+            </a>
+            <a class="btn btn--ghost" href={`tel:${CONTACT.phoneFormatted || '+38166241386'}`}>
+              Pozovite: {CONTACT.phone || '+381 66 241 386'} <b>↗</b>
+            </a>
+          </div>
         </div>
 
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-          Pouzdan partner u realizaciji arhitektonskih zamisli.
-        </h1>
-
-        <p class="text-sm sm:text-base text-slate-muted leading-relaxed">
-          Nudimo namensku tehničku i operativnu podršku projektantima, inženjerima i građevinskim kompanijama. Sarađujemo na objektu od idejnog crteža do završne ugradnje.
-        </p>
-
-        <div class="pt-2 flex flex-wrap gap-4 font-mono text-xs">
-          <span class="px-3 py-1.5 bg-navy-surface border border-white/10 text-white">ARHITEKTONSKI BIROI</span>
-          <span class="px-3 py-1.5 bg-navy-surface border border-white/10 text-white">GLAVNI IZVOĐAČI</span>
-          <span class="px-3 py-1.5 bg-navy-surface border border-white/10 text-white">DEVELOPERI</span>
+        <div class="hero__specs">
+          <div>
+            <strong>2D / 3D CAD MODELI</strong>
+            <span>Direktna integracija u projekat</span>
+          </div>
+          <div>
+            <strong>100% PREFABRIKACIJA</strong>
+            <span>Elementi obeleženi po segmentima</span>
+          </div>
+          <div>
+            <strong>ANALIZA KOTA I PADOVA</strong>
+            <span>Inženjerska procena u roku od 24h</span>
+          </div>
+          <div>
+            <strong>DIREKTNA LINIJA</strong>
+            <span>Podrška inženjera tokom montaže</span>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Profili saradnje -->
-  <section class="py-16 lg:py-24 bg-navy-dark border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionHeading
-        eyebrow="Modeli podrške"
-        title="Stručna asistencija prilagođena vašoj ulozi"
-        subtitle="Razumemo specifičnosti procesa planiranja, tenderskih procedura i samog gradilišta."
-      />
+      <!-- Tačkice slajdera -->
+      <div class="hero__dots" role="tablist" aria-label="Izbor slike">
+        {heroSlides.map((_, i) => (
+          <button
+            type="button"
+            class={`hero__dot ${i === 0 ? 'is-active' : ''}`}
+            aria-label={`Slika ${i + 1}`}
+            data-index={i}
+          ></button>
+        ))}
+      </div>
+    </section>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {targetProfiles.map((profile, index) => (
-          <div class="p-8 bg-navy border border-white/10 flex flex-col justify-between space-y-6 hover:border-accent/40 transition-colors">
-            <div class="space-y-4">
-              <span class="text-accent font-mono text-xs font-bold block">
-                SEKTOR 0{index + 1}
-              </span>
-              <h3 class="text-xl font-bold text-white tracking-tight">
-                {profile.role}
-              </h3>
-              <p class="text-xs font-mono text-accent uppercase tracking-wider font-semibold">
-                {profile.subtitle}
-              </p>
-              <p class="text-xs text-slate-muted leading-relaxed">
-                {profile.description}
-              </p>
-
-              <div class="pt-4 border-t border-white/10 space-y-2">
-                <span class="text-[10px] font-mono uppercase tracking-architectural text-slate-surface font-semibold block mb-2">
-                  Šta obezbeđujemo:
-                </span>
-                {profile.benefits.map((b) => (
-                  <div class="text-[11px] text-slate-surface flex items-start gap-2">
-                    <span class="w-1.5 h-1.5 bg-accent mt-1 flex-shrink-0" aria-hidden="true"></span>
-                    <span>{b}</span>
-                  </div>
-                ))}
-              </div>
+    <!-- PROFILI SARADNJE (3 B2B KARTICE) -->
+    <section class="profiles-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow eyebrow--dark">
+              <span></span>
+              Modeli podrške
             </div>
+            <h2>Stručna asistencija prilagođena <em>vašoj ulozi.</em></h2>
+          </div>
+          <p>
+            Razumemo specifičnosti procesa planiranja, tenderskih procedura i realnih zahteva gradilišta.
+          </p>
+        </div>
 
-            <div class="pt-4 border-t border-white/10">
-              <a
-                href="/posaljite-projekat/"
-                class="block w-full py-3 bg-navy-surface hover:bg-accent text-center text-white text-xs uppercase tracking-architectural font-bold border border-white/15 hover:border-accent transition-all duration-200"
-              >
-                Inicirajte saradnju
+        <div class="profiles-grid">
+          {targetProfiles.map((profile) => (
+            <article class="profile-card">
+              <div class="profile-card__head">
+                <span class="profile-num">Sektor {profile.num}</span>
+                <h3>{profile.role}</h3>
+                <p class="profile-subtitle">"{profile.subtitle}"</p>
+                <p class="profile-desc">{profile.description}</p>
+              </div>
+
+              <div class="profile-card__benefits">
+                <span class="benefits-title">Šta obezbeđujemo:</span>
+                <ul>
+                  {profile.benefits.map((b) => (
+                    <li>
+                      <span class="bullet"></span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="profile-card__footer">
+                <a href="/posaljite-projekat/" class="btn btn--profile">
+                  Inicirajte saradnju <b>→</b>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- RADNI KORACI SARADNJE (DVE KOLONE) -->
+    <section class="steps-section">
+      <div class="wrap steps-grid">
+        
+        <!-- Leva kolona -->
+        <div class="steps-left">
+          <div class="eyebrow eyebrow--dark">
+            <span></span>
+            Brz operativni tok
+          </div>
+          <h2>Kako započinjemo <em>inženjersku saradnju?</em></h2>
+          
+          <p class="steps-desc">
+            Svaki projekat ima jedinstvene parametre. Dovoljno je da nam dostavite osnovne podatke o geometriji ili preliminarni crtež, a naš tim preuzima tehničku analizu i proračun.
+          </p>
+
+          <div class="contact-box">
+            <div>
+              <span class="contact-box__label">Zvanični inženjerski prijem crteža</span>
+              <a href={`mailto:${CONTACT.projectEmail || 'projekti@modularnisistemi.com'}`} class="contact-box__val">
+                {CONTACT.projectEmail || 'projekti@modularnisistemi.com'}
+              </a>
+            </div>
+            <div class="contact-box__sep"></div>
+            <div>
+              <span class="contact-box__label">Direktan telefon za konsultacije</span>
+              <a href={`tel:${CONTACT.phoneFormatted || '+38166241386'}`} class="contact-box__val contact-box__val--phone">
+                {CONTACT.phone || '+381 66 241 386'}
               </a>
             </div>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Radni koraci saradnje -->
-  <section class="py-16 lg:py-24 bg-navy border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <div class="lg:col-span-5 space-y-5">
-          <SectionHeading
-            eyebrow="Brz operativni tok"
-            title="Kako započinjemo inženjersku saradnju?"
-            subtitle="Transparentan proces bez nepotrebnih administrativnih zastoja."
-          />
-          <p class="text-xs sm:text-sm text-slate-muted leading-relaxed">
-            Svaki projekat ima jedinstvene parametre. Dovoljno je da nam dostavite osnovne podatke o geometriji ili preliminarni crtež, a naš tim preuzima tehničku analizu.
-          </p>
-          <div class="p-4 bg-navy-surface border border-white/10 font-mono text-xs">
-            <span class="text-slate-muted block text-[10px] uppercase">Zvanični inženjerski kontakt</span>
-            <a href={`mailto:${CONTACT.projectEmail}`} class="text-white hover:text-accent font-bold block mt-1">
-              {CONTACT.projectEmail}
-            </a>
-            <span class="text-slate-muted block text-[10px] uppercase mt-3">Telefon za konsultacije</span>
-            <a href={`tel:${CONTACT.phoneFormatted}`} class="text-accent hover:text-white font-bold block mt-1">
-              {CONTACT.phone}
-            </a>
-          </div>
         </div>
 
-        <div class="lg:col-span-7 space-y-4">
-          <div class="p-6 bg-navy-surface border border-white/10 flex items-start gap-4">
-            <span class="text-2xl font-mono font-extrabold text-accent">01</span>
-            <div>
-              <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-1">Dostava podloga</h4>
-              <p class="text-xs text-slate-muted leading-relaxed">
-                Pošaljite nam DWG ili PDF osnovu sa zadatim padovima, kotama i željenom završnom oblogom.
+        <!-- Desna kolona: 3 numerisana koraka -->
+        <div class="steps-right">
+          <div class="step-card">
+            <span class="step-card__num">01</span>
+            <div class="step-card__content">
+              <h4>Dostava podloga i crteža</h4>
+              <p>
+                Pošaljite nam DWG ili PDF osnovu sa zadatim padovima, kotama i željenom završnom oblogom ili drenažnim linijama.
               </p>
             </div>
           </div>
 
-          <div class="p-6 bg-navy-surface border border-white/10 flex items-start gap-4">
-            <span class="text-2xl font-mono font-extrabold text-accent">02</span>
-            <div>
-              <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-1">Inženjerski predlog i predmer</h4>
-              <p class="text-xs text-slate-muted leading-relaxed">
+          <div class="step-card">
+            <span class="step-card__num">02</span>
+            <div class="step-card__content">
+              <h4>Inženjerski predlog i predmer</h4>
+              <p>
                 U roku od 24-48h dostavljamo vam predlog podele na modularne segmente sa hidrauličkim kapacitetima i specifikacijom.
               </p>
             </div>
           </div>
 
-          <div class="p-6 bg-navy-surface border border-white/10 flex items-start gap-4">
-            <span class="text-2xl font-mono font-extrabold text-accent">03</span>
-            <div>
-              <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-1">Prefabrikacija i isporuka</h4>
-              <p class="text-xs text-slate-muted leading-relaxed">
-                Izrađeni elementi dolaze na lokaciju obeleženi po segmentima, spremni za brzu ugradnju od strane vašeg tima.
+          <div class="step-card">
+            <span class="step-card__num">03</span>
+            <div class="step-card__content">
+              <h4>Prefabrikacija i isporuka</h4>
+              <p>
+                Izrađeni elementi dolaze na gradilište obeleženi po segmentima, spremni za brzu ugradnju od strane vašeg tima.
               </p>
             </div>
           </div>
         </div>
 
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA sekcija -->
-  <section class="py-16 bg-navy-dark bg-grid-pattern">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
-      <span class="text-accent font-mono text-xs uppercase tracking-architectural font-bold block">
-        Započnite komunikaciju
-      </span>
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-        Dostavite nacrt za analizu bez obaveze
-      </h2>
-      <p class="text-xs sm:text-sm text-slate-muted max-w-xl mx-auto leading-relaxed">
-        Naš inženjerski tim radi uvid u vaše crteže i predlaže najekonomičniju i tehnički najčistiju konfiguraciju elemenata.
-      </p>
-      <div class="pt-3 flex flex-col sm:flex-row justify-center items-center gap-4">
-        <a
-          href="/posaljite-projekat/"
-          class="px-8 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent"
-        >
-          Pošaljite nam projekat
-        </a>
-        <a
-          href={`tel:${CONTACT.phoneFormatted}`}
-          class="px-8 py-3.5 bg-navy-surface hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/20 transition-all font-mono"
-        >
-          {CONTACT.phone}
-        </a>
+    <!-- CTA BANER IZNAD FOOTERA -->
+    <section class="cta">
+      <img
+        src="/images/inox/cta-parter-zardinjera.webp"
+        alt="Dostavite nacrt za analizu"
+        loading="lazy"
+      />
+      <div class="cta__shade"></div>
+      <div class="wrap cta__inner">
+        <div>
+          <div class="eyebrow">
+            <span></span>
+            Započnite komunikaciju
+          </div>
+          <h2>Dostavite nacrt za analizu <em>bez obaveze.</em></h2>
+          <p>
+            Naš inženjerski tim radi detaljan uvid u vaše crteže i predlaže najekonomičniju i tehnički najčistiju konfiguraciju elemenata.
+          </p>
+        </div>
+        <div class="cta__actions">
+          <a class="btn btn--orange" href="/posaljite-projekat/">
+            Pošaljite nam projekat <b>→</b>
+          </a>
+          <a class="btn btn--ghost" href={`tel:${CONTACT.phoneFormatted || '+38166241386'}`}>
+            Pozovite: {CONTACT.phone || '066 241 386'} <b>↗</b>
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
+
+  <style>
+    :global(html) {
+      scroll-behavior: smooth;
+    }
+
+    :global(body) {
+      margin: 0;
+      background: #f6f7f9;
+      color: #07111e;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .partneri-page {
+      --navy: #06131f;
+      --navy2: #0b1d2b;
+      --orange: #ff6900;
+      --orange-hover: #e85e00;
+      --line: #dce2e7;
+      --muted: #64717c;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .wrap {
+      width: min(1280px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .breadcrumbs-container {
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      min-height: 640px;
+      background: var(--navy);
+      color: #fff;
+      isolation: isolate;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero__slides {
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+    }
+
+    .hero__slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .hero__slide.is-active {
+      opacity: 1;
+    }
+
+    .hero__shade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(105deg, rgba(6, 19, 31, 0.95) 0%, rgba(6, 19, 31, 0.85) 38%, rgba(6, 19, 31, 0.4) 68%, rgba(6, 19, 31, 0.1) 100%),
+        linear-gradient(0deg, rgba(6, 19, 31, 0.75) 0%, transparent 48%);
+      z-index: -2;
+    }
+
+    .hero__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(90deg, black, transparent 68%);
+      z-index: -1;
+    }
+
+    .hero__content {
+      padding-top: 100px;
+      padding-bottom: 56px;
+      display: grid;
+      grid-template-columns: minmax(0, 720px) 1fr;
+      gap: 50px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow span {
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    .eyebrow--dark {
+      color: var(--orange);
+    }
+
+    h1, h2, h3, h4, p {
+      margin: 0;
+    }
+
+    .hero h1 {
+      margin-top: 18px;
+      max-width: 860px;
+      font-size: clamp(36px, 4.4vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .hero h1 em,
+    .section-head h2 em,
+    .steps-left h2 em,
+    .cta h2 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .hero__lead {
+      margin-top: 20px;
+      max-width: 620px;
+      color: #d4dee4;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .hero__badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .badge-tag {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      color: #fff;
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    /* Tačkice slajdera */
+    .hero__dots {
+      position: absolute;
+      right: max(20px, calc((100% - 1280px) / 2));
+      bottom: 24px;
+      display: flex;
+      gap: 8px;
+      z-index: 3;
+    }
+
+    .hero__dot {
+      width: 28px;
+      height: 4px;
+      padding: 0;
+      border: 0;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+      transition: background 0.3s ease, width 0.3s ease;
+    }
+
+    .hero__dot:hover {
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .hero__dot.is-active {
+      width: 44px;
+      background: var(--orange);
+    }
+
+    .hero__dot:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero__slide { transition: none; }
+    }
+
+    .btn {
+      min-height: 48px;
+      padding: 0 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn b {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .btn--orange {
+      background: var(--orange);
+      color: #fff;
+      border: 1px solid var(--orange);
+    }
+
+    .btn--orange:hover {
+      background: var(--orange-hover);
+      border-color: var(--orange-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn--ghost {
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: #fff;
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    .btn--ghost:hover {
+      background: #fff;
+      color: var(--navy);
+      border-color: #fff;
+    }
+
+    .hero__specs {
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      padding-left: 28px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .hero__specs strong {
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .hero__specs span {
+      margin-top: 4px;
+      color: #94a3ad;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    /* ========== PROFILI SARADNJE ========== */
+    .profiles-section {
+      padding: 80px 0;
+      background: #f6f7f9;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 36px;
+      margin-bottom: 36px;
+    }
+
+    .section-head > div {
+      max-width: 680px;
+    }
+
+    .section-head > p {
+      max-width: 380px;
+      padding-bottom: 4px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .section-head h2 {
+      margin-top: 12px;
+      font-size: clamp(30px, 3.4vw, 46px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      color: #07111e;
+    }
+
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .profile-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(6, 19, 31, 0.04);
+    }
+
+    .profile-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--orange);
+      box-shadow: 0 16px 36px rgba(6, 19, 31, 0.08);
+    }
+
+    .profile-num {
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .profile-card h3 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #07111e;
+    }
+
+    .profile-subtitle {
+      margin-top: 8px;
+      color: var(--orange);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      line-height: 1.4;
+    }
+
+    .profile-desc {
+      margin-top: 12px;
+      color: #55636e;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .profile-card__benefits {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .benefits-title {
+      display: block;
+      color: #07111e;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .profile-card__benefits ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .profile-card__benefits li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #3d4a55;
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+
+    .bullet {
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+      border-radius: 1px;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .profile-card__footer {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .btn--profile {
+      width: 100%;
+      background: #f6f7f9;
+      color: #07111e;
+      border: 1px solid var(--line);
+      box-sizing: border-box;
+      transition: all 0.25s ease;
+    }
+
+    .btn--profile:hover {
+      background: var(--orange);
+      color: #fff;
+      border-color: var(--orange);
+    }
+
+    /* ========== RADNI KORACI SARADNJE ========== */
+    .steps-section {
+      padding: 80px 0;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: 50px;
+      align-items: start;
+    }
+
+    .steps-left h2 {
+      margin-top: 12px;
+      font-size: clamp(28px, 3.2vw, 42px);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      color: #07111e;
+    }
+
+    .steps-desc {
+      margin-top: 16px;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #55636e;
+    }
+
+    .contact-box {
+      margin-top: 28px;
+      padding: 24px;
+      background: var(--navy);
+      border-radius: 2px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-box__label {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #8c9da8;
+      margin-bottom: 4px;
+    }
+
+    .contact-box__val {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      word-break: break-all;
+      transition: color 0.2s;
+    }
+
+    .contact-box__val:hover {
+      color: var(--orange);
+    }
+
+    .contact-box__val--phone {
+      font-size: 18px;
+      color: var(--orange);
+    }
+
+    .contact-box__sep {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .steps-right {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .step-card {
+      background: #f6f7f9;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      padding: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      transition: all 0.25s ease;
+    }
+
+    .step-card:hover {
+      border-color: var(--orange);
+      background: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(6, 19, 31, 0.05);
+    }
+
+    .step-card__num {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .step-card__content h4 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #07111e;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+
+    .step-card__content p {
+      margin-top: 6px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: #55636e;
+    }
+
+    /* ========== CTA BANER ========== */
+    .cta {
+      position: relative;
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
+    .cta > img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .cta__shade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, rgba(6, 19, 31, 0.95) 0%, rgba(6, 19, 31, 0.75) 55%, rgba(6, 19, 31, 0.45) 100%);
+    }
+
+    .cta__inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+      padding: 56px 0;
+    }
+
+    .cta h2 {
+      margin-top: 12px;
+      font-size: clamp(26px, 3.3vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .cta p {
+      margin-top: 12px;
+      max-width: 520px;
+      color: #b5c2ca;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .cta__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .profiles-grid {
+        grid-template-columns: 1fr;
+      }
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero__content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .hero__specs {
+        display: none;
+      }
+
+      .hero__dots {
+        right: 12px;
+        bottom: 16px;
+      }
+
+      .section-head {
+        display: block;
+        margin-bottom: 24px;
+      }
+
+      .section-head > p {
+        margin-top: 12px;
+      }
+
+      .cta__inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cta__actions {
+        flex-direction: row;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        width: min(100% - 24px, 1280px);
+      }
+
+      .hero {
+        min-height: 540px;
+      }
+
+      .hero__content {
+        padding-top: 70px;
+        padding-bottom: 40px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .step-card {
+        padding: 20px 16px;
+      }
+
+      .cta {
+        min-height: 340px;
+      }
+
+      .cta__inner {
+        padding: 40px 0;
+      }
+
+      .cta__actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .cta__actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <script>
+    // Hero slajder: automatska rotacija sve 3 slike na svake 3 sekunde
+    const slides = document.querySelectorAll<HTMLElement>('.hero__slide');
+    const dots = document.querySelectorAll<HTMLButtonElement>('.hero__dot');
+
+    if (slides.length > 1) {
+      let current = 0;
+      let timer: number | undefined;
+
+      const show = (index: number) => {
+        current = (index + slides.length) % slides.length;
+        slides.forEach((s, i) => s.classList.toggle('is-active', i === current));
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
+      };
+
+      const stop = () => {
+        if (timer) window.clearInterval(timer);
+      };
+      const start = () => {
+        stop();
+        timer = window.setInterval(() => show(current + 1), 3000);
+      };
+
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          show(Number(dot.dataset.index));
+          start();
+        });
+      });
+
+      start();
+    }
+  </script>
 </BaseLayout>

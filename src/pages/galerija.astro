@@ -1,161 +1,734 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import GalleryFilter from '../components/GalleryFilter.astro';
 import LightboxModal from '../components/LightboxModal.astro';
-import { GALLERY_ITEMS } from '../data/gallery';
 import { CONTACT } from '../data/siteData';
 
 const breadcrumbItems = [
   { label: 'Galerija' },
 ];
+
+// Galerija sa svim stvarnim slikama koje postoje na disku
+const galleryItems = [
+  // --- INOX SISTEMI ODVODNJAVANJA ---
+  {
+    id: 'INOX-01',
+    category: 'inox',
+    categoryLabel: 'Inox odvodnjavanje',
+    title: 'Lučni inox kanal uz rub bazena i partera',
+    desc: 'Modularni lučni drenažni kanal sa integrisanim fabričkim padom i nivelacijom prema krivini partera.',
+    image: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
+  },
+  {
+    id: 'INOX-02',
+    category: 'inox',
+    categoryLabel: 'Inox odvodnjavanje',
+    title: 'Kontinualni radijus i lučni kanal',
+    desc: 'Precizno praćenje zakrivljene geometrije konstruktivnih elemenata bez rezova na terenu.',
+    image: '/images/inox/lucni-inox-kanal-linijsko-odvodnjavanje.webp',
+  },
+  {
+    id: 'INOX-03',
+    category: 'inox',
+    categoryLabel: 'Inox odvodnjavanje',
+    title: 'Kružna drenažna kanalica zatvorene geometrije',
+    desc: 'Prohromski slivnik izrađen u kružnoj formi za fontane, žardinjere i centralne parterne motive.',
+    image: '/images/inox/kruzni-prohromski-kanal-za-odvodnjavanje.webp',
+  },
+  {
+    id: 'INOX-04',
+    category: 'inox',
+    categoryLabel: 'Inox odvodnjavanje',
+    title: 'Elipsasta inox kanalica fluidne forme',
+    desc: 'Projektovano prema stvarnoj elipsastoj geometriji staze uz diskretnu završnu obradu.',
+    image: '/images/inox/elipsasti-inox-kanal-za-odvodnjavanje.webp',
+  },
+  {
+    id: 'INOX-05',
+    category: 'inox',
+    categoryLabel: 'Inox odvodnjavanje',
+    title: 'S-forma drenažni kanal slobodne geometrije',
+    desc: 'Kompleksne drenažne linije sa više radijusa savijanja proizvedene kao modularni segmenti.',
+    image: '/images/inox/s-forma-lucni-inox-kanal-odvodnjavanje.webp',
+  },
+  {
+    id: 'INOX-06',
+    category: 'inox',
+    categoryLabel: 'Inox odvodnjavanje',
+    title: 'Lučni kanal sa perforiranom rešetkom na gradskom trgu',
+    desc: 'Visoka nosivost za pešačke zone uz maksimalan kapacitet prihvata atmosferskih voda.',
+    image: '/images/inox/lucni-inox-kanal-sa-perforiranom-resetkom-gradski-trg.webp',
+  },
+
+  // --- MODERNA RASVETA ---
+  {
+    id: 'RASVETA-01',
+    category: 'rasveta',
+    categoryLabel: 'Moderna rasveta',
+    title: 'Arhitektonska Z-lampa u noćnom ambijentu',
+    desc: 'Savremena LED rasveta monolitnog profila za pešačke staze, prilaze i privatna dvorišta.',
+    image: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp',
+  },
+  {
+    id: 'RASVETA-02',
+    category: 'rasveta',
+    categoryLabel: 'Moderna rasveta',
+    title: 'Tipske visine 3m, 4m i 5m — tehnička razrada',
+    desc: 'Ista Z linija u tri visine stuba sa prilagođenim uglom rasipanja svetla i podesivom snagom.',
+    image: '/images/rasveta/z-lampa-dimenzije-visina-tehnicki-detalji.webp',
+  },
+  {
+    id: 'RASVETA-03',
+    category: 'rasveta',
+    categoryLabel: 'Moderna rasveta',
+    title: 'Optički LED modul visoke efikasnosti',
+    desc: 'Zaptiveni modul sa IP65 zaštitom od vlage i prašine, radni vek preko 50.000 radnih sati.',
+    image: '/images/rasveta/z-profil-led-lampa-detalj-konstrukcij-1.webp',
+  },
+  {
+    id: 'RASVETA-04',
+    category: 'rasveta',
+    categoryLabel: 'Moderna rasveta',
+    title: 'Precizno formirani Z-profil od kvalitetnog čelika',
+    desc: 'Čiste linije bez vidljivih zavara sa trajnom zaštitom pocinčavanjem i plastifikacijom.',
+    image: '/images/rasveta/z-profil-led-lampa-detalj-konstrukcij-2.webp',
+  },
+  {
+    id: 'RASVETA-05',
+    category: 'rasveta',
+    categoryLabel: 'Moderna rasveta',
+    title: 'Stabilna anker baza za statičku sigurnost',
+    desc: 'Masivna čelična ploča sa anker vijcima dimenzionisana za opterećenja vetrom.',
+    image: '/images/rasveta/z-profil-led-lampa-detalj-konstrukcij-3.webp',
+  },
+  {
+    id: 'RASVETA-06',
+    category: 'rasveta',
+    categoryLabel: 'Moderna rasveta',
+    title: 'LED rasveta za šetališta i javne parkove',
+    desc: 'Ambijentalno usmereno osvetljenje sa minimalnim svetlosnim zagađenjem u visini oka.',
+    image: '/images/rasveta/led-rasveta-za-setalista-i-parkove.webp',
+  },
+
+  // --- MODULARNI PODNI SISTEMI ---
+  {
+    id: 'PODOVI-01',
+    category: 'podovi',
+    categoryLabel: 'Modularni podovi',
+    title: 'Gres-Premium monoblok granitna keramika 20mm',
+    desc: 'Luksuzna terasna keramika montirana na modularnu čeličnu podkonstrukciju sa nivelacijom.',
+    image: '/images/podovi/gres-premium-monoblok-keramika-1.webp',
+  },
+  {
+    id: 'PODOVI-02',
+    category: 'podovi',
+    categoryLabel: 'Modularni podovi',
+    title: 'Modularni pod u bašti sa kamenim stazama',
+    desc: 'Savršeno nivelisan pod na otvorenom prostoru postavljen bez betoniranja i vlažnih procesa.',
+    image: '/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp',
+  },
+  {
+    id: 'PODOVI-03',
+    category: 'podovi',
+    categoryLabel: 'Modularni podovi',
+    title: 'Eco-Green monoblok sa veštačkom travom',
+    desc: 'Uvek zelena i suva podloga sa integrisanom perforiranom drenažnom rešetkom.',
+    image: '/images/podovi/eco-green-monoblok-vestacka-trava-1.webp',
+  },
+  {
+    id: 'PODOVI-04',
+    category: 'podovi',
+    categoryLabel: 'Modularni podovi',
+    title: 'WPC-Compound monoblok deking pod',
+    desc: 'Toplina drveta bez truljenja i lakiranja, idealno za prostore oko bazena i restoranske bašte.',
+    image: '/images/podovi/wpc-deking-monoblok-drvo-kompozit-1.webp',
+  },
+  {
+    id: 'PODOVI-05',
+    category: 'podovi',
+    categoryLabel: 'Modularni podovi',
+    title: 'Heavy-Duty industrijska rešetka visoke nosivosti',
+    desc: 'Čelična rešetkasta gazna površina za radionice i servise sa trenutnim propuštanjem tečnosti.',
+    image: '/images/podovi/heavy-duty-monoblok-industrijska-resetka-1.webp',
+  },
+  {
+    id: 'PODOVI-06',
+    category: 'podovi',
+    categoryLabel: 'Modularni podovi',
+    title: 'Savremena eksterijerna terasa sa brzim sklapanjem',
+    desc: 'Kompletna montaža terase za samo jedno popodne uz stabilne teleskopske zglobne stope.',
+    image: '/images/podovi/modularni-pod-terasa-exterijer-moderna-4.webp',
+  },
+];
 ---
 
 <BaseLayout
-  title="Galerija sistema i realizacija"
-  description="Pregled rešenja i detalja ugradnje: inox drenažne kanalice, arhitektonska rasveta i modularne podne površine. Vizuelna tehnička arhiva brenda MODULARNI SISTEMI."
+  title="Galerija sistema i realizacija | Modularni Sistemi"
+  description="Vizuelna tehnička arhiva primene modularnih sistema: inox drenažni kanali, arhitektonska rasveta i čelični monoblok podovi."
 >
-  <Breadcrumbs items={breadcrumbItems} />
+  <div class="galerija-page">
+    <div class="wrap breadcrumbs-container">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
 
-  <!-- Hero & Filter Header -->
-  <section class="pt-14 pb-12 bg-navy bg-grid-pattern border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+    <!-- HERO & FILTER HEADER -->
+    <section class="gallery-hero">
+      <div class="wrap">
+        <div class="gallery-hero__inner">
+          <div class="gallery-hero__text">
+            <div class="eyebrow">
+              <span></span>
+              Vizuelna tehnička arhiva
+            </div>
+            <h1>Galerija sistema <em>i realizacija.</em></h1>
+            <p>
+              Fotografije, 3D renderi i inženjerski detalji primene naših modularnih sistema na stambenim, javnim i industrijskim objektima.
+            </p>
+          </div>
+
+          <!-- INTERAKTIVNI FILTER TABOVI -->
+          <div class="gallery-filters" role="tablist">
+            <button type="button" class="filter-btn is-active" data-filter="all">Sve ({galleryItems.length})</button>
+            <button type="button" class="filter-btn" data-filter="inox">Inox odvodnjavanje</button>
+            <button type="button" class="filter-btn" data-filter="rasveta">Moderna rasveta</button>
+            <button type="button" class="filter-btn" data-filter="podovi">Modularni podovi</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIJA GRID -->
+    <section class="gallery-content">
+      <div class="wrap">
+        <div class="gallery-grid" id="gallery-grid">
+          {galleryItems.map((item) => (
+            <article
+              class="gallery-card"
+              data-category={item.category}
+              onclick={`window.openModularLightbox && window.openModularLightbox({ src: '${item.image}', title: '${item.title}', desc: '${item.desc}', category: '${item.categoryLabel}' })`}
+              tabindex="0"
+              role="button"
+              aria-label={`Uvećaj: ${item.title}`}
+            >
+              <div class="gallery-card__image">
+                <img src={item.image} alt={item.title} loading="lazy" />
+                <div class="gallery-card__hover">
+                  <span>Uvećaj detalj <b>↗</b></span>
+                </div>
+              </div>
+
+              <div class="gallery-card__body">
+                <div class="gallery-card__meta">
+                  <span class="meta-tag">{item.categoryLabel}</span>
+                  <span class="meta-id">#{item.id}</span>
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+                <div class="gallery-card__footer">
+                  <span>Kliknite za uvećanje</span>
+                  <b>→</b>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BANER IZNAD FOOTERA -->
+    <section class="cta">
+      <img
+        src="/images/inox/cta-parter-zardinjera.webp"
+        alt="Zainteresovani ste za primenu ovih rešenja?"
+        loading="lazy"
+      />
+      <div class="cta__shade"></div>
+      <div class="wrap cta__inner">
         <div>
-          <SectionHeading
-            eyebrow="Vizuelna arhiva"
-            title="Galerija sistema i realizacija"
-            subtitle="Fotografije i renderi primene naših modularnih sistema na stambenim, javnim i industrijskim objektima."
-            class="mb-0 lg:mb-0"
-          />
+          <div class="eyebrow">
+            <span></span>
+            Prilagođena proizvodnja prema projektu
+          </div>
+          <h2>Zainteresovani ste za primenu <em>ovih rešenja na objektu?</em></h2>
+          <p>
+            Pošaljite nam arhitektonske podloge, DWG skice ili dimenzije prostora.
+            Naš tim priprema kompletan proračun i specifikaciju sistema.
+          </p>
         </div>
-
-        <div class="self-start lg:self-end">
-          <GalleryFilter />
+        <div class="cta__actions">
+          <a class="btn btn--orange" href="/posaljite-projekat/">
+            Pošaljite nam projekat <b>→</b>
+          </a>
+          <a class="btn btn--ghost" href="tel:+38166241386">
+            Pozovite: 066 241 386 <b>↗</b>
+          </a>
         </div>
       </div>
+    </section>
+  </div>
 
-    </div>
-  </section>
-
-  <!-- Gallery Grid Section -->
-  <section class="py-16 lg:py-24 bg-navy-dark border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-main-grid">
-        {GALLERY_ITEMS.map((item) => (
-          <article
-            class="gallery-card group bg-navy border border-white/10 hover:border-accent/60 transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer shadow-lg"
-            data-gallery-category={item.category}
-            onclick={`window.openModularLightbox && window.openModularLightbox({ src: '${item.image}', title: '${item.title}', desc: '${item.description}', category: '${item.categoryLabel}' })`}
-            tabindex="0"
-            role="button"
-            aria-label={`Uvećaj detalj: ${item.title}`}
-          >
-            <div>
-              <!-- Image frame with CAD fallback -->
-              <div class="relative aspect-[16/10] overflow-hidden bg-navy-surface flex items-center justify-center border-b border-white/10">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  loading="lazy"
-                  decoding="async"
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
-                />
-
-                <div class="hidden absolute inset-0 bg-navy-surface p-5 flex flex-col justify-between" aria-hidden="true">
-                  <div class="flex justify-between items-start">
-                    <span class="px-2 py-0.5 bg-navy border border-accent/40 text-accent font-mono text-[9px] uppercase tracking-architectural">
-                      CAD ARHIVA
-                    </span>
-                    <span class="w-2.5 h-2.5 border-t border-r border-accent"></span>
-                  </div>
-                  <div>
-                    <span class="text-xs font-mono font-bold text-white block">{item.title}</span>
-                    <span class="text-[10px] font-mono text-slate-muted block mt-1 break-all">{item.image}</span>
-                  </div>
-                  <div class="border-t border-white/10 pt-2 flex justify-between items-center text-[9px] font-mono text-slate-muted">
-                    <span>MODULARNI SISTEMI</span>
-                    <span class="text-accent uppercase">{item.category}</span>
-                  </div>
-                </div>
-
-                <!-- Hover Overlay -->
-                <div class="absolute inset-0 bg-navy/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span class="px-3.5 py-1.5 bg-navy/90 text-accent font-mono text-[10px] uppercase tracking-architectural border border-accent font-bold">
-                    Uvećaj prikaz
-                  </span>
-                </div>
-              </div>
-
-              <!-- Content details -->
-              <div class="p-6 space-y-2">
-                <div class="flex items-center justify-between">
-                  <span class="text-[10px] font-mono text-accent uppercase tracking-architectural font-bold">
-                    {item.categoryLabel}
-                  </span>
-                  <span class="text-[10px] font-mono text-slate-muted uppercase">
-                    DETALJ #{item.id}
-                  </span>
-                </div>
-
-                <h2 class="text-base font-bold text-white group-hover:text-accent transition-colors leading-snug">
-                  {item.title}
-                </h2>
-
-                <p class="text-xs text-slate-muted leading-relaxed pt-1">
-                  {item.description}
-                </p>
-              </div>
-            </div>
-
-            <!-- Footer of card -->
-            <div class="p-6 pt-0">
-              <div class="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-surface/60 group-hover:text-white transition-colors">
-                <span>Kliknite za uvećanje</span>
-                <span class="text-accent">&rarr;</span>
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Project Submission Callout -->
-  <section class="py-16 bg-navy bg-grid-pattern">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
-      <span class="text-accent font-mono text-xs uppercase tracking-architectural font-bold block">
-        Prilagođena proizvodnja
-      </span>
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-        Zainteresovani ste za primenu ovih rešenja na vašem objektu?
-      </h2>
-      <p class="text-xs sm:text-sm text-slate-muted max-w-xl mx-auto leading-relaxed">
-        Pošaljite nam arhitektonske podloge i dimenzije. Naš tim priprema specifikaciju sistema u skladu sa zadatim rasporedom.
-      </p>
-      <div class="pt-3 flex flex-col sm:flex-row justify-center items-center gap-4">
-        <a
-          href="/posaljite-projekat/"
-          class="px-8 py-3.5 bg-accent hover:bg-accent-hover text-white text-xs uppercase tracking-architectural font-bold transition-all border border-accent"
-        >
-          Pošaljite nam projekat
-        </a>
-        <a
-          href={`tel:${CONTACT.phoneFormatted}`}
-          class="px-8 py-3.5 bg-navy-surface hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/20 transition-all font-mono"
-        >
-          {CONTACT.phone}
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Lightbox Modal instance -->
+  <!-- LIGHTBOX MODAL -->
   <LightboxModal />
 
+  <style>
+    :global(html) {
+      scroll-behavior: smooth;
+    }
+
+    :global(body) {
+      margin: 0;
+      background: #f6f7f9;
+      color: #07111e;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .galerija-page {
+      --navy: #06131f;
+      --navy2: #0b1d2b;
+      --orange: #ff6900;
+      --orange-hover: #e85e00;
+      --line: #dce2e7;
+      --muted: #64717c;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .wrap {
+      width: min(1280px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .breadcrumbs-container {
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow span {
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    /* ========== HERO HEADER ========== */
+    .gallery-hero {
+      background: var(--navy);
+      color: #fff;
+      padding: 60px 0 50px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .gallery-hero__inner {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .gallery-hero__text h1 {
+      margin: 14px 0 0;
+      font-size: clamp(32px, 3.8vw, 48px);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .gallery-hero__text h1 em,
+    .cta h2 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .gallery-hero__text p {
+      margin: 14px 0 0;
+      max-width: 640px;
+      color: #b8c4cb;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ========== FILTER TABOVI ========== */
+    .gallery-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: #d4dee4;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 10px 18px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .filter-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    .filter-btn.is-active {
+      background: var(--orange);
+      color: #fff;
+      border-color: var(--orange);
+      box-shadow: 0 4px 14px rgba(255, 105, 0, 0.3);
+    }
+
+    /* ========== GRID I KARTICE ========== */
+    .gallery-content {
+      padding: 70px 0 90px;
+      background: #f6f7f9;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .gallery-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 16px rgba(6, 19, 31, 0.04);
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--orange);
+      box-shadow: 0 16px 36px rgba(6, 19, 31, 0.1);
+    }
+
+    .gallery-card.is-hidden {
+      display: none !important;
+    }
+
+    .gallery-card__image {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background: #06131f;
+      overflow: hidden;
+    }
+
+    .gallery-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .gallery-card:hover .gallery-card__image img {
+      transform: scale(1.06);
+    }
+
+    .gallery-card__hover {
+      position: absolute;
+      inset: 0;
+      background: rgba(6, 19, 31, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-card:hover .gallery-card__hover {
+      opacity: 1;
+    }
+
+    .gallery-card__hover span {
+      background: var(--navy);
+      color: var(--orange);
+      border: 1px solid var(--orange);
+      padding: 8px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .gallery-card__body {
+      padding: 22px 20px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gallery-card__meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .meta-tag {
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .meta-id {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .gallery-card h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: #07111e;
+      transition: color 0.2s ease;
+    }
+
+    .gallery-card:hover h3 {
+      color: var(--orange);
+    }
+
+    .gallery-card p {
+      margin: 8px 0 0;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: #5c6a74;
+    }
+
+    .gallery-card__footer {
+      margin-top: auto;
+      padding-top: 18px;
+      border-top: 1px solid #edf1f4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #8c9da8;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .gallery-card__footer b {
+      color: var(--orange);
+      font-size: 14px;
+      transition: transform 0.2s ease;
+    }
+
+    .gallery-card:hover .gallery-card__footer b {
+      transform: translateX(4px);
+    }
+
+    /* ========== CTA BANER ========== */
+    .cta {
+      position: relative;
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
+    .cta > img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .cta__shade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, rgba(6, 19, 31, 0.95) 0%, rgba(6, 19, 31, 0.75) 55%, rgba(6, 19, 31, 0.45) 100%);
+    }
+
+    .cta__inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+      padding: 56px 0;
+    }
+
+    .cta h2 {
+      margin: 12px 0 0;
+      font-size: clamp(26px, 3.3vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .cta p {
+      margin: 12px 0 0;
+      max-width: 520px;
+      color: #b5c2ca;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .cta__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      min-height: 48px;
+      padding: 0 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn b { font-size: 15px; font-weight: 600; }
+
+    .btn--orange {
+      background: var(--orange);
+      color: #fff;
+      border: 1px solid var(--orange);
+    }
+
+    .btn--orange:hover {
+      background: var(--orange-hover);
+      border-color: var(--orange-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn--ghost {
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: #fff;
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    .btn--ghost:hover {
+      background: #fff;
+      color: var(--navy);
+      border-color: #fff;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1080px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .cta__inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .cta__actions {
+        flex-direction: row;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        width: min(100% - 24px, 1280px);
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-filters {
+        width: 100%;
+      }
+
+      .filter-btn {
+        flex: 1 1 calc(50% - 6px);
+        text-align: center;
+      }
+
+      .cta {
+        min-height: 340px;
+      }
+
+      .cta__inner {
+        padding: 40px 0;
+      }
+
+      .cta__actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .cta__actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <script>
+    // Interaktivno filtriranje kartica po kategorijama
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+    const cards = document.querySelectorAll<HTMLElement>('.gallery-card');
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+
+        // Promeni aktivni tab
+        filterButtons.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+
+        // Pokaži / sakrij kartice
+        cards.forEach((card) => {
+          const category = card.dataset.category;
+          if (filter === 'all' || category === filter) {
+            card.classList.remove('is-hidden');
+          } else {
+            card.classList.add('is-hidden');
+          }
+        });
+      });
+    });
+  </script>
 </BaseLayout>

@@ -5,19 +5,24 @@ import { SITE, ENGINEERING_STEPS } from '../data/siteData';
 import { PRODUCT_CATEGORIES_LIST } from '../data/products';
 import { GALLERY_ITEMS } from '../data/gallery';
 
-const featuredGallery = GALLERY_ITEMS.slice(0, 4);
+const featuredGallery = GALLERY_ITEMS?.slice(0, 4) || [];
 
-// Hero slajder – slike se menjaju na svake 3 sekunde
+// Hero slajder – sve 3 linije proizvoda rotiraju na svake 3 sekunde
 const heroSlides = [
   {
     src: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
-    alt: 'Modularni sistemi — lučni inox kanal u pejzažnom partera',
+    alt: 'Modularni sistemi — lučni inox kanal u pejzažnom parteru',
     position: 'center',
   },
   {
     src: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp',
     alt: 'Z lampa — moderna LED rasveta za dvorište i ulicu',
     position: '70% center',
+  },
+  {
+    src: '/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp',
+    alt: 'Modularni podni sistemi — fabrički sklopljeni paneli za terase i partere',
+    position: 'center',
   },
 ];
 
@@ -39,9 +44,9 @@ const fallbackCategories = [
   {
     title: 'Modularni podni sistemi',
     headline: 'Fleksibilna podna rešenja za različite prostore i namene',
-    description: 'Modularne podne obloge sa brzim sistemom sklapanja, namenjene za formiranje stabilnih, provetrenih i lako održivih podnih površina.',
+    description: 'Čelični monoblok paneli 1x1m sa teleskopskim stopama za nivelaciju i 4 vrste završnih obloga: trava, deking, granitna keramika i industrijska rešetka.',
     slug: '/modularni-podni-sistemi/',
-    heroImage: '/images/podni-sistemi/podni-sistemi-glavna.jpg',
+    heroImage: '/images/podovi/gres-premium-monoblok-keramika-1.webp',
   },
 ];
 
@@ -49,7 +54,7 @@ const sourceCategories = PRODUCT_CATEGORIES_LIST?.length
   ? PRODUCT_CATEGORIES_LIST
   : fallbackCategories;
 
-// Inox kartica koristi sliku elipsastog kanala, a Moderna rasveta sliku sa tri visine Z lampe
+// Mapiranje tačnih slika za sve 3 kartice
 const categories = sourceCategories.map((cat, i) => {
   if (i === 0 || cat.slug?.includes('inox')) {
     return {
@@ -63,6 +68,12 @@ const categories = sourceCategories.map((cat, i) => {
       heroImage: '/images/rasveta/z-lampa-dimenzije-visina-tehnicki-detalji.webp',
     };
   }
+  if (cat.slug?.includes('podni') || cat.slug?.includes('pod')) {
+    return {
+      ...cat,
+      heroImage: '/images/podovi/gres-premium-monoblok-keramika-1.webp',
+    };
+  }
   return cat;
 });
 
@@ -70,8 +81,8 @@ const steps = ENGINEERING_STEPS?.length
   ? ENGINEERING_STEPS
   : [
       { number: '01', title: 'Analiza geometrije', description: 'Pregledamo crtež, podlogu i ograničenja prostora.' },
-      { number: '02', title: 'Inženjerska konfiguracija', description: 'Definišemo formume, radijuse i spojeve sistema.' },
-      { number: '03', title: 'Precizna izrada', description: 'Prefabrikacija inox segmenata prema dogovorenom rešenju.' },
+      { number: '02', title: 'Inženjerska konfiguracija', description: 'Definišemo forme, radijuse i spojeve sistema.' },
+      { number: '03', title: 'Precizna izrada', description: 'Prefabrikacija čeličnih i inox segmenata prema projektu.' },
       { number: '04', title: 'Koordinacija ugradnje', description: 'Pripremljene komponente stižu spremne za montažu.' },
     ];
 ---
@@ -82,7 +93,7 @@ const steps = ENGINEERING_STEPS?.length
 >
   <div class="home-page">
 
-    <!-- HERO (slajder) -->
+    <!-- HERO SEKCIJA (SLAJDER SA 3 SLIKE) -->
     <section class="hero">
       <div class="hero__slides">
         {heroSlides.map((slide, i) => (
@@ -122,8 +133,8 @@ const steps = ENGINEERING_STEPS?.length
               <span>Po meri objekta</span>
             </div>
             <div>
-              <strong>AISI INOX</strong>
-              <span>Legure 304 / 316</span>
+              <strong>AISI INOX / ČELIK</strong>
+              <span>Industrijski kvalitet</span>
             </div>
             <div>
               <strong>CAD / BIM</strong>
@@ -142,6 +153,7 @@ const steps = ENGINEERING_STEPS?.length
         </div>
       </div>
 
+      <!-- Tačkice slajdera (3 slike) -->
       <div class="hero__dots" role="tablist" aria-label="Izbor slike">
         {heroSlides.map((_, i) => (
           <button
@@ -177,6 +189,7 @@ const steps = ENGINEERING_STEPS?.length
                 <img src={cat.heroImage} alt={cat.title} loading="lazy" />
                 <span>0{i + 1}</span>
 
+                <!-- 01 INOX: ELIPSA -->
                 {i === 0 && (
                   <div class="cat-card__art">
                     <div class="cat-card__ring"></div>
@@ -187,6 +200,7 @@ const steps = ENGINEERING_STEPS?.length
                   </div>
                 )}
 
+                <!-- 02 RASVETA: TEHNIČKI DETALJI -->
                 {cat.slug?.includes('rasveta') && (
                   <div class="cat-card__art cat-card__art--lamp">
                     <div class="cat-card__art-content">
@@ -200,7 +214,24 @@ const steps = ENGINEERING_STEPS?.length
                     </div>
                   </div>
                 )}
+
+                <!-- 03 PODOVI: DVE KOCKE I TEHNIČKI DETALJI -->
+                {(cat.slug?.includes('podni') || cat.slug?.includes('pod') || i === 2) && (
+                  <div class="cat-card__art cat-card__art--floors">
+                    <div class="cat-card__squares"></div>
+                    <div class="cat-card__art-content">
+                      <span class="cat-card__art-eyebrow">— LUKSUZ NA OTVORENOM</span>
+                      <strong class="cat-card__art-title">Montaža bez alata <em>i troškova.</em></strong>
+                      <ul class="cat-card__specs">
+                        <li><b>1 × 1 m</b><span>monoblok</span></li>
+                        <li><b>20 mm</b><span>keramika</span></li>
+                        <li><b>4–12 cm</b><span>nivelacija</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                )}
               </div>
+
               <div class="cat-card__body">
                 <div class="cat-card__tag">{cat.headline}</div>
                 <h3>{cat.title}</h3>
@@ -213,7 +244,7 @@ const steps = ENGINEERING_STEPS?.length
       </div>
     </section>
 
-    <!-- FILOZOFIJA -->
+    <!-- INŽENJERSKI MANIFEST -->
     <section class="philosophy wrap">
       <div class="philosophy__head">
         <div class="eyebrow eyebrow--dark">
@@ -226,7 +257,7 @@ const steps = ENGINEERING_STEPS?.length
         </h2>
         <p>
           Standardna serijska rešenja nameću nepotrebne rezove i kompromise na terenu.
-          Mi polazimo od geometrije vašeg crteža — kanale, radijuse i prelaze proizvodimo
+          Mi polazimo od geometrije vašeg crteža — kanale, rasvetu i podne module proizvodimo
           tako da se besprekorno uklope u zadate linije.
         </p>
       </div>
@@ -238,11 +269,11 @@ const steps = ENGINEERING_STEPS?.length
         </div>
         <div>
           <strong>Materijali</strong>
-          <span>Nerđajući čelici AISI 304 i kiselootporni AISI 316.</span>
+          <span>Nerđajući čelici AISI 304/316 i toplo pocinkovani čelik.</span>
         </div>
         <div>
           <strong>Modularnost</strong>
-          <span>Standardizovani prirubnički spojevi za brzu montažu.</span>
+          <span>Standardizovani patentirani spojevi za brzu i suvu montažu.</span>
         </div>
         <div>
           <strong>B2B CAD</strong>
@@ -312,7 +343,7 @@ const steps = ENGINEERING_STEPS?.length
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- CTA BANER IZNAD FOOTERA -->
     <section class="cta">
       <img
         src="/images/inox/cta-parter-zardinjera.webp"
@@ -648,7 +679,7 @@ const steps = ENGINEERING_STEPS?.length
       z-index: 4;
     }
 
-    /* Grafički sloj na prvoj kartici */
+    /* Grafički sloj na karticama */
     .cat-card__art {
       position: absolute;
       inset: 0;
@@ -665,6 +696,8 @@ const steps = ENGINEERING_STEPS?.length
         rgba(4, 14, 23, 0.9) 100%
       );
     }
+
+    /* 01 Inox elipsa */
     .cat-card__ring {
       position: absolute;
       width: 76%;
@@ -684,6 +717,28 @@ const steps = ENGINEERING_STEPS?.length
       border: 1px solid rgba(255, 105, 0, 0.25);
       border-radius: 50%;
     }
+
+    /* 03 Podovi: dve narandžaste kocke */
+    .cat-card__squares {
+      position: absolute;
+      width: 58%;
+      aspect-ratio: 1 / 1;
+      right: 7%;
+      top: 8%;
+      border: 1.5px solid rgba(255, 105, 0, 0.7);
+      border-radius: 2px;
+      transform: rotate(-7deg);
+      pointer-events: none;
+      box-shadow: 0 0 16px rgba(255, 105, 0, 0.2);
+    }
+    .cat-card__squares::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(255, 105, 0, 0.25);
+      border-radius: 2px;
+    }
+
     .cat-card__art-content {
       position: relative;
       z-index: 3;
@@ -700,7 +755,7 @@ const steps = ENGINEERING_STEPS?.length
     .cat-card__art-title {
       display: block;
       color: #fff;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 800;
       line-height: 1.15;
       letter-spacing: -0.02em;
@@ -710,13 +765,14 @@ const steps = ENGINEERING_STEPS?.length
       font-style: normal;
     }
 
-    /* Infografika na kartici Moderna rasveta */
-    .cat-card__art--lamp {
+    /* Specifični gradijenti za Rasvetu i Podove */
+    .cat-card__art--lamp,
+    .cat-card__art--floors {
       background: linear-gradient(
         0deg,
         rgba(4, 14, 23, 0.96) 0%,
-        rgba(4, 14, 23, 0.75) 32%,
-        rgba(4, 14, 23, 0) 64%
+        rgba(4, 14, 23, 0.7) 35%,
+        rgba(4, 14, 23, 0.05) 70%
       );
     }
     .cat-card__specs {
@@ -729,7 +785,7 @@ const steps = ENGINEERING_STEPS?.length
       border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
     .cat-card__specs li {
-      padding: 0 14px;
+      padding: 0 12px;
       border-left: 1px solid rgba(255, 255, 255, 0.2);
     }
     .cat-card__specs li:first-child {
@@ -1117,7 +1173,7 @@ const steps = ENGINEERING_STEPS?.length
   </style>
 
   <script>
-    // Hero slajder: promena slike na svake 3 sekunde
+    // Hero slajder: automatska rotacija sve 3 slike na svake 3 sekunde
     const slides = document.querySelectorAll<HTMLElement>('.hero__slide');
     const dots = document.querySelectorAll<HTMLButtonElement>('.hero__dot');
 
@@ -1142,14 +1198,12 @@ const steps = ENGINEERING_STEPS?.length
       dots.forEach((dot) => {
         dot.addEventListener('click', () => {
           show(Number(dot.dataset.index));
-          start(); // restartuje odbrojavanje od 3 sekunde
+          start(); // restartuje odbrojavanje od 3s nakon klika
         });
       });
 
-      // Bez automatske promene ako korisnik ima uključeno smanjenje animacija
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        start();
-      }
+      // Pokretanje automatske rotacije
+      start();
     }
   </script>
 </BaseLayout>

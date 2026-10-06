@@ -1,118 +1,881 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import ContactForm from '../components/ContactForm.astro';
 import { SITE, CONTACT } from '../data/siteData';
 
 const breadcrumbItems = [
   { label: 'Kontakt' },
 ];
+
+const canonicalURL = 'https://modularnisistemi.com/kontakt/';
+const pageTitle = 'Kontakt · Inženjerska podrška i upiti | Modularni Sistemi';
+const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI. Telefon: +381 66 241 386. Email: kontakt@modularnisistemi.com. Tehničke konsultacije za arhitekte i izvođače.';
 ---
 
-<BaseLayout
-  title="Kontakt · Inženjerska podrška i upiti"
-  description="Stupite u kontakt sa stručnim timom MODULARNI SISTEMI. Telefon: +381 66 241 386. Email: kontakt@modularnisistemi.com. Tehničke konsultacije za arhitekte i izvođače."
->
-  <Breadcrumbs items={breadcrumbItems} />
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Fragment slot="head">
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+  </Fragment>
 
-  <!-- Hero sekcija -->
-  <section class="pt-14 pb-12 bg-navy bg-grid-pattern border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionHeading
-        eyebrow="Direktna komunikacija"
-        title="Kontaktirajte naš inženjerski tim"
-        subtitle="Stojimo vam na raspolaganju za tehničke konsultacije, analizu padova i geometrije, kao i za izradu ponuda za vaše projekte."
-        class="mb-0 lg:mb-0"
-      />
+  <div class="kontakt-page">
+    <div class="wrap breadcrumbs-container">
+      <Breadcrumbs items={breadcrumbItems} />
     </div>
-  </section>
 
-  <!-- Kontakt sadržaj -->
-  <section class="py-16 lg:py-24 bg-navy-dark">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+    <!-- HERO SEKCIJA -->
+    <section class="hero">
+      <div class="hero__shade"></div>
+      <div class="hero__grid"></div>
+
+      <div class="hero__content wrap">
+        <div class="hero__copy">
+          <div class="eyebrow">
+            <span></span>
+            Direktna komunikacija · Inženjerska podrška
+          </div>
+
+          <h1>
+            Kontaktirajte naš<br />
+            <em>inženjerski tim.</em>
+          </h1>
+
+          <p class="hero__lead">
+            Stojimo vam na raspolaganju za tehničke konsultacije, analizu padova i geometrije,
+            kao i za brzu izradu zvaničnih predmera i ponuda za vaše projekte.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--orange" href="#forma">
+              Pošaljite upit <b>↓</b>
+            </a>
+            <a class="btn btn--ghost" href={`tel:${CONTACT.phoneFormatted || '+38166241386'}`}>
+              Pozovite: {CONTACT.phone || '+381 66 241 386'} <b>↗</b>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__specs">
+          <div>
+            <strong>DIREKTNA VEZA</strong>
+            <span>{CONTACT.phone || '+381 66 241 386'}</span>
+          </div>
+          <div>
+            <strong>BRZ ODGOVOR</strong>
+            <span>Procena u roku od 24h</span>
+          </div>
+          <div>
+            <strong>CAD / BIM PRIJEM</strong>
+            <span>DWG, PDF i IFC formati</span>
+          </div>
+          <div>
+            <strong>KONSULTACIJE</strong>
+            <span>Za arhitekte, izvođače i investitore</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GLAVNI KONTAKT BLOK -->
+    <section class="contact-main" id="forma">
+      <div class="wrap contact-grid">
         
-        <!-- Zvanične kontakt informacije -->
-        <div class="lg:col-span-5 space-y-6">
-          <div class="bg-navy border border-white/10 p-8 shadow-xl space-y-6">
+        <!-- LEVA KOLONA: ZVANIČNE INFORMACIJE -->
+        <div class="info-col">
+          <div class="info-card">
             
-            <div class="border-b border-white/10 pb-6">
-              <span class="text-accent font-mono text-xs uppercase tracking-architectural font-bold block mb-1">
-                Zvanični kontakt
-              </span>
-              <h2 class="text-2xl font-extrabold text-white tracking-tight">
-                {SITE.name}
-              </h2>
-              <p class="text-xs font-mono uppercase tracking-architectural text-accent font-bold mt-2">
-                "{SITE.tagline}"
-              </p>
+            <div class="info-card__head">
+              <span class="info-badge">Zvanični kontakt</span>
+              <h2>MODULARNI SISTEMI</h2>
+              <p class="tagline">"JEDAN SISTEM. BEZBROJ MOGUĆNOSTI."</p>
             </div>
 
-            <!-- Kanali komunikacije -->
-            <div class="space-y-5 font-mono text-xs">
-              <div class="p-4 bg-navy-surface border border-white/10">
-                <span class="block text-[10px] text-slate-surface uppercase tracking-architectural mb-1">
-                  Telefon (Poziv / WhatsApp)
-                </span>
-                <a
-                  href={`tel:${CONTACT.phoneFormatted}`}
-                  class="text-base sm:text-lg font-bold text-white hover:text-accent transition-colors block"
-                >
-                  {CONTACT.phone}
+            <div class="channels">
+              <!-- Telefon -->
+              <div class="channel-item">
+                <span class="channel-label">Telefon (Poziv / WhatsApp)</span>
+                <a href={`tel:${CONTACT.phoneFormatted || '+38166241386'}`} class="channel-val channel-val--phone">
+                  {CONTACT.phone || '+381 66 241 386'}
                 </a>
-                <span class="text-[10px] text-slate-muted block mt-1">Direktna veza sa tehničkim timom</span>
+                <span class="channel-sub">Direktna veza sa inženjerskim timom</span>
               </div>
 
-              <div class="p-4 bg-navy-surface border border-white/10">
-                <span class="block text-[10px] text-slate-surface uppercase tracking-architectural mb-1">
-                  Opšti upiti i informacije
-                </span>
-                <a
-                  href={`mailto:${CONTACT.generalEmail}`}
-                  class="text-sm font-bold text-white hover:text-accent transition-colors block break-all"
-                >
-                  {CONTACT.generalEmail}
+              <!-- Opšti email -->
+              <div class="channel-item">
+                <span class="channel-label">Opšti upiti i informacije</span>
+                <a href={`mailto:${CONTACT.generalEmail || 'kontakt@modularnisistemi.com'}`} class="channel-val">
+                  {CONTACT.generalEmail || 'kontakt@modularnisistemi.com'}
                 </a>
+                <span class="channel-sub">Komercijala, saradnja i opšta pitanja</span>
               </div>
 
-              <div class="p-4 bg-navy-surface border border-white/10">
-                <span class="block text-[10px] text-slate-surface uppercase tracking-architectural mb-1">
-                  Dostava nacrta i projekata
-                </span>
-                <a
-                  href={`mailto:${CONTACT.projectEmail}`}
-                  class="text-sm font-bold text-accent hover:text-white transition-colors block break-all"
-                >
-                  {CONTACT.projectEmail}
+              <!-- Email za projekte -->
+              <div class="channel-item channel-item--accent">
+                <span class="channel-label">Dostava nacrta i projekata</span>
+                <a href={`mailto:${CONTACT.projectEmail || 'projekti@modularnisistemi.com'}`} class="channel-val">
+                  {CONTACT.projectEmail || 'projekti@modularnisistemi.com'}
                 </a>
-                <span class="text-[10px] text-slate-muted block mt-1">Za prijem DWG, PDF i BIM formata</span>
+                <span class="channel-sub">Za prijem DWG, PDF i BIM formata</span>
               </div>
             </div>
 
-            <!-- Napomena za slanje tehničke dokumentacije -->
-            <div class="pt-2 border-t border-white/10">
-              <p class="text-xs text-slate-muted leading-relaxed">
-                Imate gotove arhitektonske podloge? Koristite našu namensku formu za slanje fajlova radi brže izrade predmera.
+            <!-- Prečica za namensku formu -->
+            <div class="doc-notice">
+              <p>
+                Imate gotove arhitektonske podloge? Koristite našu namensku formu za bržu izradu proračuna i specifikacije.
               </p>
-              <a
-                href="/posaljite-projekat/"
-                class="inline-flex items-center gap-2 text-xs uppercase tracking-architectural font-bold text-accent hover:text-white transition-colors mt-3"
-              >
-                <span>Pošaljite nacrt i specifikaciju</span>
-                <span>&rarr;</span>
+              <a href="/posaljite-projekat/" class="doc-link">
+                Pošaljite nacrt i specifikaciju <b>→</b>
               </a>
             </div>
 
           </div>
         </div>
 
-        <!-- Kontakt forma -->
-        <div class="lg:col-span-7">
-          <ContactForm />
+        <!-- DESNA KOLONA: FORMA -->
+        <div class="form-col">
+          <div class="form-card">
+            <div class="form-card__head">
+              <span class="form-badge">B2B i Privatni upiti</span>
+              <h3>Uputite zahtev inženjerskom timu</h3>
+              <p>
+                Popunite osnovne podatke o objektu, a naš inženjer će vam se javiti sa tehničkom analizom i predlogom rešenja.
+              </p>
+            </div>
+
+            <form id="contact-form" class="engineering-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Ime i prezime <span>*</span></label>
+                  <input type="text" id="name" name="name" placeholder="npr. Marko Jovanović" required />
+                </div>
+                <div class="form-group">
+                  <label for="company">Kompanija / Arhitektonski biro</label>
+                  <input type="text" id="company" name="company" placeholder="npr. Studio Arch d.o.o." />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email adresa <span>*</span></label>
+                  <input type="email" id="email" name="email" placeholder="vas.email@domen.rs" required />
+                </div>
+                <div class="form-group">
+                  <label for="phone">Broj telefona <span>*</span></label>
+                  <input type="tel" id="phone" name="phone" placeholder="+381 6... ..." required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="system">Sistem od interesa <span>*</span></label>
+                <select id="system" name="system" required>
+                  <option value="" disabled selected>Izaberite kategoriju sistema</option>
+                  <option value="inox">Inox sistemi odvodnjavanja (kanali, rešetke, bazeni)</option>
+                  <option value="podovi">Modularni podni sistemi (monoblok 1x1m paneli)</option>
+                  <option value="rasveta">Moderna rasveta (Z lampa / bandera 3m, 4m, 5m)</option>
+                  <option value="kombinovano">Kombinovano / Kompletan arhitektonski projekat</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Opis zahteva i specifikacija prostora <span>*</span></label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  placeholder="Opišite zahteve prostora, potrebne dužine kanala, dimenzije terase, željenu visinu rasvete ili rokove realizacije..."
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form-footer">
+                <p class="form-note">
+                  Za slanje DWG crteža koristite našu stranicu <a href="/posaljite-projekat/">pošaljite projekat</a>.
+                </p>
+                <button type="submit" class="btn btn--orange" id="submit-btn">
+                  Pošaljite poruku <b>→</b>
+                </button>
+              </div>
+
+              <!-- Poruka uspeha -->
+              <div id="form-success" class="form-status is-success" style="display: none;">
+                ✓ <strong>Hvala vam!</strong> Vaš zahtev je uspešno prosleđen inženjerskom timu. Odgovorićemo u najkraćem roku.
+              </div>
+            </form>
+          </div>
         </div>
 
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- DONJI BANER (CTA IZNAD FOOTERA) -->
+    <section class="cta">
+      <img
+        src="/images/inox/cta-parter-zardinjera.webp"
+        alt="Zainteresovani ste za saradnju?"
+        loading="lazy"
+      />
+      <div class="cta__shade"></div>
+      <div class="wrap cta__inner">
+        <div>
+          <div class="eyebrow">
+            <span></span>
+            Tehnička podrška projektantima
+          </div>
+          <h2>Planirate projekat <em>specifične geometrije?</em></h2>
+          <p>
+            Dostavite DWG, skicu ili osnovu prostora. Razradićemo formu i predložiti rešenje koje tačno prati vaš projekat.
+          </p>
+        </div>
+        <div class="cta__actions">
+          <a class="btn btn--orange" href="/posaljite-projekat/">
+            Pošaljite nacrt <b>→</b>
+          </a>
+          <a class="btn btn--ghost" href={`tel:${CONTACT.phoneFormatted || '+38166241386'}`}>
+            Pozovite: {CONTACT.phone || '066 241 386'} <b>↗</b>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    :global(html) {
+      scroll-behavior: smooth;
+    }
+
+    :global(body) {
+      margin: 0;
+      background: #f6f7f9;
+      color: #07111e;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .kontakt-page {
+      --navy: #06131f;
+      --navy2: #0b1d2b;
+      --orange: #ff6900;
+      --orange-hover: #e85e00;
+      --line: #dce2e7;
+      --muted: #64717c;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .wrap {
+      width: min(1280px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .breadcrumbs-container {
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      min-height: 540px;
+      background: var(--navy);
+      color: #fff;
+      isolation: isolate;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero__shade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(105deg, rgba(6, 19, 31, 0.98) 0%, rgba(6, 19, 31, 0.9) 45%, rgba(6, 19, 31, 0.75) 100%),
+        linear-gradient(0deg, rgba(6, 19, 31, 0.8) 0%, transparent 48%);
+      z-index: -2;
+    }
+
+    .hero__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(90deg, black, transparent 75%);
+      z-index: -1;
+    }
+
+    .hero__content {
+      padding-top: 80px;
+      padding-bottom: 56px;
+      display: grid;
+      grid-template-columns: minmax(0, 720px) 1fr;
+      gap: 50px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow span {
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    .hero h1 {
+      margin-top: 18px;
+      font-size: clamp(36px, 4.4vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .hero h1 em,
+    .cta h2 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .hero__lead {
+      margin-top: 18px;
+      max-width: 600px;
+      color: #d4dee4;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      min-height: 48px;
+      padding: 0 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn b {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .btn--orange {
+      background: var(--orange);
+      color: #fff;
+      border: 1px solid var(--orange);
+    }
+
+    .btn--orange:hover {
+      background: var(--orange-hover);
+      border-color: var(--orange-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn--ghost {
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: #fff;
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    .btn--ghost:hover {
+      background: #fff;
+      color: var(--navy);
+      border-color: #fff;
+    }
+
+    .hero__specs {
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      padding-left: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero__specs strong {
+      display: block;
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .hero__specs span {
+      display: block;
+      margin-top: 3px;
+      color: #94a3ad;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ========== CONTACT MAIN GRID ========== */
+    .contact-main {
+      padding: 70px 0 90px;
+      background: #f6f7f9;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 4.5fr) minmax(0, 7.5fr);
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ========== LEVA KARTICA INFORMACIJA ========== */
+    .info-card {
+      background: var(--navy);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 2px;
+      padding: 36px 32px;
+      color: #fff;
+      box-shadow: 0 16px 36px rgba(6, 19, 31, 0.1);
+    }
+
+    .info-badge {
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .info-card__head h2 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .tagline {
+      margin-top: 6px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .channels {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .channel-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 2px;
+      padding: 16px;
+      transition: border-color 0.2s ease;
+    }
+
+    .channel-item:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .channel-item--accent {
+      border-left: 3px solid var(--orange);
+    }
+
+    .channel-label {
+      display: block;
+      color: #8c9da8;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .channel-val {
+      display: block;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      word-break: break-all;
+      transition: color 0.2s;
+    }
+
+    .channel-val:hover {
+      color: var(--orange);
+    }
+
+    .channel-val--phone {
+      font-size: 20px;
+      color: var(--orange);
+    }
+
+    .channel-sub {
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
+      color: #647582;
+    }
+
+    .doc-notice {
+      margin-top: 26px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .doc-notice p {
+      font-size: 12px;
+      line-height: 1.55;
+      color: #8c9da8;
+    }
+
+    .doc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .doc-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ========== DESNA KARTICA SA FORMOM ========== */
+    .form-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      padding: 40px;
+      box-shadow: 0 4px 24px rgba(6, 19, 31, 0.04);
+    }
+
+    .form-badge {
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .form-card__head h3 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #07111e;
+    }
+
+    .form-card__head p {
+      margin-top: 8px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .engineering-form {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #07111e;
+    }
+
+    .form-group label span {
+      color: var(--orange);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px 14px;
+      background: #fbfcfd;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      font-family: inherit;
+      font-size: 13.5px;
+      color: #07111e;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      background: #fff;
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(255, 105, 0, 0.12);
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 8px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .form-note {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .form-note a {
+      color: var(--orange);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .form-note a:hover {
+      text-decoration: underline;
+    }
+
+    .form-status {
+      padding: 14px 18px;
+      border-radius: 2px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .form-status.is-success {
+      background: #edfbf2;
+      border: 1px solid #a3e6ba;
+      color: #12632e;
+    }
+
+    /* ========== CTA BANER ========== */
+    .cta {
+      position: relative;
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
+    .cta > img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .cta__shade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, rgba(6, 19, 31, 0.95) 0%, rgba(6, 19, 31, 0.75) 55%, rgba(6, 19, 31, 0.45) 100%);
+    }
+
+    .cta__inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+      padding: 56px 0;
+    }
+
+    .cta h2 {
+      margin-top: 12px;
+      font-size: clamp(26px, 3.3vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .cta p {
+      margin-top: 12px;
+      max-width: 520px;
+      color: #b5c2ca;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .cta__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero__content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .hero__specs {
+        display: none;
+      }
+
+      .cta__inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cta__actions {
+        flex-direction: row;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        width: min(100% - 24px, 1280px);
+      }
+
+      .hero {
+        min-height: 480px;
+      }
+
+      .hero__content {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .info-card,
+      .form-card {
+        padding: 24px 20px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .form-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .form-footer .btn {
+        width: 100%;
+      }
+
+      .cta {
+        min-height: 340px;
+      }
+
+      .cta__inner {
+        padding: 40px 0;
+      }
+
+      .cta__actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .cta__actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <script>
+    // Obrada slanja kontakt forme sa prikazom obaveštenja
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const successMsg = document.getElementById('form-success') as HTMLElement | null;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = 'Slanje u toku...';
+        }
+
+        setTimeout(() => {
+          form.reset();
+          if (successMsg) {
+            successMsg.style.display = 'block';
+            successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Pošaljite poruku <b>→</b>';
+          }
+        }, 600);
+      });
+    }
+  </script>
 </BaseLayout>
