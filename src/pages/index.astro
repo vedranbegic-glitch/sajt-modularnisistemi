@@ -1,11 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LightboxModal from '../components/LightboxModal.astro';
-import { SITE, ENGINEERING_STEPS } from '../data/siteData';
-import { PRODUCT_CATEGORIES_LIST } from '../data/products';
-import { GALLERY_ITEMS } from '../data/gallery';
-
-const featuredGallery = GALLERY_ITEMS?.slice(0, 4) || [];
 
 // Hero slajder – sve 3 linije proizvoda rotiraju na svake 3 sekunde
 const heroSlides = [
@@ -26,13 +21,15 @@ const heroSlides = [
   },
 ];
 
-const fallbackCategories = [
+// 3 KATEGORIJE SA VIDEIMA
+const categories = [
   {
     title: 'Inox sistemi odvodnjavanja',
-    headline: 'Precizno odvodnjavanje koje prati geometriju prostora',
-    description: 'Modularni inox sistemi sa integrisanim fabričkim padom i nivelirajućim stopama za ravne, lučne, kružne i S-forme partera.',
+    headline: 'Precizno odvodnjavanje koje prati geometriju prostora.',
+    description: 'Modularni inox sistemi sa integrisanim fabričkim padom i nivelacionim stopama za ravne, lučne, kružne i S-oblikovane forme u parternom uređenju.',
     slug: '/inox-sistemi-odvodnjavanja/',
     heroImage: '/images/inox/elipsasti-inox-kanal-za-odvodnjavanje.webp',
+    video: '/videos/inox-odvodnjavanje.mp4',
   },
   {
     title: 'Moderna rasveta',
@@ -40,51 +37,65 @@ const fallbackCategories = [
     description: 'Arhitektonska Z-lampa u visinama od 3m, 4m i 5m, sa IP65 zaštitom i podesivom snagom, namenjena za dvorišta, parkinge, poslovne zone i javne površine.',
     slug: '/moderna-rasveta/',
     heroImage: '/images/rasveta/z-lampa-dimenzije-visina-tehnicki-detalji.webp',
+    video: '/videos/moderna-rasveta.mp4',
   },
   {
     title: 'Modularni podni sistemi',
-    headline: 'Fleksibilna podna rešenja za različite prostore i namene',
-    description: 'Čelični monoblok paneli 1x1m sa teleskopskim stopama za nivelaciju i 4 vrste završnih obloga: trava, deking, granitna keramika i industrijska rešetka.',
+    headline: 'Fleksibilna podna rešenja za različite prostore i namene.',
+    description: 'Modularne podne obloge sa sistemom brzog sklapanja, namenjene za izradu stabilnih i provetrenih podnih površina koje se lako održavaju.',
     slug: '/modularni-podni-sistemi/',
     heroImage: '/images/podovi/gres-premium-monoblok-keramika-1.webp',
+    video: '/videos/modularni-podovi.mp4',
   },
 ];
 
-const sourceCategories = PRODUCT_CATEGORIES_LIST?.length
-  ? PRODUCT_CATEGORIES_LIST
-  : fallbackCategories;
+// KORACI: NAŠ PROCES (01 - 04)
+const steps = [
+  {
+    number: '01',
+    title: 'Pregled prostora i podloge',
+    description: 'Pregledamo nacrte, dimenzije, visinske kote, padove i prostorna ograničenja kako bismo razumeli uslove projekta.',
+  },
+  {
+    number: '02',
+    title: 'Izbor odgovarajućeg sistema',
+    description: 'Na osnovu namene prostora i zahteva projekta predlažemo odgovarajuću kategoriju i konfiguraciju sistema.',
+  },
+  {
+    number: '03',
+    title: 'Izrada elemenata',
+    description: 'Izrađujemo elemente prema usaglašenom rešenju, uz proveru dimenzija i pripremu za isporuku.',
+  },
+  {
+    number: '04',
+    title: 'Podrška pri ugradnji',
+    description: 'Obeleženi elementi i prateće informacije pomažu izvođačkom timu da sistem ugradi prema dogovorenom rasporedu.',
+  },
+];
 
-// Mapiranje tačnih slika za sve 3 kartice
-const categories = sourceCategories.map((cat, i) => {
-  if (i === 0 || cat.slug?.includes('inox')) {
-    return {
-      ...cat,
-      heroImage: '/images/inox/elipsasti-inox-kanal-za-odvodnjavanje.webp',
-    };
-  }
-  if (cat.slug?.includes('rasveta')) {
-    return {
-      ...cat,
-      heroImage: '/images/rasveta/z-lampa-dimenzije-visina-tehnicki-detalji.webp',
-    };
-  }
-  if (cat.slug?.includes('podni') || cat.slug?.includes('pod')) {
-    return {
-      ...cat,
-      heroImage: '/images/podovi/gres-premium-monoblok-keramika-1.webp',
-    };
-  }
-  return cat;
-});
-
-const steps = ENGINEERING_STEPS?.length
-  ? ENGINEERING_STEPS
-  : [
-      { number: '01', title: 'Analiza geometrije', description: 'Pregledamo crtež, podlogu i ograničenja prostora.' },
-      { number: '02', title: 'Inženjerska konfiguracija', description: 'Definišemo forme, radijuse i spojeve sistema.' },
-      { number: '03', title: 'Precizna izrada', description: 'Prefabrikacija čeličnih i inox segmenata prema projektu.' },
-      { number: '04', title: 'Koordinacija ugradnje', description: 'Pripremljene komponente stižu spremne za montažu.' },
-    ];
+// GALERIJA: 4 SLIKE
+const featuredGallery = [
+  {
+    categoryLabel: 'Inox odvodnjavanje',
+    title: 'S-forma',
+    image: '/images/inox/skriveni-modularni-inox-kanal-s-forma-bazen-suva-plaza.webp',
+  },
+  {
+    categoryLabel: 'Inox odvodnjavanje',
+    title: 'Lučni kanal sa perforiranom rešetkom',
+    image: '/images/inox/lucni-inox-kanal-sa-perforiranom-resetkom-gradski-trg.webp',
+  },
+  {
+    categoryLabel: 'Moderna rasveta',
+    title: 'Arhitektonska Z-lampa',
+    image: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta-sneg.webp',
+  },
+  {
+    categoryLabel: 'Modularni podovi',
+    title: 'Premium granitna keramika',
+    image: '/images/podovi/modularni-pod-terasa-kisa-noc-1.webp',
+  },
+];
 ---
 
 <BaseLayout
@@ -103,7 +114,8 @@ const steps = ENGINEERING_STEPS?.length
             alt={slide.alt}
             style={`object-position: ${slide.position};`}
             fetchpriority={i === 0 ? 'high' : 'auto'}
-            loading={i === 0 ? 'eager' : 'lazy'}
+            loading="eager"
+            decoding="async"
           />
         ))}
       </div>
@@ -133,8 +145,8 @@ const steps = ENGINEERING_STEPS?.length
               <span>Po meri objekta</span>
             </div>
             <div>
-              <strong>AISI INOX / ČELIK</strong>
-              <span>Industrijski kvalitet</span>
+              <strong>RAZLIČITE PRIMENE</strong>
+              <span>Privatni · poslovni · javni prostori</span>
             </div>
             <div>
               <strong>CAD / BIM</strong>
@@ -147,13 +159,13 @@ const steps = ENGINEERING_STEPS?.length
               Pogledajte proizvode <b>→</b>
             </a>
             <a class="btn btn--ghost" href="/posaljite-projekat/">
-              Pošaljite nam projekat <b>↗</b>
+              Pošaljite upit <b>↗</b>
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Tačkice slajdera (3 slike) -->
+      <!-- Tačkice slajdera -->
       <div class="hero__dots" role="tablist" aria-label="Izbor slike">
         {heroSlides.map((_, i) => (
           <button
@@ -166,19 +178,19 @@ const steps = ENGINEERING_STEPS?.length
       </div>
     </section>
 
-    <!-- TRI PRAVCA (PORTFOLIO) -->
+    <!-- TRI PRAVCA (NAŠA REŠENJA SA VIDEIMA I GEOMETRIJSKIM ELEMENTIMA) -->
     <section class="categories">
       <div class="categories__wrap">
         <div class="section-head">
           <div>
             <div class="eyebrow eyebrow--dark">
               <span></span>
-              Portfolio
+              Naša rešenja
             </div>
-            <h2>Tri primarna <em>inženjerska pravca.</em></h2>
+            <h2>Tri kategorije. <em> Jedan usklađen pristup.</em></h2>
           </div>
           <p>
-            Specijalizovane linije projektovane za precizno uklapanje u savremene objekte.
+            Od prvog crteža do izbora odgovarajuće konfiguracije, pomažemo da detalji sistema budu usklađeni sa prostorom, namenom i projektnom dokumentacijom.
           </p>
         </div>
 
@@ -186,47 +198,62 @@ const steps = ENGINEERING_STEPS?.length
           {categories.map((cat, i) => (
             <a href={cat.slug} class="cat-card">
               <div class="cat-card__image">
-                <img src={cat.heroImage} alt={cat.title} loading="lazy" />
+                <!-- Video u pozadini kartice sa poster slikom -->
+                {cat.video ? (
+                  <video
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    preload="metadata"
+                    poster={cat.heroImage}
+                    class="cat-card__video"
+                  >
+                    <source src={cat.video} type="video/mp4" />
+                    <img src={cat.heroImage} alt={cat.title} loading="lazy" />
+                  </video>
+                ) : (
+                  <img src={cat.heroImage} alt={cat.title} loading="lazy" />
+                )}
+
                 <span>0{i + 1}</span>
 
-                <!-- 01 INOX: ELIPSA -->
+                <!-- 01 INOX: KRUG / ELIPSA -->
                 {i === 0 && (
                   <div class="cat-card__art">
                     <div class="cat-card__ring"></div>
                     <div class="cat-card__art-content">
                       <span class="cat-card__art-eyebrow">— PROJEKTOVANO PREMA VAŠOJ GEOMETRIJI</span>
                       <strong class="cat-card__art-title">Bez geometrijskih <em>ograničenja.</em></strong>
+                      <div class="cat-card__art-divider"></div>
                     </div>
                   </div>
                 )}
 
-                <!-- 02 RASVETA: TEHNIČKI DETALJI -->
+                <!-- 02 RASVETA: 3 USPRAVNE NARANDŽASTE LINIJE -->
                 {cat.slug?.includes('rasveta') && (
                   <div class="cat-card__art cat-card__art--lamp">
+                    <div class="cat-card__lines">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
                     <div class="cat-card__art-content">
-                      <span class="cat-card__art-eyebrow">— TEHNIČKI DETALJI</span>
-                      <strong class="cat-card__art-title">Tri visine, <em>jedan dizajn.</em></strong>
-                      <ul class="cat-card__specs">
-                        <li><b>3 / 4 / 5 m</b><span>visine stuba</span></li>
-                        <li><b>50–100 W</b><span>LED snaga</span></li>
-                        <li><b>IP65</b><span>zaštita</span></li>
-                      </ul>
+                      <span class="cat-card__art-eyebrow">— DIZAJNIRANA DA OSTAVI UTISAK</span>
+                      <strong class="cat-card__art-title">Moderan dizajn, <em>za svaki prostor.</em></strong>
+                      <div class="cat-card__art-divider"></div>
                     </div>
                   </div>
                 )}
 
-                <!-- 03 PODOVI: DVE KOCKE I TEHNIČKI DETALJI -->
+                <!-- 03 PODOVI: DVE KOCKE -->
                 {(cat.slug?.includes('podni') || cat.slug?.includes('pod') || i === 2) && (
                   <div class="cat-card__art cat-card__art--floors">
                     <div class="cat-card__squares"></div>
                     <div class="cat-card__art-content">
                       <span class="cat-card__art-eyebrow">— LUKSUZ NA OTVORENOM</span>
                       <strong class="cat-card__art-title">Montaža bez alata <em>i troškova.</em></strong>
-                      <ul class="cat-card__specs">
-                        <li><b>1 × 1 m</b><span>monoblok</span></li>
-                        <li><b>20 mm</b><span>keramika</span></li>
-                        <li><b>4–12 cm</b><span>nivelacija</span></li>
-                      </ul>
+                      <div class="cat-card__art-divider"></div>
                     </div>
                   </div>
                 )}
@@ -244,40 +271,40 @@ const steps = ENGINEERING_STEPS?.length
       </div>
     </section>
 
-    <!-- INŽENJERSKI MANIFEST -->
-    <section class="philosophy wrap">
-      <div class="philosophy__head">
-        <div class="eyebrow eyebrow--dark">
-          <span></span>
-          Inženjerski manifest
+    <!-- NAŠ PRISTUP (UKLONJEN DUPLI PLAVI SLOJ - ČIST I ČITLJIV DIZAJN) -->
+    <section class="philosophy">
+      <div class="wrap">
+        <div class="philosophy__head">
+          <div class="eyebrow eyebrow--dark">
+            <span></span>
+            Naš pristup
+          </div>
+          <h2>
+            Ne prodajemo samo proizvod.<br />
+            <em>Projektujemo rešenje prema prostoru.</em>
+          </h2>
+          <p>
+            Standardna serijska rešenja često zahtevaju naknadna sečenja i kompromise na terenu. Mi polazimo od geometrije vašeg crteža: najpre razrađujemo rešenje kroz crtež i 3D model, a zatim izrađujemo gotove kanale, rasvetu i podne module tako da se uklope u zadate dimenzije i linije prostora.
+          </p>
         </div>
-        <h2>
-          Ne prodajemo samo proizvod.<br />
-          <em>Projektujemo rešenje prema prostoru.</em>
-        </h2>
-        <p>
-          Standardna serijska rešenja nameću nepotrebne rezove i kompromise na terenu.
-          Mi polazimo od geometrije vašeg crteža — kanale, rasvetu i podne module proizvodimo
-          tako da se besprekorno uklope u zadate linije.
-        </p>
-      </div>
 
-      <div class="philosophy__grid">
-        <div>
-          <strong>Preciznost</strong>
-          <span>Nema sečenja na terenu. Izrada po tačnoj meri crteža.</span>
-        </div>
-        <div>
-          <strong>Materijali</strong>
-          <span>Nerđajući čelici AISI 304/316 i toplo pocinkovani čelik.</span>
-        </div>
-        <div>
-          <strong>Modularnost</strong>
-          <span>Standardizovani patentirani spojevi za brzu i suvu montažu.</span>
-        </div>
-        <div>
-          <strong>B2B CAD</strong>
-          <span>Podrška projektantima kroz 2D/3D preseke i predmere.</span>
+        <div class="philosophy__grid">
+          <div>
+            <strong>Preciznost</strong>
+            <span>Proizvod izrađujemo prema usaglašenom crtežu i merama.</span>
+          </div>
+          <div>
+            <strong>Materijali</strong>
+            <span>Nerđajući čelik AISI 304/316 i toplo pocinkovani čelik.</span>
+          </div>
+          <div>
+            <strong>Modularnost</strong>
+            <span>Standardizovani spojevi za brzu i suvu montažu.</span>
+          </div>
+          <div>
+            <strong>B2B CAD</strong>
+            <span>Tehnička podrška projektantima kroz 2D/3D crteže i predmere.</span>
+          </div>
         </div>
       </div>
     </section>
@@ -291,7 +318,7 @@ const steps = ENGINEERING_STEPS?.length
               <span></span>
               Galerija
             </div>
-            <h2>Karakteristična rešenja <em>i detalji.</em></h2>
+            <h2>Pogledajte sisteme <em>u primeni.</em></h2>
           </div>
           <a class="section-link" href="/galerija/">
             Pogledajte celu arhivu <b>→</b>
@@ -302,7 +329,7 @@ const steps = ENGINEERING_STEPS?.length
           {featuredGallery.map((item) => (
             <figure
               class="gallery-card"
-              onclick={`window.openModularLightbox && window.openModularLightbox({ src: '${item.image}', title: '${item.title}', desc: '${item.description || ''}', category: '${item.categoryLabel || ''}' })`}
+              onclick={`window.openModularLightbox && window.openModularLightbox({ src: '${item.image}', title: '${item.title}', desc: '', category: '${item.categoryLabel}' })`}
               tabindex="0"
               role="button"
               aria-label={`Uvećaj: ${item.title}`}
@@ -320,15 +347,15 @@ const steps = ENGINEERING_STEPS?.length
       </div>
     </section>
 
-    <!-- PROCES -->
+    <!-- NAŠ PROCES -->
     <section class="process">
       <div class="wrap">
         <div class="process__head">
           <div class="eyebrow eyebrow--dark">
             <span></span>
-            Metodologija
+            Naš proces
           </div>
-          <h2>Strukturisan proces od <em>crteža do gradilišta.</em></h2>
+          <h2>Od ideje <em>do gotovog rešenja.</em></h2>
         </div>
 
         <div class="steps">
@@ -346,7 +373,7 @@ const steps = ENGINEERING_STEPS?.length
     <!-- CTA BANER IZNAD FOOTERA -->
     <section class="cta">
       <img
-        src="/images/inox/cta-parter-zardinjera.webp"
+        src="/images/inox/lucni-inox-kanal-sa-perforiranom-resetkom-gradski-trg.webp"
         alt="Pošaljite nam projekat"
         loading="lazy"
       />
@@ -355,16 +382,16 @@ const steps = ENGINEERING_STEPS?.length
         <div>
           <div class="eyebrow">
             <span></span>
-            Za arhitekte, projektante i izvođače
+            REŠENJA PO MERI PROSTORA
           </div>
-          <h2>Projektujete prostor <em>specifične geometrije?</em></h2>
+          <h2>Imate prostor <em>specifične geometrije?</em></h2>
           <p>
-            Pošaljite nam DWG, skicu ili osnovu prostora. Razradićemo formu
-            i predložiti rešenje koje prati vaš projekat.
+            Pošaljite nam skicu, nacrt ili osnovu prostora. Razradićemo oblik 
+            i predložiti rešenje prilagođeno vašem projektu.
           </p>
         </div>
         <a class="btn btn--orange" href="/posaljite-projekat/">
-          Pošaljite nam projekat <b>→</b>
+          Pošaljite upit <b>→</b>
         </a>
       </div>
     </section>
@@ -472,10 +499,18 @@ const steps = ENGINEERING_STEPS?.length
       height: 100%;
       object-fit: cover;
       opacity: 0;
+      z-index: 0;
       transition: opacity 1s ease;
+    }
+    /* prethodni slajd ostaje potpuno vidljiv ispod, dok novi izlazi preko njega */
+    .hero__slide.is-prev {
+      opacity: 1;
+      z-index: 1;
+      transition: none;
     }
     .hero__slide.is-active {
       opacity: 1;
+      z-index: 2;
     }
     .hero__shade {
       position: absolute;
@@ -614,7 +649,7 @@ const steps = ENGINEERING_STEPS?.length
     .section-link:hover { opacity: 0.8; }
     .section-link b { margin-left: 4px; }
 
-    /* ========== CATEGORIES (PORTFOLIO) ========== */
+    /* ========== CATEGORIES (NAŠA REŠENJA) ========== */
     .categories {
       background: #eef1f4;
       border-top: 1px solid var(--line);
@@ -663,7 +698,18 @@ const steps = ENGINEERING_STEPS?.length
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       display: block;
     }
-    .cat-card:hover img { transform: scale(1.06); }
+    .cat-card__video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .cat-card:hover .cat-card__video,
+    .cat-card:hover img { 
+      transform: scale(1.05); 
+    }
     .cat-card__image > span {
       position: absolute;
       left: 14px;
@@ -718,6 +764,29 @@ const steps = ENGINEERING_STEPS?.length
       border-radius: 50%;
     }
 
+    /* 02 Rasveta: 3 uspravne narandžaste linije (simbol visina 3m, 4m, 5m) */
+    .cat-card__lines {
+      position: absolute;
+      right: 14%;
+      top: 12%;
+      height: 60%;
+      display: flex;
+      gap: 16px;
+      align-items: flex-end;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.85;
+    }
+    .cat-card__lines span {
+      width: 2px;
+      border-radius: 1px;
+      background: linear-gradient(180deg, var(--orange) 0%, rgba(255, 105, 0, 0.2) 100%);
+      box-shadow: 0 0 8px rgba(255, 105, 0, 0.4);
+    }
+    .cat-card__lines span:nth-child(1) { height: 50%; }
+    .cat-card__lines span:nth-child(2) { height: 75%; }
+    .cat-card__lines span:nth-child(3) { height: 100%; }
+
     /* 03 Podovi: dve narandžaste kocke */
     .cat-card__squares {
       position: absolute;
@@ -765,6 +834,14 @@ const steps = ENGINEERING_STEPS?.length
       font-style: normal;
     }
 
+    /* Tanka podvučena linija na sve 3 kartice */
+    .cat-card__art-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.25);
+      margin-top: 10px;
+    }
+
     /* Specifični gradijenti za Rasvetu i Podove */
     .cat-card__art--lamp,
     .cat-card__art--floors {
@@ -774,35 +851,6 @@ const steps = ENGINEERING_STEPS?.length
         rgba(4, 14, 23, 0.7) 35%,
         rgba(4, 14, 23, 0.05) 70%
       );
-    }
-    .cat-card__specs {
-      display: grid;
-      grid-template-columns: repeat(3, auto);
-      justify-content: start;
-      margin: 10px 0 0;
-      padding: 8px 0 0;
-      list-style: none;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .cat-card__specs li {
-      padding: 0 12px;
-      border-left: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .cat-card__specs li:first-child {
-      padding-left: 0;
-      border-left: 0;
-    }
-    .cat-card__specs b {
-      display: block;
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-    }
-    .cat-card__specs span {
-      display: block;
-      margin-top: 2px;
-      color: #9fb0bb;
-      font-size: 10px;
     }
 
     .cat-card__body {
@@ -859,25 +907,31 @@ const steps = ENGINEERING_STEPS?.length
       transform: translateX(4px);
     }
 
-    /* ========== PHILOSOPHY ========== */
+    /* ========== NAŠ PRISTUP (UKLONJEN DUPLI PLAVI SLOJ) ========== */
     .philosophy {
-      padding: 70px 0;
+      padding: 80px 0;
+      background: #f6f7f9;
+      border-bottom: 1px solid var(--line);
     }
     .philosophy__head {
-      max-width: 720px;
+      max-width: 760px;
       margin-bottom: 36px;
     }
     .philosophy__head h2 {
       margin-top: 12px;
       font-size: clamp(28px, 3.2vw, 42px);
-      line-height: 1.05;
+      line-height: 1.08;
       letter-spacing: -0.04em;
       font-weight: 800;
       color: #07111e;
     }
+    .philosophy__head h2 em {
+      color: var(--orange);
+      font-style: normal;
+    }
     .philosophy__head p {
       margin-top: 16px;
-      color: var(--muted);
+      color: #55636e;
       font-size: 15px;
       line-height: 1.7;
     }
@@ -887,10 +941,11 @@ const steps = ENGINEERING_STEPS?.length
       gap: 14px;
     }
     .philosophy__grid div {
-      padding: 20px;
+      padding: 24px 20px;
       background: #fff;
       border: 1px solid var(--line);
       border-radius: 2px;
+      box-shadow: 0 4px 16px rgba(6, 19, 31, 0.03);
     }
     .philosophy__grid strong {
       display: block;
@@ -964,7 +1019,7 @@ const steps = ENGINEERING_STEPS?.length
       color: #07111e;
     }
 
-    /* ========== PROCESS ========== */
+    /* ========== NAŠ PROCES ========== */
     .process {
       padding: 60px 0;
       background: #f6f7f9;
@@ -1149,10 +1204,12 @@ const steps = ENGINEERING_STEPS?.length
         bottom: 16px;
       }
       .categories,
-      .philosophy,
       .gallery,
       .process {
         padding: 48px 0;
+      }
+      .philosophy {
+        padding: 56px 0;
       }
       .philosophy__grid {
         grid-template-columns: 1fr;
@@ -1179,30 +1236,41 @@ const steps = ENGINEERING_STEPS?.length
 
     if (slides.length > 1) {
       let current = 0;
-      let timer: number | undefined;
+      let timer: ReturnType<typeof setInterval> | undefined;
 
       const show = (index: number) => {
-        current = (index + slides.length) % slides.length;
-        slides.forEach((s, i) => s.classList.toggle('is-active', i === current));
-        dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
+        const next = (index + slides.length) % slides.length;
+        if (next === current) return;
+
+        slides.forEach((s, i) => {
+          s.classList.remove('is-prev');
+          if (i === current) s.classList.add('is-prev');
+          s.classList.toggle('is-active', i === next);
+        });
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === next));
+
+        current = next;
       };
 
       const stop = () => {
-        if (timer) window.clearInterval(timer);
+        if (timer) clearInterval(timer);
       };
+
       const start = () => {
         stop();
-        timer = window.setInterval(() => show(current + 1), 3000);
+        timer = setInterval(() => show(current + 1), 3000);
       };
 
       dots.forEach((dot) => {
         dot.addEventListener('click', () => {
-          show(Number(dot.dataset.index));
-          start(); // restartuje odbrojavanje od 3s nakon klika
+          const idx = dot.dataset.index;
+          if (idx !== undefined) {
+            show(Number(idx));
+            start();
+          }
         });
       });
 
-      // Pokretanje automatske rotacije
       start();
     }
   </script>
