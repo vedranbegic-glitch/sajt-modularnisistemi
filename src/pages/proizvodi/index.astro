@@ -1,13 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import { CONTACT } from '../../data/siteData';
 
-const breadcrumbItems = [
-  { label: 'Proizvodi' },
-];
-
-// Hero slajder – sve 3 linije sistema se smenjuju na svake 3 sekunde
+// Hero slajder sa sva 4 programa
 const heroSlides = [
   {
     src: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
@@ -24,8 +18,14 @@ const heroSlides = [
     alt: 'Modularni podni sistemi — fabrički sklopljeni paneli za terase i partere',
     position: 'center',
   },
+  {
+    src: '/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp',
+    alt: 'Fire Pit Grill — čelično ložište i roštilj na terasi',
+    position: 'center',
+  },
 ];
 
+// SVA 4 PROIZVODNA PROGRAMA (100% ČIST WEBM)
 const categories = [
   {
     num: '01',
@@ -34,6 +34,7 @@ const categories = [
     description: 'Modularni inox sistemi sa integrisanim fabričkim padom i nivelirajućim stopama za ravne, lučne, kružne i S-forme partera bez kompromisa na terenu.',
     slug: '/inox-sistemi-odvodnjavanja/',
     image: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
+    video: '/videos/inox-sistemi-odvodnjavanja.webm',
     alt: 'Modularni inox sistemi odvodnjavanja',
     highlights: [
       'Izrada formi po tačnoj geometriji (radijusi, krivine, S-linije)',
@@ -50,6 +51,7 @@ const categories = [
     description: 'Arhitektonska Z-lampa u visinama od 3m, 4m i 5m sa IP65 zaštitom i podesivom LED snagom, namenjena za dvorišta, parkinge, poslovne zone i javne prostore.',
     slug: '/moderna-rasveta/',
     image: '/images/rasveta/z-lampa-dimenzije-visina-tehnicki-detalji.webp',
+    video: '/videos/moderna-rasveta.webm',
     alt: 'Z lampa moderna arhitektonska LED rasveta',
     highlights: [
       'Dostupne tipske visine stuba: 3 m / 4 m / 5 m',
@@ -66,6 +68,7 @@ const categories = [
     description: 'Čelični monoblok paneli 1x1m sa teleskopskim stopama za nivelaciju i suvom montažom. Izbor između veštačke trave, dekinga, keramike 20mm i industrijske rešetke.',
     slug: '/modularni-podni-sistemi/',
     image: '/images/podovi/gres-premium-monoblok-keramika-1.webp',
+    video: '/videos/modularni-podovi.webm',
     alt: 'Modularni čelični monoblok podni paneli',
     highlights: [
       'Fabrički sklopljeni paneli 1x1m koji se bočno spajaju bez šrafova',
@@ -75,19 +78,33 @@ const categories = [
       'Integrisana trenutna drenaža vode i stalna ventilacija podloge',
     ],
   },
+  {
+    num: '04',
+    title: 'Fire Pit Grill',
+    headline: 'Centralno mesto okupljanja na otvorenom.',
+    description: 'Masivna čelična vatrišta i profesionalni roštilji u jednom elementu. Dizajnirani za pripremu hrane na plancha ploči i stvaranje tople atmosfere na terasama i u dvorištima.',
+    slug: '/fire-pit-grill/',
+    image: '/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp',
+    video: '/videos/fire-pit-grill.webm',
+    alt: 'Fire Pit Grill čelično ložište i roštilj',
+    highlights: [
+      '2-u-1 funkcija: ambijentalno ložište i profesionalni roštilj',
+      'Masivna čelična konstrukcija visoke otpornosti na toplotu',
+      'Gornja plancha ring ploča sa više temperaturnih zona',
+      'Unikatni laserski sečeni ornamenti kroz koje sija žar',
+      'Celogodišnja upotreba na otvorenom pod svim vremenskim uslovima',
+    ],
+  },
 ];
 ---
 
 <BaseLayout
-  title="Proizvodi i inženjerski sistemi | Modularni Sistemi"
-  description="Pregled modularnih inženjerskih sistema za savremenu arhitekturu: Inox sistemi odvodnjavanja, moderna rasveta i modularni podni sistemi."
+  title="Proizvodi i sistemi | Modularni Sistemi"
+  description="Pregled modularnih sistema za savremenu arhitekturu: Inox sistemi odvodnjavanja, moderna rasveta, modularni podni sistemi i Fire Pit vatrišta."
 >
   <div class="proizvodi-page">
-    <div class="wrap breadcrumbs-container">
-      <Breadcrumbs items={breadcrumbItems} />
-    </div>
 
-    <!-- HERO SEKCIJA (AUTOMATSKI SLAJDER SA 3 SLIKE) -->
+    <!-- HERO SEKCIJA (PUN EKRAN BEZ SIVE TRAKE) -->
     <section class="hero">
       <div class="hero__slides">
         {heroSlides.map((slide, i) => (
@@ -97,12 +114,12 @@ const categories = [
             alt={slide.alt}
             style={`object-position: ${slide.position};`}
             fetchpriority={i === 0 ? 'high' : 'auto'}
-            loading={i === 0 ? 'eager' : 'lazy'}
+            loading="eager"
+            decoding="async"
           />
         ))}
       </div>
       <div class="hero__shade"></div>
-      <div class="hero__grid"></div>
 
       <div class="hero__content wrap">
         <div class="hero__copy">
@@ -112,29 +129,29 @@ const categories = [
           </div>
 
           <h1>
-            Inženjerski sistemi za<br />
+            Modularni sistemi za<br />
             <em>savremenu arhitekturu.</em>
           </h1>
 
           <p class="hero__lead">
-            Strukturisani portfolio od tri specijalizovana proizvodna pravca razvijena sa
+            Strukturisani portfolio od četiri specijalizovana proizvodna pravca razvijena sa
             fokusom na preciznu geometriju, industrijsku otpornost materijala i jednostavnu ugradnju na objektu.
           </p>
 
           <div class="hero__actions">
             <a class="btn btn--orange" href="/posaljite-projekat/">
-              Pošaljite nam projekat <b>→</b>
+              Pošaljite upit <b>→</b>
             </a>
             <a class="btn btn--ghost" href="tel:+38166241386">
-              Pozovite: +381 (0) 66 241 386 <b>↗</b>
+              Pozovite: 066 241 386 <b>↗</b>
             </a>
           </div>
         </div>
 
         <div class="hero__specs">
           <div>
-            <strong>3 PRIMARNA PRAVCA</strong>
-            <span>Odvodnjavanje, rasveta, podovi</span>
+            <strong>4 PROGRAMA</strong>
+            <span>Odvodnjavanje · Rasveta · Podovi · Vatrišta</span>
           </div>
           <div>
             <strong>AISI 304 / 316 & ČELIK</strong>
@@ -164,7 +181,7 @@ const categories = [
       </div>
     </section>
 
-    <!-- KATALOG KATEGORIJA (NAIZMENIČNI GRID) -->
+    <!-- KATALOG KATEGORIJA (CIK-CAK SA WEBM VIDEIMA) -->
     <section class="catalog-section">
       <div class="wrap catalog-wrap">
         {categories.map((cat, idx) => (
@@ -173,8 +190,8 @@ const categories = [
             <!-- Tekstualni blok -->
             <div class="cat-card__content">
               <div class="cat-card__meta">
-                <span class="cat-badge">Kategorija {cat.num}</span>
-                <span class="cat-type">Modularni program</span>
+                <span class="cat-badge">Program {cat.num}</span>
+                <span class="cat-type">Modularni sistemi</span>
               </div>
 
               <h2>{cat.title}</h2>
@@ -182,7 +199,7 @@ const categories = [
               <p class="cat-card__desc">{cat.description}</p>
 
               <div class="cat-card__highlights">
-                <span class="highlights-title">Inženjerske karakteristike:</span>
+                <span class="highlights-title">Karakteristike sistema:</span>
                 <ul>
                   {cat.highlights.map((h) => (
                     <li>
@@ -195,22 +212,38 @@ const categories = [
 
               <div class="cat-card__actions">
                 <a href={cat.slug} class="btn btn--orange">
-                  Kompletna specifikacija sistema <b>→</b>
+                  Kompletna specifikacija <b>→</b>
                 </a>
                 <a href="/posaljite-projekat/" class="btn btn--ghost-dark">
-                  Zatražite predmer <b>↗</b>
+                  Zatražite ponudu <b>↗</b>
                 </a>
               </div>
             </div>
 
-            <!-- Vizuelni prikaz (Slika) -->
+            <!-- Vizuelni prikaz (ČIST WEBM VIDEO) -->
             <div class="cat-card__visual">
               <div class="cat-card__img-box">
-                <img src={cat.image} alt={cat.alt} loading="lazy" />
+                {cat.video ? (
+                  <video
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    preload="auto"
+                    poster={cat.image}
+                    class="cat-card__video"
+                  >
+                    <source src={cat.video} type="video/webm" />
+                    <img src={cat.image} alt={cat.alt} loading="lazy" />
+                  </video>
+                ) : (
+                  <img src={cat.image} alt={cat.alt} loading="lazy" />
+                )}
+                
                 <div class="cat-card__img-shade"></div>
                 <div class="cat-card__img-badge">
                   <span>{cat.title}</span>
-                  <strong>0{idx + 1}</strong>
+                  <strong>{cat.num}</strong>
                 </div>
               </div>
             </div>
@@ -223,7 +256,7 @@ const categories = [
     <!-- CTA BANER IZNAD FOOTERA -->
     <section class="cta">
       <img
-        src="/images/inox/cta-parter-zardinjera.webp"
+        src="/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp"
         alt="Prilagođavanje geometrije prostora"
         loading="lazy"
       />
@@ -242,7 +275,7 @@ const categories = [
         </div>
         <div class="cta__actions">
           <a class="btn btn--orange" href="/posaljite-projekat/">
-            Pošaljite nam projekat <b>→</b>
+            Pošaljite upit <b>→</b>
           </a>
           <a class="btn btn--ghost" href="tel:+38166241386">
             Pozovite: 066 241 386 <b>↗</b>
@@ -251,661 +284,651 @@ const categories = [
       </div>
     </section>
   </div>
+</BaseLayout>
 
-  <style>
-    :global(html) {
-      scroll-behavior: smooth;
-    }
+<style>
+  :global(html) {
+    scroll-behavior: smooth;
+  }
 
-    :global(body) {
-      margin: 0;
-      background: #f6f7f9;
-      color: #07111e;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
+  :global(body) {
+    margin: 0;
+    background: #f6f7f9;
+    color: #07111e;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    .proizvodi-page {
-      --navy: #06131f;
-      --navy2: #0b1d2b;
-      --orange: #ff6900;
-      --orange-hover: #e85e00;
-      --line: #dce2e7;
-      --muted: #64717c;
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
-    }
+  .proizvodi-page {
+    --navy: #06131f;
+    --navy2: #0b1d2b;
+    --orange: #ff6900;
+    --orange-hover: #e85e00;
+    --line: #dce2e7;
+    --muted: #64717c;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
 
-    .wrap {
-      width: min(1280px, calc(100% - 40px));
-      margin-inline: auto;
-    }
+  .wrap {
+    width: min(1280px, calc(100% - 40px));
+    margin-inline: auto;
+  }
 
-    .breadcrumbs-container {
-      padding-top: 14px;
-      padding-bottom: 14px;
-    }
+  /* ========== HERO (PUN EKRAN BEZ SIVE TRAKE) ========== */
+  .hero {
+    position: relative;
+    min-height: 700px;
+    background: var(--navy);
+    color: #fff;
+    isolation: isolate;
+    display: flex;
+    align-items: flex-end;
+  }
 
-    /* ========== HERO ========== */
-    .hero {
-      position: relative;
-      min-height: 640px;
-      background: var(--navy);
-      color: #fff;
-      isolation: isolate;
-      display: flex;
-      align-items: flex-end;
-    }
+  .hero__slides {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+  }
 
-    .hero__slides {
-      position: absolute;
-      inset: 0;
-      z-index: -3;
-    }
+  .hero__slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
 
-    .hero__slide {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
+  .hero__slide.is-active {
+    opacity: 1;
+  }
 
-    .hero__slide.is-active {
-      opacity: 1;
-    }
+  /* ČISTIJI, BISTRIJI PRELIV */
+  .hero__shade {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(95deg, rgba(6, 19, 31, 0.72) 0%, rgba(6, 19, 31, 0.45) 35%, rgba(6, 19, 31, 0.1) 65%, transparent 100%),
+      linear-gradient(0deg, rgba(6, 19, 31, 0.55) 0%, transparent 35%);
+    z-index: -2;
+  }
 
-    .hero__shade {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(105deg, rgba(6, 19, 31, 0.95) 0%, rgba(6, 19, 31, 0.85) 38%, rgba(6, 19, 31, 0.4) 68%, rgba(6, 19, 31, 0.1) 100%),
-        linear-gradient(0deg, rgba(6, 19, 31, 0.75) 0%, transparent 48%);
-      z-index: -2;
-    }
+  .hero h1,
+  .hero__lead {
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+  }
 
-    .hero__grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: linear-gradient(90deg, black, transparent 68%);
-      z-index: -1;
-    }
+  .hero__content {
+    padding-top: 130px;
+    padding-bottom: 64px;
+    display: grid;
+    grid-template-columns: minmax(0, 720px) 1fr;
+    gap: 50px;
+    align-items: end;
+  }
 
-    .hero__content {
-      padding-top: 100px;
-      padding-bottom: 56px;
-      display: grid;
-      grid-template-columns: minmax(0, 720px) 1fr;
-      gap: 50px;
-      align-items: end;
-    }
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
 
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--orange);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
+  .eyebrow span {
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
 
-    .eyebrow span {
-      display: inline-block;
-      width: 20px;
-      height: 2px;
-      background: var(--orange);
-      flex-shrink: 0;
-    }
+  h1, h2, h3, p {
+    margin: 0;
+  }
 
-    h1, h2, h3, p {
-      margin: 0;
-    }
+  .hero h1 {
+    margin-top: 18px;
+    max-width: 860px;
+    font-size: clamp(36px, 4.4vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+    color: #fff;
+  }
 
-    .hero h1 {
-      margin-top: 18px;
-      max-width: 860px;
-      font-size: clamp(36px, 4.4vw, 56px);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      color: #fff;
-    }
+  .hero h1 em,
+  .cta h2 em {
+    font-style: normal;
+    color: var(--orange);
+  }
 
-    .hero h1 em,
-    .cta h2 em {
-      font-style: normal;
-      color: var(--orange);
-    }
+  .hero__lead {
+    margin-top: 20px;
+    max-width: 620px;
+    color: #d4dee4;
+    font-size: 15px;
+    line-height: 1.65;
+  }
 
-    .hero__lead {
-      margin-top: 20px;
-      max-width: 620px;
-      color: #d4dee4;
-      font-size: 15px;
-      line-height: 1.65;
-    }
+  .hero__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
 
-    .hero__actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 32px;
-    }
+  .hero__dots {
+    position: absolute;
+    right: max(20px, calc((100% - 1280px) / 2));
+    bottom: 24px;
+    display: flex;
+    gap: 8px;
+    z-index: 3;
+  }
 
-    /* Tačkice slajdera */
-    .hero__dots {
-      position: absolute;
-      right: max(20px, calc((100% - 1280px) / 2));
-      bottom: 24px;
-      display: flex;
-      gap: 8px;
-      z-index: 3;
-    }
+  .hero__dot {
+    width: 28px;
+    height: 4px;
+    padding: 0;
+    border: 0;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: background 0.3s ease, width 0.3s ease;
+  }
 
-    .hero__dot {
-      width: 28px;
-      height: 4px;
-      padding: 0;
-      border: 0;
-      border-radius: 2px;
-      background: rgba(255, 255, 255, 0.35);
-      cursor: pointer;
-      transition: background 0.3s ease, width 0.3s ease;
-    }
+  .hero__dot:hover {
+    background: rgba(255, 255, 255, 0.7);
+  }
 
-    .hero__dot:hover {
-      background: rgba(255, 255, 255, 0.7);
-    }
+  .hero__dot.is-active {
+    width: 44px;
+    background: var(--orange);
+  }
 
-    .hero__dot.is-active {
-      width: 44px;
-      background: var(--orange);
-    }
+  .hero__dot:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
 
-    .hero__dot:focus-visible {
-      outline: 2px solid #fff;
-      outline-offset: 3px;
-    }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__slide { transition: none; }
+  }
 
-    @media (prefers-reduced-motion: reduce) {
-      .hero__slide { transition: none; }
-    }
+  .btn {
+    min-height: 48px;
+    padding: 0 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
 
-    .btn {
-      min-height: 48px;
-      padding: 0 24px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: all 0.25s ease;
-      cursor: pointer;
-    }
+  .btn b {
+    font-size: 15px;
+    font-weight: 600;
+  }
 
-    .btn b {
-      font-size: 15px;
-      font-weight: 600;
-    }
+  .btn--orange {
+    background: var(--orange);
+    color: #fff;
+    border: 1px solid var(--orange);
+  }
 
-    .btn--orange {
-      background: var(--orange);
-      color: #fff;
-      border: 1px solid var(--orange);
-    }
+  .btn--orange:hover {
+    background: var(--orange-hover);
+    border-color: var(--orange-hover);
+    transform: translateY(-2px);
+  }
 
-    .btn--orange:hover {
-      background: var(--orange-hover);
-      border-color: var(--orange-hover);
-      transform: translateY(-2px);
-    }
+  .btn--ghost {
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    color: #fff;
+    background: rgba(0, 0, 0, 0.15);
+  }
 
-    .btn--ghost {
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      color: #fff;
-      background: rgba(0, 0, 0, 0.15);
-    }
+  .btn--ghost:hover {
+    background: #fff;
+    color: var(--navy);
+    border-color: #fff;
+  }
 
-    .btn--ghost:hover {
-      background: #fff;
-      color: var(--navy);
-      border-color: #fff;
-    }
+  .btn--ghost-dark {
+    border: 1px solid var(--line);
+    color: #07111e;
+    background: #fff;
+  }
 
-    .btn--ghost-dark {
-      border: 1px solid var(--line);
-      color: #07111e;
-      background: #fff;
-    }
+  .btn--ghost-dark:hover {
+    border-color: var(--navy);
+    background: #f0f4f7;
+  }
 
-    .btn--ghost-dark:hover {
-      border-color: var(--navy);
-      background: #f0f4f7;
-    }
+  .hero__specs {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 28px;
+    display: grid;
+    gap: 20px;
+  }
 
-    .hero__specs {
-      border-left: 1px solid rgba(255, 255, 255, 0.2);
-      padding-left: 28px;
-      display: grid;
-      gap: 20px;
-    }
+  .hero__specs div {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .hero__specs div {
-      display: flex;
-      flex-direction: column;
-    }
+  .hero__specs strong {
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    font-weight: 700;
+    color: #fff;
+  }
 
-    .hero__specs strong {
-      font-size: 14px;
-      letter-spacing: 0.03em;
-      font-weight: 700;
-      color: #fff;
-    }
+  .hero__specs span {
+    margin-top: 4px;
+    color: #94a3ad;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+  }
 
-    .hero__specs span {
-      margin-top: 4px;
-      color: #94a3ad;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-    }
+  /* ========== KATALOG SEKCIJA ========== */
+  .catalog-section {
+    padding: 80px 0;
+    background: #f6f7f9;
+  }
 
-    /* ========== KATALOG SEKCIJA ========== */
-    .catalog-section {
-      padding: 80px 0;
-      background: #f6f7f9;
-    }
+  .catalog-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
 
-    .catalog-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
-    }
+  .cat-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 44px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(6, 19, 31, 0.04);
+    transition: all 0.3s ease;
+  }
 
-    .cat-card {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 2px;
-      padding: 44px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      align-items: center;
-      box-shadow: 0 4px 20px rgba(6, 19, 31, 0.04);
-      transition: all 0.3s ease;
-    }
+  .cat-card:hover {
+    border-color: var(--orange);
+    box-shadow: 0 16px 40px rgba(6, 19, 31, 0.08);
+  }
 
-    .cat-card:hover {
-      border-color: var(--orange);
-      box-shadow: 0 16px 40px rgba(6, 19, 31, 0.08);
-    }
+  .cat-card--reverse {
+    grid-template-columns: 1fr 1fr;
+  }
 
+  .cat-card--reverse .cat-card__content {
+    order: 2;
+  }
+
+  .cat-card--reverse .cat-card__visual {
+    order: 1;
+  }
+
+  .cat-card__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cat-card__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .cat-badge {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .cat-type {
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .cat-card h2 {
+    font-size: clamp(26px, 2.5vw, 36px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: #07111e;
+    text-transform: uppercase;
+  }
+
+  .cat-card__headline {
+    margin-top: 10px;
+    color: var(--orange);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  .cat-card__desc {
+    margin-top: 14px;
+    color: #55636e;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .cat-card__highlights {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  .highlights-title {
+    display: block;
+    color: #07111e;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .cat-card__highlights ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cat-card__highlights li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #3d4a55;
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+
+  .bullet {
+    width: 6px;
+    height: 6px;
+    background: var(--orange);
+    border-radius: 1px;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .cat-card__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+
+  .cat-card__visual {
+    width: 100%;
+  }
+
+  .cat-card__img-box {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 3px;
+    background: #06131f;
+    border: 1px solid var(--line);
+  }
+
+  .cat-card__img-box img,
+  .cat-card__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cat-card:hover .cat-card__img-box img,
+  .cat-card:hover .cat-card__video {
+    transform: scale(1.04);
+  }
+
+  .cat-card__img-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(6, 19, 31, 0.85) 100%);
+    pointer-events: none;
+  }
+
+  .cat-card__img-badge {
+    position: absolute;
+    bottom: 0;
+    inset-x: 0;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    z-index: 2;
+  }
+
+  .cat-card__img-badge strong {
+    color: var(--orange);
+    font-size: 14px;
+  }
+
+  /* ========== CTA BANER ========== */
+  .cta {
+    position: relative;
+    min-height: 340px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    overflow: hidden;
+    background: var(--navy);
+  }
+
+  .cta > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .cta__shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, rgba(6, 19, 31, 0.95) 0%, rgba(6, 19, 31, 0.75) 55%, rgba(6, 19, 31, 0.45) 100%);
+  }
+
+  .cta__inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 36px;
+    padding: 56px 0;
+  }
+
+  .cta h2 {
+    margin-top: 12px;
+    font-size: clamp(26px, 3.3vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .cta p {
+    margin-top: 12px;
+    max-width: 520px;
+    color: #b5c2ca;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .cta__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1024px) {
+    .cat-card,
     .cat-card--reverse {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 32px;
     }
 
     .cat-card--reverse .cat-card__content {
-      order: 2;
-    }
-
-    .cat-card--reverse .cat-card__visual {
       order: 1;
     }
 
-    .cat-card__content {
-      display: flex;
-      flex-direction: column;
+    .cat-card--reverse .cat-card__visual {
+      order: 2;
+    }
+  }
+
+  @media (max-width: 980px) {
+    .hero__content {
+      grid-template-columns: 1fr;
+      gap: 32px;
     }
 
-    .cat-card__meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
+    .hero__specs {
+      display: none;
     }
 
-    .cat-badge {
-      color: var(--orange);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .cat-type {
-      color: var(--muted);
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .cat-card h2 {
-      font-size: clamp(26px, 2.5vw, 36px);
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      color: #07111e;
-      text-transform: uppercase;
-    }
-
-    .cat-card__headline {
-      margin-top: 10px;
-      color: var(--orange);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      line-height: 1.4;
-    }
-
-    .cat-card__desc {
-      margin-top: 14px;
-      color: #55636e;
-      font-size: 14px;
-      line-height: 1.65;
-    }
-
-    .cat-card__highlights {
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px solid var(--line);
-    }
-
-    .highlights-title {
-      display: block;
-      color: #07111e;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .cat-card__highlights ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .cat-card__highlights li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      color: #3d4a55;
-      font-size: 12.5px;
-      line-height: 1.45;
-    }
-
-    .bullet {
-      width: 6px;
-      height: 6px;
-      background: var(--orange);
-      border-radius: 1px;
-      margin-top: 6px;
-      flex-shrink: 0;
-    }
-
-    .cat-card__actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-
-    /* Vizuelni prikaz kartice */
-    .cat-card__visual {
-      width: 100%;
-    }
-
-    .cat-card__img-box {
-      position: relative;
-      aspect-ratio: 16 / 10;
-      overflow: hidden;
-      border-radius: 2px;
-      background: #06131f;
-      border: 1px solid var(--line);
-    }
-
-    .cat-card__img-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .cat-card:hover .cat-card__img-box img {
-      transform: scale(1.05);
-    }
-
-    .cat-card__img-shade {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 60%, rgba(6, 19, 31, 0.8) 100%);
-      pointer-events: none;
-    }
-
-    .cat-card__img-badge {
-      position: absolute;
-      bottom: 0;
-      inset-x: 0;
-      padding: 12px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      z-index: 2;
-    }
-
-    .cat-card__img-badge strong {
-      color: var(--orange);
-      font-size: 14px;
-    }
-
-    /* ========== CTA BANER ========== */
-    .cta {
-      position: relative;
-      min-height: 340px;
-      display: flex;
-      align-items: center;
-      color: #fff;
-      overflow: hidden;
-      background: var(--navy);
-    }
-
-    .cta > img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .cta__shade {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(100deg, rgba(6, 19, 31, 0.95) 0%, rgba(6, 19, 31, 0.75) 55%, rgba(6, 19, 31, 0.45) 100%);
+    .hero__dots {
+      right: 12px;
+      bottom: 16px;
     }
 
     .cta__inner {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 36px;
-      padding: 56px 0;
-    }
-
-    .cta h2 {
-      margin-top: 12px;
-      font-size: clamp(26px, 3.3vw, 42px);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .cta p {
-      margin-top: 12px;
-      max-width: 520px;
-      color: #b5c2ca;
-      font-size: 14px;
-      line-height: 1.6;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .cta__actions {
-      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .wrap {
+      width: min(100% - 24px, 1280px);
+    }
+
+    .hero {
+      min-height: 560px;
+    }
+
+    .hero__content {
+      padding-top: 80px;
+      padding-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+    }
+
+    .cat-card {
+      padding: 24px 18px;
+    }
+
+    .cat-card__actions {
       flex-direction: column;
-      gap: 12px;
-      flex-shrink: 0;
     }
 
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 1024px) {
-      .cat-card,
-      .cat-card--reverse {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        padding: 32px;
-      }
-
-      .cat-card--reverse .cat-card__content {
-        order: 1;
-      }
-
-      .cat-card--reverse .cat-card__visual {
-        order: 2;
-      }
+    .cat-card__actions .btn {
+      width: 100%;
     }
 
-    @media (max-width: 980px) {
-      .hero__content {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .hero__specs {
-        display: none;
-      }
-
-      .hero__dots {
-        right: 12px;
-        bottom: 16px;
-      }
-
-      .cta__inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .cta__actions {
-        flex-direction: row;
-      }
+    .cta {
+      min-height: 340px;
     }
 
-    @media (max-width: 640px) {
-      .wrap {
-        width: min(100% - 24px, 1280px);
-      }
-
-      .hero {
-        min-height: 560px;
-      }
-
-      .hero__content {
-        padding-top: 80px;
-        padding-bottom: 40px;
-      }
-
-      .hero h1 {
-        font-size: 32px;
-      }
-
-      .cat-card {
-        padding: 24px 18px;
-      }
-
-      .cat-card__actions {
-        flex-direction: column;
-      }
-
-      .cat-card__actions .btn {
-        width: 100%;
-      }
-
-      .cta {
-        min-height: 340px;
-      }
-
-      .cta__inner {
-        padding: 40px 0;
-      }
-
-      .cta__actions {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .cta__actions .btn {
-        width: 100%;
-      }
+    .cta__inner {
+      padding: 40px 0;
     }
-  </style>
 
-  <script>
-    // Hero slajder: automatska rotacija sve 3 slike na svake 3 sekunde
-    const slides = document.querySelectorAll<HTMLElement>('.hero__slide');
-    const dots = document.querySelectorAll<HTMLButtonElement>('.hero__dot');
+    .cta__actions {
+      flex-direction: column;
+      width: 100%;
+    }
 
-    if (slides.length > 1) {
-      let current = 0;
-      let timer: number | undefined;
+    .cta__actions .btn {
+      width: 100%;
+    }
+  }
+</style>
 
-      const show = (index: number) => {
-        current = (index + slides.length) % slides.length;
-        slides.forEach((s, i) => s.classList.toggle('is-active', i === current));
-        dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
-      };
+<script>
+  const slides = document.querySelectorAll<HTMLElement>('.hero__slide');
+  const dots = document.querySelectorAll<HTMLButtonElement>('.hero__dot');
 
-      const stop = () => {
-        if (timer) window.clearInterval(timer);
-      };
-      const start = () => {
-        stop();
-        timer = window.setInterval(() => show(current + 1), 3000);
-      };
+  if (slides.length > 1) {
+    let current = 0;
+    let timer: number | undefined;
 
-      dots.forEach((dot) => {
-        dot.addEventListener('click', () => {
-          show(Number(dot.dataset.index));
-          start();
-        });
+    const show = (index: number) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((s, i) => s.classList.toggle('is-active', i === current));
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
+    };
+
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+    };
+    const start = () => {
+      stop();
+      timer = window.setInterval(() => show(current + 1), 3000);
+    };
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        show(Number(dot.dataset.index));
+        start();
       });
+    });
 
-      start();
-    }
-  </script>
-</BaseLayout>
+    start();
+  }
+</script>

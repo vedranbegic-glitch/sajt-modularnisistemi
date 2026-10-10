@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LightboxModal from '../components/LightboxModal.astro';
 
-// Hero slajder – sve 3 linije proizvoda rotiraju na svake 3 sekunde
+// Hero slajder
 const heroSlides = [
   {
     src: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
@@ -19,25 +19,36 @@ const heroSlides = [
     alt: 'Modularni podni sistemi — fabrički sklopljeni paneli za terase i partere',
     position: 'center',
   },
+  {
+    src: '/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp',
+    alt: 'Fire Pit Grill — čelično ložište i roštilj na terasi',
+    position: 'center',
+  },
 ];
 
-// 3 KATEGORIJE SA VIDEIMA
+// 4 KATEGORIJE - 100% CIST WEBM (Inox pozicija ažurirana na inox-sistemi-odvodnjavanja.webm)
 const categories = [
   {
     title: 'Inox sistemi odvodnjavanja',
     headline: 'Precizno odvodnjavanje koje prati geometriju prostora.',
     description: 'Modularni inox sistemi sa integrisanim fabričkim padom i nivelacionim stopama za ravne, lučne, kružne i S-oblikovane forme u parternom uređenju.',
     slug: '/inox-sistemi-odvodnjavanja/',
-    heroImage: '/images/inox/elipsasti-inox-kanal-za-odvodnjavanje.webp',
-    video: '/videos/inox-odvodnjavanje.mp4',
+    heroImage: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
+    video: '/videos/inox-sistemi-odvodnjavanja.webm',
+    artEyebrow: 'PROJEKTOVANO PREMA VAŠOJ GEOMETRIJI',
+    artTitle: 'Bez geometrijskih <em>ograničenja.</em>',
+    linkText: 'Pregled sistema',
   },
   {
     title: 'Moderna rasveta',
-    headline: 'Arhitektonska rasveta koja spaja funkciju i estetiku',
+    headline: 'Arhitektonska rasveta koja spaja funkciju i estetiku.',
     description: 'Arhitektonska Z-lampa u visinama od 3m, 4m i 5m, sa IP65 zaštitom i podesivom snagom, namenjena za dvorišta, parkinge, poslovne zone i javne površine.',
     slug: '/moderna-rasveta/',
     heroImage: '/images/rasveta/z-lampa-dimenzije-visina-tehnicki-detalji.webp',
-    video: '/videos/moderna-rasveta.mp4',
+    video: '/videos/moderna-rasveta.webm',
+    artEyebrow: 'DIZAJNIRANA DA OSTAVI UTISAK',
+    artTitle: 'Moderan dizajn, <em>za svaki prostor.</em>',
+    linkText: 'Pregled sistema',
   },
   {
     title: 'Modularni podni sistemi',
@@ -45,11 +56,25 @@ const categories = [
     description: 'Modularne podne obloge sa sistemom brzog sklapanja, namenjene za izradu stabilnih i provetrenih podnih površina koje se lako održavaju.',
     slug: '/modularni-podni-sistemi/',
     heroImage: '/images/podovi/gres-premium-monoblok-keramika-1.webp',
-    video: '/videos/modularni-podovi.mp4',
+    video: '/videos/modularni-podovi.webm',
+    artEyebrow: 'LUXUZ NA OTVORENOM',
+    artTitle: 'Montaža bez alata <em>i troškova.</em>',
+    linkText: 'Pregled sistema',
+  },
+  {
+    title: 'Fire Pit Grill',
+    headline: 'Centralno mesto okupljanja na otvorenom.',
+    description: 'Masivna čelična vatrišta i profesionalni roštilji u jednom elementu. Dizajnirani da unesu toplinu, autentičnu vatru i nezaboravnu atmosferu na terase i dvorišta.',
+    slug: '/fire-pit-grill/',
+    heroImage: '/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp',
+    video: '/videos/fire-pit-grill.webm',
+    artEyebrow: 'TOPLINA I AMBIJENT NA OTVORENOM',
+    artTitle: 'Ložište i roštilj <em>u jednom.</em>',
+    linkText: 'Pregled proizvoda',
   },
 ];
 
-// KORACI: NAŠ PROCES (01 - 04)
+// KORACI
 const steps = [
   {
     number: '01',
@@ -73,38 +98,38 @@ const steps = [
   },
 ];
 
-// GALERIJA: 4 SLIKE
+// GALERIJA
 const featuredGallery = [
   {
     categoryLabel: 'Inox odvodnjavanje',
-    title: 'S-forma',
+    title: 'S-forma bazen i parter',
     image: '/images/inox/skriveni-modularni-inox-kanal-s-forma-bazen-suva-plaza.webp',
   },
   {
     categoryLabel: 'Inox odvodnjavanje',
-    title: 'Lučni kanal sa perforiranom rešetkom',
-    image: '/images/inox/lucni-inox-kanal-sa-perforiranom-resetkom-gradski-trg.webp',
+    title: 'Lučni kanal sa rešetkom',
+    image: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
   },
   {
     categoryLabel: 'Moderna rasveta',
     title: 'Arhitektonska Z-lampa',
-    image: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta-sneg.webp',
+    image: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp',
   },
   {
     categoryLabel: 'Modularni podovi',
     title: 'Premium granitna keramika',
-    image: '/images/podovi/modularni-pod-terasa-kisa-noc-1.webp',
+    image: '/images/podovi/gres-premium-monoblok-keramika-1.webp',
   },
 ];
 ---
 
 <BaseLayout
   title="Početna"
-  description="Modularna rešenja za odvodnjavanje, rasvetu i podne sisteme — projektovana za savremenu arhitekturu. Jedan sistem. Bezbroj mogućnosti."
+  description="Modularna rešenja za odvodnjavanje, rasvetu, podne sisteme i vanjska vatrišta — projektovana za savremenu arhitekturu. Jedan sistem. Bezbroj mogućnosti."
 >
   <div class="home-page">
 
-    <!-- HERO SEKCIJA (SLAJDER SA 3 SLIKE) -->
+    <!-- HERO SEKCIJA -->
     <section class="hero">
       <div class="hero__slides">
         {heroSlides.map((slide, i) => (
@@ -120,7 +145,6 @@ const featuredGallery = [
         ))}
       </div>
       <div class="hero__shade"></div>
-      <div class="hero__grid"></div>
 
       <div class="hero__content wrap">
         <div class="hero__copy">
@@ -135,8 +159,8 @@ const featuredGallery = [
           </h1>
 
           <p class="hero__lead">
-            Modularna rešenja za odvodnjavanje, rasvetu i podne sisteme — projektovana
-            za savremenu arhitekturu i konkretan prostor.
+            Modularna rešenja za odvodnjavanje, rasvetu, podne sisteme i vanjska vatrišta — 
+            projektovana za savremenu arhitekturu i konkretan prostor.
           </p>
 
           <div class="hero__metrics">
@@ -165,7 +189,6 @@ const featuredGallery = [
         </div>
       </div>
 
-      <!-- Tačkice slajdera -->
       <div class="hero__dots" role="tablist" aria-label="Izbor slike">
         {heroSlides.map((_, i) => (
           <button
@@ -178,7 +201,7 @@ const featuredGallery = [
       </div>
     </section>
 
-    <!-- TRI PRAVCA (NAŠA REŠENJA SA VIDEIMA I GEOMETRIJSKIM ELEMENTIMA) -->
+    <!-- 4 KARTICE PROIZVODA (100% WEBM) -->
     <section class="categories">
       <div class="categories__wrap">
         <div class="section-head">
@@ -187,7 +210,7 @@ const featuredGallery = [
               <span></span>
               Naša rešenja
             </div>
-            <h2>Tri kategorije. <em> Jedan usklađen pristup.</em></h2>
+            <h2>Naši proizvodi. <em>Jedan usklađen pristup.</em></h2>
           </div>
           <p>
             Od prvog crteža do izbora odgovarajuće konfiguracije, pomažemo da detalji sistema budu usklađeni sa prostorom, namenom i projektnom dokumentacijom.
@@ -198,18 +221,17 @@ const featuredGallery = [
           {categories.map((cat, i) => (
             <a href={cat.slug} class="cat-card">
               <div class="cat-card__image">
-                <!-- Video u pozadini kartice sa poster slikom -->
                 {cat.video ? (
                   <video
                     autoplay
                     loop
                     muted
                     playsinline
-                    preload="metadata"
+                    preload="auto"
                     poster={cat.heroImage}
                     class="cat-card__video"
                   >
-                    <source src={cat.video} type="video/mp4" />
+                    <source src={cat.video} type="video/webm" />
                     <img src={cat.heroImage} alt={cat.title} loading="lazy" />
                   </video>
                 ) : (
@@ -218,52 +240,20 @@ const featuredGallery = [
 
                 <span>0{i + 1}</span>
 
-                <!-- 01 INOX: KRUG / ELIPSA -->
-                {i === 0 && (
-                  <div class="cat-card__art">
-                    <div class="cat-card__ring"></div>
-                    <div class="cat-card__art-content">
-                      <span class="cat-card__art-eyebrow">— PROJEKTOVANO PREMA VAŠOJ GEOMETRIJI</span>
-                      <strong class="cat-card__art-title">Bez geometrijskih <em>ograničenja.</em></strong>
-                      <div class="cat-card__art-divider"></div>
-                    </div>
+                <div class="cat-card__art">
+                  <div class="cat-card__art-content">
+                    <span class="cat-card__art-eyebrow">— {cat.artEyebrow}</span>
+                    <strong class="cat-card__art-title" set:html={cat.artTitle}></strong>
+                    <div class="cat-card__art-divider"></div>
                   </div>
-                )}
-
-                <!-- 02 RASVETA: 3 USPRAVNE NARANDŽASTE LINIJE -->
-                {cat.slug?.includes('rasveta') && (
-                  <div class="cat-card__art cat-card__art--lamp">
-                    <div class="cat-card__lines">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div class="cat-card__art-content">
-                      <span class="cat-card__art-eyebrow">— DIZAJNIRANA DA OSTAVI UTISAK</span>
-                      <strong class="cat-card__art-title">Moderan dizajn, <em>za svaki prostor.</em></strong>
-                      <div class="cat-card__art-divider"></div>
-                    </div>
-                  </div>
-                )}
-
-                <!-- 03 PODOVI: DVE KOCKE -->
-                {(cat.slug?.includes('podni') || cat.slug?.includes('pod') || i === 2) && (
-                  <div class="cat-card__art cat-card__art--floors">
-                    <div class="cat-card__squares"></div>
-                    <div class="cat-card__art-content">
-                      <span class="cat-card__art-eyebrow">— LUKSUZ NA OTVORENOM</span>
-                      <strong class="cat-card__art-title">Montaža bez alata <em>i troškova.</em></strong>
-                      <div class="cat-card__art-divider"></div>
-                    </div>
-                  </div>
-                )}
+                </div>
               </div>
 
               <div class="cat-card__body">
                 <div class="cat-card__tag">{cat.headline}</div>
                 <h3>{cat.title}</h3>
                 <p>{cat.description}</p>
-                <span class="cat-card__link">Pregled sistema <b>→</b></span>
+                <span class="cat-card__link">{cat.linkText} <b>→</b></span>
               </div>
             </a>
           ))}
@@ -271,7 +261,7 @@ const featuredGallery = [
       </div>
     </section>
 
-    <!-- NAŠ PRISTUP (UKLONJEN DUPLI PLAVI SLOJ - ČIST I ČITLJIV DIZAJN) -->
+    <!-- NAŠ PRISTUP -->
     <section class="philosophy">
       <div class="wrap">
         <div class="philosophy__head">
@@ -284,7 +274,7 @@ const featuredGallery = [
             <em>Projektujemo rešenje prema prostoru.</em>
           </h2>
           <p>
-            Standardna serijska rešenja često zahtevaju naknadna sečenja i kompromise na terenu. Mi polazimo od geometrije vašeg crteža: najpre razrađujemo rešenje kroz crtež i 3D model, a zatim izrađujemo gotove kanale, rasvetu i podne module tako da se uklope u zadate dimenzije i linije prostora.
+            Standardna serijska rešenja često zahtevaju naknadna sečenja i kompromise na terenu. Mi polazimo od geometrije vašeg crteža: najpre razrađujemo rešenje kroz crtež i 3D model, a zatim izrađujemo gotove kanale, rasvetu, podne module i vatrišta tako da se uklope u zadate dimenzije i linije prostora.
           </p>
         </div>
 
@@ -370,10 +360,10 @@ const featuredGallery = [
       </div>
     </section>
 
-    <!-- CTA BANER IZNAD FOOTERA -->
+    <!-- CTA BANER -->
     <section class="cta">
       <img
-        src="/images/inox/lucni-inox-kanal-sa-perforiranom-resetkom-gradski-trg.webp"
+        src="/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp"
         alt="Pošaljite nam projekat"
         loading="lazy"
       />
@@ -446,11 +436,7 @@ const featuredGallery = [
     .eyebrow--dark { color: var(--orange); }
 
     h1, h2, h3, p { margin: 0; }
-
-    h1 em, h2 em {
-      font-style: normal;
-      color: var(--orange);
-    }
+    h1 em, h2 em { font-style: normal; color: var(--orange); }
 
     .btn {
       min-height: 48px;
@@ -477,7 +463,7 @@ const featuredGallery = [
     }
     .btn--ghost:hover { background: #fff; color: var(--navy); border-color: #fff; }
 
-    /* ========== HERO ========== */
+    /* ========== HERO (ČIST PRELIV BEZ MREŽICE) ========== */
     .hero {
       position: relative;
       min-height: 680px;
@@ -502,7 +488,6 @@ const featuredGallery = [
       z-index: 0;
       transition: opacity 1s ease;
     }
-    /* prethodni slajd ostaje potpuno vidljiv ispod, dok novi izlazi preko njega */
     .hero__slide.is-prev {
       opacity: 1;
       z-index: 1;
@@ -512,24 +497,22 @@ const featuredGallery = [
       opacity: 1;
       z-index: 2;
     }
+
+    /* ČISTIJI, BISTRIJI PRELIV */
     .hero__shade {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(105deg, rgba(2,12,20,0.93) 0%, rgba(2,12,20,0.78) 35%, rgba(2,14,22,0.3) 65%, rgba(2,14,22,0.06) 100%),
-        linear-gradient(0deg, rgba(2,12,20,0.7) 0%, transparent 48%);
+        linear-gradient(95deg, rgba(6, 19, 31, 0.72) 0%, rgba(6, 19, 31, 0.45) 35%, rgba(6, 19, 31, 0.1) 65%, transparent 100%),
+        linear-gradient(0deg, rgba(6, 19, 31, 0.55) 0%, transparent 35%);
       z-index: -2;
     }
-    .hero__grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: linear-gradient(90deg, black, transparent 68%);
-      z-index: -1;
+
+    .hero h1,
+    .hero__lead {
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
     }
+
     .hero__content {
       padding-top: 130px;
       padding-bottom: 64px;
@@ -578,7 +561,6 @@ const featuredGallery = [
       margin-top: 28px;
     }
 
-    /* Tačkice slajdera */
     .hero__dots {
       position: absolute;
       right: max(20px, calc((100% - 1280px) / 2));
@@ -597,59 +579,10 @@ const featuredGallery = [
       cursor: pointer;
       transition: background 0.3s ease, width 0.3s ease;
     }
-    .hero__dot:hover {
-      background: rgba(255, 255, 255, 0.7);
-    }
-    .hero__dot.is-active {
-      width: 44px;
-      background: var(--orange);
-    }
-    .hero__dot:focus-visible {
-      outline: 2px solid #fff;
-      outline-offset: 3px;
-    }
+    .hero__dot:hover { background: rgba(255, 255, 255, 0.7); }
+    .hero__dot.is-active { width: 44px; background: var(--orange); }
 
-    @media (prefers-reduced-motion: reduce) {
-      .hero__slide { transition: none; }
-    }
-
-    /* ========== SECTION HEAD ========== */
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 36px;
-      margin-bottom: 36px;
-    }
-    .section-head h2 {
-      margin-top: 12px;
-      font-size: clamp(30px, 3.4vw, 46px);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      color: #07111e;
-    }
-    .section-head > p {
-      max-width: 360px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.65;
-      padding-bottom: 4px;
-    }
-    .section-link {
-      color: var(--orange);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: opacity 0.2s;
-    }
-    .section-link:hover { opacity: 0.8; }
-    .section-link b { margin-left: 4px; }
-
-    /* ========== CATEGORIES (NAŠA REŠENJA) ========== */
+    /* ========== CATEGORIES (4 KARTICE U NIZU / 2x2) ========== */
     .categories {
       background: #eef1f4;
       border-top: 1px solid var(--line);
@@ -657,13 +590,13 @@ const featuredGallery = [
       padding: 72px 0 80px;
     }
     .categories__wrap {
-      width: min(1360px, calc(100% - 40px));
+      width: min(1440px, calc(100% - 40px));
       margin-inline: auto;
     }
     .categories__grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
       align-items: stretch;
     }
     .cat-card {
@@ -718,14 +651,13 @@ const featuredGallery = [
       background: var(--orange);
       font-size: 11px;
       font-weight: 800;
-      padding: 5px 10px;
+      padding: 4px 9px;
       border-radius: 2px;
       letter-spacing: 0.06em;
       box-shadow: 0 2px 8px rgba(0,0,0,0.25);
       z-index: 4;
     }
 
-    /* Grafički sloj na karticama */
     .cat-card__art {
       position: absolute;
       inset: 0;
@@ -734,78 +666,13 @@ const featuredGallery = [
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 18px 20px;
+      padding: 16px 18px;
       background: linear-gradient(
-        135deg,
-        rgba(4, 14, 23, 0.05) 0%,
-        rgba(4, 14, 23, 0.35) 40%,
-        rgba(4, 14, 23, 0.9) 100%
+        0deg,
+        rgba(4, 14, 23, 0.95) 0%,
+        rgba(4, 14, 23, 0.65) 40%,
+        rgba(4, 14, 23, 0.02) 75%
       );
-    }
-
-    /* 01 Inox elipsa */
-    .cat-card__ring {
-      position: absolute;
-      width: 76%;
-      height: 72%;
-      left: 8%;
-      top: 8%;
-      border: 1.5px solid rgba(255, 105, 0, 0.7);
-      border-radius: 50%;
-      transform: rotate(-9deg);
-      pointer-events: none;
-      box-shadow: 0 0 16px rgba(255, 105, 0, 0.2);
-    }
-    .cat-card__ring::after {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border: 1px solid rgba(255, 105, 0, 0.25);
-      border-radius: 50%;
-    }
-
-    /* 02 Rasveta: 3 uspravne narandžaste linije (simbol visina 3m, 4m, 5m) */
-    .cat-card__lines {
-      position: absolute;
-      right: 14%;
-      top: 12%;
-      height: 60%;
-      display: flex;
-      gap: 16px;
-      align-items: flex-end;
-      pointer-events: none;
-      z-index: 2;
-      opacity: 0.85;
-    }
-    .cat-card__lines span {
-      width: 2px;
-      border-radius: 1px;
-      background: linear-gradient(180deg, var(--orange) 0%, rgba(255, 105, 0, 0.2) 100%);
-      box-shadow: 0 0 8px rgba(255, 105, 0, 0.4);
-    }
-    .cat-card__lines span:nth-child(1) { height: 50%; }
-    .cat-card__lines span:nth-child(2) { height: 75%; }
-    .cat-card__lines span:nth-child(3) { height: 100%; }
-
-    /* 03 Podovi: dve narandžaste kocke */
-    .cat-card__squares {
-      position: absolute;
-      width: 58%;
-      aspect-ratio: 1 / 1;
-      right: 7%;
-      top: 8%;
-      border: 1.5px solid rgba(255, 105, 0, 0.7);
-      border-radius: 2px;
-      transform: rotate(-7deg);
-      pointer-events: none;
-      box-shadow: 0 0 16px rgba(255, 105, 0, 0.2);
-    }
-    .cat-card__squares::after {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border: 1px solid rgba(255, 105, 0, 0.25);
-      border-radius: 2px;
     }
 
     .cat-card__art-content {
@@ -824,44 +691,31 @@ const featuredGallery = [
     .cat-card__art-title {
       display: block;
       color: #fff;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
-      line-height: 1.15;
+      line-height: 1.2;
       letter-spacing: -0.02em;
     }
     .cat-card__art-title em {
       color: var(--orange);
       font-style: normal;
     }
-
-    /* Tanka podvučena linija na sve 3 kartice */
     .cat-card__art-divider {
       width: 100%;
       height: 1px;
-      background: rgba(255, 255, 255, 0.25);
-      margin-top: 10px;
-    }
-
-    /* Specifični gradijenti za Rasvetu i Podove */
-    .cat-card__art--lamp,
-    .cat-card__art--floors {
-      background: linear-gradient(
-        0deg,
-        rgba(4, 14, 23, 0.96) 0%,
-        rgba(4, 14, 23, 0.7) 35%,
-        rgba(4, 14, 23, 0.05) 70%
-      );
+      background: rgba(255, 255, 255, 0.2);
+      margin-top: 8px;
     }
 
     .cat-card__body {
-      padding: 24px 22px 26px;
+      padding: 22px 18px 24px;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
     .cat-card__tag {
       color: var(--orange);
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -869,7 +723,7 @@ const featuredGallery = [
     }
     .cat-card h3 {
       margin-top: 10px;
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 800;
       letter-spacing: -0.01em;
       text-transform: uppercase;
@@ -879,17 +733,17 @@ const featuredGallery = [
     .cat-card p {
       margin-top: 10px;
       color: #55636e;
-      font-size: 13.5px;
-      line-height: 1.6;
+      font-size: 13px;
+      line-height: 1.55;
     }
     .cat-card__link {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       margin-top: auto;
-      padding-top: 22px;
+      padding-top: 20px;
       color: #4b5863;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -900,14 +754,46 @@ const featuredGallery = [
       font-size: 14px;
       transition: transform 0.2s ease;
     }
-    .cat-card:hover .cat-card__link {
-      color: var(--orange);
-    }
-    .cat-card:hover .cat-card__link b {
-      transform: translateX(4px);
-    }
+    .cat-card:hover .cat-card__link { color: var(--orange); }
+    .cat-card:hover .cat-card__link b { transform: translateX(4px); }
 
-    /* ========== NAŠ PRISTUP (UKLONJEN DUPLI PLAVI SLOJ) ========== */
+    /* ========== SECTION HEAD ========== */
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 36px;
+      margin-bottom: 36px;
+    }
+    .section-head h2 {
+      margin-top: 12px;
+      font-size: clamp(30px, 3.4vw, 46px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      color: #07111e;
+    }
+    .section-head > p {
+      max-width: 360px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+      padding-bottom: 4px;
+    }
+    .section-link {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .section-link:hover { opacity: 0.8; }
+    .section-link b { margin-left: 4px; }
+
+    /* ========== NAŠ PRISTUP ========== */
     .philosophy {
       padding: 80px 0;
       background: #f6f7f9;
@@ -925,10 +811,7 @@ const featuredGallery = [
       font-weight: 800;
       color: #07111e;
     }
-    .philosophy__head h2 em {
-      color: var(--orange);
-      font-style: normal;
-    }
+    .philosophy__head h2 em { color: var(--orange); font-style: normal; }
     .philosophy__head p {
       margin-top: 16px;
       color: #55636e;
@@ -1000,9 +883,7 @@ const featuredGallery = [
       display: block;
     }
     .gallery-card:hover img { transform: scale(1.05); }
-    .gallery-card figcaption {
-      padding: 12px 14px 14px;
-    }
+    .gallery-card figcaption { padding: 12px 14px 14px; }
     .gallery-card figcaption span {
       display: block;
       color: var(--orange);
@@ -1019,15 +900,12 @@ const featuredGallery = [
       color: #07111e;
     }
 
-    /* ========== NAŠ PROCES ========== */
+    /* ========== PROCESS ========== */
     .process {
       padding: 60px 0;
       background: #f6f7f9;
     }
-    .process__head {
-      max-width: 560px;
-      margin-bottom: 36px;
-    }
+    .process__head { max-width: 560px; margin-bottom: 36px; }
     .process__head h2 {
       margin-top: 12px;
       font-size: clamp(28px, 3.2vw, 42px);
@@ -1047,10 +925,7 @@ const featuredGallery = [
       padding: 0 18px 0 20px;
       min-height: 130px;
     }
-    .steps article:first-child {
-      border-left: 0;
-      padding-left: 0;
-    }
+    .steps article:first-child { border-left: 0; padding-left: 0; }
     .step-num {
       color: var(--orange);
       font-size: 12px;
@@ -1129,108 +1004,47 @@ const featuredGallery = [
     }
 
     /* ========== RESPONSIVE ========== */
-    @media (max-width: 1024px) {
+    @media (max-width: 1200px) {
       .categories__grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
       }
     }
-
     @media (max-width: 980px) {
-      .philosophy__grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .gallery__grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .steps {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px 0;
-      }
+      .philosophy__grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery__grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
       .steps article {
         border-left: 0;
         border-top: 1px solid #c9d2d8;
         padding: 18px 0 0;
       }
-      .steps article:first-child {
-        border-top: 0;
-        padding-top: 0;
-      }
-      .steps article:not(:last-child)::after {
-        display: none;
-      }
-      .cta__inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .section-head {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .section-head > p {
-        margin-top: 12px;
-      }
+      .steps article:first-child { border-top: 0; padding-top: 0; }
+      .steps article:not(:last-child)::after { display: none; }
+      .cta__inner { flex-direction: column; align-items: flex-start; }
+      .section-head { flex-direction: column; align-items: flex-start; }
+      .section-head > p { margin-top: 12px; }
     }
-
-    @media (max-width: 768px) {
-      .categories__grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
     @media (max-width: 640px) {
-      .wrap,
-      .categories__wrap {
-        width: min(100% - 24px, 1280px);
-      }
-      .hero {
-        min-height: 560px;
-      }
-      .hero__content {
-        padding-top: 110px;
-        padding-bottom: 40px;
-      }
-      .hero h1 {
-        font-size: 32px;
-      }
-      .hero__lead {
-        font-size: 14px;
-      }
-      .hero__metrics {
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
-      .hero__dots {
-        right: 12px;
-        bottom: 16px;
-      }
-      .categories,
-      .gallery,
-      .process {
-        padding: 48px 0;
-      }
-      .philosophy {
-        padding: 56px 0;
-      }
-      .philosophy__grid {
-        grid-template-columns: 1fr;
-      }
-      .gallery__grid {
-        grid-template-columns: 1fr;
-      }
-      .steps {
-        grid-template-columns: 1fr;
-      }
-      .cta {
-        min-height: 340px;
-      }
-      .cta__inner {
-        padding: 40px 0;
-      }
+      .wrap, .categories__wrap { width: min(100% - 24px, 1280px); }
+      .categories__grid { grid-template-columns: 1fr; }
+      .hero { min-height: 560px; }
+      .hero__content { padding-top: 110px; padding-bottom: 40px; }
+      .hero h1 { font-size: 32px; }
+      .hero__lead { font-size: 14px; }
+      .hero__metrics { grid-template-columns: 1fr; gap: 14px; }
+      .hero__dots { right: 12px; bottom: 16px; }
+      .categories, .gallery, .process { padding: 48px 0; }
+      .philosophy { padding: 56px 0; }
+      .philosophy__grid { grid-template-columns: 1fr; }
+      .gallery__grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .cta { min-height: 340px; }
+      .cta__inner { padding: 40px 0; }
     }
   </style>
 
   <script>
-    // Hero slajder: automatska rotacija sve 3 slike na svake 3 sekunde
     const slides = document.querySelectorAll<HTMLElement>('.hero__slide');
     const dots = document.querySelectorAll<HTMLButtonElement>('.hero__dot');
 

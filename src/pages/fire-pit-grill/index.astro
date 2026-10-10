@@ -1,0 +1,914 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// 6 ključnih prednosti
+const features = [
+  {
+    title: 'Ložište i grill u jednom',
+    desc: 'Uživanje u otvorenoj vatri i priprema hrane na visokokvalitetnoj čeličnoj ploči istovremeno.'
+  },
+  {
+    title: 'Masivna čelična konstrukcija',
+    desc: 'Izrađen od masivnog konstrukcionog čelika visoke debljine, otpornog na ekstremne temperature i deformacije.'
+  },
+  {
+    title: 'Više temperaturnih zona',
+    desc: 'Široka gornja plancha ploča omogućava istovremenu pripremu mesa, povrća i sporog pečenja na različitim temperaturama.'
+  },
+  {
+    title: 'Laserski sečeni ornamenti',
+    desc: 'Precizna laserska perforacija stvara fascinantnu igru svetlosti i žara tokom večernjih sati.'
+  },
+  {
+    title: 'Dug vek trajanja',
+    desc: 'Dizajniran za celogodišnju upotrebu na otvorenom, bez obzira na kišu, sneg ili niske temperature.'
+  },
+  {
+    title: 'Centralno mesto prostora',
+    desc: 'Magnet za okupljanje porodice, prijatelja i gostiju na terasama, u dvorištima i ugostiteljskim objektima.'
+  },
+];
+---
+
+<BaseLayout
+  title="Fire Pit Grill | Čelična Vatrišta i Profesionalni Roštilj | Modularni Sistemi"
+  description="Centralno mesto okupljanja na otvorenom. Masivna čelična vatrišta i profesionalni roštilji u jednom elementu za terase, dvorišta i ugostiteljstvo."
+>
+  <!-- SCHEMA.ORG ZA GOOGLE -->
+  <script type="application/ld+json" slot="head">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Fire Pit Grill",
+    "image": "https://modularnisistemi.com/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp",
+    "description": "Masivno čelično ložište i profesionalni roštilj u jednom elementu za dvorišta i terase.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Modularni Sistemi"
+    },
+    "category": "Outdoor vatrišta i roštilji",
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+
+  <div class="firepit-page">
+
+    <!-- HERO SEKCIJA - PUN EKRAN DIREKTNO ISPOD HEDERA -->
+    <section class="hero">
+      <div class="hero__video-box">
+        <video
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="auto"
+          poster="/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp"
+          class="hero__video"
+        >
+          <source src="/videos/fire-pit-grill.webm" type="video/webm" />
+          <img src="/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp" alt="Fire Pit Grill" />
+        </video>
+      </div>
+      <div class="hero__shade"></div>
+
+      <div class="hero__content wrap">
+        <div class="hero__copy">
+          <div class="eyebrow">
+            <span></span>
+            Čelični roštilj i vatrište · Modularni sistemi
+          </div>
+
+          <h1>
+            FIRE PIT GRILL<br />
+            <em>Vatra koja okuplja.</em>
+          </h1>
+
+          <p class="hero__lead">
+            Centralno mesto okupljanja na otvorenom — ložište za autentičnu vatru 
+            i profesionalni roštilj u jedinstvenom masivnom čeličnom dizajnu.
+          </p>
+
+          <div class="hero__tags">
+            <span>Dvorišta</span>
+            <span>•</span>
+            <span>Terase</span>
+            <span>•</span>
+            <span>Vikendice</span>
+            <span>•</span>
+            <span>Ugostiteljstvo</span>
+          </div>
+
+          <div class="hero__actions">
+            <a class="btn btn--orange" href="/posaljite-projekat/">
+              Zatražite ponudu <b>→</b>
+            </a>
+            <a class="btn btn--ghost" href="tel:+38166241386">
+              Pozovite: 066 241 386 <b>↗</b>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__specs-badge">
+          <div class="badge-item">
+            <strong>2-U-1 FUNKCIJA</strong>
+            <span>Ložište za ambijent i grill ploča</span>
+          </div>
+          <div class="badge-item">
+            <strong>MASIVNI ČELIK</strong>
+            <span>Konstrukcija visoke izdržljivosti</span>
+          </div>
+          <div class="badge-item">
+            <strong>LASERSKI REZ</strong>
+            <span>Unikatni ornamenti kroz koje sija žar</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANIFESTO: TO NIJE SAMO PROIZVOD -->
+    <section class="manifesto">
+      <div class="wrap manifesto__inner">
+        <div class="manifesto__quote">
+          <div class="quote-bar"></div>
+          <blockquote>
+            "To nije samo proizvod.<br />
+            <span>To je razlog da se ljudi okupe."</span>
+          </blockquote>
+        </div>
+        <div class="manifesto__text">
+          <p>
+            <strong>FIRE PIT GRILL</strong> spaja sirovu snagu industrijskog čelika i prirodnu toplinu otvorene vatre. 
+            Dizajniran kao centralni element svakog dvorišta, terase ili lounge prostora, pruža jedinstven doživljaj pripreme hrane i druženja tokom cele godine.
+          </p>
+          <p>
+            On nije samo ložište. Nije samo roštilj. On postaje mesto oko kog se okupljaju porodica, prijatelji i gosti — stvarajući atmosferu koju nijedan konvencionalni roštilj ne može da zameni.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIJA KADROVA -->
+    <section class="visual-showcase">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow eyebrow--dark">
+              <span></span>
+              Dizajn i Funkcionalnost
+            </div>
+            <h2>Kreiran za vrhunski <em>ambijent i kulinarski doživljaj.</em></h2>
+          </div>
+        </div>
+
+        <div class="visual-grid">
+          <div class="visual-card">
+            <img 
+              src="/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp" 
+              alt="Fire Pit na terasi u sumrak" 
+              loading="lazy"
+            />
+            <div class="visual-card__overlay">
+              <span class="visual-tag">Večernji ambijent</span>
+              <h4>Centralni element svake luksuzne terase</h4>
+            </div>
+          </div>
+
+          <div class="visual-card">
+            <img 
+              src="/images/fire-pit/fire-pit-grill-celicna-vatra-rostilj.webp" 
+              alt="Laserski sečeni ornamenti i vatra" 
+              loading="lazy"
+            />
+            <div class="visual-card__overlay">
+              <span class="visual-tag">Detalj izrade</span>
+              <h4>Laserski ornamenti kroz koje prosijava žar</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 PREDNOSTI -->
+    <section class="features-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow eyebrow--dark">
+              <span></span>
+              Zašto izabrati ovaj model
+            </div>
+            <h2>Zašto <em>FIRE PIT GRILL?</em></h2>
+          </div>
+        </div>
+
+        <div class="features-grid">
+          {features.map((feat) => (
+            <div class="feat-card">
+              <div class="feat-card__check">✓</div>
+              <div class="feat-card__content">
+                <h3>{feat.title}</h3>
+                <p>{feat.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- TEHNIČKI DETALJI (SPLIT 2-BOKS STIL) -->
+    <section class="tech-section">
+      <div class="wrap">
+        <div class="tech-grid">
+          
+          <!-- LEVI BOKS: TEHNIČKI PODACI -->
+          <div class="tech-card tech-card--specs">
+            <div class="eyebrow">
+              <span></span>
+              TEHNIČKI DETALJI
+            </div>
+            <h2>Kvalitet u svakom <em>detalju.</em></h2>
+            <p class="tech-card__desc">
+              FIRE PIT GRILL izrađen je od masivnog konstrukcionog čelika visoke otpornosti na toplotu. 
+              Svaka stranica, laserski rez i plancha prsten precizno su kalibrisani za maksimalnu bezbednost, 
+              ravnomernu distribuciju toplote i dugotrajnu upotrebu.
+            </p>
+
+            <div class="tech-metrics">
+              <div class="tech-metric">
+                <strong>Masivni čelik</strong>
+                <span>Visoka debljina konstrukcije</span>
+              </div>
+              <div class="tech-metric">
+                <strong>Plancha ploča</strong>
+                <span>Termički obrađeni čelik</span>
+              </div>
+              <div class="tech-metric">
+                <strong>Više zona</strong>
+                <span>Istovremena priprema hrane</span>
+              </div>
+              <div class="tech-metric">
+                <strong>360° toplota</strong>
+                <span>Ravnomerno zračenje ambijenta</span>
+              </div>
+            </div>
+
+            <div class="tech-bullets">
+              <div class="tech-bullet">
+                <span class="bullet-dot"></span>
+                <span><strong>Gorivo:</strong> Suvo drvo, drveni ugalj i visokokalorični briketi</span>
+              </div>
+              <div class="tech-bullet">
+                <span class="bullet-dot"></span>
+                <span><strong>Geometrija:</strong> Heksagonalno konusno ložište sa unutrašnjim pepelištem</span>
+              </div>
+              <div class="tech-bullet">
+                <span class="bullet-dot"></span>
+                <span><strong>Održavanje:</strong> Jednostavno čišćenje pepela i premazivanje ploče prirodnim uljem</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DESNI BOKS: SHOWCASE SA SLIKOM -->
+          <div class="tech-card tech-card--visual">
+            <img 
+              src="/images/fire-pit/fire-pit-grill-celicna-vatra-rostilj.webp" 
+              alt="Detalj ložišta i roštilja" 
+              class="tech-card__bg-img"
+              loading="lazy"
+            />
+            <div class="tech-card__visual-shade"></div>
+
+            <div class="tech-card__visual-content">
+              <div class="eyebrow">
+                <span></span>
+                DOŽIVLJAJ NA OTVORENOM
+              </div>
+              <h3>Ložište i profesionalni roštilj <em>bez kompromisa.</em></h3>
+              <p>
+                Konstruisano da traje godinama pod svim vremenskim uslovima. Stvara atmosferu luksuznog planinskog resorta ili moderne mediteranske vile direktno u vašem dvorištu.
+              </p>
+
+              <div class="tech-tags">
+                <span>Otpornost na toplotu</span>
+                <span>•</span>
+                <span>Lako čišćenje</span>
+                <span>•</span>
+                <span>Spremno za upotrebu</span>
+              </div>
+
+              <div class="tech-card__action">
+                <a href="/posaljite-projekat/" class="btn btn--orange">
+                  Zatražite ponudu za Fire Pit <b>→</b>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA PRE-FOOTER BANNER -->
+    <section class="cta">
+      <img
+        src="/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp"
+        alt="Poručite Fire Pit Grill"
+        loading="lazy"
+      />
+      <div class="cta__shade"></div>
+      <div class="wrap cta__inner">
+        <div>
+          <div class="eyebrow">
+            <span></span>
+            UNESITE TOPLINU U SVOJ PROSTOR
+          </div>
+          <h2>Želite Fire Pit Grill na <em>svojoj terasi ili u dvorištu?</em></h2>
+          <p>
+            Kontaktirajte nas za detalje, cene i rokove isporuke. Obezbeđujemo direktnu dostavu na vašu adresu.
+          </p>
+        </div>
+        <div class="cta__actions">
+          <a class="btn btn--orange" href="/posaljite-projekat/">
+            Pošaljite upit <b>→</b>
+          </a>
+          <a class="btn btn--ghost" href="tel:+38166241386">
+            Pozovite: 066 241 386 <b>↗</b>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  :global(html) { scroll-behavior: smooth; }
+  :global(body) {
+    margin: 0;
+    background: #f6f7f9;
+    color: #07111e;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .firepit-page {
+    --navy: #06131f;
+    --navy2: #0b1d2b;
+    --orange: #ff6900;
+    --orange-hover: #e85e00;
+    --line: #dce2e7;
+    --muted: #64717c;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .wrap {
+    width: min(1280px, calc(100% - 40px));
+    margin-inline: auto;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--orange);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .eyebrow span {
+    display: inline-block;
+    width: 20px;
+    height: 1.5px;
+    background: var(--orange);
+    flex-shrink: 0;
+  }
+  .eyebrow--dark { color: var(--orange); }
+
+  h1, h2, h3, h4, p, blockquote { margin: 0; }
+  h1 em, h2 em, h3 em { font-style: normal; color: var(--orange); }
+
+  .btn {
+    min-height: 48px;
+    padding: 0 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+  .btn b { font-size: 15px; font-weight: 600; }
+  .btn--orange { background: var(--orange); color: #fff; }
+  .btn--orange:hover { background: var(--orange-hover); transform: translateY(-2px); }
+  .btn--ghost {
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    color: #fff;
+    background: rgba(0, 0, 0, 0.15);
+  }
+  .btn--ghost:hover { background: #fff; color: var(--navy); border-color: #fff; }
+
+  /* ========== HERO (PUN EKRAN BEZ SIVE TRAKE) ========== */
+  .hero {
+    position: relative;
+    min-height: 700px;
+    background: var(--navy);
+    color: #fff;
+    isolation: isolate;
+    display: flex;
+    align-items: flex-end;
+  }
+  .hero__video-box {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    overflow: hidden;
+  }
+  .hero__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* ČISTIJI, BISTRIJI PRELIV */
+  .hero__shade {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(95deg, rgba(6, 19, 31, 0.72) 0%, rgba(6, 19, 31, 0.45) 35%, rgba(6, 19, 31, 0.1) 65%, transparent 100%),
+      linear-gradient(0deg, rgba(6, 19, 31, 0.55) 0%, transparent 35%);
+    z-index: -2;
+  }
+
+  .hero h1,
+  .hero__lead {
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+  }
+
+  .hero__content {
+    padding-top: 130px;
+    padding-bottom: 64px;
+    display: grid;
+    grid-template-columns: minmax(0, 720px) 1fr;
+    gap: 40px;
+    align-items: end;
+  }
+  .hero h1 {
+    margin-top: 18px;
+    font-size: clamp(38px, 4.8vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    font-weight: 900;
+  }
+  .hero__lead {
+    margin-top: 18px;
+    max-width: 580px;
+    color: #d4dee4;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .hero__tags {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+  .hero__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .hero__specs-badge {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 28px;
+    display: grid;
+    gap: 22px;
+  }
+  .badge-item strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: #fff;
+  }
+  .badge-item span {
+    display: block;
+    margin-top: 4px;
+    color: #94a3ad;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  /* ========== MANIFESTO ========== */
+  .manifesto {
+    padding: 72px 0;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+  }
+  .manifesto__inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    align-items: center;
+  }
+  .manifesto__quote {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+  }
+  .quote-bar {
+    width: 4px;
+    background: var(--orange);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .manifesto__quote blockquote {
+    font-size: clamp(22px, 2.4vw, 32px);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+  }
+  .manifesto__quote blockquote span {
+    color: var(--orange);
+  }
+  .manifesto__text p {
+    color: #4b5863;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .manifesto__text p:last-child { margin-bottom: 0; }
+  .manifesto__text strong { color: var(--navy); }
+
+  /* ========== VISUAL SHOWCASE ========== */
+  .visual-showcase {
+    padding: 80px 0;
+    background: #f6f7f9;
+  }
+  .section-head h2 {
+    margin-top: 10px;
+    font-size: clamp(28px, 3.2vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--navy);
+  }
+  .visual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 36px;
+  }
+  .visual-card {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 3px;
+    border: 1px solid var(--line);
+    background: #06131f;
+    box-shadow: 0 4px 16px rgba(6,19,31,0.05);
+  }
+  .visual-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .visual-card:hover img { transform: scale(1.04); }
+  .visual-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(4, 14, 23, 0.88) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    color: #fff;
+  }
+  .visual-tag {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 6px;
+  }
+  .visual-card__overlay h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+
+  /* ========== 6 PREDNOSTI ========== */
+  .features-section {
+    padding: 80px 0;
+    background: #fff;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .feat-card {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 24px 20px;
+    background: #f8fafc;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    transition: border-color 0.2s;
+  }
+  .feat-card:hover { border-color: var(--orange); }
+  .feat-card__check {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(255, 105, 0, 0.12);
+    color: var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .feat-card__content h3 {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+  .feat-card__content p {
+    margin-top: 6px;
+    font-size: 12.5px;
+    color: #55636e;
+    line-height: 1.5;
+  }
+
+  /* ========== SPLIT 2-BOKS TEHNIČKI DETALJI ========== */
+  .tech-section {
+    padding: 80px 0;
+    background: #06131f;
+    color: #fff;
+  }
+  .tech-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .tech-card {
+    background: rgba(11, 29, 43, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 44px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .tech-card--specs h2 {
+    margin-top: 12px;
+    font-size: clamp(28px, 2.8vw, 38px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  .tech-card__desc {
+    margin-top: 14px;
+    color: #9fb0bf;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .tech-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .tech-metric {
+    background: rgba(6, 19, 31, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 16px;
+    border-radius: 2px;
+  }
+  .tech-metric strong {
+    display: block;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .tech-metric span {
+    display: block;
+    margin-top: 4px;
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .tech-bullets {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .tech-bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: #cbd5e1;
+    line-height: 1.45;
+  }
+  .bullet-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--orange);
+    border-radius: 1px;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .tech-bullet strong { color: #fff; }
+
+  /* Desni boks sa slikom */
+  .tech-card--visual {
+    overflow: hidden;
+    padding: 0;
+    min-height: 520px;
+  }
+  .tech-card__bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .tech-card__visual-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      0deg,
+      rgba(4, 14, 23, 0.98) 0%,
+      rgba(4, 14, 23, 0.8) 45%,
+      rgba(4, 14, 23, 0.25) 100%
+    );
+    z-index: 1;
+  }
+  .tech-card__visual-content {
+    position: relative;
+    z-index: 2;
+    padding: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  .tech-card__visual-content h3 {
+    margin-top: 12px;
+    font-size: clamp(24px, 2.5vw, 32px);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .tech-card__visual-content p {
+    margin-top: 14px;
+    color: #d1dce5;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .tech-tags {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 11px;
+    color: var(--orange);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    flex-wrap: wrap;
+  }
+  .tech-card__action {
+    margin-top: 28px;
+  }
+
+  /* ========== CTA PRE-FOOTER BANNER ========== */
+  .cta {
+    position: relative;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    overflow: hidden;
+    background: var(--navy);
+  }
+  .cta > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cta__shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, rgba(6, 19, 31, 0.95) 0%, rgba(6, 19, 31, 0.75) 55%, rgba(6, 19, 31, 0.45) 100%);
+  }
+  .cta__inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 36px;
+    padding: 56px 0;
+  }
+  .cta h2 {
+    margin-top: 10px;
+    font-size: clamp(26px, 3.2vw, 40px);
+    line-height: 1.05;
+    font-weight: 800;
+  }
+  .cta p {
+    margin-top: 10px;
+    max-width: 500px;
+    color: #b5c2ca;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .cta__actions {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1024px) {
+    .tech-grid {
+      grid-template-columns: 1fr;
+    }
+    .tech-card--visual {
+      min-height: 440px;
+    }
+  }
+
+  @media (max-width: 980px) {
+    .hero__content {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .hero__specs-badge { display: none; }
+    .manifesto__inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .cta__inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .wrap { width: min(100% - 24px, 1280px); }
+    .hero { min-height: 560px; }
+    .hero__content { padding-top: 90px; padding-bottom: 40px; }
+    .hero h1 { font-size: 34px; }
+    .visual-grid { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr; }
+    .tech-card { padding: 28px 20px; }
+    .tech-card__visual-content { padding: 28px 20px; }
+    .tech-metrics { grid-template-columns: 1fr; }
+    .cta__actions { flex-direction: column; width: 100%; }
+    .cta__actions .btn { width: 100%; }
+  }
+</style>
