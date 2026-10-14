@@ -1,1094 +1,2183 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import LightboxModal from '../components/LightboxModal.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import LightboxModal from "../components/LightboxModal.astro";
 
-// Hero slajder
-const heroSlides = [
+const programs = [
   {
-    src: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
-    alt: 'Modularni sistemi — lučni inox kanal u pejzažnom parteru',
-    position: 'center',
+    name: "Inox odvodnjavanje",
+    full: "Inox sistemi odvodnjavanja",
+    label: "Linija koja prati prostor.",
+    description:
+      "Ravne i zakrivljene forme za odvodnjavanje, prilagođene obliku vašeg prostora.",
+    use: "Bazeni · terase · parteri",
+    href: "/inox-sistemi-odvodnjavanja/",
+    image:
+      "/images/inox/skriveni-modularni-inox-kanal-s-forma-bazen-suva-plaza.webp",
+    hero: "/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp",
+    alt: "Lučni inox kanal prati ivicu zelenila u uređenom parteru",
+    position: "65% center",
   },
   {
-    src: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp',
-    alt: 'Z lampa — moderna LED rasveta za dvorište i ulicu',
-    position: '70% center',
+    name: "Moderna rasveta",
+    full: "Moderna rasveta",
+    label: "Prostor u novom svetlu.",
+    description:
+      "Prepoznatljiv dizajn Z-lampe za osvetljenje dvorišta, prilaza i poslovnih prostora.",
+    use: "Dvorišta · prilazi · poslovni prostori",
+    href: "/moderna-rasveta/",
+    image:
+      "/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp",
+    hero: "/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp",
+    alt: "Z-lampe osvetljavaju stazu uz savremeni objekat",
+    position: "70% center",
   },
   {
-    src: '/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp',
-    alt: 'Modularni podni sistemi — fabrički sklopljeni paneli za terase i partere',
-    position: 'center',
+    name: "Modularni podovi",
+    full: "Modularni podni sistemi",
+    label: "Dobra osnova za vaše ideje.",
+    description:
+      "Podni moduli i izbor završnih obloga za uređenje terasa, dvorišta i drugih površina.",
+    use: "Terase · dvorišta · radne površine",
+    href: "/modularni-podni-sistemi/",
+    image: "/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp",
+    hero: "/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp",
+    alt: "Modularne podne površine i kamena staza u vrtu",
+    position: "center",
   },
   {
-    src: '/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp',
-    alt: 'Fire Pit Grill — čelično ložište i roštilj na terasi',
-    position: 'center',
+    name: "Fire Pit Grill",
+    full: "Fire Pit Grill",
+    label: "Mesto za dobre trenutke.",
+    description:
+      "Čelično ložište i roštilj u jednom — za toplinu, pripremu hrane i okupljanje na otvorenom.",
+    use: "Dvorišta · terase · druženje",
+    href: "/fire-pit-grill/",
+    image: "/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp",
+    hero: "/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp",
+    alt: "Fire Pit Grill sa vatrom na terasi u sumrak",
+    position: "center",
+  },
+];
+// Original product renders, ordered consistently with the shape selector.
+const models = [
+  {
+    name: "Ravna",
+    image:
+      "/images/inox/ravni-modularni-inox-kanal-odvodnjavanje-drenaza-siva.webp",
+    alt: "3D prikaz ravne inox kanalice i detalja konstrukcije",
+  },
+  {
+    name: "Lučna",
+    image: "/images/inox/lucni-inox-kanal-linijsko-odvodnjavanje-siva.webp",
+    alt: "3D prikaz lučne inox kanalice",
+  },
+  {
+    name: "Kružna",
+    image: "/images/inox/kruzni-prohromski-kanal-za-odvodnjavanje-siva.webp",
+    alt: "3D prikaz kružne inox kanalice",
+  },
+  {
+    name: "Elipsasta",
+    image: "/images/inox/elipsasti-inox-kanal-za-odvodnjavanje-siva.webp",
+    alt: "3D prikaz elipsaste inox kanalice",
+  },
+  {
+    name: "S-forma",
+    image: "/images/inox/s-forma-lucni-inox-kanal-odvodnjavanje-siva.webp",
+    alt: "3D prikaz inox kanalice u S-formi sa nivelacionim stopama",
   },
 ];
 
-// 4 KATEGORIJE
-const categories = [
+// URLs are assigned to the single player only after an explicit play request.
+const videos = [
   {
-    title: 'Inox sistemi odvodnjavanja',
-    headline: 'Precizno odvodnjavanje koje prati geometriju prostora.',
-    description: 'Modularni inox sistemi sa integrisanim fabričkim padom i nivelacionim stopama za ravne, lučne, kružne i S-oblikovane forme u parternom uređenju.',
-    slug: '/inox-sistemi-odvodnjavanja/',
-    heroImage: '/images/inox/skriveni-modularni-inox-kanal-s-forma-bazen-suva-plaza.webp',
-    artEyebrow: 'PROJEKTOVANO PREMA VAŠOJ GEOMETRIJI',
-    artTitle: 'Bez geometrijskih <em>ograničenja.</em>',
-    linkText: 'Pregled sistema',
+    name: programs[0].name,
+    poster: programs[0].hero,
+    webm: "/videos/inox-sistemi-odvodnjavanja.webm",
+    mp4: "/videos/inox-sistemi-odvodnjavanja.mp4",
   },
   {
-    title: 'Moderna rasveta',
-    headline: 'Arhitektonska rasveta koja spaja funkciju i estetiku.',
-    description: 'Arhitektonska Z-lampa u visinama od 3m, 4m i 5m, sa IP65 zaštitom i podesivom snagom, namenjena za dvorišta, parkinge, poslovne zone i javne površine.',
-    slug: '/moderna-rasveta/',
-    heroImage: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp',
-    artEyebrow: 'DIZAJNIRANA DA OSTAVI UTISAK',
-    artTitle: 'Moderan dizajn, <em>za svaki prostor.</em>',
-    linkText: 'Pregled sistema',
+    name: programs[1].name,
+    poster: programs[1].hero,
+    webm: "/videos/moderna-rasveta.webm",
+    mp4: "/videos/moderna-rasveta.mp4",
   },
   {
-    title: 'Modularni podni sistemi',
-    headline: 'Fleksibilna podna rešenja za različite prostore i namene.',
-    description: 'Modularne podne obloge sa sistemom brzog sklapanja, namenjene za izradu stabilnih i provetrenih podnih površina koje se lako održavaju.',
-    slug: '/modularni-podni-sistemi/',
-    heroImage: '/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp',
-    artEyebrow: 'LUKSUZ NA OTVORENOM',
-    artTitle: 'Montaža bez alata <em>i troškova.</em>',
-    linkText: 'Pregled sistema',
+    name: programs[2].name,
+    poster: programs[2].hero,
+    webm: "/videos/modularni-podovi.webm",
+    mp4: "/videos/modularni-podovi.mp4",
   },
   {
-    title: 'Fire Pit Grill',
-    headline: 'Centralno mesto okupljanja na otvorenom.',
-    description: 'Masivna čelična ognjišta i profesionalni roštilji u jednom elementu. Dizajnirani da unesu toplinu, autentičnu vatru i nezaboravnu atmosferu na terase i dvorišta.',
-    slug: '/fire-pit-grill/',
-    heroImage: '/images/fire-pit/fire-pit-grill-celicna-vatra-rostilj.webp',
-    artEyebrow: 'TOPLINA I AMBIJENT NA OTVORENOM',
-    artTitle: 'Ložište i roštilj <em>u jednom.</em>',
-    linkText: 'Pregled proizvoda',
+    name: programs[3].name,
+    poster: programs[3].hero,
+    webm: "/videos/fire-pit-grill.webm",
+    mp4: "/videos/Fire Pit grill.mp4",
   },
 ];
-
-// KORACI
+const gallery = [
+  {
+    image: "/images/podovi/modularni-pod-terasa-kisa-noc-1.webp",
+    title: "Terasa. U drugačijem svetlu.",
+    category: "Modularni podovi",
+    alt: "Osvetljena terasa sa modularnim podom posle kiše",
+  },
+  {
+    image: "/images/inox/lucni-skriveni-inox-kanal-zalazak-sunca.webp",
+    title: "Detalj koji prati liniju.",
+    category: "Inox odvodnjavanje",
+    alt: "Lučni skriveni inox kanal uz šetalište pri zalasku sunca",
+  },
+  {
+    image: "/images/rasveta/z-profil-led-lampa-detalj-konstrukcij-1.webp",
+    title: "Prepoznatljiv iz svakog ugla.",
+    category: "Moderna rasveta",
+    alt: "Detalj konstrukcije i Z-profila lampe",
+  },
+  {
+    image: "/images/fire-pit/fire-pit-grill-celicna-vatra-rostilj.webp",
+    title: "Veče oko vatre.",
+    category: "Fire Pit Grill",
+    alt: "Čelični Fire Pit Grill sa vatrom i dekorativnim otvorima",
+  },
+];
 const steps = [
   {
-    number: '01',
-    title: 'Pregled prostora i podloge',
-    description: 'Pregledamo nacrte, dimenzije, visinske kote, padove i prostorna ograničenja kako bismo razumeli uslove projekta.',
+    title: "Pokažite nam prostor",
+    text: "Pošaljite fotografiju, skicu ili nacrt i opišite šta vam je potrebno.",
   },
   {
-    number: '02',
-    title: 'Izbor odgovarajućeg sistema',
-    description: 'Na osnovu namene prostora i zahteva projekta predlažemo odgovarajuću kategoriju i konfiguraciju sistema.',
+    title: "Razrađujemo rešenje",
+    text: "Usklađujemo izbor sistema, mere i oblik kroz crtež i 3D prikaz.",
   },
   {
-    number: '03',
-    title: 'Izrada elemenata',
-    description: 'Izrađujemo elemente prema usaglašenom rešenju, uz proveru dimenzija i pripremu za isporuku.',
+    title: "Dogovaramo detalje",
+    text: "Zajedno definišemo rešenje i detalje potrebne za izradu.",
   },
   {
-    number: '04',
-    title: 'Podrška pri ugradnji',
-    description: 'Obeleženi elementi i prateće informacije pomažu izvođačkom timu da sistem ugradi prema dogovorenom rasporedu.',
-  },
-];
-
-// GALERIJA
-const featuredGallery = [
-  {
-    categoryLabel: 'Inox odvodnjavanje',
-    title: 'Lučni kanal sa rešetkom',
-    image: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
-  },
-  {
-    categoryLabel: 'Moderna rasveta',
-    title: 'Arhitektonska Z-lampa',
-    image: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp',
-  },
-  {
-    categoryLabel: 'Modularni podovi',
-    title: 'Premium granitna keramika',
-    image: '/images/podovi/modularni-pod-terasa-kisa-noc-1.webp',
-  },
-  {
-    categoryLabel: 'Fire Pit Grill',
-    title: 'Čelično ognjište i roštilj',
-    image: '/images/fire-pit/fire-pit-grill-celicna-vatra-rostilj.webp',
+    title: "Od crteža do proizvoda",
+    text: "Izrada prema dogovoru, uz informacije i podršku pri ugradnji.",
   },
 ];
 ---
 
 <BaseLayout
-  title="Početna"
-  description="Modularna rešenja za odvodnjavanje, rasvetu, podne sisteme i spoljna ognjišta — projektovana za savremenu arhitekturu. Jedan sistem. Bezbroj mogućnosti."
+  title="Odvodnjavanje, rasveta, podovi i Fire Pit Grill"
+  description="Modularni sistemi za vaš dom, dvorište i poslovni prostor. Inox odvodnjavanje, moderna rasveta, modularni podovi i Fire Pit Grill. Prvo crtež, pa onda proizvod."
+  ogImage={programs[0].hero}
 >
-  <div class="home-page">
-
-    <!-- HERO SEKCIJA -->
-    <section class="hero">
-      <div class="hero__slides">
-        {heroSlides.map((slide, i) => (
+  <div class="ms-home" id="ms-home">
+    <section
+      class="ms-hero"
+      aria-labelledby="ms-title"
+      aria-roledescription="karusel"
+    >
+      <div class="ms-hero__images">
+        {programs.map((program, i) => (
           <img
-            class={`hero__slide ${i === 0 ? 'is-active' : ''}`}
-            src={slide.src}
-            alt={slide.alt}
-            style={`object-position: ${slide.position};`}
-            fetchpriority={i === 0 ? 'high' : 'auto'}
-            loading={i === 0 ? 'eager' : 'lazy'}
+            class:list={["ms-hero__image", { "is-active": i === 0 }]}
+            src={program.hero}
+            alt={program.alt}
+            width={i === 0 ? 1280 : i === 1 ? 2688 : 1536}
+            height={i === 0 ? 720 : i === 1 ? 1152 : 1024}
+            loading={i === 0 ? "eager" : "lazy"}
+            fetchpriority={i === 0 ? "high" : "auto"}
             decoding="async"
+            style={`object-position:${program.position}`}
+            aria-hidden={i !== 0 ? "true" : "false"}
           />
         ))}
       </div>
-      <div class="hero__shade"></div>
-
-      <div class="hero__content wrap">
-        <div class="hero__copy">
-          <div class="eyebrow">
-            <span></span>
-            Modularni sistemi · Rešenja za savremenu arhitekturu
-          </div>
-
-          <h1>
-            Jedan sistem.<br />
-            <em>Bezbroj mogućnosti.</em>
-          </h1>
-
-          <p class="hero__lead">
-            Modularna rešenja za odvodnjavanje, rasvetu, podne sisteme i spoljna ognjišta — 
-            projektovana za savremenu arhitekturu i konkretan prostor.
-          </p>
-
-          <div class="hero__metrics">
-            <div>
-              <strong>100%</strong>
-              <span>Po meri objekta</span>
-            </div>
-            <div>
-              <strong>SVE NAMENE</strong>
-              <span>Privatni · poslovni · javni prostori</span>
-            </div>
-            <div>
-              <strong>CAD / BIM</strong>
-              <span>Tehnička podrška</span>
-            </div>
-          </div>
-
-          <div class="hero__actions">
-            <a class="btn btn--orange" href="/proizvodi/">
-              Pogledajte proizvode <b>→</b>
-            </a>
-            <a class="btn btn--ghost" href="/posaljite-projekat/">
-              Pošaljite upit <b>↗</b>
-            </a>
-          </div>
+      <div class="ms-hero__shade"></div>
+      <div class="ms-container ms-hero__content">
+        <div class="ms-kicker ms-kicker--light">
+          <span></span> Oblik. Funkcija. Vaš prostor.
         </div>
-      </div>
-
-      <div class="hero__dots" role="tablist" aria-label="Izbor slike">
-        {heroSlides.map((_, i) => (
-          <button
-            type="button"
-            class={`hero__dot ${i === 0 ? 'is-active' : ''}`}
-            aria-label={`Slika ${i + 1}`}
-            data-index={i}
-          ></button>
-        ))}
-      </div>
-    </section>
-
-    <!-- 4 KARTICE PROIZVODA -->
-    <section class="categories">
-      <div class="categories__wrap">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow eyebrow--dark">
-              <span></span>
-              Naša rešenja
-            </div>
-            <h2>Naši proizvodi. <em>Jedan usklađen pristup.</em></h2>
-          </div>
-          <p>
-            Od prvog crteža do izbora odgovarajuće konfiguracije, pomažemo da detalji sistema budu usklađeni sa prostorom, namenom i projektnom dokumentacijom.
-          </p>
-        </div>
-
-        <div class="categories__grid">
-          {categories.map((cat, i) => (
-            <a href={cat.slug} class="cat-card">
-              <div class="cat-card__image">
-                <img src={cat.heroImage} alt={cat.title} loading="lazy" />
-
-                <span>0{i + 1}</span>
-
-                <div class="cat-card__art">
-                  <div class="cat-card__art-content">
-                    <span class="cat-card__art-eyebrow">— {cat.artEyebrow}</span>
-                    <strong class="cat-card__art-title" set:html={cat.artTitle}></strong>
-                    <div class="cat-card__art-divider"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="cat-card__body">
-                <div class="cat-card__tag">{cat.headline}</div>
-                <h3>{cat.title}</h3>
-                <p>{cat.description}</p>
-                <span class="cat-card__link">{cat.linkText} <b>→</b></span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- NAŠ PRISTUP -->
-    <section class="philosophy">
-      <div class="wrap">
-        <div class="philosophy__head">
-          <div class="eyebrow eyebrow--dark">
-            <span></span>
-            Naš pristup
-          </div>
-          <h2>
-            Ne prodajemo samo proizvod.<br />
-            <em>Projektujemo rešenje prema prostoru.</em>
-          </h2>
-          <p>
-            Standardna serijska rešenja često zahtevaju naknadna sečenja i kompromise na terenu. Mi polazimo od geometrije vašeg crteža: najpre razrađujemo rešenje kroz crtež i 3D model, a zatim izrađujemo gotove kanale, rasvetu, podne module i ognjišta tako da se uklope u zadate dimenzije i linije prostora.
-          </p>
-        </div>
-
-        <div class="philosophy__grid">
-          <div>
-            <strong>Preciznost</strong>
-            <span>Proizvod izrađujemo prema usaglašenom crtežu i merama.</span>
-          </div>
-          <div>
-            <strong>Materijali</strong>
-            <span>Nerđajući čelik AISI 304/316 i toplo pocinkovani čelik.</span>
-          </div>
-          <div>
-            <strong>Modularnost</strong>
-            <span>Standardizovani spojevi za brzu i suvu montažu.</span>
-          </div>
-          <div>
-            <strong>B2B CAD</strong>
-            <span>Tehnička podrška projektantima kroz 2D/3D crteže i predmere.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- GALERIJA -->
-    <section class="gallery">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow eyebrow--dark">
-              <span></span>
-              Galerija
-            </div>
-            <h2>Pogledajte sisteme <em>u primeni.</em></h2>
-          </div>
-          <a class="section-link" href="/galerija/">
-            Pogledajte celu arhivu <b>→</b>
+        <h1 id="ms-title">
+          Jedan sistem.
+          <br />
+          <em>
+            Bezbroj
+            <br class="ms-mobile-break" /> mogućnosti.
+          </em>
+        </h1>
+        <p class="ms-hero__lead">
+          Odvodnjavanje, rasveta, podovi i Fire Pit Grill.
+          <br />
+          Pažljivo osmišljeni za vaš dom, dvorište i poslovni prostor.
+        </p>
+        <div class="ms-actions">
+          <a class="ms-button ms-button--orange" href="/proizvodi/">
+            Pogledajte proizvode <span aria-hidden="true">↗</span>
+          </a>
+          <a class="ms-button ms-button--outline" href="/posaljite-projekat/">
+            Pošaljite upit <span aria-hidden="true">→</span>
           </a>
         </div>
-
-        <div class="gallery__grid">
-          {featuredGallery.map((item) => (
-            <figure
-              class="gallery-card"
-              data-src={item.image}
-              data-title={item.title}
-              data-category={item.categoryLabel}
-              tabindex="0"
-              role="button"
-              aria-label={`Uvećaj: ${item.title}`}
+        <div class="ms-hero__note">
+          <span aria-hidden="true">⌁</span> Od prve skice do rešenja za vaš
+          prostor.
+        </div>
+      </div>
+      <div class="ms-hero__bottom ms-container">
+        <div class="ms-hero__controls">
+          <span>Četiri programa. Jedan pristup.</span>
+          <button
+            type="button"
+            id="ms-autoplay"
+            aria-pressed="false"
+            aria-label="Pokreni automatsku smenu slika"
+          >
+            Pokreni smenu <span aria-hidden="true">▷</span>
+          </button>
+        </div>
+        <div
+          class="ms-program-nav"
+          aria-label="Izaberite prikaz proizvodnog programa"
+        >
+          {programs.map((program, i) => (
+            <button
+              type="button"
+              class:list={["ms-program-choice", { "is-active": i === 0 }]}
+              data-slide={i}
+              aria-pressed={i === 0 ? "true" : "false"}
             >
-              <div class="gallery-card__image">
-                <img src={item.image} alt={item.title} loading="lazy" />
-              </div>
-              <figcaption>
-                <span>{item.categoryLabel}</span>
-                <strong>{item.title}</strong>
-              </figcaption>
-            </figure>
+              <span class="ms-number">0{i + 1}</span>
+              <span>{program.name}</span>
+              <span class="ms-choice-arrow" aria-hidden="true">
+                ↗
+              </span>
+            </button>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- NAŠ PROCES -->
-    <section class="process">
-      <div class="wrap">
-        <div class="process__head">
-          <div class="eyebrow eyebrow--dark">
-            <span></span>
-            Naš proces
+    <section
+      class="ms-programs ms-section"
+      id="ms-programs"
+      aria-labelledby="ms-programs-title"
+    >
+      <div class="ms-container">
+        <div class="ms-section-head ms-reveal">
+          <div>
+            <div class="ms-kicker">
+              <span></span> Naša rešenja / 01—04
+            </div>
+            <h2 id="ms-programs-title">
+              Vaš prostor.
+              <br />
+              <span class="ms-muted">Mnogo mogućnosti.</span>
+            </h2>
           </div>
-          <h2>Od ideje <em>do gotovog rešenja.</em></h2>
+          <p>
+            Od jednog detalja do uređenja celog prostora. Pronađite program koji
+            odgovara vašoj ideji — mi smo tu da pomognemo oko izbora.
+          </p>
         </div>
-
-        <div class="steps">
-          {steps.map((step) => (
-            <article>
-              <span class="step-num">{step.number}</span>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
+        <div class="ms-product-grid">
+          {programs.map((program, i) => (
+            <article class="ms-product ms-reveal">
+              <a
+                href={program.href}
+                class="ms-product__visual"
+                aria-label={`Pogledajte: ${program.full}`}
+              >
+                <img
+                  src={program.image}
+                  alt={program.alt}
+                  loading="lazy"
+                  decoding="async"
+                  width="1440"
+                  height="1080"
+                />
+                <span class="ms-product__index">
+                  0{i + 1} <span>/ MODULARNI SISTEMI</span>
+                </span>
+                <div class="ms-product__overlay">
+                  <span>{program.use}</span>
+                  <h3>{program.label}</h3>
+                </div>
+                <span class="ms-product__arrow" aria-hidden="true">
+                  ↗
+                </span>
+              </a>
+              <div class="ms-product__body">
+                <div>
+                  <h4>
+                    <a href={program.href}>{program.full}</a>
+                  </h4>
+                  <p>{program.description}</p>
+                </div>
+                <a class="ms-text-link" href={program.href}>
+                  Istražite program <span aria-hidden="true">↗</span>
+                </a>
+              </div>
             </article>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- CTA BANER -->
-    <section class="cta">
-      <img
-        src="/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp"
-        alt="Pošaljite nam projekat"
-        loading="lazy"
-      />
-      <div class="cta__shade"></div>
-      <div class="wrap cta__inner">
-        <div>
-          <div class="eyebrow">
-            <span></span>
-            REŠENJA PO MERI PROSTORA
+    <section class="ms-design ms-section" aria-labelledby="ms-design-title">
+      <div class="ms-container">
+        <div class="ms-design__top">
+          <div class="ms-kicker ms-kicker--light">
+            <span></span> Preciznost počinje idejom
           </div>
-          <h2>Imate prostor <em>specifične geometrije?</em></h2>
-          <p>
-            Pošaljite nam skicu, nacrt ili osnovu prostora. Razradićemo oblik 
-            i predložiti rešenje prilagođeno vašem projektu.
+          <span class="ms-design__caption">
+            3D PROJEKTOVANJE / TEHNIČKA RAZRADA
+          </span>
+        </div>
+        <div class="ms-design__grid">
+          <div class="ms-design__copy ms-reveal">
+            <h2 id="ms-design-title">
+              Prvo crtež,
+              <br />
+              pa onda <em>proizvod.</em>
+            </h2>
+            <p class="ms-design__lead">Dobar rezultat počinje jasnom slikom.</p>
+            <p>
+              Pre izrade razrađujemo oblik, mere i uklapanje u prostor. Kroz
+              tehnički crtež i 3D prikaz lakše sagledavamo detalje i zajedno
+              dolazimo do odgovarajućeg rešenja.
+            </p>
+            <div class="ms-design__details">
+              <div>
+                <span>01</span>
+                <p>Razumemo vaš prostor</p>
+              </div>
+              <div>
+                <span>02</span>
+                <p>Usklađujemo oblik i mere</p>
+              </div>
+              <div>
+                <span>03</span>
+                <p>Razrađujemo detalje izrade</p>
+              </div>
+            </div>
+            <a class="ms-button ms-button--orange" href="/posaljite-projekat/">
+              Razgovarajmo o vašoj ideji <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div class="ms-model ms-reveal">
+            <div class="ms-model__head">
+              <span>
+                <i></i> DETALJ SISTEMA
+              </span>
+              <span>INOX / 3D PRIKAZ</span>
+            </div>
+            <div class="ms-model__stage">
+              {models.map((model, i) => (
+                <img
+                  src={model.image}
+                  alt={model.alt}
+                  width="1200"
+                  height="900"
+                  loading="lazy"
+                  decoding="async"
+                  class:list={["ms-model__image", { "is-active": i === 0 }]}
+                  aria-hidden={i !== 0 ? "true" : "false"}
+                />
+              ))}
+            </div>
+            <div
+              class="ms-model__choices"
+              aria-label="Izaberite formu 3D prikaza"
+            >
+              {models.map((model, i) => (
+                <button
+                  type="button"
+                  data-model={i}
+                  aria-pressed={i === 0 ? "true" : "false"}
+                  class:list={{ "is-active": i === 0 }}
+                >
+                  {model.name}
+                  <span aria-hidden="true">↗</span>
+                </button>
+              ))}
+            </div>
+            <div class="ms-model__foot">
+              <span>Oblik prati prostor.</span>
+              <a href="/inox-sistemi-odvodnjavanja/">
+                Upoznajte sistem <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="ms-film ms-reveal">
+          <div>
+            <span class="ms-kicker ms-kicker--light">Sistemi u pokretu</span>
+            <p>Pogledajte video izabranog proizvodnog programa.</p>
+          </div>
+          <button
+            type="button"
+            class="ms-button ms-button--outline"
+            id="ms-film-toggle"
+            aria-controls="ms-film-panel"
+            aria-expanded="false"
+          >
+            <span aria-hidden="true">▷</span> Pogledajte video
+          </button>
+        </div>
+        <div
+          class="ms-film-choices"
+          role="group"
+          aria-label="Izaberite proizvodni program za video"
+        >
+          {videos.map((video, i) => (
+            <button
+              type="button"
+              class:list={["ms-film-choice", { "is-active": i === 0 }]}
+              data-video-index={i}
+              data-video-name={video.name}
+              data-video-poster={video.poster}
+              data-video-webm={video.webm}
+              data-video-mp4={video.mp4}
+              aria-pressed={i === 0 ? "true" : "false"}
+              aria-controls="ms-film-panel"
+            >
+              <span class="ms-film-choice__number">0{i + 1}</span>
+              <span>{video.name}</span>
+            </button>
+          ))}
+        </div>
+        <div class="ms-film-preview">
+          <img
+            id="ms-film-poster"
+            src={videos[0].poster}
+            alt={`Video: ${videos[0].name}`}
+            width="1280"
+            height="720"
+            loading="lazy"
+            decoding="async"
+          />
+          <div>
+            <span>IZABRANI PROGRAM</span>
+            <p id="ms-film-selection" aria-live="polite">
+              {videos[0].name}
+            </p>
+          </div>
+        </div>
+        <div id="ms-film-panel" class="ms-film-panel" hidden>
+          <video
+            id="ms-film-video"
+            controls
+            playsinline
+            preload="none"
+            poster={videos[0].poster}
+            aria-label={`Video: ${videos[0].name}`}
+          >
+            Vaš pregledač ne podržava video.{" "}
+            <a id="ms-film-download" href={videos[0].mp4}>
+              Preuzmite video.
+            </a>
+          </video>
+          <p id="ms-film-error" class="ms-film-error" role="status" hidden>
+            Video nije moguće reprodukovati.{" "}
+            <a id="ms-film-error-link" href={videos[0].mp4}>
+              Otvorite MP4 snimak.
+            </a>
           </p>
         </div>
-        <a class="btn btn--orange" href="/posaljite-projekat/">
-          Pošaljite upit <b>→</b>
-        </a>
       </div>
     </section>
 
+    <section class="ms-gallery ms-section" aria-labelledby="ms-gallery-title">
+      <div class="ms-container">
+        <div class="ms-section-head ms-reveal">
+          <div>
+            <div class="ms-kicker">
+              <span></span> Proizvodi i primena
+            </div>
+            <h2 id="ms-gallery-title">
+              Detalji stvaraju
+              <br />
+              <span class="ms-muted">celinu.</span>
+            </h2>
+          </div>
+          <div class="ms-section-aside">
+            <p>
+              Oblik, materijal i atmosfera. Pogledajte kako se naši sistemi
+              uklapaju u različite prostore.
+            </p>
+            <a class="ms-text-link" href="/galerija/">
+              Pogledajte celu galeriju <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+        <div class="ms-gallery__grid">
+          {gallery.map((item, i) => (
+            <button
+              type="button"
+              class:list={[
+                "ms-gallery-card",
+                "ms-reveal",
+                { "ms-gallery-card--wide": i === 0 || i === 3 },
+              ]}
+              data-gallery-src={item.image}
+              data-gallery-title={item.title}
+              data-gallery-category={item.category}
+              aria-label={`Uvećajte prikaz: ${item.title}`}
+            >
+              <img
+                src={item.image}
+                alt={item.alt}
+                loading="lazy"
+                decoding="async"
+                width="1536"
+                height="1024"
+              />
+              <div class="ms-gallery-card__caption">
+                <span>{item.category}</span>
+                <strong>{item.title}</strong>
+              </div>
+              <span class="ms-gallery-card__plus" aria-hidden="true">
+                +
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="ms-process ms-section" aria-labelledby="ms-process-title">
+      <div class="ms-container">
+        <div class="ms-section-head ms-reveal">
+          <div>
+            <div class="ms-kicker">
+              <span></span> Jednostavno, korak po korak
+            </div>
+            <h2 id="ms-process-title">
+              Od vaše ideje
+              <br />
+              do <span class="ms-muted">gotovog rešenja.</span>
+            </h2>
+          </div>
+          <p>
+            Za prvi razgovor dovoljno je da nam kažete šta želite. Zajedno ćemo
+            razraditi sledeći korak.
+          </p>
+        </div>
+        <ol class="ms-steps">
+          {steps.map((step, i) => (
+            <li class="ms-reveal">
+              <span class="ms-step-number">0{i + 1}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="ms-contact" aria-labelledby="ms-contact-title">
+      <div class="ms-container ms-contact__inner">
+        <div class="ms-reveal">
+          <div class="ms-kicker ms-kicker--light">
+            <span></span> Vaša ideja je dobar početak
+          </div>
+          <h2 id="ms-contact-title">
+            Šta želite
+            <br />
+            da <em>stvorimo?</em>
+          </h2>
+          <p>
+            Uređujete dvorište, terasu, bazen ili poslovni prostor?
+            <br />
+            Pošaljite nam pitanje, fotografiju ili skicu.
+          </p>
+        </div>
+        <div class="ms-contact__actions ms-reveal">
+          <a class="ms-button ms-button--orange" href="/posaljite-projekat/">
+            Pošaljite upit <span aria-hidden="true">↗</span>
+          </a>
+          <a class="ms-contact__link" href="/kontakt/">
+            Kontakt i dodatne informacije <span aria-hidden="true">→</span>
+          </a>
+          <span class="ms-contact__note">
+            Za privatne kupce i profesionalce.
+          </span>
+        </div>
+      </div>
+      <div class="ms-container ms-contact__signature">
+        <span>MODULARNI SISTEMI</span>
+        <span>Jedan sistem. Bezbroj mogućnosti.</span>
+      </div>
+    </section>
   </div>
-
   <LightboxModal />
+</BaseLayout>
 
-  <style>
-    :global(html) { scroll-behavior: smooth; }
-    :global(body) {
-      margin: 0;
-      background: #f6f7f9;
-      color: #07111e;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .home-page {
-      --navy: #06131f;
-      --orange: #ff6900;
-      --orange-hover: #e85e00;
-      --line: #dce2e7;
-      --muted: #64717c;
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    .wrap {
-      width: min(1280px, calc(100% - 40px));
-      margin-inline: auto;
-    }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--orange);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-    .eyebrow span {
-      display: inline-block;
-      width: 20px;
-      height: 1.5px;
-      background: var(--orange);
-      flex-shrink: 0;
-    }
-    .eyebrow--dark { color: var(--orange); }
-
-    h1, h2, h3, p { margin: 0; }
-    h1 em, h2 em { font-style: normal; color: var(--orange); }
-
-    .btn {
-      min-height: 48px;
-      padding: 0 20px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: all 0.25s ease;
-    }
-    .btn b { font-size: 15px; font-weight: 600; }
-    .btn--orange { background: var(--orange); color: #fff; }
-    .btn--orange:hover { background: var(--orange-hover); transform: translateY(-2px); }
-    .btn--ghost {
-      border: 1px solid rgba(255,255,255,0.45);
-      color: #fff;
-      background: rgba(0,0,0,0.12);
-    }
-    .btn--ghost:hover { background: #fff; color: var(--navy); border-color: #fff; }
-
-    /* ========== HERO ========== */
-    .hero {
-      position: relative;
-      min-height: 680px;
-      background: var(--navy);
-      color: #fff;
-      isolation: isolate;
-      display: flex;
-      align-items: flex-end;
-    }
-    .hero__slides {
-      position: absolute;
-      inset: 0;
-      z-index: -3;
-    }
-    .hero__slide {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      z-index: 0;
-      transition: opacity 1s ease;
-    }
-    .hero__slide.is-prev {
-      opacity: 1;
-      z-index: 1;
-      transition: none;
-    }
-    .hero__slide.is-active {
-      opacity: 1;
-      z-index: 2;
-    }
-
-    .hero__shade {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(95deg, rgba(6, 19, 31, 0.72) 0%, rgba(6, 19, 31, 0.45) 35%, rgba(6, 19, 31, 0.1) 65%, transparent 100%),
-        linear-gradient(0deg, rgba(6, 19, 31, 0.55) 0%, transparent 35%);
-      z-index: -2;
-    }
-
-    .hero h1,
-    .hero__lead {
-      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
-    }
-
-    .hero__content {
-      padding-top: 130px;
-      padding-bottom: 64px;
-    }
-    .hero h1 {
-      margin-top: 20px;
-      font-size: clamp(38px, 5vw, 64px);
-      line-height: 1.02;
-      letter-spacing: -0.045em;
-      font-weight: 800;
-      color: #fff;
-    }
-    .hero__lead {
-      margin-top: 20px;
-      max-width: 560px;
-      color: #d4dee4;
-      font-size: 15px;
-      line-height: 1.65;
-    }
-    .hero__metrics {
-      display: grid;
-      grid-template-columns: repeat(3, auto);
-      gap: 28px;
-      margin-top: 28px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,0.15);
-      max-width: 520px;
-    }
-    .hero__metrics strong {
-      display: block;
-      font-size: 16px;
-      font-weight: 700;
-    }
-    .hero__metrics span {
-      display: block;
-      margin-top: 4px;
-      color: #94a3ad;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .hero__actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 28px;
-    }
-
-    .hero__dots {
-      position: absolute;
-      right: max(20px, calc((100% - 1280px) / 2));
-      bottom: 28px;
-      display: flex;
-      gap: 8px;
-      z-index: 3;
-    }
-    .hero__dot {
-      width: 28px;
-      height: 4px;
-      padding: 0;
-      border: 0;
-      border-radius: 2px;
-      background: rgba(255, 255, 255, 0.35);
-      cursor: pointer;
-      transition: background 0.3s ease, width 0.3s ease;
-    }
-    .hero__dot:hover { background: rgba(255, 255, 255, 0.7); }
-    .hero__dot.is-active { width: 44px; background: var(--orange); }
-
-    /* ========== CATEGORIES (4 kartice u nizu; 2 kolone ispod 1200px; 1 kolona ispod 640px) ========== */
-    .categories {
-      background: #eef1f4;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      padding: 72px 0 80px;
-    }
-    .categories__wrap {
-      width: min(1440px, calc(100% - 40px));
-      margin-inline: auto;
-    }
-    .categories__grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 20px;
-      align-items: stretch;
-    }
-    .cat-card {
-      background: #fff;
-      color: var(--navy);
-      text-decoration: none;
-      border: 1px solid #dce2e7;
-      border-radius: 3px;
-      overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      box-shadow: 0 4px 16px rgba(6,19,31,0.04);
-    }
-    .cat-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--orange);
-      box-shadow: 0 20px 42px rgba(6,19,31,0.12);
-    }
-    .cat-card__image {
-      position: relative;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      background: #0a131c;
-    }
-    .cat-card__image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      display: block;
-    }
-    .cat-card:hover img {
-      transform: scale(1.05);
-    }
-    .cat-card__image > span {
-      position: absolute;
-      left: 14px;
-      top: 14px;
-      color: #fff;
-      background: var(--orange);
-      font-size: 11px;
-      font-weight: 800;
-      padding: 4px 9px;
-      border-radius: 2px;
-      letter-spacing: 0.06em;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-      z-index: 4;
-    }
-
-    .cat-card__art {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      pointer-events: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 16px 18px;
-      background: linear-gradient(
+<style>
+  .ms-home {
+    --ms-navy: #06131f;
+    --ms-ink: #102332;
+    --ms-orange: #ff6900;
+    --ms-paper: #f3f5f5;
+    --ms-line: #d8dfe1;
+    --ms-muted: #5c6b75;
+    color: var(--ms-ink);
+    background: var(--ms-paper);
+    font-family:
+      Manrope,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      sans-serif;
+    isolation: isolate;
+    overflow: clip;
+  }
+  .ms-home * {
+    box-sizing: border-box;
+  }
+  .ms-home h1,
+  .ms-home h2,
+  .ms-home h3,
+  .ms-home h4,
+  .ms-home p {
+    margin: 0;
+  }
+  .ms-home button {
+    font: inherit;
+    cursor: pointer;
+  }
+  .ms-home a {
+    text-decoration: none;
+  }
+  .ms-home button:focus-visible,
+  .ms-home a:focus-visible {
+    outline: 3px solid var(--ms-orange);
+    outline-offset: 6px;
+  }
+  .ms-container {
+    width: min(1320px, calc(100% - 96px));
+    margin-inline: auto;
+  }
+  .ms-section {
+    padding-block: 108px;
+  }
+  .ms-kicker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    line-height: 1.6;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #9b4000;
+  }
+  .ms-kicker > span:first-child {
+    width: 24px;
+    height: 2px;
+    background: var(--ms-orange);
+  }
+  .ms-kicker--light {
+    color: #ff9c55;
+  }
+  .ms-home h2 {
+    font-size: clamp(34px, 4.1vw, 58px);
+    line-height: 1.08;
+    letter-spacing: -0.055em;
+    font-weight: 700;
+  }
+  .ms-muted {
+    color: #65747d;
+  }
+  .ms-home em {
+    font-style: normal;
+    color: var(--ms-orange);
+  }
+  .ms-button {
+    min-height: 54px;
+    padding: 16px 23px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.4;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition:
+      background 0.25s,
+      transform 0.25s,
+      border-color 0.25s;
+  }
+  .ms-button span {
+    font-size: 20px;
+    line-height: 1;
+  }
+  .ms-button--orange {
+    background: var(--ms-orange);
+    color: #151a1e;
+  }
+  .ms-button--outline {
+    background: rgba(6, 19, 31, 0.3);
+    border-color: #70808b;
+    color: white;
+  }
+  .ms-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .ms-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    color: var(--ms-ink);
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .ms-text-link span {
+    font-size: 20px;
+    color: #a44300;
+    transition: transform 0.25s;
+  }
+  .ms-section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 48px;
+    margin-bottom: 46px;
+  }
+  .ms-section-head h2 {
+    margin-top: 18px;
+  }
+  .ms-section-head > p,
+  .ms-section-aside {
+    max-width: 350px;
+  }
+  .ms-section-head p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--ms-muted);
+  }
+  .ms-section-aside .ms-text-link {
+    margin-top: 22px;
+  }
+  .ms-hero {
+    min-height: 760px;
+    min-height: min(880px, calc(100svh + 20px));
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--ms-navy);
+    color: #fff;
+  }
+  .ms-hero__images,
+  .ms-hero__shade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .ms-hero__image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .ms-hero__image.is-active {
+    opacity: 1;
+  }
+  .ms-hero__shade {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(3, 15, 25, 0.86),
+        rgba(3, 15, 25, 0.47) 50%,
+        rgba(3, 15, 25, 0.07)
+      ),
+      linear-gradient(
         0deg,
-        rgba(4, 14, 23, 0.95) 0%,
-        rgba(4, 14, 23, 0.65) 40%,
-        rgba(4, 14, 23, 0.02) 75%
+        #06131f 0%,
+        rgba(6, 19, 31, 0.5) 18%,
+        transparent 55%
       );
+  }
+  .ms-hero__content {
+    position: relative;
+    padding-block: 94px 68px;
+  }
+  .ms-hero h1 {
+    font-size: clamp(46px, 6.2vw, 88px);
+    letter-spacing: -0.065em;
+    line-height: 1.04;
+    font-weight: 800;
+    margin-top: 26px;
+    max-width: 1050px;
+  }
+  .ms-hero h1 em {
+    color: #ff822c;
+  }
+  .ms-mobile-break {
+    display: none;
+  }
+  .ms-hero__lead {
+    font-size: 16px;
+    line-height: 1.85;
+    color: #e0e7e9;
+    margin-top: 28px !important;
+    max-width: 560px;
+  }
+  .ms-hero .ms-actions {
+    margin-top: 32px;
+  }
+  .ms-hero__note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    color: #c1ccd2;
+    font-size: 12px;
+  }
+  .ms-hero__note > span {
+    font-size: 26px;
+    color: #ff9c55;
+  }
+  .ms-hero__bottom {
+    position: relative;
+  }
+  .ms-hero__controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 18px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #cad4da;
+  }
+  .ms-hero__controls button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: none;
+    border: 0;
+    color: #dfe7ec;
+    font-size: 11px;
+    min-height: 44px;
+    padding: 8px;
+  }
+  .ms-program-nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid #ffffff35;
+  }
+  .ms-program-choice {
+    position: relative;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    min-height: 85px;
+    background: transparent;
+    border: 0;
+    border-right: 1px solid #ffffff20;
+    color: #c9d2d9;
+    text-align: left;
+    padding: 20px 18px;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+  }
+  .ms-program-choice:first-child {
+    padding-left: 0;
+  }
+  .ms-program-choice:last-child {
+    border-right: 0;
+  }
+  .ms-program-choice:before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--ms-orange);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  .ms-program-choice.is-active:before {
+    transform: scaleX(var(--ms-progress, 1));
+  }
+  .ms-program-choice.is-active {
+    color: white;
+  }
+  .ms-number {
+    font-size: 10px;
+    color: #ff9c55;
+    align-self: flex-start;
+    padding-top: 4px;
+  }
+  .ms-choice-arrow {
+    margin-left: auto;
+    color: #ff9c55;
+    font-size: 19px;
+  }
+  .ms-product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 46px 28px;
+  }
+  .ms-product {
+    min-width: 0;
+  }
+  .ms-product__visual {
+    display: block;
+    aspect-ratio: 1.5;
+    position: relative;
+    overflow: hidden;
+    background: #172731;
+    border-radius: 4px;
+  }
+  .ms-product__visual:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(0deg, rgba(3, 15, 24, 0.87), transparent 65%),
+      linear-gradient(180deg, rgba(3, 15, 24, 0.35), transparent 30%);
+    pointer-events: none;
+  }
+  .ms-product__visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .ms-product__index {
+    position: absolute;
+    left: 28px;
+    top: 25px;
+    z-index: 1;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+  }
+  .ms-product__index span {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+  .ms-product__overlay {
+    position: absolute;
+    z-index: 1;
+    left: 28px;
+    right: 78px;
+    bottom: 30px;
+    color: white;
+  }
+  .ms-product__overlay > span {
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    color: #d4dce0;
+  }
+  .ms-product__overlay h3 {
+    font-size: clamp(23px, 2.4vw, 34px);
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  .ms-product__arrow {
+    position: absolute;
+    right: 25px;
+    bottom: 29px;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 43px;
+    height: 43px;
+    border: 1px solid #ffffff70;
+    border-radius: 50%;
+    color: white;
+    font-size: 22px;
+    transition:
+      background 0.25s,
+      color 0.25s;
+  }
+  .ms-product__body {
+    padding: 23px 0 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 22px;
+  }
+  .ms-product__body > div {
+    max-width: 370px;
+  }
+  .ms-product h4 {
+    font-size: 17px;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+  }
+  .ms-product h4 a {
+    color: var(--ms-ink);
+  }
+  .ms-product__body p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--ms-muted);
+    margin-top: 10px;
+  }
+  .ms-product__body > .ms-text-link {
+    flex-shrink: 0;
+    align-self: flex-start;
+    gap: 9px;
+    font-size: 10px;
+    margin-top: 1px;
+  }
+  .ms-design {
+    background: var(--ms-navy);
+    color: #fff;
+    position: relative;
+  }
+  .ms-design__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ffffff20;
+  }
+  .ms-design__caption {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    color: #9cafba;
+  }
+  .ms-design__grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 72px;
+    align-items: center;
+    padding-top: 54px;
+  }
+  .ms-design__copy h2 {
+    font-size: clamp(38px, 4.3vw, 61px);
+  }
+  .ms-design__lead {
+    font-size: 19px;
+    margin-top: 26px !important;
+    color: #ecf0f2;
+  }
+  .ms-design__copy > p:not(.ms-design__lead) {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #aabac4;
+    margin-top: 16px;
+    max-width: 450px;
+  }
+  .ms-design__details {
+    margin-block: 30px;
+  }
+  .ms-design__details > div {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-top: 1px solid #ffffff17;
+    padding-block: 14px;
+  }
+  .ms-design__details span {
+    font-size: 10px;
+    color: #ff9c55;
+  }
+  .ms-design__details p {
+    font-size: 12px;
+    color: #d5dee4;
+  }
+  .ms-model {
+    min-width: 0;
+    background: #1c2228;
+    border: 1px solid #ffffff25;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .ms-model__head {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 20px 22px;
+    color: #bac6ce;
+    font-size: 9px;
+    letter-spacing: 0.11em;
+    border-bottom: 1px solid #ffffff18;
+  }
+  .ms-model__head i {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background: var(--ms-orange);
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .ms-model__stage {
+    position: relative;
+    aspect-ratio: 1.17;
+    background: #282b2e;
+  }
+  .ms-model__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .ms-model__image.is-active {
+    opacity: 1;
+  }
+  .ms-model__choices {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-block: 1px solid #ffffff20;
+  }
+  .ms-model__choices button {
+    flex: 1;
+    background: #131e27;
+    color: #b9c7d0;
+    border: 0;
+    border-right: 1px solid #ffffff20;
+    min-height: 53px;
+    padding: 12px 10px;
+    text-align: left;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .ms-model__choices button:last-child {
+    border-right: 0;
+  }
+  .ms-model__choices button span {
+    display: none;
+  }
+  .ms-model__choices button.is-active {
+    background: #ff6900;
+    color: #101b23;
+    font-weight: 800;
+  }
+  .ms-model__foot {
+    padding: 18px 22px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    font-size: 10px;
+    color: #a7b5bf;
+  }
+  .ms-model__foot a {
+    color: #e2eaf0;
+  }
+  .ms-film {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding-top: 32px;
+    margin-top: 55px;
+    border-top: 1px solid #ffffff20;
+  }
+  .ms-film .ms-kicker {
+    font-size: 9px;
+  }
+  .ms-film p {
+    font-size: 15px;
+    margin-top: 8px;
+    color: #e2e7eb;
+  }
+  .ms-film-panel {
+    margin-top: 28px;
+  }
+  .ms-film-panel[hidden] {
+    display: none;
+  }
+  .ms-film-panel video {
+    display: block;
+    width: 100%;
+    max-height: 680px;
+    background: #000;
+    border-radius: 4px;
+  }
+  .ms-gallery {
+    background: #fff;
+  }
+  .ms-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+  }
+  .ms-gallery-card {
+    grid-column: span 2;
+    position: relative;
+    min-height: 330px;
+    text-align: left;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--ms-navy);
+    color: white;
+  }
+  .ms-gallery-card--wide {
+    grid-column: span 3;
+  }
+  .ms-gallery-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s;
+  }
+  .ms-gallery-card:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(3, 15, 24, 0.85), transparent 60%);
+  }
+  .ms-gallery-card__caption {
+    position: absolute;
+    z-index: 1;
+    bottom: 27px;
+    left: 28px;
+    right: 65px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .ms-gallery-card__caption > span {
+    font-size: 10px;
+    letter-spacing: 0.09em;
+    color: #ffd1af;
+  }
+  .ms-gallery-card__caption strong {
+    font-size: 23px;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+  }
+  .ms-gallery-card__plus {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    z-index: 1;
+    font-size: 24px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #ffffff70;
+    border-radius: 50%;
+  }
+  .ms-process {
+    background: #e9eef0;
+    border-top: 1px solid var(--ms-line);
+  }
+  .ms-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .ms-steps li {
+    border-top: 1px solid #b7c2c8;
+    padding-top: 22px;
+    position: relative;
+  }
+  .ms-steps li:before {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    top: -3px;
+    left: 0;
+    background: #a84300;
+  }
+  .ms-step-number {
+    font-size: 12px;
+    color: #a84300;
+    letter-spacing: 0.1em;
+  }
+  .ms-steps h3 {
+    font-size: 16px;
+    line-height: 1.4;
+    letter-spacing: -0.03em;
+    margin-top: 24px;
+  }
+  .ms-steps p {
+    font-size: 13px;
+    line-height: 1.85;
+    color: var(--ms-muted);
+    margin-top: 12px;
+  }
+  .ms-contact {
+    position: relative;
+    background: #081b2a;
+    color: white;
+    padding-top: 90px;
+    overflow: hidden;
+  }
+  .ms-contact:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      125deg,
+      transparent 60%,
+      #ffffff04 60%,
+      #ffffff04 74%,
+      transparent 74%
+    );
+  }
+  .ms-contact__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    padding-bottom: 68px;
+  }
+  .ms-contact h2 {
+    font-size: clamp(46px, 6vw, 84px);
+    margin-top: 24px;
+  }
+  .ms-contact p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #bdcbd5;
+    margin-top: 24px;
+  }
+  .ms-contact__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    min-width: 260px;
+  }
+  .ms-contact__actions .ms-button {
+    min-height: 65px;
+  }
+  .ms-contact__link {
+    font-size: 12px;
+    color: #e4edf2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+  }
+  .ms-contact__note {
+    font-size: 10px;
+    color: #b5c5d0;
+  }
+  .ms-contact__signature {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    border-top: 1px solid #ffffff20;
+    padding-block: 25px;
+    color: #9cafbd;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+  .ms-contact__signature > span:first-child {
+    font-weight: 800;
+    letter-spacing: 0.16em;
+  }
+  @media (hover: hover) {
+    .ms-button--orange:hover {
+      background: #ff8b38;
+      transform: translateY(-2px);
     }
-
-    .cat-card__art-content {
-      position: relative;
-      z-index: 3;
+    .ms-button--outline:hover {
+      background: #ffffff16;
+      border-color: white;
     }
-    .cat-card__art-eyebrow {
-      display: block;
-      color: var(--orange);
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 4px;
+    .ms-product__visual:hover img,
+    .ms-gallery-card:hover img {
+      transform: scale(1.035);
     }
-    .cat-card__art-title {
-      display: block;
+    .ms-product__visual:hover .ms-product__arrow {
+      background: #ff6900;
+      border-color: #ff6900;
+      color: #102332;
+    }
+    .ms-text-link:hover span {
+      transform: translate(3px, -3px);
+    }
+    .ms-program-choice:hover {
+      background: #ffffff08;
       color: #fff;
-      font-size: 15px;
-      font-weight: 800;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
     }
-    .cat-card__art-title em {
-      color: var(--orange);
-      font-style: normal;
+    .ms-model__choices button:hover {
+      box-shadow: inset 0 -2px #ff9c55;
     }
-    .cat-card__art-divider {
-      width: 100%;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.2);
-      margin-top: 8px;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .ms-reveal.ms-awaiting {
+      opacity: 0;
+      transform: translateY(22px);
     }
-
-    .cat-card__body {
-      padding: 22px 18px 24px;
-      flex: 1;
-      display: flex;
+    .ms-reveal {
+      transition:
+        opacity 0.65s ease,
+        transform 0.65s cubic-bezier(0.2, 0.7, 0.3, 1);
+    }
+  }
+  @media (min-width: 1600px) {
+    .ms-container {
+      width: min(1440px, calc(100% - 120px));
+    }
+    .ms-hero__content {
+      padding-top: 115px;
+    }
+    .ms-product__visual {
+      aspect-ratio: 1.6;
+    }
+  }
+  @media (max-width: 1100px) {
+    .ms-container {
+      width: calc(100% - 64px);
+    }
+    .ms-section {
+      padding-block: 80px;
+    }
+    .ms-hero {
+      min-height: 730px;
+    }
+    .ms-hero__content {
+      padding-top: 75px;
+    }
+    .ms-design__grid {
+      gap: 36px;
+      grid-template-columns: 1fr 1fr;
+    }
+    .ms-product__body {
+      flex-direction: column;
+      gap: 14px;
+    }
+    .ms-product__body > div {
+      max-width: none;
+    }
+    .ms-program-choice {
+      font-size: 11px !important;
+      padding-inline: 12px;
+      gap: 9px;
+    }
+    .ms-choice-arrow {
+      display: none;
+    }
+    .ms-design__caption {
+      display: none;
+    }
+    .ms-model__foot {
       flex-direction: column;
     }
-    .cat-card__tag {
-      color: var(--orange);
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      line-height: 1.45;
+    .ms-gallery-card {
+      min-height: 290px;
     }
-    .cat-card h3 {
-      margin-top: 10px;
+    .ms-steps {
+      gap: 22px;
+    }
+  }
+  @media (max-width: 760px) {
+    .ms-container {
+      width: calc(100% - 40px);
+    }
+    .ms-section {
+      padding-block: 64px;
+    }
+    .ms-section-head {
+      display: block;
+      margin-bottom: 32px;
+    }
+    .ms-section-head > p,
+    .ms-section-aside {
+      max-width: 100%;
+      margin-top: 24px;
+    }
+    .ms-hero {
+      min-height: 0;
+    }
+    .ms-hero__content {
+      padding-block: 66px 46px;
+    }
+    .ms-hero h1 {
+      font-size: clamp(42px, 7.7vw, 59px);
+    }
+    .ms-hero__lead {
+      font-size: 14px;
+      max-width: 460px;
+    }
+    .ms-hero__shade {
+      background:
+        linear-gradient(90deg, rgba(3, 15, 25, 0.87), rgba(3, 15, 25, 0.3)),
+        linear-gradient(0deg, #06131f, transparent 75%);
+    }
+    .ms-hero__controls > span {
+      font-size: 8px;
+      letter-spacing: 0.05em;
+    }
+    .ms-program-nav {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .ms-program-choice {
+      min-height: 65px;
+      font-size: 12px !important;
+      padding: 18px 12px !important;
+      border-bottom: 1px solid #ffffff20;
+    }
+    .ms-program-choice:nth-child(2) {
+      border-right: 0;
+    }
+    .ms-program-choice.is-active {
+      background: #ffffff07;
+    }
+    .ms-number {
+      padding-top: 2px;
+    }
+    .ms-product-grid {
+      gap: 32px 20px;
+    }
+    .ms-product__visual {
+      aspect-ratio: 1.05;
+    }
+    .ms-product__index {
+      left: 18px;
+      top: 18px;
+    }
+    .ms-product__index span {
+      display: none;
+    }
+    .ms-product__overlay {
+      left: 18px;
+      bottom: 22px;
+      right: 18px;
+    }
+    .ms-product__overlay h3 {
+      font-size: 23px;
+    }
+    .ms-product__overlay > span {
+      font-size: 9px;
+    }
+    .ms-product__arrow {
+      right: 16px;
+      top: 15px;
+      bottom: auto;
+      width: 32px;
+      height: 32px;
       font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      line-height: 1.3;
-      color: var(--navy);
     }
-    .cat-card p {
-      margin-top: 10px;
-      color: #55636e;
-      font-size: 13px;
-      line-height: 1.55;
+    .ms-design__grid {
+      grid-template-columns: 1fr;
+      gap: 38px;
+      padding-top: 38px;
     }
-    .cat-card__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: auto;
-      padding-top: 20px;
-      color: #4b5863;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      transition: color 0.2s ease;
+    .ms-design__copy > p:not(.ms-design__lead) {
+      max-width: 100%;
     }
-    .cat-card__link b {
-      color: var(--orange);
-      font-size: 14px;
-      transition: transform 0.2s ease;
+    .ms-model__stage {
+      aspect-ratio: 1.4;
     }
-    .cat-card:hover .cat-card__link { color: var(--orange); }
-    .cat-card:hover .cat-card__link b { transform: translateX(4px); }
-
-    /* ========== SECTION HEAD ========== */
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 36px;
-      margin-bottom: 36px;
+    .ms-model__foot {
+      flex-direction: row;
     }
-    .section-head h2 {
-      margin-top: 12px;
-      font-size: clamp(30px, 3.4vw, 46px);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      color: #07111e;
+    .ms-film {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 35px;
     }
-    .section-head > p {
-      max-width: 360px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.65;
-      padding-bottom: 4px;
+    .ms-gallery__grid {
+      gap: 18px;
+      grid-template-columns: 1fr 1fr;
     }
-    .section-link {
-      color: var(--orange);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: opacity 0.2s;
+    .ms-gallery-card,
+    .ms-gallery-card--wide {
+      grid-column: span 1;
+      min-height: 290px;
     }
-    .section-link:hover { opacity: 0.8; }
-    .section-link b { margin-left: 4px; }
-
-    /* ========== NAŠ PRISTUP ========== */
-    .philosophy {
-      padding: 80px 0;
-      background: #f6f7f9;
-      border-bottom: 1px solid var(--line);
+    .ms-gallery-card__caption {
+      left: 18px;
+      bottom: 20px;
+      right: 45px;
     }
-    .philosophy__head {
-      max-width: 760px;
-      margin-bottom: 36px;
+    .ms-gallery-card__caption strong {
+      font-size: 20px;
     }
-    .philosophy__head h2 {
-      margin-top: 12px;
-      font-size: clamp(28px, 3.2vw, 42px);
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      color: #07111e;
+    .ms-gallery-card__plus {
+      right: 12px;
+      bottom: 18px;
+      width: 26px;
+      height: 26px;
+      font-size: 18px;
     }
-    .philosophy__head h2 em { color: var(--orange); font-style: normal; }
-    .philosophy__head p {
+    .ms-steps {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .ms-steps h3 {
       margin-top: 16px;
-      color: #55636e;
-      font-size: 15px;
-      line-height: 1.7;
     }
-    .philosophy__grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+    .ms-contact {
+      padding-top: 65px;
     }
-    .philosophy__grid div {
-      padding: 24px 20px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 2px;
-      box-shadow: 0 4px 16px rgba(6, 19, 31, 0.03);
+    .ms-contact__inner {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 32px;
+      padding-bottom: 45px;
     }
-    .philosophy__grid strong {
+    .ms-contact__actions {
+      min-width: min(100%, 320px);
+    }
+    .ms-contact__signature {
+      font-size: 8px;
+      letter-spacing: 0;
+      gap: 16px;
+    }
+  }
+  @media (max-width: 480px) {
+    .ms-kicker {
+      font-size: 9px;
+      letter-spacing: 0.1em;
+    }
+    .ms-hero__content {
+      padding-top: 50px;
+    }
+    .ms-mobile-break {
       display: block;
-      color: var(--orange);
+    }
+    .ms-hero h1 {
+      font-size: clamp(39px, 11vw, 52px);
+      line-height: 1.04;
+    }
+    .ms-hero__lead br {
+      display: none;
+    }
+    .ms-hero__lead {
+      margin-top: 22px !important;
+    }
+    .ms-hero .ms-actions {
+      gap: 10px;
+      margin-top: 26px;
+      flex-direction: column;
+      align-items: stretch;
+      max-width: 340px;
+    }
+    .ms-button {
+      padding: 14px 17px;
       font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 8px;
-    }
-    .philosophy__grid span {
-      color: #3d4a55;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    /* ========== GALLERY ========== */
-    .gallery {
-      background: #eef1f4;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      padding: 60px 0;
-    }
-    .gallery__grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
       gap: 14px;
+      min-height: 50px;
     }
-    .gallery-card {
-      margin: 0;
-      cursor: pointer;
-      background: #fff;
-      border: 1px solid #e2e7eb;
-      border-radius: 2px;
-      overflow: hidden;
-      transition: all 0.3s ease;
+    .ms-hero .ms-actions .ms-button {
+      flex: 1;
+      white-space: nowrap;
     }
-    .gallery-card:hover {
-      border-color: var(--orange);
-      box-shadow: 0 12px 28px rgba(6,19,31,0.08);
-    }
-    .gallery-card:focus-visible {
-      outline: 2px solid var(--orange);
-      outline-offset: 2px;
-      border-color: var(--orange);
-    }
-    .gallery-card__image {
-      aspect-ratio: 16 / 10;
-      overflow: hidden;
-      background: #151a1e;
-    }
-    .gallery-card__image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.55s ease;
-      display: block;
-    }
-    .gallery-card:hover img { transform: scale(1.05); }
-    .gallery-card figcaption { padding: 12px 14px 14px; }
-    .gallery-card figcaption span {
-      display: block;
-      color: var(--orange);
+    .ms-hero__note {
       font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      margin-top: 22px;
     }
-    .gallery-card figcaption strong {
-      display: block;
-      margin-top: 4px;
-      font-size: 13px;
-      font-weight: 700;
-      color: #07111e;
+    .ms-hero__controls {
+      padding-bottom: 10px;
     }
-
-    /* ========== PROCESS ========== */
-    .process {
-      padding: 60px 0;
-      background: #f6f7f9;
+    .ms-product-grid {
+      grid-template-columns: 1fr;
+      gap: 34px;
     }
-    .process__head { max-width: 560px; margin-bottom: 36px; }
-    .process__head h2 {
-      margin-top: 12px;
-      font-size: clamp(28px, 3.2vw, 42px);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      color: #07111e;
+    .ms-product__visual {
+      aspect-ratio: 1.22;
     }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
+    .ms-product__body {
+      padding-top: 18px;
     }
-    .steps article {
-      position: relative;
-      border-left: 1px solid #c9d2d8;
-      padding: 0 18px 0 20px;
-      min-height: 130px;
+    .ms-product__overlay h3 {
+      font-size: 28px;
+      max-width: 290px;
     }
-    .steps article:first-child { border-left: 0; padding-left: 0; }
-    .step-num {
-      color: var(--orange);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
+    .ms-product__body > .ms-text-link {
+      font-size: 11px;
     }
-    .steps h3 {
-      margin-top: 12px;
+    .ms-gallery__grid {
+      grid-template-columns: 1fr;
+    }
+    .ms-gallery-card {
+      min-height: 310px;
+    }
+    .ms-gallery-card__caption strong {
+      font-size: 25px;
+    }
+    .ms-gallery-card__caption {
+      left: 23px;
+      bottom: 25px;
+    }
+    .ms-model__choices button {
+      font-size: 10px;
+      padding-inline: 12px;
+    }
+    .ms-model__head {
+      font-size: 8px;
+      padding-inline: 16px;
+    }
+    .ms-model__foot {
+      font-size: 9px;
+      padding-inline: 16px;
+    }
+    .ms-design__copy h2 {
+      font-size: 43px;
+    }
+    .ms-film p {
       font-size: 14px;
-      font-weight: 700;
-      line-height: 1.25;
-      color: #07111e;
     }
-    .steps p {
-      margin-top: 8px;
-      color: #66747d;
-      font-size: 12px;
-      line-height: 1.5;
+    .ms-steps {
+      grid-template-columns: 1fr;
+      gap: 28px;
     }
-    .steps article:not(:last-child)::after {
-      content: "→";
+    .ms-steps li {
+      padding-left: 45px;
+      padding-top: 20px;
+    }
+    .ms-step-number {
       position: absolute;
-      right: -7px;
-      top: 0;
-      color: #a8b4bc;
-      background: #f6f7f9;
-      padding: 0 3px;
-      font-size: 13px;
+      left: 0;
+      top: 23px;
     }
-
-    /* ========== CTA ========== */
-    .cta {
-      position: relative;
-      min-height: 300px;
-      display: flex;
-      align-items: center;
-      color: #fff;
-      overflow: hidden;
-      background: var(--navy);
+    .ms-steps h3 {
+      margin-top: 0;
     }
-    .cta > img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .ms-steps p {
+      margin-top: 7px;
     }
-    .cta__shade {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(100deg, rgba(2,12,20,0.94) 0%, rgba(2,12,20,0.7) 55%, rgba(2,12,20,0.42) 100%);
+    .ms-contact__signature {
+      flex-direction: column;
+      gap: 10px;
     }
-    .cta__inner {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 36px;
-      padding: 48px 0;
-    }
-    .cta h2 {
-      margin-top: 12px;
-      font-size: clamp(26px, 3.3vw, 42px);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      color: #fff;
-    }
-    .cta p {
-      margin-top: 12px;
-      max-width: 520px;
-      color: #b5c2ca;
+    .ms-contact p {
       font-size: 14px;
-      line-height: 1.6;
     }
-
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 1200px) {
-      .categories__grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-      }
+    .ms-contact p br {
+      display: none;
     }
-    @media (max-width: 980px) {
-      .philosophy__grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery__grid { grid-template-columns: repeat(2, 1fr); }
-      .steps { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
-      .steps article {
-        border-left: 0;
-        border-top: 1px solid #c9d2d8;
-        padding: 18px 0 0;
-      }
-      .steps article:first-child { border-top: 0; padding-top: 0; }
-      .steps article:not(:last-child)::after { display: none; }
-      .cta__inner { flex-direction: column; align-items: flex-start; }
-      .section-head { flex-direction: column; align-items: flex-start; }
-      .section-head > p { margin-top: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ms-home * {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
     }
-    @media (max-width: 640px) {
-      .wrap, .categories__wrap { width: min(100% - 24px, 1280px); }
-      .categories__grid { grid-template-columns: 1fr; }
-      .hero { min-height: 560px; }
-      .hero__content { padding-top: 110px; padding-bottom: 40px; }
-      .hero h1 { font-size: 32px; }
-      .hero__lead { font-size: 14px; }
-      .hero__metrics { grid-template-columns: 1fr; gap: 14px; }
-      .hero__dots { right: 12px; bottom: 16px; }
-      .categories, .gallery, .process { padding: 48px 0; }
-      .philosophy { padding: 56px 0; }
-      .philosophy__grid { grid-template-columns: 1fr; }
-      .gallery__grid { grid-template-columns: 1fr; }
-      .steps { grid-template-columns: 1fr; }
-      .cta { min-height: 340px; }
-      .cta__inner { padding: 40px 0; }
+    .ms-reveal {
+      opacity: 1 !important;
+      transform: none !important;
     }
-  </style>
+  }
 
-  <script>
-    // ===== HERO SLAJDER =====
-    const slides = document.querySelectorAll<HTMLElement>('.hero__slide');
-    const dots = document.querySelectorAll<HTMLButtonElement>('.hero__dot');
+  /* Video program selection: one player, no eager video requests. */
+  .ms-film-choices {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 26px;
+    border: 1px solid #ffffff25;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .ms-film-choice {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 62px;
+    padding: 14px 18px;
+    border: 0;
+    border-right: 1px solid #ffffff25;
+    background: #101f2b;
+    color: #d2dce3;
+    text-align: left;
+    font-size: 12px !important;
+    transition:
+      background 0.25s,
+      color 0.25s;
+  }
+  .ms-film-choice:last-child {
+    border-right: 0;
+  }
+  .ms-film-choice.is-active {
+    background: var(--ms-orange);
+    color: #102332;
+    font-weight: 800;
+  }
+  .ms-film-choice__number {
+    font-size: 10px;
+    opacity: 0.8;
+  }
+  .ms-film-preview {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-top: 20px;
+  }
+  .ms-film-preview img {
+    width: 112px;
+    aspect-ratio: 16/9;
+    height: auto;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+  .ms-film-preview span {
+    font-size: 8px;
+    letter-spacing: 0.13em;
+    color: #a7b5bf;
+  }
+  .ms-film-preview p {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #eef2f5;
+  }
+  .ms-film-error {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #e3eaf0;
+    padding-top: 15px;
+  }
+  .ms-film-error a {
+    color: #ffae75;
+    text-decoration: underline;
+  }
+  @media (hover: hover) {
+    .ms-film-choice:not(.is-active):hover {
+      background: #203442;
+    }
+  }
+  @media (max-width: 1100px) and (min-width: 761px) {
+    .ms-model__choices {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .ms-model__choices button {
+      border-bottom: 1px solid #ffffff20;
+    }
+  }
+  @media (max-width: 760px) {
+    .ms-film-choices {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .ms-film-choice {
+      border-bottom: 1px solid #ffffff25;
+    }
+    .ms-film-choice:nth-child(2n) {
+      border-right: 0;
+    }
+    .ms-film-choice:nth-last-child(-n + 2) {
+      border-bottom: 0;
+    }
+  }
+  @media (max-width: 480px) {
+    .ms-model__choices {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .ms-model__choices button {
+      border-bottom: 1px solid #ffffff20;
+    }
+    .ms-model__choices button:nth-child(3) {
+      border-right: 0;
+    }
+    .ms-model__choices button:nth-last-child(-n + 2) {
+      border-bottom: 0;
+    }
+    .ms-film-choice {
+      font-size: 11px !important;
+      padding: 13px 12px;
+      gap: 9px;
+    }
+  }
+</style>
 
-    if (slides.length > 1) {
-      let current = 0;
-      let timer: ReturnType<typeof setInterval> | undefined;
+<script>
+  // Hero: simple 3-second rotation, independent of OS animation preference.
+  const root = document.getElementById("ms-home");
+  if (root) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const slides = Array.from(root.querySelectorAll<HTMLImageElement>(".ms-hero__image"));
+    const choices = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-slide]"));
+    const autoplay = root.querySelector<HTMLButtonElement>("#ms-autoplay");
+    const navigation = root.querySelector<HTMLElement>(".ms-program-nav");
+    const SLIDE_DURATION = 3000;
+    let current = 0;
+    let playing = true;
+    let timer: ReturnType<typeof setInterval> | undefined;
+    let progressFrame: number | undefined;
+    let progressStart = performance.now();
 
-      const show = (index: number) => {
-        const next = (index + slides.length) % slides.length;
-        if (next === current) return;
+    const stopClock = () => {
+      if (timer !== undefined) clearInterval(timer);
+      timer = undefined;
+      if (progressFrame !== undefined) cancelAnimationFrame(progressFrame);
+      progressFrame = undefined;
+    };
 
-        slides.forEach((s, i) => {
-          s.classList.remove('is-prev');
-          if (i === current) s.classList.add('is-prev');
-          s.classList.toggle('is-active', i === next);
-        });
-        dots.forEach((d, i) => d.classList.toggle('is-active', i === next));
-
-        current = next;
-      };
-
-      const stop = () => {
-        if (timer) clearInterval(timer);
-      };
-
-      const start = () => {
-        stop();
-        timer = setInterval(() => show(current + 1), 3000);
-      };
-
-      dots.forEach((dot) => {
-        dot.addEventListener('click', () => {
-          const idx = dot.dataset.index;
-          if (idx !== undefined) {
-            show(Number(idx));
-            start();
-          }
-        });
+    const showSlide = (index: number) => {
+      if (!slides.length) return;
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("is-active", i === current);
+        slide.setAttribute("aria-hidden", String(i !== current));
       });
+      choices.forEach((choice, i) => {
+        choice.classList.toggle("is-active", i === current);
+        choice.setAttribute("aria-pressed", String(i === current));
+      });
+      progressStart = performance.now();
+      navigation?.style.setProperty("--ms-progress", "0");
+    };
 
-      start();
-    }
+    const updateProgress = () => {
+      if (!playing || document.hidden) return;
+      const elapsed = performance.now() - progressStart;
+      navigation?.style.setProperty("--ms-progress", String(Math.min(elapsed / SLIDE_DURATION, 1)));
+      progressFrame = requestAnimationFrame(updateProgress);
+    };
 
-    // ===== GALERIJA → LIGHTBOX (klik + tastatura: Enter / Space) =====
-    const galleryCards = document.querySelectorAll<HTMLElement>('.gallery-card');
+    const syncClock = () => {
+      stopClock();
+      if (!playing || document.hidden || slides.length < 2) {
+        navigation?.style.setProperty("--ms-progress", "1");
+        return;
+      }
+      progressStart = performance.now();
+      progressFrame = requestAnimationFrame(updateProgress);
+      timer = setInterval(() => showSlide(current + 1), SLIDE_DURATION);
+    };
 
-    galleryCards.forEach((card) => {
-      const open = () => {
-        const openLightbox = (window as any).openModularLightbox;
-        if (typeof openLightbox !== 'function') return;
-        openLightbox({
-          src: card.dataset.src ?? '',
-          title: card.dataset.title ?? '',
-          desc: '',
-          category: card.dataset.category ?? '',
-        });
-      };
+    const setPlaying = (value: boolean) => {
+      playing = value;
+      if (autoplay) {
+        autoplay.hidden = false;
+        autoplay.disabled = false;
+        autoplay.setAttribute("aria-pressed", String(value));
+        autoplay.setAttribute("aria-label", value ? "Pauziraj automatsku smenu slika" : "Pokreni automatsku smenu slika");
+        autoplay.textContent = value ? "Pauziraj smenu  Ⅱ" : "Pokreni smenu  ▷";
+      }
+      syncClock();
+    };
 
-      card.addEventListener('click', open);
-      card.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          open();
-        }
+    choices.forEach((choice, index) => {
+      choice.addEventListener("click", () => {
+        showSlide(index);
+        syncClock();
       });
     });
-  </script>
-</BaseLayout>
+    autoplay?.addEventListener("click", () => setPlaying(!playing));
+    document.addEventListener("visibilitychange", syncClock);
+    reducedMotion.addEventListener("change", () => {
+      if (reducedMotion.matches) {
+        root.querySelectorAll(".ms-awaiting").forEach((el) => el.classList.remove("ms-awaiting"));
+      }
+    });
+    setPlaying(true);
+    const modelImages = Array.from(
+      root.querySelectorAll<HTMLImageElement>(".ms-model__image"),
+    );
+    const modelChoices = Array.from(
+      root.querySelectorAll<HTMLButtonElement>("[data-model]"),
+    );
+    modelChoices.forEach((button, index) =>
+      button.addEventListener("click", () => {
+        modelImages.forEach((img, i) => {
+          img.classList.toggle("is-active", i === index);
+          img.setAttribute("aria-hidden", String(i !== index));
+        });
+        modelChoices.forEach((choice, i) => {
+          choice.classList.toggle("is-active", i === index);
+          choice.setAttribute("aria-pressed", String(i === index));
+        });
+      }),
+    );
+    // One video element for all programs. Selection alone never fetches a video.
+    const filmButton = root.querySelector<HTMLButtonElement>("#ms-film-toggle");
+    const filmPanel = root.querySelector<HTMLElement>("#ms-film-panel");
+    const film = root.querySelector<HTMLVideoElement>("#ms-film-video");
+    const filmPoster = root.querySelector<HTMLImageElement>("#ms-film-poster");
+    const filmSelection = root.querySelector<HTMLElement>("#ms-film-selection");
+    const filmDownload =
+      root.querySelector<HTMLAnchorElement>("#ms-film-download");
+    const filmError = root.querySelector<HTMLElement>("#ms-film-error");
+    const filmErrorLink = root.querySelector<HTMLAnchorElement>(
+      "#ms-film-error-link",
+    );
+    const videoChoices = Array.from(
+      root.querySelectorAll<HTMLButtonElement>("[data-video-index]"),
+    );
+    let selectedVideo = 0;
+    let videoRequest = 0;
+
+    const closeVideo = () => {
+      videoRequest += 1;
+      if (film) {
+        film.pause();
+        // Removing sources and resetting cancels the current media resource.
+        film.querySelectorAll("source").forEach((source) => source.remove());
+        film.removeAttribute("src");
+        film.load();
+      }
+      if (filmPanel) filmPanel.hidden = true;
+      if (filmError) filmError.hidden = true;
+      filmButton?.setAttribute("aria-expanded", "false");
+      if (filmButton) filmButton.textContent = "▷ Pogledajte video";
+    };
+
+    videoChoices.forEach((choice, index) =>
+      choice.addEventListener("click", () => {
+        if (index === selectedVideo) return;
+        closeVideo();
+        selectedVideo = index;
+        videoChoices.forEach((button, i) => {
+          button.classList.toggle("is-active", i === index);
+          button.setAttribute("aria-pressed", String(i === index));
+        });
+        const name = choice.dataset.videoName ?? "";
+        const poster = choice.dataset.videoPoster ?? "";
+        const mp4 = choice.dataset.videoMp4 ?? "";
+        if (filmPoster) {
+          filmPoster.src = poster;
+          filmPoster.alt = `Video: ${name}`;
+        }
+        if (filmSelection) filmSelection.textContent = name;
+        if (film) {
+          film.poster = poster;
+          film.setAttribute("aria-label", `Video: ${name}`);
+        }
+        if (filmDownload) filmDownload.href = mp4;
+        if (filmErrorLink) filmErrorLink.href = mp4;
+      }),
+    );
+
+    filmButton?.addEventListener("click", () => {
+      if (!filmPanel || !film) return;
+      if (!filmPanel.hidden) {
+        closeVideo();
+        return;
+      }
+      const choice = videoChoices[selectedVideo];
+      if (!choice) return;
+      const request = ++videoRequest;
+      filmPanel.hidden = false;
+      if (filmError) filmError.hidden = true;
+      filmButton.setAttribute("aria-expanded", "true");
+      filmButton.textContent = "Zatvorite video ×";
+      const sources = [
+        { src: choice.dataset.videoWebm, type: "video/webm" },
+        { src: choice.dataset.videoMp4, type: "video/mp4" },
+      ];
+      sources.forEach(({ src, type }) => {
+        if (!src) return;
+        const source = document.createElement("source");
+        source.src = src;
+        source.type = type;
+        film.append(source);
+      });
+      film.load();
+      void film.play().catch(() => {
+        // Ignore interrupted requests; native controls handle autoplay restrictions.
+        if (request === videoRequest && film.error && filmError)
+          filmError.hidden = false;
+      });
+    });
+    film?.addEventListener("error", () => {
+      if (filmPanel && !filmPanel.hidden && filmError) filmError.hidden = false;
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) film?.pause();
+    });
+    window.addEventListener("pagehide", () => film?.pause());
+    // Keep the existing LightboxModal and its public API; add page-local focus management.
+    let galleryOpener: HTMLButtonElement | null = null;
+    root
+      .querySelectorAll<HTMLButtonElement>("[data-gallery-src]")
+      .forEach((button) =>
+        button.addEventListener("click", () => {
+          const openLightbox = (
+            window as Window & {
+              openModularLightbox?: (data: {
+                src: string;
+                title: string;
+                desc: string;
+                category: string;
+              }) => void;
+            }
+          ).openModularLightbox;
+          if (openLightbox) {
+            galleryOpener = button;
+            openLightbox({
+              src: button.dataset.gallerySrc ?? "",
+              title: button.dataset.galleryTitle ?? "",
+              desc: "",
+              category: button.dataset.galleryCategory ?? "",
+            });
+          }
+        }),
+      );
+    const dialog = document.getElementById("lightbox-dialog");
+    if (dialog) {
+      dialog.addEventListener("keydown", (event) => {
+        if (
+          event.key !== "Tab" ||
+          dialog.getAttribute("aria-hidden") === "true"
+        )
+          return;
+        const focusable = Array.from(
+          dialog.querySelectorAll<HTMLElement>(
+            'button:not([disabled]), a[href], [tabindex="0"]',
+          ),
+        ).filter((el) => el.getClientRects().length > 0);
+        const first = focusable[0],
+          last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      });
+      new MutationObserver(() => {
+        if (dialog.getAttribute("aria-hidden") === "true" && galleryOpener) {
+          galleryOpener.focus({ preventScroll: true });
+          galleryOpener = null;
+        }
+      }).observe(dialog, {
+        attributes: true,
+        attributeFilter: ["aria-hidden"],
+      });
+    }
+    // Content stays visible without JavaScript and with reduced motion.
+    if ("IntersectionObserver" in window && !reducedMotion.matches) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove("ms-awaiting");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      root.querySelectorAll<HTMLElement>(".ms-reveal").forEach((el) => {
+        if (el.getBoundingClientRect().top > window.innerHeight) {
+          el.classList.add("ms-awaiting");
+          observer.observe(el);
+        }
+      });
+    }
+
+  }
+</script>

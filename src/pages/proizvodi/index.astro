@@ -1,916 +1,375 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-// BaseLayout sam dodaje " · Modularni Sistemi" na kraj naslova
 const pageTitle = 'Proizvodi i sistemi';
-const pageDescription = 'Pregled modularnih sistema za savremenu arhitekturu: Inox sistemi odvodnjavanja, moderna rasveta, modularni podni sistemi i Fire Pit vatrišta.';
+const pageDescription = 'Istražite inox sisteme odvodnjavanja, modernu rasvetu, modularne podne sisteme i Fire Pit Grill. Različiti proizvodni programi, jedan usklađen pristup.';
 const ogImage = '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp';
 
-// Hero slajder sa sva 4 programa
-const heroSlides = [
+const categories = [
+
   {
-    src: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
-    alt: 'Modularni sistemi — lučni inox kanal u pejzažnom parteru',
-    position: 'center',
+
+    num: '01',
+
+    title: 'Inox sistemi odvodnjavanja',
+
+    headline: 'Odvodnjavanje koje prati oblik vašeg prostora.',
+
+    description: 'Modularni inox sistemi sa integrisanim fabričkim padom i nivelirajućim stopama za ravne, lučne, kružne, elipsaste i S-forme prema geometriji prostora.',
+
+    slug: '/inox-sistemi-odvodnjavanja/',
+
+    image: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
+
+    alt: 'Modularni inox sistemi odvodnjavanja',
+
+    highlights: [
+
+      'Izrada formi po tačnoj geometriji (radijusi, krivine, S-linije)',
+
+      'Inox lim debljine 2.0 mm (AISI 304 / 316)',
+
+      'Fabrički integrisan unutrašnji pad (0.5% – 1%)',
+
+      'Nivelirajuće stope za milimetarsko ravnanje pre betoniranja',
+
+      'Prirubnički spoj sa EPDM zaptivkama i vijcima',
+
+    ],
+
   },
+
   {
-    src: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp',
-    alt: 'Z lampa — moderna LED rasveta za dvorište i ulicu',
-    position: '70% center',
+
+    num: '02',
+
+    title: 'Moderna rasveta',
+
+    headline: 'Svetlo koje menja doživljaj prostora.',
+
+    description: 'Arhitektonska Z-lampa u visinama od 3m, 4m i 5m sa IP66 zaštitom i podesivom LED snagom, namenjena za dvorišta, parkinge, poslovne zone i javne prostore.',
+
+    slug: '/moderna-rasveta/',
+
+    image: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp',
+
+    alt: 'Z lampa moderna arhitektonska LED rasveta',
+
+    highlights: [
+
+      'Dostupne tipske visine stuba: 3 m / 4 m / 5 m',
+
+      'Podesiva LED snaga od 50 W do 100 W visoke efikasnosti',
+
+      'Izbor temperature svetla: 3000 K / 4000 K / 6000 K',
+
+      'IP66 zaštita otporna na vremenske uslove',
+
+      'Čelična konstrukcija (pocinčavanje / farbanje po izboru)',
+
+    ],
+
   },
+
   {
-    src: '/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp',
-    alt: 'Modularni podni sistemi — fabrički sklopljeni paneli za terase i partere',
-    position: 'center',
+
+    num: '03',
+
+    title: 'Modularni podni sistemi',
+
+    headline: 'Jedna osnova, četiri završne obloge.',
+
+    description: 'Čelični monoblok paneli 1x1m sa teleskopskim stopama za nivelaciju i suvom montažom. Izbor između veštačke trave, dekinga, keramike 20mm i industrijske rešetke.',
+
+    slug: '/modularni-podni-sistemi/',
+
+    image: '/images/podovi/modularni-pod-terasa-exterijer-moderna-4.webp',
+
+    alt: 'Modularni čelični monoblok podni paneli',
+
+    highlights: [
+
+      'Fabrički sklopljeni paneli 1x1m koji se bočno spajaju bez šrafova',
+
+      'Teleskopske zglobne stope za nivelisanje neravnina od 4 do 12 cm',
+
+      'Suva montaža bez betoniranja i lepljenja završnih obloga',
+
+      '4 završne obloge: Eco-Green trava, WPC deking, Gres keramika, Heavy-Duty rešetka',
+
+      'Integrisana trenutna drenaža vode i stalna ventilacija podloge',
+
+    ],
+
   },
+
   {
-    src: '/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp',
-    alt: 'Fire Pit Grill — čelično ložište i roštilj na terasi',
-    position: 'center',
+
+    num: '04',
+
+    title: 'Fire Pit Grill',
+
+    headline: 'Centralno mesto okupljanja na otvorenom.',
+
+    description: 'Masivna čelična vatrišta i profesionalni roštilji u jednom elementu. Dizajnirani za pripremu hrane na plancha ploči i stvaranje tople atmosfere na terasama i u dvorištima.',
+
+    slug: '/fire-pit-grill/',
+
+    image: '/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp',
+
+    alt: 'Fire Pit Grill čelično ložište i roštilj',
+
+    highlights: [
+
+      '2-u-1 funkcija: ambijentalno ložište i profesionalni roštilj',
+
+      'Masivna čelična konstrukcija visoke otpornosti na toplotu',
+
+      'Gornja plancha ring ploča sa više temperaturnih zona',
+
+      'Unikatni laserski sečeni ornamenti kroz koje sija žar',
+
+      'Namenjeno za korišćenje na otvorenom, uz odgovarajuće održavanje',
+
+    ],
+
   },
+
 ];
 
-// SVA 4 PROIZVODNA PROGRAMA (svaka stranica ima svoj video, ovde su samo slike)
-const categories = [
-  {
-    num: '01',
-    title: 'Inox sistemi odvodnjavanja',
-    headline: 'Precizno odvodnjavanje koje prati geometriju prostora.',
-    description: 'Modularni inox sistemi sa integrisanim fabričkim padom i nivelirajućim stopama za ravne, lučne, kružne, elipsaste i S-forme prema geometriji prostora.',
-    slug: '/inox-sistemi-odvodnjavanja/',
-    image: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
-    alt: 'Modularni inox sistemi odvodnjavanja',
-    highlights: [
-      'Izrada formi po tačnoj geometriji (radijusi, krivine, S-linije)',
-      'Inox lim debljine 2.0 mm (AISI 304 / 316)',
-      'Fabrički integrisan unutrašnji pad (0.5% – 1%)',
-      'Nivelirajuće stope za milimetarsko ravnanje pre betoniranja',
-      'Prirubnički spoj sa EPDM zaptivkama i vijcima',
-    ],
-  },
-  {
-    num: '02',
-    title: 'Moderna rasveta',
-    headline: 'Arhitektonska rasveta koja spaja funkciju i estetiku.',
-    description: 'Arhitektonska Z-lampa u visinama od 3m, 4m i 5m sa IP66 zaštitom i podesivom LED snagom, namenjena za dvorišta, parkinge, poslovne zone i javne prostore.',
-    slug: '/moderna-rasveta/',
-    image: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp',
-    alt: 'Z lampa moderna arhitektonska LED rasveta',
-    highlights: [
-      'Dostupne tipske visine stuba: 3 m / 4 m / 5 m',
-      'Podesiva LED snaga od 50 W do 100 W visoke efikasnosti',
-      'Izbor temperature svetla: 3000 K / 4000 K / 6000 K',
-      'IP66 zaštita otporna na vremenske uslove',
-      'Čelična konstrukcija (pocinčavanje / farbanje po izboru)',
-    ],
-  },
-  {
-    num: '03',
-    title: 'Modularni podni sistemi',
-    headline: 'Jedan sistem. Bezbroj mogućnosti. 4 završne obloge.',
-    description: 'Čelični monoblok paneli 1x1m sa teleskopskim stopama za nivelaciju i suvom montažom. Izbor između veštačke trave, dekinga, keramike 20mm i industrijske rešetke.',
-    slug: '/modularni-podni-sistemi/',
-    image: '/images/podovi/modularni-pod-terasa-exterijer-moderna-4.webp',
-    alt: 'Modularni čelični monoblok podni paneli',
-    highlights: [
-      'Fabrički sklopljeni paneli 1x1m koji se bočno spajaju bez šrafova',
-      'Teleskopske zglobne stope za nivelisanje neravnina od 4 do 12 cm',
-      '100% suva montaža bez betona, lepkova, prašine i majstora',
-      '4 tipologije: trava (Eco-Green), deking (WPC), keramika (Gres), rešetka (Heavy-Duty)',
-      'Integrisana trenutna drenaža vode i stalna ventilacija podloge',
-    ],
-  },
-  {
-    num: '04',
-    title: 'Fire Pit Grill',
-    headline: 'Centralno mesto okupljanja na otvorenom.',
-    description: 'Masivna čelična vatrišta i profesionalni roštilji u jednom elementu. Dizajnirani za pripremu hrane na plancha ploči i stvaranje tople atmosfere na terasama i u dvorištima.',
-    slug: '/fire-pit-grill/',
-    image: '/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp',
-    alt: 'Fire Pit Grill čelično ložište i roštilj',
-    highlights: [
-      '2-u-1 funkcija: ambijentalno ložište i profesionalni roštilj',
-      'Masivna čelična konstrukcija visoke otpornosti na toplotu',
-      'Gornja plancha ring ploča sa više temperaturnih zona',
-      'Unikatni laserski sečeni ornamenti kroz koje sija žar',
-      'Celogodišnja upotreba na otvorenom pod svim vremenskim uslovima',
-    ],
-  },
+const heroSlides = [
+  { image: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp', alt: 'Inox kanal uz zakrivljenu stazu i zelenilo', position: 'center', name: 'Inox odvodnjavanje' },
+  { image: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp', alt: 'Z-lampe osvetljavaju savremeni objekat', position: '70% center', name: 'Moderna rasveta' },
+  { image: '/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp', alt: 'Modularne podne površine u vrtu', position: 'center', name: 'Modularni podovi' },
+  { image: '/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp', alt: 'Fire Pit Grill na terasi u sumrak', position: 'center', name: 'Fire Pit Grill' },
 ];
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} ogImage={ogImage}>
-  <div class="proizvodi-page">
-
-    <!-- HERO SEKCIJA (PUN EKRAN BEZ SIVE TRAKE) -->
-    <section class="hero">
-      <div class="hero__slides">
+  <main class="products-page">
+    <section class="products-hero" aria-labelledby="products-title" aria-roledescription="karusel">
+      <div class="products-hero__media" aria-hidden="true">
         {heroSlides.map((slide, i) => (
           <img
-            class={`hero__slide ${i === 0 ? 'is-active' : ''}`}
-            src={slide.src}
-            alt={slide.alt}
-            style={`object-position: ${slide.position};`}
+            class:list={['products-hero__image', { 'is-active': i === 0 }]}
+            src={slide.image}
+            alt=""
+            style={`object-position:${slide.position}`}
+            loading={i === 0 ? 'eager' : 'lazy'}
             fetchpriority={i === 0 ? 'high' : 'auto'}
-            loading="eager"
             decoding="async"
           />
         ))}
       </div>
-      <div class="hero__shade"></div>
-
-      <div class="hero__content wrap">
-        <div class="hero__copy">
-          <div class="eyebrow">
-            <span></span>
-            Proizvodni program · Modularni sistemi
-          </div>
-
-          <h1>
-            Modularni sistemi za<br />
-            <em>savremenu arhitekturu.</em>
-          </h1>
-
-          <p class="hero__lead">
-            Strukturisani portfolio od četiri specijalizovana proizvodna pravca razvijena sa
-            fokusom na preciznu geometriju, industrijsku otpornost materijala i jednostavnu ugradnju na objektu.
-          </p>
-
-          <div class="hero__actions">
-            <a class="btn btn--orange" href="/posaljite-projekat/">
-              Pošaljite upit <b>→</b>
-            </a>
-            <a class="btn btn--ghost" href="tel:+38166241386">
-              Pozovite: 066 241 386 <b>↗</b>
-            </a>
-          </div>
+      <div class="products-hero__overlay" aria-hidden="true"></div>
+      <div class="products-container products-hero__content">
+        <p class="products-eyebrow products-eyebrow--light"><span></span> Naši proizvodni programi</p>
+        <h1 id="products-title">Različiti sistemi.<br /><em>Bezbroj rešenja.</em></h1>
+        <p class="products-hero__lead">Od pažljivo osmišljenih detalja do kompletnih rešenja za vaš prostor. Istražite naše proizvode i pronađite ono što odgovara vašim potrebama.</p>
+        <div class="products-actions">
+          <a class="products-button products-button--orange" href="#programi">Istražite proizvode <span aria-hidden="true">↗</span></a>
+          <a class="products-button products-button--ghost" href="/posaljite-projekat/">Pošaljite upit <span aria-hidden="true">→</span></a>
         </div>
-
-        <div class="hero__specs">
-          <div>
-            <strong>4 PROGRAMA</strong>
-            <span>Odvodnjavanje · Rasveta · Podovi · Vatrišta</span>
-          </div>
-          <div>
-            <strong>AISI 304 / 316 & ČELIK</strong>
-            <span>Vrhunske industrijske legure</span>
-          </div>
-          <div>
-            <strong>B2B TEHNIČKA PODRŠKA</strong>
-            <span>DWG preseci, proračuni i predmeri</span>
-          </div>
-          <div>
-            <strong>FABRIČKA IZRADA</strong>
-            <span>Spremno za brzu montažu na terenu</span>
-          </div>
-        </div>
+        <p class="products-hero__micro">Za privatne kupce, majstore i firme.</p>
       </div>
-
-      <!-- Tačkice slajdera -->
-      <div class="hero__dots" role="tablist" aria-label="Izbor slike">
-        {heroSlides.map((_, i) => (
-          <button
-            type="button"
-            class={`hero__dot ${i === 0 ? 'is-active' : ''}`}
-            aria-label={`Slika ${i + 1}`}
-            data-index={i}
-          ></button>
-        ))}
+      <div class="products-container products-hero__footer">
+        <div class="products-hero__status"><span>RAZLIČITI PROGRAMI / JEDAN PRISTUP</span><button type="button" id="products-slider-toggle" aria-pressed="true" aria-label="Pauziraj smenu fotografija">Pauziraj smenu <span aria-hidden="true">Ⅱ</span></button></div>
+        <div class="products-hero__nav" role="group" aria-label="Izaberite fotografiju programa">
+          {heroSlides.map((slide, i) => (
+            <button type="button" class:list={['products-hero__choice', { 'is-active': i === 0 }]} data-slide={i} aria-pressed={i === 0 ? 'true' : 'false'}>
+              <span class="products-hero__index">0{i + 1}</span><span>{slide.name}</span><span class="products-hero__arrow" aria-hidden="true">↗</span>
+            </button>
+          ))}
+        </div>
       </div>
     </section>
 
-    <!-- KATALOG KATEGORIJA (CIK-CAK) -->
-    <section class="catalog-section">
-      <div class="wrap catalog-wrap">
-        {categories.map((cat, idx) => (
-          <article class={`cat-card ${idx % 2 === 1 ? 'cat-card--reverse' : ''}`}>
-            
-            <!-- Tekstualni blok -->
-            <div class="cat-card__content">
-              <div class="cat-card__meta">
-                <span class="cat-badge">Program {cat.num}</span>
-                <span class="cat-type">Modularni sistemi</span>
-              </div>
+    <section class="products-intro" id="programi" aria-labelledby="products-intro-title">
+      <div class="products-container products-intro__inner">
+        <div>
+          <p class="products-eyebrow"><span></span> Izaberite svoj sistem</p>
+          <h2 id="products-intro-title">Vaš prostor.<br /><span>Pravo rešenje.</span></h2>
+        </div>
+        <p>Različiti proizvodni programi. Jedan usklađen pristup. Istražite mogućnosti, odaberite ono što vam odgovara i javite nam se sa idejom, skicom ili dimenzijama.</p>
+      </div>
+    </section>
 
+    <section class="products-catalog" aria-label="Svi proizvodni programi">
+      <div class="products-container products-catalog__inner">
+        {categories.map((cat, i) => (
+          <article class:list={['products-feature', { 'products-feature--reverse': i % 2 === 1 }]} id={`program-${cat.num}`}>
+            <div class="products-feature__visual">
+              <img src={cat.image} alt={cat.alt} loading="lazy" decoding="async" />
+              <span class="products-feature__image-tag">MODULARNI SISTEMI <strong>{cat.num}</strong></span>
+              <span class="products-feature__image-label">{cat.title}</span>
+            </div>
+            <div class="products-feature__copy">
+              <div class="products-feature__meta"><span>PROGRAM / {cat.num}</span><span>MODULARNI SISTEMI</span></div>
               <h2>{cat.title}</h2>
-              <p class="cat-card__headline">"{cat.headline}"</p>
-              <p class="cat-card__desc">{cat.description}</p>
-
-              <div class="cat-card__highlights">
-                <span class="highlights-title">Karakteristike sistema:</span>
-                <ul>
-                  {cat.highlights.map((h) => (
-                    <li>
-                      <span class="bullet"></span>
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
+              <p class="products-feature__headline">{cat.headline}</p>
+              <p class="products-feature__description">{cat.description}</p>
+              <div class="products-feature__specs">
+                <h3>Šta dobijate</h3>
+                <ul>{cat.highlights.map((highlight) => (<li><span aria-hidden="true">↗</span>{highlight}</li>))}</ul>
               </div>
-
-              <div class="cat-card__actions">
-                <a href={cat.slug} class="btn btn--orange">
-                  Kompletna specifikacija <b>→</b>
-                </a>
-                <a href="/posaljite-projekat/" class="btn btn--ghost-dark">
-                  Zatražite ponudu <b>↗</b>
-                </a>
+              <div class="products-feature__actions">
+                <a href={cat.slug} class="products-button products-button--orange">Istražite program <span aria-hidden="true">↗</span></a>
+                <a href="/posaljite-projekat/" class="products-feature__link">Zatražite ponudu <span aria-hidden="true">→</span></a>
               </div>
             </div>
-
-            <!-- Vizuelni prikaz -->
-            <div class="cat-card__visual">
-              <div class="cat-card__img-box">
-                <img src={cat.image} alt={cat.alt} loading="lazy" />
-
-                <div class="cat-card__img-shade"></div>
-                <div class="cat-card__img-badge">
-                  <span>{cat.title}</span>
-                  <strong>{cat.num}</strong>
-                </div>
-              </div>
-            </div>
-
           </article>
         ))}
       </div>
     </section>
 
-    <!-- CTA BANER IZNAD FOOTERA -->
-    <section class="cta">
-      <img
-        src="/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp"
-        alt="Prilagođavanje geometrije prostora"
-        loading="lazy"
-      />
-      <div class="cta__shade"></div>
-      <div class="wrap cta__inner">
-        <div>
-          <div class="eyebrow">
-            <span></span>
-            Prilagođavanje geometriji i specifikacija
-          </div>
-          <h2>Potrebno vam je rešenje <em>po meri objekta?</em></h2>
-          <p>
-            Dostavite arhitektonske podloge i dimenzije. Naš inženjerski tim priprema kompletnu 
-            specifikaciju sistema u skladu sa zadatim rasporedom padova i kota.
-          </p>
-        </div>
-        <div class="cta__actions">
-          <a class="btn btn--orange" href="/posaljite-projekat/">
-            Pošaljite upit <b>→</b>
-          </a>
-          <a class="btn btn--ghost" href="tel:+38166241386">
-            Pozovite: 066 241 386 <b>↗</b>
-          </a>
-        </div>
+    <section class="products-method" aria-labelledby="products-method-title">
+      <div class="products-container products-method__inner">
+        <div><p class="products-eyebrow products-eyebrow--light"><span></span> Naš način rada</p><h2 id="products-method-title">Prvo crtež.<br /><em>Pa onda proizvod.</em></h2></div>
+        <div><p>Kada je potrebno, pre izrade razrađujemo oblik, mere i detalje kroz tehnički crtež i 3D prikaz. Vi nam kažete šta vam treba — zajedno dolazimo do odgovarajućeg rešenja.</p><a href="/o-nama/">Kako radimo <span aria-hidden="true">↗</span></a></div>
       </div>
     </section>
-  </div>
+
+    <section class="products-contact" aria-labelledby="products-contact-title">
+      <div class="products-container products-contact__inner">
+        <div><p class="products-eyebrow products-eyebrow--light"><span></span> Počnimo razgovor</p><h2 id="products-contact-title">Imate ideju,<br /><em>dimenzije ili pitanje?</em></h2><p>Pošaljite nam fotografiju, skicu ili jednostavno opišite šta želite. Ne morate imati gotov projekat.</p></div>
+        <div class="products-contact__actions"><a class="products-button products-button--orange" href="/posaljite-projekat/">Pošaljite upit <span aria-hidden="true">↗</span></a><a class="products-button products-button--ghost" href="tel:+38166241386">Pozovite 066 241 386 <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>
 
 <style>
-  :global(html) {
-    scroll-behavior: smooth;
-  }
-
-  :global(body) {
-    margin: 0;
-    background: #f6f7f9;
-    color: #07111e;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .proizvodi-page {
-    --navy: #06131f;
-    --navy2: #0b1d2b;
-    --orange: #ff6900;
-    --orange-hover: #e85e00;
-    --line: #dce2e7;
-    --muted: #64717c;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-  }
-
-  .wrap {
-    width: min(1280px, calc(100% - 40px));
-    margin-inline: auto;
-  }
-
-  /* ========== HERO (PUN EKRAN BEZ SIVE TRAKE) ========== */
-  .hero {
-    position: relative;
-    min-height: 700px;
-    background: var(--navy);
-    color: #fff;
-    isolation: isolate;
-    display: flex;
-    align-items: flex-end;
-  }
-
-  .hero__slides {
-    position: absolute;
-    inset: 0;
-    z-index: -3;
-  }
-
-  .hero__slide {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease;
-  }
-
-  .hero__slide.is-active {
-    opacity: 1;
-  }
-
-  /* ČISTIJI, BISTRIJI PRELIV */
-  .hero__shade {
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(95deg, rgba(6, 19, 31, 0.72) 0%, rgba(6, 19, 31, 0.45) 35%, rgba(6, 19, 31, 0.1) 65%, transparent 100%),
-      linear-gradient(0deg, rgba(6, 19, 31, 0.55) 0%, transparent 35%);
-    z-index: -2;
-  }
-
-  .hero h1,
-  .hero__lead {
-    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
-  }
-
-  .hero__content {
-    padding-top: 130px;
-    padding-bottom: 64px;
-    display: grid;
-    grid-template-columns: minmax(0, 720px) 1fr;
-    gap: 50px;
-    align-items: end;
-  }
-
-  .eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--orange);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  .eyebrow span {
-    display: inline-block;
-    width: 20px;
-    height: 2px;
-    background: var(--orange);
-    flex-shrink: 0;
-  }
-
-  h1, h2, h3, p {
-    margin: 0;
-  }
-
-  .hero h1 {
-    margin-top: 18px;
-    max-width: 860px;
-    font-size: clamp(36px, 4.4vw, 56px);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    font-weight: 800;
-    color: #fff;
-  }
-
-  .hero h1 em,
-  .cta h2 em {
-    font-style: normal;
-    color: var(--orange);
-  }
-
-  .hero__lead {
-    margin-top: 20px;
-    max-width: 620px;
-    color: #d4dee4;
-    font-size: 15px;
-    line-height: 1.65;
-  }
-
-  .hero__actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 32px;
-  }
-
-  .hero__dots {
-    position: absolute;
-    right: max(20px, calc((100% - 1280px) / 2));
-    bottom: 24px;
-    display: flex;
-    gap: 8px;
-    z-index: 3;
-  }
-
-  .hero__dot {
-    width: 28px;
-    height: 4px;
-    padding: 0;
-    border: 0;
-    border-radius: 2px;
-    background: rgba(255, 255, 255, 0.35);
-    cursor: pointer;
-    transition: background 0.3s ease, width 0.3s ease;
-  }
-
-  .hero__dot:hover {
-    background: rgba(255, 255, 255, 0.7);
-  }
-
-  .hero__dot.is-active {
-    width: 44px;
-    background: var(--orange);
-  }
-
-  .hero__dot:focus-visible {
-    outline: 2px solid #fff;
-    outline-offset: 3px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero__slide { transition: none; }
-  }
-
-  .btn {
-    min-height: 48px;
-    padding: 0 24px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    text-decoration: none;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border-radius: 2px;
-    transition: all 0.25s ease;
-    cursor: pointer;
-  }
-
-  .btn b {
-    font-size: 15px;
-    font-weight: 600;
-  }
-
-  .btn--orange {
-    background: var(--orange);
-    color: #fff;
-    border: 1px solid var(--orange);
-  }
-
-  .btn--orange:hover {
-    background: var(--orange-hover);
-    border-color: var(--orange-hover);
-    transform: translateY(-2px);
-  }
-
-  .btn--ghost {
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    color: #fff;
-    background: rgba(0, 0, 0, 0.15);
-  }
-
-  .btn--ghost:hover {
-    background: #fff;
-    color: var(--navy);
-    border-color: #fff;
-  }
-
-  .btn--ghost-dark {
-    border: 1px solid var(--line);
-    color: #07111e;
-    background: #fff;
-  }
-
-  .btn--ghost-dark:hover {
-    border-color: var(--navy);
-    background: #f0f4f7;
-  }
-
-  .hero__specs {
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
-    padding-left: 28px;
-    display: grid;
-    gap: 20px;
-  }
-
-  .hero__specs div {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .hero__specs strong {
-    font-size: 14px;
-    letter-spacing: 0.03em;
-    font-weight: 700;
-    color: #fff;
-  }
-
-  .hero__specs span {
-    margin-top: 4px;
-    color: #94a3ad;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-  }
-
-  /* ========== KATALOG SEKCIJA ========== */
-  .catalog-section {
-    padding: 80px 0;
-    background: #f6f7f9;
-  }
-
-  .catalog-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-  }
-
-  .cat-card {
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 3px;
-    padding: 44px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
-    box-shadow: 0 4px 20px rgba(6, 19, 31, 0.04);
-    transition: all 0.3s ease;
-  }
-
-  .cat-card:hover {
-    border-color: var(--orange);
-    box-shadow: 0 16px 40px rgba(6, 19, 31, 0.08);
-  }
-
-  .cat-card--reverse {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .cat-card--reverse .cat-card__content {
-    order: 2;
-  }
-
-  .cat-card--reverse .cat-card__visual {
-    order: 1;
-  }
-
-  .cat-card__content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .cat-card__meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-  }
-
-  .cat-badge {
-    color: var(--orange);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .cat-type {
-    color: var(--muted);
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .cat-card h2 {
-    font-size: clamp(26px, 2.5vw, 36px);
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.03em;
-    color: #07111e;
-    text-transform: uppercase;
-  }
-
-  .cat-card__headline {
-    margin-top: 10px;
-    color: var(--orange);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    line-height: 1.4;
-  }
-
-  .cat-card__desc {
-    margin-top: 14px;
-    color: #55636e;
-    font-size: 14px;
-    line-height: 1.65;
-  }
-
-  .cat-card__highlights {
-    margin-top: 24px;
-    padding-top: 20px;
-    border-top: 1px solid var(--line);
-  }
-
-  .highlights-title {
-    display: block;
-    color: #07111e;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .cat-card__highlights ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .cat-card__highlights li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    color: #3d4a55;
-    font-size: 12.5px;
-    line-height: 1.45;
-  }
-
-  .bullet {
-    width: 6px;
-    height: 6px;
-    background: var(--orange);
-    border-radius: 1px;
-    margin-top: 6px;
-    flex-shrink: 0;
-  }
-
-  .cat-card__actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 30px;
-  }
-
-  .cat-card__visual {
-    width: 100%;
-  }
-
-  .cat-card__img-box {
-    position: relative;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-    border-radius: 3px;
-    background: #06131f;
-    border: 1px solid var(--line);
-  }
-
-  .cat-card__img-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .cat-card:hover .cat-card__img-box img {
-    transform: scale(1.04);
-  }
-
-  .cat-card__img-shade {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 60%, rgba(6, 19, 31, 0.85) 100%);
-    pointer-events: none;
-  }
-
-  .cat-card__img-badge {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: #fff;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    z-index: 2;
-  }
-
-  .cat-card__img-badge strong {
-    color: var(--orange);
-    font-size: 14px;
-  }
-
-  /* ========== CTA BANER ========== */
-  .cta {
-    position: relative;
-    min-height: 340px;
-    display: flex;
-    align-items: center;
-    color: #fff;
-    overflow: hidden;
-    background: var(--navy);
-  }
-
-  .cta > img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .cta__shade {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(100deg, rgba(6, 19, 31, 0.95) 0%, rgba(6, 19, 31, 0.75) 55%, rgba(6, 19, 31, 0.45) 100%);
-  }
-
-  .cta__inner {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 36px;
-    padding: 56px 0;
-  }
-
-  .cta h2 {
-    margin-top: 12px;
-    font-size: clamp(26px, 3.3vw, 42px);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    font-weight: 800;
-    color: #fff;
-  }
-
-  .cta p {
-    margin-top: 12px;
-    max-width: 520px;
-    color: #b5c2ca;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  .cta__actions {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex-shrink: 0;
-  }
-
-  /* ========== RESPONSIVE ========== */
-  @media (max-width: 1024px) {
-    .cat-card,
-    .cat-card--reverse {
-      grid-template-columns: 1fr;
-      gap: 32px;
-      padding: 32px;
-    }
-
-    .cat-card--reverse .cat-card__content {
-      order: 1;
-    }
-
-    .cat-card--reverse .cat-card__visual {
-      order: 2;
-    }
-  }
-
-  @media (max-width: 980px) {
-    .hero__content {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-
-    .hero__specs {
-      display: none;
-    }
-
-    .hero__dots {
-      right: 12px;
-      bottom: 16px;
-    }
-
-    .cta__inner {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .cta__actions {
-      flex-direction: row;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .wrap {
-      width: min(100% - 24px, 1280px);
-    }
-
-    .hero {
-      min-height: 560px;
-    }
-
-    .hero__content {
-      padding-top: 80px;
-      padding-bottom: 40px;
-    }
-
-    .hero h1 {
-      font-size: 32px;
-    }
-
-    .cat-card {
-      padding: 24px 18px;
-    }
-
-    .cat-card__actions {
-      flex-direction: column;
-    }
-
-    .cat-card__actions .btn {
-      width: 100%;
-    }
-
-    .cta {
-      min-height: 340px;
-    }
-
-    .cta__inner {
-      padding: 40px 0;
-    }
-
-    .cta__actions {
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .cta__actions .btn {
-      width: 100%;
-    }
-  }
+  .products-page{--navy:#06131f;--ink:#102332;--orange:#ff6900;--muted:#61717b;--paper:#f3f5f5;font-family:Manrope,Inter,system-ui,sans-serif;color:var(--ink);background:var(--paper);overflow:clip}
+  .products-page *{box-sizing:border-box}
+  .products-page h1,.products-page h2,.products-page h3,.products-page p{margin:0}
+  .products-page a{text-decoration:none}
+  .products-page button{font:inherit;cursor:pointer}
+  .products-page a:focus-visible,.products-page button:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
+  .products-container{width:min(1320px,calc(100% - 96px));margin-inline:auto}
+  .products-eyebrow{display:flex;align-items:center;gap:12px;color:#ab4807;text-transform:uppercase;font-size:10px;font-weight:800;letter-spacing:.16em;line-height:1.6}
+  .products-eyebrow>span{display:inline-block;width:24px;height:2px;flex:none;background:var(--orange)}
+  .products-eyebrow--light{color:#ff9c55}
+  .products-page em{font-style:normal;color:var(--orange)}
+  .products-button{min-height:53px;padding:15px 22px;display:inline-flex;justify-content:space-between;align-items:center;gap:22px;border-radius:3px;border:1px solid transparent;font-size:12px;font-weight:800;line-height:1.4;transition:background .2s,transform .2s,border-color .2s}
+  .products-button span{font-size:19px;line-height:1}
+  .products-button--orange{background:var(--orange);color:#101921}
+  .products-button--ghost{background:#06131f30;border-color:#ffffff6b;color:#fff}
+  .products-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+  .products-hero{position:relative;min-height:min(860px,100svh);min-height:730px;min-height:max(730px,min(860px,100svh));background:var(--navy);color:#fff;display:flex;flex-direction:column;justify-content:space-between;isolation:isolate}
+  .products-hero__media,.products-hero__overlay{position:absolute;inset:0;pointer-events:none}
+  .products-hero__media{z-index:-2;overflow:hidden}
+  .products-hero__image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease}
+  .products-hero__image.is-active{opacity:1}
+  .products-hero__overlay{z-index:-1;background:linear-gradient(90deg,#031019e6 0%,#03101991 42%,#0310190d 100%),linear-gradient(0deg,#06131ff2 0%,#06131f77 18%,transparent 55%)}
+  .products-hero__content{position:relative;padding-top:112px;padding-bottom:65px}
+  .products-hero h1{font-size:clamp(48px,6vw,85px);line-height:1.055;letter-spacing:-.062em;font-weight:800;max-width:1100px;margin-top:25px}
+  .products-hero h1 em{color:#ff822c}
+  .products-hero__lead{max-width:590px;color:#e0e8eb;font-size:17px;line-height:1.75;margin-top:27px!important}
+  .products-hero__micro{color:#c2d0d8;font-size:12px;margin-top:28px!important}
+  .products-hero__footer{position:relative}
+  .products-hero__status{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:16px;font-size:10px;letter-spacing:.11em;color:#c4d0d9}
+  .products-hero__status button{border:0;background:none;color:#e3edf2;min-height:42px;font-size:11px;letter-spacing:.02em;padding:8px}
+  .products-hero__nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #ffffff50}
+  .products-hero__choice{position:relative;display:flex;align-items:center;gap:13px;min-height:84px;padding:20px 16px;background:transparent;border:0;border-right:1px solid #ffffff24;color:#cbd5db;text-align:left;font-size:12px;font-weight:700}
+  .products-hero__choice:first-child{padding-left:0}.products-hero__choice:last-child{border-right:0}
+  .products-hero__choice::before{content:'';position:absolute;top:-2px;left:0;right:0;height:3px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .2s}
+  .products-hero__choice.is-active::before{transform:scaleX(1)}
+  .products-hero__choice.is-active{color:#fff}.products-hero__index{color:#ff9c55;font-size:10px;font-weight:700}.products-hero__arrow{margin-left:auto;color:#ff9c55;font-size:18px}
+  .products-intro{padding:90px 0 76px;background:#f0f3f4}
+  .products-intro__inner{display:flex;justify-content:space-between;align-items:end;gap:48px}
+  .products-intro h2{font-size:clamp(37px,4.3vw,60px);line-height:1.07;letter-spacing:-.055em;margin-top:16px;font-weight:750}
+  .products-intro h2 span{color:#65747e}
+  .products-intro__inner>p{max-width:375px;color:var(--muted);font-size:15px;line-height:1.85}
+  .products-catalog{padding:0 0 100px;background:#f0f3f4}.products-catalog__inner{display:grid;gap:34px}
+  .products-feature{display:grid;grid-template-columns:1.03fr .97fr;background:#fff;border:1px solid #dde3e6;border-radius:4px;overflow:hidden;min-height:530px;box-shadow:0 9px 30px #06131f08}
+  .products-feature--reverse{grid-template-columns:.97fr 1.03fr}
+  .products-feature--reverse .products-feature__visual{order:2}.products-feature--reverse .products-feature__copy{order:1}
+  .products-feature__visual{position:relative;min-height:530px;background:#14212b;overflow:hidden}
+  .products-feature__visual::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#06131fcc,transparent 35%),linear-gradient(180deg,#06131f66,transparent 35%);pointer-events:none}
+  .products-feature__visual img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .8s}
+  .products-feature__image-tag{position:absolute;z-index:1;top:28px;left:30px;right:30px;display:flex;justify-content:space-between;gap:10px;color:#fff;font-size:10px;letter-spacing:.12em;font-weight:700}
+  .products-feature__image-tag strong{color:#ff9c55}.products-feature__image-label{position:absolute;z-index:1;bottom:32px;left:30px;right:30px;color:#fff;font-size:25px;font-weight:700;letter-spacing:-.04em}
+  .products-feature__copy{padding:clamp(32px,4.2vw,62px);display:flex;flex-direction:column;justify-content:center}
+  .products-feature__meta{display:flex;align-items:center;justify-content:space-between;gap:15px;color:#a64500;font-size:10px;font-weight:800;letter-spacing:.13em}
+  .products-feature__meta span:last-child{color:#8c9aa4}
+  .products-feature h2{margin-top:18px;font-size:clamp(30px,3vw,43px);line-height:1.13;letter-spacing:-.048em;font-weight:800;text-transform:none}
+  .products-feature__headline{font-size:16px;font-weight:700;color:#bb4b05;line-height:1.55;margin-top:13px!important}
+  .products-feature__description{font-size:14px;line-height:1.85;color:#52636e;margin-top:15px!important}
+  .products-feature__specs{border-top:1px solid #dce4e8;margin-top:27px;padding-top:21px}
+  .products-feature__specs h3{text-transform:uppercase;font-size:10px;letter-spacing:.12em;font-weight:800;color:#263541;margin-bottom:14px}
+  .products-feature__specs ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+  .products-feature__specs li{display:flex;gap:12px;font-size:12px;line-height:1.55;color:#43535e}
+  .products-feature__specs li span{color:#dc5900;font-size:15px;line-height:1.15;flex:none}
+  .products-feature__actions{display:flex;flex-wrap:wrap;align-items:center;gap:21px;margin-top:28px}
+  .products-feature__link{color:var(--ink);font-size:12px;font-weight:800;display:inline-flex;gap:12px;align-items:center}
+  .products-feature__link span{color:#dd5b00;font-size:17px}
+  .products-method{background:#06131f;color:#fff;padding:90px 0}
+  .products-method__inner{display:grid;grid-template-columns:1fr .8fr;gap:80px;align-items:end}
+  .products-method h2{font-size:clamp(37px,4.5vw,64px);line-height:1.1;letter-spacing:-.055em;margin-top:19px;font-weight:750}
+  .products-method__inner>div:last-child p{font-size:15px;line-height:1.9;color:#bac8d2}
+  .products-method__inner>div:last-child a{display:inline-flex;gap:15px;margin-top:22px;color:#ff9c55;font-size:12px;font-weight:800}
+  .products-contact{position:relative;background:#0a2030;color:#fff;padding:86px 0}
+  .products-contact__inner{display:flex;align-items:center;justify-content:space-between;gap:55px}
+  .products-contact h2{font-size:clamp(36px,4.4vw,62px);line-height:1.1;letter-spacing:-.055em;margin-top:20px;font-weight:750}
+  .products-contact p:not(.products-eyebrow){max-width:570px;color:#bfced7;line-height:1.8;font-size:15px;margin-top:21px}
+  .products-contact__actions{display:flex;flex-direction:column;gap:12px;min-width:245px}
+  @media (hover:hover){.products-button--orange:hover{background:#ff903d;transform:translateY(-2px)}.products-button--ghost:hover{background:#ffffff20;border-color:#fff}.products-feature:hover .products-feature__visual img{transform:scale(1.035)}.products-hero__choice:hover{background:#ffffff11;color:#fff}.products-feature__link:hover{color:#dd5b00}}
+  @media(min-width:1600px){.products-container{width:min(1440px,calc(100% - 120px))}}
+  @media(max-width:1100px){.products-container{width:calc(100% - 64px)}.products-feature__copy{padding:32px}.products-feature__visual{min-height:510px}.products-feature{min-height:510px}.products-hero__choice{font-size:11px;padding:16px 11px}}
+  @media(max-width:850px){.products-intro__inner{align-items:start;flex-direction:column;gap:23px}.products-feature,.products-feature--reverse{grid-template-columns:1fr}.products-feature__visual,.products-feature--reverse .products-feature__visual{order:0;min-height:420px}.products-feature__copy,.products-feature--reverse .products-feature__copy{order:1}.products-feature{min-height:0}.products-method__inner{grid-template-columns:1fr;gap:30px}.products-contact__inner{align-items:start;flex-direction:column}.products-contact__actions{width:min(100%,360px)}}
+  @media(max-width:640px){.products-container{width:calc(100% - 36px)}.products-hero{min-height:0}.products-hero__content{padding-top:80px;padding-bottom:55px}.products-hero h1{font-size:clamp(39px,9vw,58px)}.products-hero__lead{font-size:14px}.products-hero__nav{grid-template-columns:repeat(2,minmax(0,1fr))}.products-hero__choice{min-height:65px;border-bottom:1px solid #ffffff22;padding:15px 10px!important}.products-hero__choice:nth-child(2){border-right:0}.products-hero__arrow{display:none}.products-hero__status{font-size:9px}.products-intro{padding:65px 0 45px}.products-intro h2{font-size:37px}.products-catalog{padding-bottom:65px}.products-catalog__inner{gap:24px}.products-feature__visual{min-height:295px}.products-feature__copy{padding:29px 22px 35px}.products-feature h2{font-size:29px}.products-feature__image-label{font-size:20px;left:20px;bottom:22px}.products-feature__image-tag{left:20px;top:20px;right:20px}.products-method,.products-contact{padding:65px 0}.products-contact__actions{width:100%}.products-button{min-height:50px}}
+  @media(prefers-reduced-motion:reduce){.products-hero__image,.products-feature__visual img,.products-button{transition:none!important}}
 </style>
 
 <script>
-  const slides = document.querySelectorAll<HTMLElement>('.hero__slide');
-  const dots = document.querySelectorAll<HTMLButtonElement>('.hero__dot');
-
-  if (slides.length > 1) {
-    let current = 0;
+  // Samostalan, jednostavan slajder. Nema globalnih promenljivih niti dodatnih zavisnosti.
+  const root = document.querySelector<HTMLElement>('.products-hero');
+  if (root) {
+    const photos = Array.from(root.querySelectorAll<HTMLImageElement>('.products-hero__image'));
+    const choices = Array.from(root.querySelectorAll<HTMLButtonElement>('.products-hero__choice'));
+    const toggle = root.querySelector<HTMLButtonElement>('#products-slider-toggle');
+    let active = 0;
     let timer: number | undefined;
+    let playing = true; // Automatska smena radi odmah, nezavisno od sistemskih podešavanja.
 
-    const show = (index: number) => {
-      current = (index + slides.length) % slides.length;
-      slides.forEach((s, i) => s.classList.toggle('is-active', i === current));
-      dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
+    const render = (index: number) => {
+      active = (index + photos.length) % photos.length;
+      photos.forEach((image, i) => image.classList.toggle('is-active', i === active));
+      choices.forEach((choice, i) => {
+        choice.classList.toggle('is-active', i === active);
+        choice.setAttribute('aria-pressed', String(i === active));
+      });
     };
-
     const stop = () => {
-      if (timer) window.clearInterval(timer);
+      if (timer !== undefined) window.clearInterval(timer);
+      timer = undefined;
     };
     const start = () => {
       stop();
-      timer = window.setInterval(() => show(current + 1), 3000);
+      if (playing && photos.length > 1) {
+        timer = window.setInterval(() => render(active + 1), 3000);
+      }
+    };
+    const updateToggle = () => {
+      if (!toggle) return;
+      toggle.innerHTML = playing ? 'Pauziraj smenu <span aria-hidden="true">Ⅱ</span>' : 'Pokreni smenu <span aria-hidden="true">▷</span>';
+      toggle.setAttribute('aria-label', playing ? 'Pauziraj smenu fotografija' : 'Pokreni smenu fotografija');
+      toggle.setAttribute('aria-pressed', String(playing));
     };
 
-    dots.forEach((dot) => {
-      dot.addEventListener('click', () => {
-        show(Number(dot.dataset.index));
-        start();
-      });
+    choices.forEach((choice, i) => choice.addEventListener('click', () => {
+      render(i);
+      start();
+    }));
+    toggle?.addEventListener('click', () => {
+      playing = !playing;
+      updateToggle();
+      start();
     });
-
-    start();
+    updateToggle();
+    if (playing) start();
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop(); else start();
+    });
   }
 </script>
