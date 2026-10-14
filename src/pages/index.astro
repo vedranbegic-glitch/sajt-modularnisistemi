@@ -26,15 +26,14 @@ const heroSlides = [
   },
 ];
 
-// 4 KATEGORIJE - 100% CIST WEBM (Inox pozicija ažurirana na inox-sistemi-odvodnjavanja.webm)
+// 4 KATEGORIJE
 const categories = [
   {
     title: 'Inox sistemi odvodnjavanja',
     headline: 'Precizno odvodnjavanje koje prati geometriju prostora.',
     description: 'Modularni inox sistemi sa integrisanim fabričkim padom i nivelacionim stopama za ravne, lučne, kružne i S-oblikovane forme u parternom uređenju.',
     slug: '/inox-sistemi-odvodnjavanja/',
-    heroImage: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
-    video: '/videos/inox-sistemi-odvodnjavanja.webm',
+    heroImage: '/images/inox/skriveni-modularni-inox-kanal-s-forma-bazen-suva-plaza.webp',
     artEyebrow: 'PROJEKTOVANO PREMA VAŠOJ GEOMETRIJI',
     artTitle: 'Bez geometrijskih <em>ograničenja.</em>',
     linkText: 'Pregled sistema',
@@ -44,8 +43,7 @@ const categories = [
     headline: 'Arhitektonska rasveta koja spaja funkciju i estetiku.',
     description: 'Arhitektonska Z-lampa u visinama od 3m, 4m i 5m, sa IP65 zaštitom i podesivom snagom, namenjena za dvorišta, parkinge, poslovne zone i javne površine.',
     slug: '/moderna-rasveta/',
-    heroImage: '/images/rasveta/z-lampa-dimenzije-visina-tehnicki-detalji.webp',
-    video: '/videos/moderna-rasveta.webm',
+    heroImage: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp',
     artEyebrow: 'DIZAJNIRANA DA OSTAVI UTISAK',
     artTitle: 'Moderan dizajn, <em>za svaki prostor.</em>',
     linkText: 'Pregled sistema',
@@ -55,19 +53,17 @@ const categories = [
     headline: 'Fleksibilna podna rešenja za različite prostore i namene.',
     description: 'Modularne podne obloge sa sistemom brzog sklapanja, namenjene za izradu stabilnih i provetrenih podnih površina koje se lako održavaju.',
     slug: '/modularni-podni-sistemi/',
-    heroImage: '/images/podovi/gres-premium-monoblok-keramika-1.webp',
-    video: '/videos/modularni-podovi.webm',
-    artEyebrow: 'LUXUZ NA OTVORENOM',
+    heroImage: '/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp',
+    artEyebrow: 'LUKSUZ NA OTVORENOM',
     artTitle: 'Montaža bez alata <em>i troškova.</em>',
     linkText: 'Pregled sistema',
   },
   {
     title: 'Fire Pit Grill',
     headline: 'Centralno mesto okupljanja na otvorenom.',
-    description: 'Masivna čelična vatrišta i profesionalni roštilji u jednom elementu. Dizajnirani da unesu toplinu, autentičnu vatru i nezaboravnu atmosferu na terase i dvorišta.',
+    description: 'Masivna čelična ognjišta i profesionalni roštilji u jednom elementu. Dizajnirani da unesu toplinu, autentičnu vatru i nezaboravnu atmosferu na terase i dvorišta.',
     slug: '/fire-pit-grill/',
-    heroImage: '/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp',
-    video: '/videos/fire-pit-grill.webm',
+    heroImage: '/images/fire-pit/fire-pit-grill-celicna-vatra-rostilj.webp',
     artEyebrow: 'TOPLINA I AMBIJENT NA OTVORENOM',
     artTitle: 'Ložište i roštilj <em>u jednom.</em>',
     linkText: 'Pregled proizvoda',
@@ -102,11 +98,6 @@ const steps = [
 const featuredGallery = [
   {
     categoryLabel: 'Inox odvodnjavanje',
-    title: 'S-forma bazen i parter',
-    image: '/images/inox/skriveni-modularni-inox-kanal-s-forma-bazen-suva-plaza.webp',
-  },
-  {
-    categoryLabel: 'Inox odvodnjavanje',
     title: 'Lučni kanal sa rešetkom',
     image: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
   },
@@ -118,14 +109,19 @@ const featuredGallery = [
   {
     categoryLabel: 'Modularni podovi',
     title: 'Premium granitna keramika',
-    image: '/images/podovi/gres-premium-monoblok-keramika-1.webp',
+    image: '/images/podovi/modularni-pod-terasa-kisa-noc-1.webp',
+  },
+  {
+    categoryLabel: 'Fire Pit Grill',
+    title: 'Čelično ognjište i roštilj',
+    image: '/images/fire-pit/fire-pit-grill-celicna-vatra-rostilj.webp',
   },
 ];
 ---
 
 <BaseLayout
   title="Početna"
-  description="Modularna rešenja za odvodnjavanje, rasvetu, podne sisteme i vanjska vatrišta — projektovana za savremenu arhitekturu. Jedan sistem. Bezbroj mogućnosti."
+  description="Modularna rešenja za odvodnjavanje, rasvetu, podne sisteme i spoljna ognjišta — projektovana za savremenu arhitekturu. Jedan sistem. Bezbroj mogućnosti."
 >
   <div class="home-page">
 
@@ -139,7 +135,7 @@ const featuredGallery = [
             alt={slide.alt}
             style={`object-position: ${slide.position};`}
             fetchpriority={i === 0 ? 'high' : 'auto'}
-            loading="eager"
+            loading={i === 0 ? 'eager' : 'lazy'}
             decoding="async"
           />
         ))}
@@ -159,7 +155,7 @@ const featuredGallery = [
           </h1>
 
           <p class="hero__lead">
-            Modularna rešenja za odvodnjavanje, rasvetu, podne sisteme i vanjska vatrišta — 
+            Modularna rešenja za odvodnjavanje, rasvetu, podne sisteme i spoljna ognjišta — 
             projektovana za savremenu arhitekturu i konkretan prostor.
           </p>
 
@@ -169,7 +165,7 @@ const featuredGallery = [
               <span>Po meri objekta</span>
             </div>
             <div>
-              <strong>RAZLIČITE PRIMENE</strong>
+              <strong>SVE NAMENE</strong>
               <span>Privatni · poslovni · javni prostori</span>
             </div>
             <div>
@@ -201,7 +197,7 @@ const featuredGallery = [
       </div>
     </section>
 
-    <!-- 4 KARTICE PROIZVODA (100% WEBM) -->
+    <!-- 4 KARTICE PROIZVODA -->
     <section class="categories">
       <div class="categories__wrap">
         <div class="section-head">
@@ -221,22 +217,7 @@ const featuredGallery = [
           {categories.map((cat, i) => (
             <a href={cat.slug} class="cat-card">
               <div class="cat-card__image">
-                {cat.video ? (
-                  <video
-                    autoplay
-                    loop
-                    muted
-                    playsinline
-                    preload="auto"
-                    poster={cat.heroImage}
-                    class="cat-card__video"
-                  >
-                    <source src={cat.video} type="video/webm" />
-                    <img src={cat.heroImage} alt={cat.title} loading="lazy" />
-                  </video>
-                ) : (
-                  <img src={cat.heroImage} alt={cat.title} loading="lazy" />
-                )}
+                <img src={cat.heroImage} alt={cat.title} loading="lazy" />
 
                 <span>0{i + 1}</span>
 
@@ -274,7 +255,7 @@ const featuredGallery = [
             <em>Projektujemo rešenje prema prostoru.</em>
           </h2>
           <p>
-            Standardna serijska rešenja često zahtevaju naknadna sečenja i kompromise na terenu. Mi polazimo od geometrije vašeg crteža: najpre razrađujemo rešenje kroz crtež i 3D model, a zatim izrađujemo gotove kanale, rasvetu, podne module i vatrišta tako da se uklope u zadate dimenzije i linije prostora.
+            Standardna serijska rešenja često zahtevaju naknadna sečenja i kompromise na terenu. Mi polazimo od geometrije vašeg crteža: najpre razrađujemo rešenje kroz crtež i 3D model, a zatim izrađujemo gotove kanale, rasvetu, podne module i ognjišta tako da se uklope u zadate dimenzije i linije prostora.
           </p>
         </div>
 
@@ -319,7 +300,9 @@ const featuredGallery = [
           {featuredGallery.map((item) => (
             <figure
               class="gallery-card"
-              onclick={`window.openModularLightbox && window.openModularLightbox({ src: '${item.image}', title: '${item.title}', desc: '', category: '${item.categoryLabel}' })`}
+              data-src={item.image}
+              data-title={item.title}
+              data-category={item.categoryLabel}
               tabindex="0"
               role="button"
               aria-label={`Uvećaj: ${item.title}`}
@@ -463,7 +446,7 @@ const featuredGallery = [
     }
     .btn--ghost:hover { background: #fff; color: var(--navy); border-color: #fff; }
 
-    /* ========== HERO (ČIST PRELIV BEZ MREŽICE) ========== */
+    /* ========== HERO ========== */
     .hero {
       position: relative;
       min-height: 680px;
@@ -498,7 +481,6 @@ const featuredGallery = [
       z-index: 2;
     }
 
-    /* ČISTIJI, BISTRIJI PRELIV */
     .hero__shade {
       position: absolute;
       inset: 0;
@@ -582,7 +564,7 @@ const featuredGallery = [
     .hero__dot:hover { background: rgba(255, 255, 255, 0.7); }
     .hero__dot.is-active { width: 44px; background: var(--orange); }
 
-    /* ========== CATEGORIES (4 KARTICE U NIZU / 2x2) ========== */
+    /* ========== CATEGORIES (4 kartice u nizu; 2 kolone ispod 1200px; 1 kolona ispod 640px) ========== */
     .categories {
       background: #eef1f4;
       border-top: 1px solid var(--line);
@@ -631,17 +613,8 @@ const featuredGallery = [
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       display: block;
     }
-    .cat-card__video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .cat-card:hover .cat-card__video,
-    .cat-card:hover img { 
-      transform: scale(1.05); 
+    .cat-card:hover img {
+      transform: scale(1.05);
     }
     .cat-card__image > span {
       position: absolute;
@@ -870,6 +843,11 @@ const featuredGallery = [
       border-color: var(--orange);
       box-shadow: 0 12px 28px rgba(6,19,31,0.08);
     }
+    .gallery-card:focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 2px;
+      border-color: var(--orange);
+    }
     .gallery-card__image {
       aspect-ratio: 16 / 10;
       overflow: hidden;
@@ -1045,6 +1023,7 @@ const featuredGallery = [
   </style>
 
   <script>
+    // ===== HERO SLAJDER =====
     const slides = document.querySelectorAll<HTMLElement>('.hero__slide');
     const dots = document.querySelectorAll<HTMLButtonElement>('.hero__dot');
 
@@ -1087,5 +1066,29 @@ const featuredGallery = [
 
       start();
     }
+
+    // ===== GALERIJA → LIGHTBOX (klik + tastatura: Enter / Space) =====
+    const galleryCards = document.querySelectorAll<HTMLElement>('.gallery-card');
+
+    galleryCards.forEach((card) => {
+      const open = () => {
+        const openLightbox = (window as any).openModularLightbox;
+        if (typeof openLightbox !== 'function') return;
+        openLightbox({
+          src: card.dataset.src ?? '',
+          title: card.dataset.title ?? '',
+          desc: '',
+          category: card.dataset.category ?? '',
+        });
+      };
+
+      card.addEventListener('click', open);
+      card.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          open();
+        }
+      });
+    });
   </script>
 </BaseLayout>

@@ -1,17 +1,22 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { inoxProducts } from '../../data/inoxProducts';
 
 const canonicalURL = 'https://modularnisistemi.com/inox-sistemi-odvodnjavanja/';
-const pageTitle = 'Inox sistemi odvodnjavanja | Modularni Sistemi';
+// BaseLayout sam dodaje " · Modularni Sistemi" na kraj naslova, pa ovde ide samo kratak naslov
+const pageTitle = 'Inox sistemi odvodnjavanja';
+const ogImage = '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp';
 const pageDescription = 'Inox sistemi odvodnjavanja za savremenu arhitekturu — ravne, lučne, kružne, elipsaste i S-forme prema geometriji prostora.';
 
-const forms = [
-  { number: '01', name: 'Ravna kanalica', short: 'Čista linija', image: '/images/inox/ravni-modularni-inox-kanal-odvodnjavanje-drenaza.webp', alt: 'Ravni modularni inox kanal za odvodnjavanje', href: '/inox-sistemi-odvodnjavanja/ravni-modularni-inox-kanal/' },
-  { number: '02', name: 'Lučna kanalica', short: 'Kontinualni radijus', image: '/images/inox/lucni-inox-kanal-linijsko-odvodnjavanje.webp', alt: 'Lučni inox kanal za linijsko odvodnjavanje', href: '/inox-sistemi-odvodnjavanja/lucni-inox-kanal/' },
-  { number: '03', name: 'Kružna kanalica', short: 'Zatvorena geometrija', image: '/images/inox/kruzni-prohromski-kanal-za-odvodnjavanje.webp', alt: 'Kružni prohromski kanal za odvodnjavanje', href: '/inox-sistemi-odvodnjavanja/kruzni-prohromski-kanal/' },
-  { number: '04', name: 'Elipsasta kanalica', short: 'Fluidna forma', image: '/images/inox/elipsasti-inox-kanal-za-odvodnjavanje.webp', alt: 'Elipsasti inox kanal za odvodnjavanje', href: '/inox-sistemi-odvodnjavanja/elipsasti-inox-kanal/' },
-  { number: '05', name: 'S-forma kanalica', short: 'Slobodna geometrija', image: '/images/inox/s-forma-lucni-inox-kanal-odvodnjavanje.webp', alt: 'S-forma inox kanalica za odvodnjavanje', href: '/inox-sistemi-odvodnjavanja/s-forma-kanalica/' },
-];
+// Pet kartica proizvoda dolazi iz zajedničkog fajla (isti podaci pokreću i stranice "Više o proizvodu")
+const forms = inoxProducts.map((p) => ({
+  number: p.number,
+  name: p.name,
+  short: p.short,
+  image: p.image,
+  alt: p.alt,
+  href: `/inox-sistemi-odvodnjavanja/${p.slug}/`,
+}));
 
 const applications = [
   { image: '/images/inox/skriveni-modularni-inox-kanal-s-forma-bazen-suva-plaza.webp', title: 'Bazen i suva plaža', meta: 'S-forma / bazen' },
@@ -29,19 +34,10 @@ const steps = [
 ];
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
-  <Fragment slot="head">
-    <link rel="canonical" href={canonicalURL} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://modularnisistemi.com/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp" />
-  </Fragment>
-
+<BaseLayout title={pageTitle} description={pageDescription} canonical={canonicalURL} ogImage={ogImage}>
   <div class="inox-page">
 
-    <!-- HERO SA WEBM VIDEOM U POZADINI (PUN EKRAN BEZ SIVE TRAKE) -->
+    <!-- HERO SEKCIJA SA WEBM VIDEOM -->
     <section class="hero">
       <div class="hero__video-box">
         <video
@@ -54,6 +50,7 @@ const steps = [
           class="hero__video"
         >
           <source src="/videos/inox-sistemi-odvodnjavanja.webm" type="video/webm" />
+          <source src="/videos/inox-sistemi-odvodnjavanja.mp4" type="video/mp4" />
           <img src="/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp" alt="Inox linijsko odvodnjavanje" />
         </video>
       </div>
@@ -101,14 +98,14 @@ const steps = [
             <span>Debljina lima</span>
           </div>
           <div>
-            <strong>± mm</strong>
+            <strong>Podesive stope</strong>
             <span>Precizno nivelisanje</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- INTRO -->
+    <!-- INTRO (PORAVNATO NA ISTU 1440px OSU) -->
     <section class="intro wrap" id="specifikacije">
       <div class="intro__heading">
         <div class="eyebrow eyebrow--dark">
@@ -145,7 +142,7 @@ const steps = [
       </div>
     </section>
 
-    <!-- FORMS (5 MODELA KANALICA) -->
+    <!-- FORMS (PORAVNATO NA ISTU 1440px OSU) -->
     <section class="forms-section">
       <div class="wrap">
         <div class="section-head">
@@ -180,12 +177,12 @@ const steps = [
       </div>
     </section>
 
-    <!-- FEATURE DUO (ČIST PRIKAZ) -->
+    <!-- FEATURE DUO (PORAVNATO NA ISTU 1440px OSU KAO I FORME) -->
     <section class="feature-duo">
       <div class="wrap feature-duo__grid">
         <article class="feature-card feature-card--technical">
           <img
-            src="/images/inox/ravni-modularni-inox-kanal-odvodnjavanje-drenaza.webp"
+            src="/images/inox/ravni-modularni-inox-kanal-odvodnjavanje-drenaza-siva.webp"
             alt="Detalj ravnog modularnog inox kanala"
             loading="lazy"
           />
@@ -204,9 +201,9 @@ const steps = [
               <span><b>2.0 mm</b> inox lim</span>
               <span><b>0.5–1%</b> integrisani pad</span>
               <span><b>AISI 304 / 316</b> nerđajući čelik</span>
-              <span><b>± mm</b> precizno nivelisanje</span>
+              <span><b>Podesive stope</b> precizno nivelisanje</span>
             </div>
-            <a class="feature-card__link" href="#specifikacije">
+            <a class="feature-card__link" href="/inox-sistemi-odvodnjavanja/ravni-modularni-inox-kanal/#specifikacija">
               Pogledajte tehničke detalje <b>→</b>
             </a>
           </div>
@@ -214,7 +211,7 @@ const steps = [
 
         <article class="feature-card feature-card--geometry">
           <img
-            src="/images/inox/elipsasti-inox-kanal-za-odvodnjavanje.webp"
+            src="/images/inox/elipsasti-inox-kanal-za-odvodnjavanje-siva.webp"
             alt="Elipsasti inox kanal prema geometriji prostora"
             loading="lazy"
           />
@@ -243,7 +240,7 @@ const steps = [
       </div>
     </section>
 
-    <!-- APPLICATIONS -->
+    <!-- APPLICATIONS (PORAVNATO NA ISTU 1440px OSU) -->
     <section class="applications">
       <div class="wrap">
         <div class="section-head">
@@ -275,7 +272,7 @@ const steps = [
       </div>
     </section>
 
-    <!-- PROCESS -->
+    <!-- PROCESS (PORAVNATO NA ISTU 1440px OSU) -->
     <section class="process">
       <div class="wrap">
         <div class="process__head">
@@ -298,7 +295,7 @@ const steps = [
       </div>
     </section>
 
-    <!-- CTA BANER -->
+    <!-- CTA BANER (PORAVNATO NA ISTU 1440px OSU) -->
     <section class="cta">
       <img
         src="/images/inox/lucni-inox-kanal-sa-perforiranom-resetkom-gradski-trg.webp"
@@ -351,8 +348,9 @@ const steps = [
     overflow: hidden;
   }
 
+  /* ========== JEDINSTVENA ŠIRINA (1440px) ZA SAVRŠENO PORAVNANJE ========== */
   .wrap {
-    width: min(1280px, calc(100% - 40px));
+    width: min(1440px, calc(100% - 48px));
     margin-inline: auto;
   }
 
@@ -381,7 +379,6 @@ const steps = [
     object-position: center;
   }
 
-  /* ČISTIJI, BISTRIJI PRELIV BEZ ZAGUŠENJA */
   .hero__shade {
     position: absolute;
     inset: 0;
@@ -400,7 +397,7 @@ const steps = [
     padding-top: 130px;
     padding-bottom: 64px;
     display: grid;
-    grid-template-columns: minmax(0, 700px) 1fr;
+    grid-template-columns: minmax(0, 720px) 1fr;
     gap: 50px;
     align-items: end;
   }
@@ -537,48 +534,44 @@ const steps = [
     letter-spacing: 0.09em;
   }
 
-  /* ========== INTRO ========== */
+  /* ========== INTRO (KOMPAKTNO I PORAVNATO) ========== */
   .intro {
-    padding: 60px 0;
+    padding: 40px 0 32px;
     display: grid;
     grid-template-columns: 1fr 1.4fr;
-    gap: 50px;
+    gap: 48px;
     align-items: start;
   }
 
-  .intro h2,
-  .section-head h2,
-  .applications h2,
-  .process h2 {
-    margin-top: 12px;
-    font-size: clamp(30px, 3.4vw, 46px);
-    line-height: 1.02;
+  .intro h2 {
+    margin-top: 8px;
+    font-size: clamp(26px, 2.8vw, 38px);
+    line-height: 1.05;
     letter-spacing: -0.04em;
     font-weight: 800;
     color: #07111e;
   }
 
   .intro__text {
-    padding-top: 12px;
+    padding-top: 6px;
   }
 
-  .intro__text > p,
-  .section-head > p {
+  .intro__text > p {
     color: var(--muted);
-    font-size: 15px;
-    line-height: 1.65;
+    font-size: 14.5px;
+    line-height: 1.6;
   }
 
   .intro__metrics {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    margin-top: 28px;
+    margin-top: 20px;
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
 
   .intro__metrics div {
-    padding: 16px 14px 16px 0;
+    padding: 12px 14px 12px 0;
     border-right: 1px solid var(--line);
   }
 
@@ -593,24 +586,24 @@ const steps = [
   .intro__metrics strong {
     display: block;
     color: var(--orange);
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 800;
   }
 
   .intro__metrics span {
     display: block;
-    margin-top: 4px;
+    margin-top: 2px;
     color: #3d4a55;
-    font-size: 12px;
-    line-height: 1.4;
+    font-size: 11.5px;
+    line-height: 1.35;
   }
 
-  /* ========== FORMS ========== */
+  /* ========== FORMS SEKCIJA (PORAVNATO NA 1440px) ========== */
   .forms-section {
     background: #eef1f4;
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
-    padding: 60px 0;
+    padding: 68px 0 80px;
   }
 
   .section-head {
@@ -618,78 +611,93 @@ const steps = [
     align-items: end;
     justify-content: space-between;
     gap: 36px;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
   }
 
-  .section-head > div {
-    max-width: 680px;
+  .section-head h2 {
+    margin-top: 8px;
+    font-size: clamp(28px, 3.2vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+    color: #07111e;
   }
 
   .section-head > p {
-    max-width: 340px;
+    max-width: 380px;
+    color: var(--muted);
+    font-size: 14.5px;
+    line-height: 1.6;
     padding-bottom: 4px;
   }
 
   .forms-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
+    gap: 16px;
   }
 
   .form-card {
     background: #fff;
     color: var(--navy);
     text-decoration: none;
-    border: 1px solid #e2e7eb;
-    border-radius: 2px;
+    border: 1px solid #dce2e7;
+    border-radius: 4px;
     transition: all 0.3s ease;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 4px 16px rgba(6, 19, 31, 0.04);
   }
 
   .form-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
     border-color: var(--orange);
-    box-shadow: 0 16px 36px rgba(6, 19, 31, 0.1);
+    box-shadow: 0 20px 40px rgba(6, 19, 31, 0.12);
   }
 
   .form-card__image {
     position: relative;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
-    background: #0d1216;
-    flex-shrink: 0;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-bottom: 1px solid #edf1f5;
   }
 
   .form-card__image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
-    transition: transform 0.55s ease;
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
     display: block;
   }
 
   .form-card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.08);
   }
 
   .form-card__image span {
     position: absolute;
-    left: 10px;
-    top: 10px;
+    left: 12px;
+    top: 12px;
     color: #fff;
     background: var(--orange);
-    font-size: 10px;
+    font-size: 10.5px;
     font-weight: 800;
-    padding: 4px 7px;
+    padding: 3px 8px;
+    border-radius: 2px;
     letter-spacing: 0.04em;
     z-index: 2;
+    box-shadow: 0 2px 6px rgba(255, 105, 0, 0.35);
   }
 
   .form-card__body {
-    padding: 14px 12px 16px;
+    padding: 18px 16px 20px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -705,38 +713,50 @@ const steps = [
 
   .form-card h3 {
     margin-top: 6px;
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 14.5px;
+    font-weight: 800;
     letter-spacing: -0.01em;
     text-transform: uppercase;
+    color: #07111e;
   }
 
   .form-card__link {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     margin-top: auto;
-    padding-top: 14px;
-    color: #5c6a74;
-    font-size: 10px;
+    padding-top: 16px;
+    color: #55636e;
+    font-size: 10.5px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
+    transition: color 0.2s;
   }
 
   .form-card__link b {
     color: var(--orange);
-    margin-left: 4px;
+    transition: transform 0.2s ease;
   }
 
-  /* ========== FEATURE DUO ========== */
+  .form-card:hover .form-card__link {
+    color: var(--orange);
+  }
+
+  .form-card:hover .form-card__link b {
+    transform: translateX(4px);
+  }
+
+  /* ========== FEATURE DUO (SAVRŠENO U PORAVNANJU SA FORMAMA IZNAD) ========== */
   .feature-duo {
     background: var(--navy);
-    padding: 60px 0;
+    padding: 70px 0;
   }
 
   .feature-duo__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    gap: 20px;
   }
 
   .feature-card {
@@ -744,8 +764,8 @@ const steps = [
     min-height: 520px;
     overflow: hidden;
     background: #0a1620;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
   }
 
   .feature-card > img {
@@ -779,11 +799,11 @@ const steps = [
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 32px;
+    padding: 36px;
   }
 
   .feature-card__content h2 {
-    margin-top: 12px;
+    margin-top: 10px;
     max-width: 480px;
     font-size: clamp(28px, 2.8vw, 42px);
     line-height: 1.02;
@@ -796,7 +816,7 @@ const steps = [
     margin-top: 12px;
     max-width: 480px;
     color: #b8c4cb;
-    font-size: 13px;
+    font-size: 13.5px;
     line-height: 1.6;
   }
 
@@ -879,23 +899,29 @@ const steps = [
   .feature-card--geometry .feature-card__content {
     left: auto;
     width: 56%;
-    padding: 32px;
+    padding: 36px;
   }
 
-  /* ========== APPLICATIONS ========== */
+  /* ========== APPLICATIONS (PORAVNATO) ========== */
   .applications {
-    padding: 60px 0;
+    padding: 70px 0;
     background: #f6f7f9;
   }
 
-  .applications h2 {
+  .applications h2,
+  .process h2 {
+    margin-top: 10px;
+    font-size: clamp(28px, 3.2vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    font-weight: 800;
     color: #07111e;
   }
 
   .applications__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
+    gap: 18px;
   }
 
   .applications figure {
@@ -906,7 +932,7 @@ const steps = [
     overflow: hidden;
     aspect-ratio: 5 / 4;
     background: #d8dde2;
-    border-radius: 2px;
+    border-radius: 3px;
   }
 
   .application__image img {
@@ -927,7 +953,7 @@ const steps = [
 
   .applications figcaption strong {
     display: block;
-    font-size: 13px;
+    font-size: 13.5px;
     font-weight: 700;
     color: #07111e;
   }
@@ -936,38 +962,34 @@ const steps = [
     display: block;
     margin-top: 3px;
     color: #7a8791;
-    font-size: 10px;
+    font-size: 10.5px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
 
-  /* ========== PROCESS ========== */
+  /* ========== PROCESS (PORAVNATO) ========== */
   .process {
     background: #eef1f4;
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
-    padding: 60px 0;
+    padding: 70px 0;
   }
 
   .process__head {
-    max-width: 520px;
-  }
-
-  .process h2 {
-    color: #07111e;
+    max-width: 560px;
   }
 
   .steps {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    margin-top: 36px;
+    margin-top: 40px;
     gap: 0;
   }
 
   .steps article {
     position: relative;
     border-left: 1px solid #c9d2d8;
-    padding: 0 16px 0 18px;
+    padding: 0 20px;
     min-height: 130px;
   }
 
@@ -985,7 +1007,7 @@ const steps = [
 
   .steps h3 {
     margin-top: 12px;
-    font-size: 14px;
+    font-size: 14.5px;
     font-weight: 700;
     line-height: 1.25;
     color: #07111e;
@@ -994,7 +1016,7 @@ const steps = [
   .steps p {
     margin-top: 8px;
     color: #66747d;
-    font-size: 12px;
+    font-size: 12.5px;
     line-height: 1.5;
   }
 
@@ -1012,7 +1034,7 @@ const steps = [
   /* ========== CTA ========== */
   .cta {
     position: relative;
-    min-height: 300px;
+    min-height: 320px;
     display: flex;
     align-items: center;
     color: #fff;
@@ -1063,7 +1085,7 @@ const steps = [
   }
 
   /* ========== RESPONSIVE ========== */
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     .forms-grid {
       grid-template-columns: repeat(3, 1fr);
     }
@@ -1081,7 +1103,8 @@ const steps = [
 
     .intro {
       grid-template-columns: 1fr;
-      gap: 28px;
+      gap: 24px;
+      padding: 30px 0;
     }
 
     .feature-duo__grid {
@@ -1126,9 +1149,15 @@ const steps = [
     }
   }
 
+  @media (max-width: 768px) {
+    .forms-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   @media (max-width: 640px) {
     .wrap {
-      width: min(100% - 24px, 1280px);
+      width: min(100% - 24px, 1440px);
     }
 
     .hero {
@@ -1148,7 +1177,10 @@ const steps = [
       font-size: 14px;
     }
 
-    .intro,
+    .intro {
+      padding: 24px 0;
+    }
+
     .forms-section,
     .feature-duo,
     .applications,
@@ -1166,8 +1198,8 @@ const steps = [
     }
 
     .forms-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      grid-template-columns: 1fr;
+      gap: 14px;
     }
 
     .feature-card {
@@ -1178,15 +1210,6 @@ const steps = [
     .feature-card--geometry .feature-card__content {
       padding: 24px;
       width: 100%;
-    }
-
-    .feature-card--geometry .feature-card__shade {
-      background: linear-gradient(
-        180deg,
-        rgba(4, 14, 23, 0.1) 0%,
-        rgba(4, 14, 23, 0.3) 35%,
-        rgba(4, 14, 23, 0.95) 75%
-      );
     }
 
     .feature-card__facts {

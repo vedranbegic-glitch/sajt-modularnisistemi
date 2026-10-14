@@ -1,6 +1,24 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
+// BaseLayout sam dodaje " · Modularni Sistemi" na kraj naslova
+const pageTitle = 'Fire Pit Grill | Čelična vatrišta i profesionalni roštilj';
+const pageDescription = 'Centralno mesto okupljanja na otvorenom. Masivna čelična vatrišta i profesionalni roštilji u jednom elementu za terase, dvorišta i ugostiteljstvo.';
+const ogImage = '/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp';
+
+// Strukturirani podaci za Google.
+// "offers" je izostavljen jer bez prave cene (price/lowPrice) Google prijavljuje grešku.
+// Kad budeš imao cenu, dodaj: offers: { '@type': 'Offer', priceCurrency: 'EUR', price: '...', availability: 'https://schema.org/InStock' }
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Fire Pit Grill',
+  image: 'https://modularnisistemi.com/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp',
+  description: 'Masivno čelično ložište i profesionalni roštilj u jednom elementu za dvorišta i terase.',
+  brand: { '@type': 'Brand', name: 'Modularni Sistemi' },
+  category: 'Outdoor vatrišta i roštilji',
+};
+
 // 6 ključnih prednosti
 const features = [
   {
@@ -30,30 +48,10 @@ const features = [
 ];
 ---
 
-<BaseLayout
-  title="Fire Pit Grill | Čelična Vatrišta i Profesionalni Roštilj | Modularni Sistemi"
-  description="Centralno mesto okupljanja na otvorenom. Masivna čelična vatrišta i profesionalni roštilji u jednom elementu za terase, dvorišta i ugostiteljstvo."
->
-  <!-- SCHEMA.ORG ZA GOOGLE -->
-  <script type="application/ld+json" slot="head">
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "Fire Pit Grill",
-    "image": "https://modularnisistemi.com/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp",
-    "description": "Masivno čelično ložište i profesionalni roštilj u jednom elementu za dvorišta i terase.",
-    "brand": {
-      "@type": "Brand",
-      "name": "Modularni Sistemi"
-    },
-    "category": "Outdoor vatrišta i roštilji",
-    "offers": {
-      "@type": "AggregateOffer",
-      "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock"
-    }
-  }
-  </script>
+<BaseLayout title={pageTitle} description={pageDescription} ogImage={ogImage}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  </Fragment>
 
   <div class="firepit-page">
 
@@ -70,6 +68,7 @@ const features = [
           class="hero__video"
         >
           <source src="/videos/fire-pit-grill.webm" type="video/webm" />
+          <source src="/videos/fire-pit-grill.mp4" type="video/mp4" />
           <img src="/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp" alt="Fire Pit Grill" />
         </video>
       </div>
@@ -481,6 +480,7 @@ const features = [
   }
   .hero__tags {
     display: flex;
+    flex-wrap: wrap;
     gap: 12px;
     align-items: center;
     margin-top: 20px;

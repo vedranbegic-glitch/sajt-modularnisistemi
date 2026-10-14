@@ -6,10 +6,11 @@ import { SITE, CONTACT } from '../data/siteData';
 <BaseLayout
   title="404 — Stranica nije pronađena"
   description="Tražena stranica ne postoji na serveru MODULARNI SISTEMI. Vratite se na početnu stranu ili pogledajte naše sisteme."
+  noindex={true}
 >
   <section class="min-h-[75vh] flex items-center justify-center py-20 bg-navy bg-grid-pattern relative overflow-hidden">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-8">
-      
+
       <!-- Architectural Status Badge -->
       <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-navy-surface border border-accent/40 text-accent font-mono text-xs uppercase tracking-architectural font-bold">
         <span class="w-2 h-2 bg-accent inline-block" aria-hidden="true"></span>
@@ -18,7 +19,7 @@ import { SITE, CONTACT } from '../data/siteData';
 
       <!-- Geometry Visual Indicator -->
       <div class="relative py-4">
-        <span class="text-7xl sm:text-9xl font-extrabold text-white tracking-tightest font-mono select-none opacity-20 block">
+        <span class="text-7xl sm:text-9xl font-extrabold text-white tracking-tightest font-mono select-none opacity-20 block" aria-hidden="true">
           404
         </span>
         <div class="absolute inset-0 flex items-center justify-center">

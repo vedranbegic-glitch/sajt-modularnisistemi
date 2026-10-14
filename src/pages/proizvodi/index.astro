@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
+// BaseLayout sam dodaje " · Modularni Sistemi" na kraj naslova
+const pageTitle = 'Proizvodi i sistemi';
+const pageDescription = 'Pregled modularnih sistema za savremenu arhitekturu: Inox sistemi odvodnjavanja, moderna rasveta, modularni podni sistemi i Fire Pit vatrišta.';
+const ogImage = '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp';
+
 // Hero slajder sa sva 4 programa
 const heroSlides = [
   {
@@ -25,40 +30,38 @@ const heroSlides = [
   },
 ];
 
-// SVA 4 PROIZVODNA PROGRAMA (100% ČIST WEBM)
+// SVA 4 PROIZVODNA PROGRAMA (svaka stranica ima svoj video, ovde su samo slike)
 const categories = [
   {
     num: '01',
     title: 'Inox sistemi odvodnjavanja',
     headline: 'Precizno odvodnjavanje koje prati geometriju prostora.',
-    description: 'Modularni inox sistemi sa integrisanim fabričkim padom i nivelirajućim stopama za ravne, lučne, kružne i S-forme partera bez kompromisa na terenu.',
+    description: 'Modularni inox sistemi sa integrisanim fabričkim padom i nivelirajućim stopama za ravne, lučne, kružne, elipsaste i S-forme prema geometriji prostora.',
     slug: '/inox-sistemi-odvodnjavanja/',
     image: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
-    video: '/videos/inox-sistemi-odvodnjavanja.webm',
     alt: 'Modularni inox sistemi odvodnjavanja',
     highlights: [
       'Izrada formi po tačnoj geometriji (radijusi, krivine, S-linije)',
-      'Sertifikovani inox lim debljine 2.0 mm (AISI 304 / 316)',
+      'Inox lim debljine 2.0 mm (AISI 304 / 316)',
       'Fabrički integrisan unutrašnji pad (0.5% – 1%)',
       'Nivelirajuće stope za milimetarsko ravnanje pre betoniranja',
-      'Sistemski prirubnički spoj sa trajnom hidroizolacijom',
+      'Prirubnički spoj sa EPDM zaptivkama i vijcima',
     ],
   },
   {
     num: '02',
     title: 'Moderna rasveta',
     headline: 'Arhitektonska rasveta koja spaja funkciju i estetiku.',
-    description: 'Arhitektonska Z-lampa u visinama od 3m, 4m i 5m sa IP65 zaštitom i podesivom LED snagom, namenjena za dvorišta, parkinge, poslovne zone i javne prostore.',
+    description: 'Arhitektonska Z-lampa u visinama od 3m, 4m i 5m sa IP66 zaštitom i podesivom LED snagom, namenjena za dvorišta, parkinge, poslovne zone i javne prostore.',
     slug: '/moderna-rasveta/',
-    image: '/images/rasveta/z-lampa-dimenzije-visina-tehnicki-detalji.webp',
-    video: '/videos/moderna-rasveta.webm',
+    image: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp',
     alt: 'Z lampa moderna arhitektonska LED rasveta',
     highlights: [
       'Dostupne tipske visine stuba: 3 m / 4 m / 5 m',
       'Podesiva LED snaga od 50 W do 100 W visoke efikasnosti',
       'Izbor temperature svetla: 3000 K / 4000 K / 6000 K',
-      'Zaštita kućišta IP65 za sve ekstremne vremenske uslove',
-      'Konstrukcija od čelika sa toplim pocinčavanjem i plastifikacijom',
+      'IP66 zaštita otporna na vremenske uslove',
+      'Čelična konstrukcija (pocinčavanje / farbanje po izboru)',
     ],
   },
   {
@@ -67,8 +70,7 @@ const categories = [
     headline: 'Jedan sistem. Bezbroj mogućnosti. 4 završne obloge.',
     description: 'Čelični monoblok paneli 1x1m sa teleskopskim stopama za nivelaciju i suvom montažom. Izbor između veštačke trave, dekinga, keramike 20mm i industrijske rešetke.',
     slug: '/modularni-podni-sistemi/',
-    image: '/images/podovi/gres-premium-monoblok-keramika-1.webp',
-    video: '/videos/modularni-podovi.webm',
+    image: '/images/podovi/modularni-pod-terasa-exterijer-moderna-4.webp',
     alt: 'Modularni čelični monoblok podni paneli',
     highlights: [
       'Fabrički sklopljeni paneli 1x1m koji se bočno spajaju bez šrafova',
@@ -85,7 +87,6 @@ const categories = [
     description: 'Masivna čelična vatrišta i profesionalni roštilji u jednom elementu. Dizajnirani za pripremu hrane na plancha ploči i stvaranje tople atmosfere na terasama i u dvorištima.',
     slug: '/fire-pit-grill/',
     image: '/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp',
-    video: '/videos/fire-pit-grill.webm',
     alt: 'Fire Pit Grill čelično ložište i roštilj',
     highlights: [
       '2-u-1 funkcija: ambijentalno ložište i profesionalni roštilj',
@@ -98,10 +99,7 @@ const categories = [
 ];
 ---
 
-<BaseLayout
-  title="Proizvodi i sistemi | Modularni Sistemi"
-  description="Pregled modularnih sistema za savremenu arhitekturu: Inox sistemi odvodnjavanja, moderna rasveta, modularni podni sistemi i Fire Pit vatrišta."
->
+<BaseLayout title={pageTitle} description={pageDescription} ogImage={ogImage}>
   <div class="proizvodi-page">
 
     <!-- HERO SEKCIJA (PUN EKRAN BEZ SIVE TRAKE) -->
@@ -162,7 +160,7 @@ const categories = [
             <span>DWG preseci, proračuni i predmeri</span>
           </div>
           <div>
-            <strong>100% PREFABRIKACIJA</strong>
+            <strong>FABRIČKA IZRADA</strong>
             <span>Spremno za brzu montažu na terenu</span>
           </div>
         </div>
@@ -181,7 +179,7 @@ const categories = [
       </div>
     </section>
 
-    <!-- KATALOG KATEGORIJA (CIK-CAK SA WEBM VIDEIMA) -->
+    <!-- KATALOG KATEGORIJA (CIK-CAK) -->
     <section class="catalog-section">
       <div class="wrap catalog-wrap">
         {categories.map((cat, idx) => (
@@ -220,26 +218,11 @@ const categories = [
               </div>
             </div>
 
-            <!-- Vizuelni prikaz (ČIST WEBM VIDEO) -->
+            <!-- Vizuelni prikaz -->
             <div class="cat-card__visual">
               <div class="cat-card__img-box">
-                {cat.video ? (
-                  <video
-                    autoplay
-                    loop
-                    muted
-                    playsinline
-                    preload="auto"
-                    poster={cat.image}
-                    class="cat-card__video"
-                  >
-                    <source src={cat.video} type="video/webm" />
-                    <img src={cat.image} alt={cat.alt} loading="lazy" />
-                  </video>
-                ) : (
-                  <img src={cat.image} alt={cat.alt} loading="lazy" />
-                )}
-                
+                <img src={cat.image} alt={cat.alt} loading="lazy" />
+
                 <div class="cat-card__img-shade"></div>
                 <div class="cat-card__img-badge">
                   <span>{cat.title}</span>
@@ -705,8 +688,7 @@ const categories = [
     border: 1px solid var(--line);
   }
 
-  .cat-card__img-box img,
-  .cat-card__video {
+  .cat-card__img-box img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -715,8 +697,7 @@ const categories = [
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .cat-card:hover .cat-card__img-box img,
-  .cat-card:hover .cat-card__video {
+  .cat-card:hover .cat-card__img-box img {
     transform: scale(1.04);
   }
 
@@ -730,7 +711,8 @@ const categories = [
   .cat-card__img-badge {
     position: absolute;
     bottom: 0;
-    inset-x: 0;
+    left: 0;
+    right: 0;
     padding: 14px 20px;
     display: flex;
     align-items: center;

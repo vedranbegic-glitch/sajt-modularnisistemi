@@ -1,95 +1,46 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
-import { SITE, CONTACT } from '../data/siteData';
-
-const breadcrumbItems = [
-  { label: 'O nama' },
-];
+import { CONTACT } from '../data/siteData';
 
 const canonicalURL = 'https://modularnisistemi.com/o-nama/';
-const pageTitle = 'O nama · Tehnička preciznost i inženjerski pristup | Modularni Sistemi';
+const pageTitle = 'O nama · Inženjerski pristup';
 const pageDescription = 'Ne prodajemo samo proizvod. Projektujemo rešenje prema prostoru. Saznajte više o inženjerskom pristupu brenda MODULARNI SISTEMI.';
+const ogImage = '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp';
 
-// Hero slajder sa 3 slike koje se smenjuju na svake 3 sekunde
-const heroSlides = [
-  {
-    src: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
-    alt: 'Modularni sistemi — lučni inox kanal u pejzažnom parteru',
-    position: 'center',
-  },
-  {
-    src: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp',
-    alt: 'Z lampa — moderna LED rasveta za dvorište i ulicu',
-    position: '70% center',
-  },
-  {
-    src: '/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp',
-    alt: 'Modularni podni sistemi — fabrički sklopljeni paneli za terase i partere',
-    position: 'center',
-  },
-];
-
-const stubovi = [
+const koraci = [
   {
     num: '01',
-    title: 'Inox sistemi odvodnjavanja',
-    headline: 'Precizno odvodnjavanje koje prati geometriju prostora.',
-    description: 'Modularni inox kanali sa fabričkim padom i nivelirajućim stopama za ravne, lučne, kružne i S-forme partera.',
-    image: '/images/inox/elipsasti-inox-kanal-za-odvodnjavanje.webp',
-    slug: '/inox-sistemi-odvodnjavanja/',
-    points: ['AISI 304 / 316 nerđajući čelik', 'Fabrički integrisan unutrašnji pad', 'Izrada prema crtežu projekta'],
+    title: 'Upit i crtež',
+    text: 'Pošaljete nam crtež, skicu ili samo opis prostora. Dovoljno je da znamo šta gradite i šta vam je potrebno.',
   },
   {
     num: '02',
-    title: 'Moderna rasveta',
-    headline: 'Arhitektonska rasveta koja spaja funkciju i estetiku.',
-    description: 'Arhitektonska Z-lampa u visinama od 3m, 4m i 5m sa IP65 zaštitom i podesivom LED snagom za javne i privatne eksterijere.',
-    image: '/images/rasveta/z-lampa-dimenzije-visina-tehnicki-detalji.webp',
-    slug: '/moderna-rasveta/',
-    points: ['Tipske visine 3m, 4m i 5m', 'Podesiva LED snaga 50W – 100W', 'Pocinčana i plastificirana konstrukcija'],
+    title: 'Inženjerska analiza',
+    text: 'Naš inženjer pregleda zadate dimenzije, padove i opterećenja i predlaže rešenje prilagođeno vašem objektu.',
   },
   {
     num: '03',
-    title: 'Modularni podni sistemi',
-    headline: 'Jedan sistem. Bezbroj mogućnosti. 4 završne obloge.',
-    description: 'Prefabrikovani monoblok paneli 1x1m sa teleskopskim stopama za suvu montažu i trenutnu prohodnost na svakom terenu.',
-    image: '/images/podovi/gres-premium-monoblok-keramika-1.webp',
-    slug: '/modularni-podni-sistemi/',
-    points: ['Teleskopske zglobne stope 4–12 cm', '100% suva montaža bez lepkova', 'Keramika, trava, deking i rešetka'],
+    title: 'Fabrička izrada',
+    text: 'Elementi se izrađuju prema usvojenom crtežu, sa kontrolisanim tolerancijama, kako bi se na terenu montirali bez improvizacije.',
+  },
+  {
+    num: '04',
+    title: 'Montaža i podrška',
+    text: 'Tokom ugradnje ostajemo na raspolaganju izvođaču i projektantu za sva pitanja i dopune.',
   },
 ];
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
-  <Fragment slot="head">
-    <link rel="canonical" href={canonicalURL} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:type" content="website" />
-  </Fragment>
-
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonical={canonicalURL}
+  ogImage={ogImage}
+>
   <div class="onama-page">
-    <div class="wrap breadcrumbs-container">
-      <Breadcrumbs items={breadcrumbItems} />
-    </div>
-
-    <!-- HERO SEKCIJA (AUTOMATSKI SLAJDER SA 3 SLIKE) -->
+    <!-- HERO SEKCIJA (BEZ SLIKA, AKCENAT NA TEKSTU) -->
     <section class="hero">
-      <div class="hero__slides">
-        {heroSlides.map((slide, i) => (
-          <img
-            class={`hero__slide ${i === 0 ? 'is-active' : ''}`}
-            src={slide.src}
-            alt={slide.alt}
-            style={`object-position: ${slide.position};`}
-            fetchpriority={i === 0 ? 'high' : 'auto'}
-            loading={i === 0 ? 'eager' : 'lazy'}
-          />
-        ))}
-      </div>
-      <div class="hero__shade"></div>
+      <div class="hero__glow"></div>
       <div class="hero__grid"></div>
 
       <div class="hero__content wrap">
@@ -105,9 +56,10 @@ const stubovi = [
           </h1>
 
           <p class="hero__lead">
-            Ne prodajemo samo proizvod. Projektujemo rešenje prema prostoru. 
-            Specijalizovani smo za razvoj i proizvodnju preciznih modularnih sistema u oblastima 
-            linijskog i radijalnog inox odvodnjavanja, savremene arhitektonske rasvete i monoblok podova.
+            Ne prodajemo samo proizvod. Projektujemo rešenje prema prostoru.
+            Specijalizovani smo za razvoj i proizvodnju preciznih modularnih sistema u oblastima
+            linijskog i radijalnog inox odvodnjavanja, savremene arhitektonske rasvete,
+            monoblok podova i Fire Pit Grill ložišta.
           </p>
 
           <div class="hero__actions">
@@ -134,43 +86,29 @@ const stubovi = [
             <span>Forma prati crtež, a ne obrnuto</span>
           </div>
           <div>
-            <strong>04 / B2B PODRŠKA</strong>
+            <strong>04 / PODRŠKA PARTNERIMA</strong>
             <span>Direktna veza sa inženjerskim timom</span>
           </div>
         </div>
-      </div>
-
-      <!-- Tačkice slajdera -->
-      <div class="hero__dots" role="tablist" aria-label="Izbor slike">
-        {heroSlides.map((_, i) => (
-          <button
-            type="button"
-            class={`hero__dot ${i === 0 ? 'is-active' : ''}`}
-            aria-label={`Slika ${i + 1}`}
-            data-index={i}
-          ></button>
-        ))}
       </div>
     </section>
 
     <!-- INŽENJERSKI MANIFEST (DVE KOLONE) -->
     <section class="manifest-section">
       <div class="wrap manifest-grid">
-        
-        <!-- Leva kolona: Filozofija i citat -->
         <div class="manifest-left">
-          <div class="eyebrow eyebrow--dark">
+          <div class="eyebrow">
             <span></span>
             Naša filozofija
           </div>
           <h2>Sistemi konfigurisani prema <em>zahtevima gradilišta.</em></h2>
-          
+
           <p class="manifest-desc">
-            Standardni serijski proizvodi često nameću nepotrebne kompromise na terenu: 
-            sečenje gotovih profila, nepravilno lomljenje krivina, vidljive spojnice i trajni 
+            Standardni serijski proizvodi često nameću nepotrebne kompromise na terenu:
+            sečenje gotovih profila, nepravilno lomljenje krivina, vidljive spojnice i trajni
             rizik od curenja vode u slojeve hidroizolacije.
           </p>
-          
+
           <p class="manifest-desc">
             <strong>MODULARNI SISTEMI</strong> postavlja suprotan inženjerski princip. Polazimo direktno od geometrije vašeg crteža. Kroz saradnju sa arhitektama, konstruktivnim inženjerima i izvođačima definišemo dužine segmenata, radijuse i pozicije odvoda pre početka proizvodnje.
           </p>
@@ -178,18 +116,17 @@ const stubovi = [
           <div class="quote-box">
             <span class="quote-tag">Suština modularnog razmišljanja</span>
             <p>
-              "Prefabrikovani elementi sa fabrički kontrolisanim tolerancijama omogućavaju brzu montažu bez improvizacija, uz postizanje monolitnog vizuelnog sklada u završnoj oblozi poda."
+              „Prefabrikovani elementi sa fabrički kontrolisanim tolerancijama omogućavaju brzu montažu bez improvizacija, uz postizanje monolitnog vizuelnog sklada u završnoj oblozi poda."
             </p>
           </div>
         </div>
 
-        <!-- Desna kolona: 3 inženjerske vrednosti -->
         <div class="manifest-right">
           <div class="value-card">
             <span class="value-num">01 / GEOMETRIJSKO PRILAGOĐAVANJE</span>
             <h3>Forma prati arhitekturu</h3>
             <p>
-              Projektujemo pravolinijske kanale, radijalne segmente po meri i slot proreze koji precizno prate ivice bazena, fasada i popločanih platoa.
+              Projektujemo pravolinijske kanale, radijalne segmente po meri i uske podužne proreze koji precizno prate ivice bazena, fasada i popločanih platoa.
             </p>
           </div>
 
@@ -197,7 +134,7 @@ const stubovi = [
             <span class="value-num">02 / POUZDANOST MATERIJALA</span>
             <h3>Otpornost na agresivna okruženja</h3>
             <p>
-              Izrada od sertifikovanog nerđajućeg čelika (AISI 304 i kiselootpornog AISI 316) garantuje dugovečnost u kontaktu sa bazenskom vodom, industrijskim tečnostima i solima.
+              Izrada od nerđajućeg čelika (AISI 304 i kiselootpornog AISI 316) obezbeđuje dugovečnost u kontaktu sa bazenskom vodom, industrijskim tečnostima i solima.
             </p>
           </div>
 
@@ -205,70 +142,44 @@ const stubovi = [
             <span class="value-num">03 / SARADNJA SA STRUČNJACIMA</span>
             <h3>Direktna inženjerska veza</h3>
             <p>
-              Svaki upit preuzima inženjer koji analizira zadate padove, protoke i opterećenja, pripremajući 2D/3D specifikaciju spremnu za izvođenje.
+              Svaki upit preuzima inženjer koji analizira zadate padove, protoke i opterećenja i priprema tehničku specifikaciju spremnu za izvođenje.
             </p>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- PROIZVODNI STUBOVI (3 KARTICE SA SLIKAMA) -->
-    <section class="pillars-section">
+    <!-- NAČIN RADA -->
+    <section class="process-section">
       <div class="wrap">
         <div class="section-head">
           <div>
-            <div class="eyebrow eyebrow--dark">
+            <div class="eyebrow">
               <span></span>
-              Proizvodni stubovi
+              Način rada
             </div>
-            <h2>Tri primarne kategorije <em>sistema.</em></h2>
+            <h2>Od crteža do <em>gotovog sistema.</em></h2>
           </div>
           <p>
-            Sveobuhvatna inženjerska rešenja razvijena za stambene, komercijalne i javne prostore.
+            Jasan tok saradnje u četiri koraka, od prvog upita do ugradnje na objektu.
           </p>
         </div>
 
-        <div class="pillars-grid">
-          {stubovi.map((item) => (
-            <article class="pillar-card">
-              <div class="pillar-card__image">
-                <img src={item.image} alt={item.title} loading="lazy" />
-                <span>0{item.num}</span>
-              </div>
-              <div class="pillar-card__body">
-                <div class="pillar-card__tag">Program {item.num}</div>
-                <h3>{item.title}</h3>
-                <p class="pillar-card__headline">"{item.headline}"</p>
-                <p class="pillar-card__desc">{item.description}</p>
-                
-                <ul class="pillar-card__points">
-                  {item.points.map((pt) => (
-                    <li>
-                      <span class="bullet"></span>
-                      <span>{pt}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <a href={item.slug} class="pillar-card__link">
-                  Saznajte više <b>→</b>
-                </a>
-              </div>
-            </article>
+        <div class="process-grid">
+          {koraci.map((k) => (
+            <div class="process-card">
+              <span class="process-num">{k.num}</span>
+              <h3>{k.title}</h3>
+              <p>{k.text}</p>
+            </div>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- CTA BANER IZNAD FOOTERA -->
+    <!-- CTA BANER IZNAD FOOTERA (BEZ SLIKE) -->
     <section class="cta">
-      <img
-        src="/images/inox/cta-parter-zardinjera.webp"
-        alt="Planirate nov objekat ili rekonstrukciju?"
-        loading="lazy"
-      />
-      <div class="cta__shade"></div>
+      <div class="cta__glow"></div>
       <div class="wrap cta__inner">
         <div>
           <div class="eyebrow">
@@ -277,7 +188,7 @@ const stubovi = [
           </div>
           <h2>Planirate nov objekat <em>ili rekonstrukciju?</em></h2>
           <p>
-            Povežite nas sa vašim projektantskim timom u ranoj fazi kako bismo zajednički 
+            Povežite nas sa vašim projektantskim timom u ranoj fazi kako bismo zajednički
             definisali optimalne drenažne, svetlosne i podne linije bez improvizacija na terenu.
           </p>
         </div>
@@ -323,69 +234,8 @@ const stubovi = [
       margin-inline: auto;
     }
 
-    .breadcrumbs-container {
-      padding-top: 14px;
-      padding-bottom: 14px;
-    }
-
-    /* ========== HERO ========== */
-    .hero {
-      position: relative;
-      min-height: 640px;
-      background: var(--navy);
-      color: #fff;
-      isolation: isolate;
-      display: flex;
-      align-items: flex-end;
-    }
-
-    .hero__slides {
-      position: absolute;
-      inset: 0;
-      z-index: -3;
-    }
-
-    .hero__slide {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-
-    .hero__slide.is-active {
-      opacity: 1;
-    }
-
-    .hero__shade {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(105deg, rgba(6, 19, 31, 0.95) 0%, rgba(6, 19, 31, 0.85) 38%, rgba(6, 19, 31, 0.4) 68%, rgba(6, 19, 31, 0.1) 100%),
-        linear-gradient(0deg, rgba(6, 19, 31, 0.75) 0%, transparent 48%);
-      z-index: -2;
-    }
-
-    .hero__grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: linear-gradient(90deg, black, transparent 68%);
-      z-index: -1;
-    }
-
-    .hero__content {
-      padding-top: 100px;
-      padding-bottom: 56px;
-      display: grid;
-      grid-template-columns: minmax(0, 720px) 1fr;
-      gap: 50px;
-      align-items: end;
+    h1, h2, h3, p {
+      margin: 0;
     }
 
     .eyebrow {
@@ -407,12 +257,51 @@ const stubovi = [
       flex-shrink: 0;
     }
 
-    .eyebrow--dark {
+    em {
+      font-style: normal;
       color: var(--orange);
     }
 
-    h1, h2, h3, p {
-      margin: 0;
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      min-height: 560px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+      color: #fff;
+      isolation: isolate;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero__glow {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 85% 20%, rgba(255, 105, 0, 0.16), transparent 70%),
+        radial-gradient(ellipse 50% 60% at 10% 100%, rgba(255, 255, 255, 0.05), transparent 70%);
+      z-index: -2;
+    }
+
+    .hero__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(90deg, black, transparent 80%);
+      -webkit-mask-image: linear-gradient(90deg, black, transparent 80%);
+      z-index: -1;
+    }
+
+    .hero__content {
+      padding-top: 120px;
+      padding-bottom: 64px;
+      display: grid;
+      grid-template-columns: minmax(0, 720px) 1fr;
+      gap: 50px;
+      align-items: end;
     }
 
     .hero h1 {
@@ -425,17 +314,9 @@ const stubovi = [
       color: #fff;
     }
 
-    .hero h1 em,
-    .manifest-left h2 em,
-    .section-head h2 em,
-    .cta h2 em {
-      font-style: normal;
-      color: var(--orange);
-    }
-
     .hero__lead {
       margin-top: 20px;
-      max-width: 620px;
+      max-width: 640px;
       color: #d4dee4;
       font-size: 15px;
       line-height: 1.65;
@@ -446,45 +327,6 @@ const stubovi = [
       gap: 12px;
       flex-wrap: wrap;
       margin-top: 32px;
-    }
-
-    /* Tačkice slajdera */
-    .hero__dots {
-      position: absolute;
-      right: max(20px, calc((100% - 1280px) / 2));
-      bottom: 24px;
-      display: flex;
-      gap: 8px;
-      z-index: 3;
-    }
-
-    .hero__dot {
-      width: 28px;
-      height: 4px;
-      padding: 0;
-      border: 0;
-      border-radius: 2px;
-      background: rgba(255, 255, 255, 0.35);
-      cursor: pointer;
-      transition: background 0.3s ease, width 0.3s ease;
-    }
-
-    .hero__dot:hover {
-      background: rgba(255, 255, 255, 0.7);
-    }
-
-    .hero__dot.is-active {
-      width: 44px;
-      background: var(--orange);
-    }
-
-    .hero__dot:focus-visible {
-      outline: 2px solid #fff;
-      outline-offset: 3px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .hero__slide { transition: none; }
     }
 
     .btn {
@@ -541,6 +383,7 @@ const stubovi = [
     }
 
     .hero__specs strong {
+      display: block;
       font-size: 14px;
       letter-spacing: 0.03em;
       font-weight: 700;
@@ -548,6 +391,7 @@ const stubovi = [
     }
 
     .hero__specs span {
+      display: block;
       margin-top: 4px;
       color: #94a3ad;
       font-size: 10px;
@@ -555,9 +399,9 @@ const stubovi = [
       letter-spacing: 0.09em;
     }
 
-    /* ========== MANIFEST (DVE KOLONE) ========== */
+    /* ========== MANIFEST ========== */
     .manifest-section {
-      padding: 80px 0;
+      padding: 88px 0;
       background: #fff;
       border-bottom: 1px solid var(--line);
     }
@@ -565,7 +409,7 @@ const stubovi = [
     .manifest-grid {
       display: grid;
       grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
-      gap: 50px;
+      gap: 56px;
       align-items: start;
     }
 
@@ -579,9 +423,9 @@ const stubovi = [
     }
 
     .manifest-desc {
-      margin-top: 16px;
-      font-size: 14.5px;
-      line-height: 1.65;
+      margin-top: 18px;
+      font-size: 15px;
+      line-height: 1.7;
       color: #55636e;
     }
 
@@ -590,7 +434,7 @@ const stubovi = [
     }
 
     .quote-box {
-      margin-top: 28px;
+      margin-top: 30px;
       padding: 24px;
       background: #f6f7f9;
       border-left: 3px solid var(--orange);
@@ -608,8 +452,8 @@ const stubovi = [
     }
 
     .quote-box p {
-      font-size: 13.5px;
-      line-height: 1.6;
+      font-size: 14px;
+      line-height: 1.65;
       font-style: italic;
       color: #07111e;
     }
@@ -624,7 +468,7 @@ const stubovi = [
       background: #f6f7f9;
       border: 1px solid var(--line);
       border-radius: 2px;
-      padding: 24px;
+      padding: 26px;
       transition: all 0.25s ease;
     }
 
@@ -655,14 +499,14 @@ const stubovi = [
 
     .value-card p {
       margin-top: 8px;
-      font-size: 13px;
-      line-height: 1.55;
+      font-size: 13.5px;
+      line-height: 1.6;
       color: #55636e;
     }
 
-    /* ========== PILLARS (3 KARTICE) ========== */
-    .pillars-section {
-      padding: 80px 0;
+    /* ========== NAČIN RADA ========== */
+    .process-section {
+      padding: 88px 0;
       background: #eef1f4;
       border-bottom: 1px solid var(--line);
     }
@@ -696,177 +540,71 @@ const stubovi = [
       color: #07111e;
     }
 
-    .pillars-grid {
+    .process-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
     }
 
-    .pillar-card {
+    .process-card {
       background: #fff;
       border: 1px solid var(--line);
+      border-top: 3px solid var(--orange);
       border-radius: 2px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      padding: 26px 22px 28px;
       transition: all 0.3s ease;
       box-shadow: 0 4px 16px rgba(6, 19, 31, 0.04);
     }
 
-    .pillar-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--orange);
-      box-shadow: 0 16px 36px rgba(6, 19, 31, 0.1);
+    .process-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(6, 19, 31, 0.09);
     }
 
-    .pillar-card__image {
-      position: relative;
-      aspect-ratio: 16 / 10;
-      overflow: hidden;
-      background: #06131f;
-    }
-
-    .pillar-card__image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .process-num {
       display: block;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .pillar-card:hover .pillar-card__image img {
-      transform: scale(1.05);
-    }
-
-    .pillar-card__image span {
-      position: absolute;
-      left: 12px;
-      top: 12px;
-      color: #fff;
-      background: var(--orange);
-      font-size: 11px;
-      font-weight: 800;
-      padding: 4px 8px;
-      letter-spacing: 0.04em;
-      z-index: 2;
-    }
-
-    .pillar-card__body {
-      padding: 24px 22px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .pillar-card__tag {
       color: var(--orange);
-      font-size: 10px;
+      font-size: 13px;
       font-weight: 800;
       letter-spacing: 0.1em;
-      text-transform: uppercase;
     }
 
-    .pillar-card h3 {
-      margin-top: 6px;
-      font-size: 17px;
+    .process-card h3 {
+      margin-top: 10px;
+      font-size: 16px;
       font-weight: 800;
       letter-spacing: -0.01em;
       text-transform: uppercase;
       color: #07111e;
     }
 
-    .pillar-card__headline {
-      margin-top: 8px;
-      color: var(--orange);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      line-height: 1.4;
-    }
-
-    .pillar-card__desc {
+    .process-card p {
       margin-top: 10px;
       color: #55636e;
-      font-size: 13px;
-      line-height: 1.55;
+      font-size: 13.5px;
+      line-height: 1.6;
     }
 
-    .pillar-card__points {
-      list-style: none;
-      padding: 0;
-      margin: 18px 0 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      border-top: 1px solid var(--line);
-      padding-top: 16px;
-    }
-
-    .pillar-card__points li {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #3d4a55;
-      font-size: 12px;
-    }
-
-    .bullet {
-      width: 5px;
-      height: 5px;
-      background: var(--orange);
-      border-radius: 1px;
-      flex-shrink: 0;
-    }
-
-    .pillar-card__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: auto;
-      padding-top: 20px;
-      text-decoration: none;
-      color: var(--orange);
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      transition: color 0.2s;
-    }
-
-    .pillar-card__link:hover {
-      color: var(--orange-hover);
-    }
-
-    /* ========== CTA BANER ========== */
+    /* ========== CTA ========== */
     .cta {
       position: relative;
-      min-height: 340px;
+      min-height: 300px;
       display: flex;
       align-items: center;
       color: #fff;
       overflow: hidden;
-      background: var(--navy);
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+      isolation: isolate;
     }
 
-    .cta > img {
+    .cta__glow {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .cta__shade {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(100deg, rgba(6, 19, 31, 0.95) 0%, rgba(6, 19, 31, 0.75) 55%, rgba(6, 19, 31, 0.45) 100%);
+      background: radial-gradient(ellipse 50% 90% at 90% 50%, rgba(255, 105, 0, 0.14), transparent 70%);
+      z-index: -1;
     }
 
     .cta__inner {
-      position: relative;
-      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -904,7 +642,7 @@ const stubovi = [
         grid-template-columns: 1fr;
         gap: 40px;
       }
-      .pillars-grid {
+      .process-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
@@ -916,12 +654,10 @@ const stubovi = [
       }
 
       .hero__specs {
-        display: none;
-      }
-
-      .hero__dots {
-        right: 12px;
-        bottom: 16px;
+        border-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-left: 0;
+        padding-top: 24px;
       }
 
       .section-head {
@@ -940,6 +676,7 @@ const stubovi = [
 
       .cta__actions {
         flex-direction: row;
+        flex-wrap: wrap;
       }
     }
 
@@ -949,11 +686,11 @@ const stubovi = [
       }
 
       .hero {
-        min-height: 540px;
+        min-height: 0;
       }
 
       .hero__content {
-        padding-top: 70px;
+        padding-top: 90px;
         padding-bottom: 40px;
       }
 
@@ -961,12 +698,13 @@ const stubovi = [
         font-size: 32px;
       }
 
-      .pillars-grid {
-        grid-template-columns: 1fr;
+      .manifest-section,
+      .process-section {
+        padding: 56px 0;
       }
 
-      .cta {
-        min-height: 340px;
+      .process-grid {
+        grid-template-columns: 1fr;
       }
 
       .cta__inner {
@@ -983,38 +721,4 @@ const stubovi = [
       }
     }
   </style>
-
-  <script>
-    // Hero slajder: automatska rotacija sve 3 slike na svake 3 sekunde
-    const slides = document.querySelectorAll<HTMLElement>('.hero__slide');
-    const dots = document.querySelectorAll<HTMLButtonElement>('.hero__dot');
-
-    if (slides.length > 1) {
-      let current = 0;
-      let timer: number | undefined;
-
-      const show = (index: number) => {
-        current = (index + slides.length) % slides.length;
-        slides.forEach((s, i) => s.classList.toggle('is-active', i === current));
-        dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
-      };
-
-      const stop = () => {
-        if (timer) window.clearInterval(timer);
-      };
-      const start = () => {
-        stop();
-        timer = window.setInterval(() => show(current + 1), 3000);
-      };
-
-      dots.forEach((dot) => {
-        dot.addEventListener('click', () => {
-          show(Number(dot.dataset.index));
-          start();
-        });
-      });
-
-      start();
-    }
-  </script>
 </BaseLayout>

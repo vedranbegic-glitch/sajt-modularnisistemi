@@ -1,0 +1,46 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Stara adresa stranice za upit vodi na novu
+[[redirects]]
+  from = "/posaljite-projekat/"
+  to = "/posaljite-upit/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/posaljite-projekat"
+  to = "/posaljite-upit/"
+  status = 301
+  force = true
+
+# Bezbednosni zaglavlja za ceo sajt
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Astro generiše fajlove sa hešom u imenu, pa se mogu trajno keširati
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Slike se ponekad menjaju pod istim imenom, zato kraći rok
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Stranica zahvalnice ne treba da se pojavi u pretrazi
+[[headers]]
+  for = "/hvala/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"

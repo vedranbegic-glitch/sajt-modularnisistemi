@@ -1,82 +1,34 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { CONTACT } from '../data/siteData';
 
-const breadcrumbItems = [
-  { label: 'Pošaljite upit' },
-];
-
-const canonicalURL = 'https://modularnisistemi.com/posaljite-projekat/';
-const pageTitle = 'Pošaljite upit i projekat · Inženjerska analiza i predmer | Modularni Sistemi';
-const pageDescription = 'Imate projekat? Pošaljite nam upit i nacrt u PDF, DWG ili ZIP formatu. Inženjerski tim MODULARNI SISTEMI radi predmer i specifikaciju elemenata po meri.';
-
-// Hero slajder sa 3 slike koje se rotiraju na svake 3 sekunde
-const heroSlides = [
-  {
-    src: '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp',
-    alt: 'Modularni sistemi — lučni inox kanal u pejzažnom parteru',
-    position: 'center',
-  },
-  {
-    src: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp',
-    alt: 'Z lampa — moderna LED rasveta za dvorište i ulicu',
-    position: '70% center',
-  },
-  {
-    src: '/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp',
-    alt: 'Modularni podni sistemi — fabrički sklopljeni paneli za terase i partere',
-    position: 'center',
-  },
-];
+const canonicalURL = 'https://modularnisistemi.com/posaljite-upit/';
+const pageTitle = 'Pošaljite upit · Predmer i ponuda';
+const pageDescription = 'Pošaljite crtež, skicu ili samo opis prostora. Pripremamo predmer i ponudu za inox odvodnjavanje, modernu rasvetu, modularne podove i Fire Pit Grill.';
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
-  <Fragment slot="head">
-    <link rel="canonical" href={canonicalURL} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:type" content="website" />
-  </Fragment>
-
+<BaseLayout title={pageTitle} description={pageDescription} canonical={canonicalURL}>
   <div class="projekat-page">
-    <div class="wrap breadcrumbs-container">
-      <Breadcrumbs items={breadcrumbItems} />
-    </div>
-
-    <!-- HERO SEKCIJA (AUTOMATSKI SLAJDER SA 3 SLIKE) -->
+    <!-- HERO SEKCIJA (BEZ SLIKA, AKCENAT NA TEKSTU) -->
     <section class="hero">
-      <div class="hero__slides">
-        {heroSlides.map((slide, i) => (
-          <img
-            class={`hero__slide ${i === 0 ? 'is-active' : ''}`}
-            src={slide.src}
-            alt={slide.alt}
-            style={`object-position: ${slide.position};`}
-            fetchpriority={i === 0 ? 'high' : 'auto'}
-            loading={i === 0 ? 'eager' : 'lazy'}
-          />
-        ))}
-      </div>
-      <div class="hero__shade"></div>
+      <div class="hero__glow"></div>
       <div class="hero__grid"></div>
 
       <div class="hero__content wrap">
         <div class="hero__copy">
           <div class="eyebrow">
             <span></span>
-            Inženjerski prijem tehničke dokumentacije
+            Upit i ponuda
           </div>
 
           <h1>
-            Imate projekat?<br />
-            <em>Pošaljite nam upit i nacrt.</em>
+            Imate crtež ili skicu?<br />
+            <em>Pošaljite nam upit.</em>
           </h1>
 
           <p class="hero__lead">
-            Pošaljite nam osnove, preseke, skice ili situacione planove. Naš inženjerski tim analizira geometriju, 
-            visinske kote i padove, pripremajući preciznu specifikaciju modularnih elemenata i zvaničan predmer.
+            Pošaljite crtež, skicu, fotografiju prostora ili samo opis. Pregledamo geometriju,
+            visinske kote i padove, a zatim pripremamo specifikaciju elemenata i predmer.
           </p>
 
           <div class="hero__actions">
@@ -92,33 +44,21 @@ const heroSlides = [
         <div class="hero__specs">
           <div>
             <strong>FORMATI DOKUMENTACIJE</strong>
-            <span>PDF · DWG · DXF · STEP · ZIP</span>
+            <span>PDF · DWG · DXF · ZIP · JPG</span>
           </div>
           <div>
             <strong>ROK ZA ODGOVOR</strong>
-            <span>Inženjerska procena za 24h–48h</span>
+            <span>Procena u roku od 24h</span>
           </div>
           <div>
             <strong>ANALIZA GEOMETRIJE</strong>
-            <span>Proračun radijusa, nagiba i padova</span>
+            <span>Radijusi, nagibi i padovi</span>
           </div>
           <div>
             <strong>BESPLATAN PREDMER</strong>
             <span>Kompletna specifikacija elemenata</span>
           </div>
         </div>
-      </div>
-
-      <!-- Tačkice slajdera -->
-      <div class="hero__dots" role="tablist" aria-label="Izbor slike">
-        {heroSlides.map((_, i) => (
-          <button
-            type="button"
-            class={`hero__dot ${i === 0 ? 'is-active' : ''}`}
-            aria-label={`Slika ${i + 1}`}
-            data-index={i}
-          ></button>
-        ))}
       </div>
     </section>
 
@@ -127,15 +67,15 @@ const heroSlides = [
       <div class="wrap">
         <div class="contact-bar">
           <div class="contact-bar__col">
-            <span class="bar-label">Email za nacrte i projekte</span>
+            <span class="bar-label">Email za crteže i projekte</span>
             <a href={`mailto:${CONTACT.projectEmail || 'projekti@modularnisistemi.com'}`} class="bar-val">
               {CONTACT.projectEmail || 'projekti@modularnisistemi.com'}
             </a>
-            <span class="bar-sub">Direktan prijem DWG i PDF fajlova</span>
+            <span class="bar-sub">Za veće fajlove i potpunu dokumentaciju</span>
           </div>
           <div class="contact-bar__sep"></div>
           <div class="contact-bar__col">
-            <span class="bar-label">Telefon za tehničke konsultacije</span>
+            <span class="bar-label">Telefon za konsultacije</span>
             <a href={`tel:${CONTACT.phoneFormatted || '+38166241386'}`} class="bar-val bar-val--phone">
               {CONTACT.phone || '+381 66 241 386'}
             </a>
@@ -145,7 +85,7 @@ const heroSlides = [
           <div class="contact-bar__col">
             <span class="bar-label">Podržani formati priloga</span>
             <span class="bar-val bar-val--formats">PDF · DWG · DXF · ZIP</span>
-            <span class="bar-sub">Maksimalna veličina priloga: do 25 MB</span>
+            <span class="bar-sub">Prilog preko forme: do 8 MB</span>
           </div>
         </div>
       </div>
@@ -154,52 +94,70 @@ const heroSlides = [
     <!-- GLAVNI BLOK SA FORMOM I SMERNICAMA -->
     <section class="main-form-section" id="forma">
       <div class="wrap form-container">
-        
+
         <!-- FORMA ZA SLANJE UPITA -->
         <div class="form-card">
           <div class="form-card__head">
-            <div class="eyebrow eyebrow--dark">
+            <div class="eyebrow">
               <span></span>
-              Forma za tehnički zahtev
+              Forma za upit
             </div>
-            <h2>Pošaljite upit i specifikaciju</h2>
+            <h2>Pošaljite upit i crtež</h2>
             <p>
-              Ispunite polja u nastavku i priložite tehničku dokumentaciju (DWG, PDF ili skicu). Naš tim će razraditi predlog konfiguracije.
+              Popunite polja u nastavku i, ako imate, priložite crtež ili skicu. Prilog nije obavezan, dovoljan je i kratak opis prostora.
             </p>
           </div>
 
-          <form id="project-form" class="engineering-form">
+          <form
+            id="project-form"
+            class="engineering-form"
+            name="upit"
+            method="POST"
+            action="/hvala/"
+            enctype="multipart/form-data"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+          >
+            <!-- Netlify Forms: obavezno polje sa imenom forme -->
+            <input type="hidden" name="form-name" value="upit" />
+
+            <!-- Honeypot protiv spam botova (korisnici ga ne vide) -->
+            <p class="hp" aria-hidden="true">
+              <label>Ne popunjavajte ovo polje: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+            </p>
+
             <div class="form-row">
               <div class="form-group">
                 <label for="name">Ime i prezime <span>*</span></label>
-                <input type="text" id="name" name="name" placeholder="npr. Marko Jovanović" required />
+                <input type="text" id="name" name="name" autocomplete="name" placeholder="npr. Marko Jovanović" required />
               </div>
               <div class="form-group">
                 <label for="company">Kompanija / Arhitektonski biro</label>
-                <input type="text" id="company" name="company" placeholder="npr. Studio Arch d.o.o." />
+                <input type="text" id="company" name="company" autocomplete="organization" placeholder="npr. Studio Arch d.o.o." />
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label for="email">Email adresa <span>*</span></label>
-                <input type="email" id="email" name="email" placeholder="vas.email@domen.rs" required />
+                <input type="email" id="email" name="email" autocomplete="email" placeholder="vas.email@domen.rs" required />
               </div>
               <div class="form-group">
                 <label for="phone">Broj telefona <span>*</span></label>
-                <input type="tel" id="phone" name="phone" placeholder="+381 6... ..." required />
+                <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+381 6... ..." required />
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
-                <label for="system">Sistem od interesa <span>*</span></label>
+                <label for="system">Sistem koji vas zanima <span>*</span></label>
                 <select id="system" name="system" required>
                   <option value="" disabled selected>Izaberite primarni sistem</option>
                   <option value="inox">Inox sistemi odvodnjavanja (linijski, radijalni, bazeni)</option>
                   <option value="podovi">Modularni podni sistemi (monoblok 1x1m paneli)</option>
                   <option value="rasveta">Moderna rasveta (Z lampa / bandera 3m, 4m, 5m)</option>
-                  <option value="kombinovano">Kombinovano / Kompletan eksterijerni projekat</option>
+                  <option value="fire-pit">Fire Pit Grill (ložište i roštilj)</option>
+                  <option value="kombinovano">Kombinovano / kompletan eksterijerni projekat</option>
                 </select>
               </div>
               <div class="form-group">
@@ -209,42 +167,46 @@ const heroSlides = [
             </div>
 
             <div class="form-group">
-              <label for="message">Opis projekta i tehnički zahtevi <span>*</span></label>
+              <label for="message">Opis prostora i zahteva <span>*</span></label>
               <textarea
                 id="message"
                 name="message"
                 rows="5"
-                placeholder="Navedite specifičnosti prostora: zadate padove, visinske kote, zahteve nosivosti (pešački prolaz ili vozila), radijuse krivina ili posebne rokove..."
+                placeholder="Opišite prostor i šta vam treba: oblik i dimenzije, padove i visinske kote, da li je površina pešačka ili po njoj voze vozila, željene rokove..."
                 required
               ></textarea>
             </div>
 
             <!-- Upload fajla -->
             <div class="form-group file-upload-group">
-              <label for="project-file">Prilog / Tehnički crtež (DWG, PDF, ZIP ili slika)</label>
+              <label for="project-file">Crtež, skica ili fotografija (neobavezno)</label>
               <div class="file-dropzone">
                 <input type="file" id="project-file" name="project-file" accept=".pdf,.dwg,.dxf,.zip,.rar,.png,.jpg,.jpeg" />
                 <div class="dropzone-text">
-                  <span class="upload-icon">📎</span>
+                  <span class="upload-icon" aria-hidden="true">📎</span>
                   <strong>Izaberite fajl ili ga prevucite ovde</strong>
-                  <span class="upload-hint">Podržano: PDF, DWG, DXF, ZIP, RAR, JPG (do 25 MB)</span>
+                  <span class="upload-hint">PDF, DWG, DXF, ZIP, RAR, JPG, PNG · do 8 MB</span>
                 </div>
               </div>
             </div>
 
+            <div class="form-group">
+              <label for="link">Link do većih fajlova (neobavezno)</label>
+              <input type="url" id="link" name="link" placeholder="Google Drive, WeTransfer, Dropbox..." />
+            </div>
+
             <div class="form-footer">
               <p class="form-note">
-                Vaši podaci se koriste isključivo za potrebe inženjerske analize i izrade ponude.
+                Vaše podatke koristimo isključivo za izradu ponude, u skladu sa
+                <a href="/privatnost/">Politikom privatnosti</a>.
               </p>
               <button type="submit" class="btn btn--orange" id="submit-btn">
                 Pošaljite upit <b>→</b>
               </button>
             </div>
 
-            <!-- Obaveštenje o uspešnom slanju -->
-            <div id="form-success" class="form-status is-success" style="display: none;">
-              ✓ <strong>Upit je uspešno poslat!</strong> Naš inženjerski tim će pregledati priložene podatke i javiti se sa analizom u najkraćem roku.
-            </div>
+            <!-- Poruka greške -->
+            <div id="form-error" class="form-status is-error" role="alert" style="display: none;"></div>
           </form>
         </div>
 
@@ -252,28 +214,28 @@ const heroSlides = [
         <div class="guidelines-card">
           <div class="guidelines-card__head">
             <span class="bullet"></span>
-            <h3>Preporuke za bržu izradu preciznog predmera</h3>
+            <h3>Šta nam je korisno da znamo</h3>
           </div>
 
           <div class="guidelines-grid">
             <div class="guide-item">
-              <strong>1. Geometrija i pravci padova</strong>
+              <strong>1. Oblik i mere prostora</strong>
               <p>
-                Ukoliko šaljete drenažni projekat, označite pozicije revizionih slivnika, pravce padova i planiranu završnu visinu podloge.
+                Dovoljna je skica sa približnim merama. Ako šaljete projekat odvodnjavanja, označite pozicije slivnika, pravce padova i planiranu završnu visinu podloge.
               </p>
             </div>
 
             <div class="guide-item">
-              <strong>2. Radijusi kod krivina (R)</strong>
+              <strong>2. Krivine i radijusi (R)</strong>
               <p>
-                Za bazenske prostore i kružne platoe navedite poluprečnik zakrivljenja kako bismo predvideli tačan radijalni segment.
+                Za bazene i kružne platoe navedite poluprečnik zakrivljenja, ako ga znate, kako bismo predvideli tačan radijalni segment.
               </p>
             </div>
 
             <div class="guide-item">
-              <strong>3. Klasa opterećenja i saobraćaj</strong>
+              <strong>3. Kako će se površina koristiti</strong>
               <p>
-                Navedite tip eksploatacije: isključivo pešački prolaz, bazensko sunčalište ili saobraćaj putničkih i dostavnih vozila.
+                Navedite da li je samo pešačka površina, bazensko sunčalište ili se po njoj kreću putnička i dostavna vozila.
               </p>
             </div>
           </div>
@@ -282,29 +244,24 @@ const heroSlides = [
       </div>
     </section>
 
-    <!-- DONJI BANER (CTA IZNAD FOOTERA) -->
+    <!-- DONJI BANER (CTA IZNAD FOOTERA, BEZ SLIKE) -->
     <section class="cta">
-      <img
-        src="/images/inox/cta-parter-zardinjera.webp"
-        alt="Inženjerska podrška za vaš projekat"
-        loading="lazy"
-      />
-      <div class="cta__shade"></div>
+      <div class="cta__glow"></div>
       <div class="wrap cta__inner">
         <div>
           <div class="eyebrow">
             <span></span>
             Direktne konsultacije
           </div>
-          <h2>Želite da popričate sa <em>našim inženjerom?</em></h2>
+          <h2>Želite prvo da <em>popričamo?</em></h2>
           <p>
-            Za hitne projekte ili specifična tehnička pitanja pozovite nas direktno. 
+            Za hitne projekte ili specifična tehnička pitanja pozovite nas direktno.
             Razmotrićemo vašu situaciju i predložiti optimalno rešenje.
           </p>
         </div>
         <div class="cta__actions">
           <a class="btn btn--orange" href={`tel:${CONTACT.phoneFormatted || '+38166241386'}`}>
-            Pozovite: {CONTACT.phone || '066 241 386'} <b>↗</b>
+            Pozovite: {CONTACT.phone || '+381 66 241 386'} <b>↗</b>
           </a>
           <a class="btn btn--ghost" href={`mailto:${CONTACT.projectEmail || 'projekti@modularnisistemi.com'}`}>
             Pošaljite email <b>→</b>
@@ -344,69 +301,8 @@ const heroSlides = [
       margin-inline: auto;
     }
 
-    .breadcrumbs-container {
-      padding-top: 14px;
-      padding-bottom: 14px;
-    }
-
-    /* ========== HERO ========== */
-    .hero {
-      position: relative;
-      min-height: 640px;
-      background: var(--navy);
-      color: #fff;
-      isolation: isolate;
-      display: flex;
-      align-items: flex-end;
-    }
-
-    .hero__slides {
-      position: absolute;
-      inset: 0;
-      z-index: -3;
-    }
-
-    .hero__slide {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-
-    .hero__slide.is-active {
-      opacity: 1;
-    }
-
-    .hero__shade {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(105deg, rgba(6, 19, 31, 0.96) 0%, rgba(6, 19, 31, 0.88) 38%, rgba(6, 19, 31, 0.45) 68%, rgba(6, 19, 31, 0.1) 100%),
-        linear-gradient(0deg, rgba(6, 19, 31, 0.75) 0%, transparent 48%);
-      z-index: -2;
-    }
-
-    .hero__grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: linear-gradient(90deg, black, transparent 68%);
-      z-index: -1;
-    }
-
-    .hero__content {
-      padding-top: 100px;
-      padding-bottom: 56px;
-      display: grid;
-      grid-template-columns: minmax(0, 720px) 1fr;
-      gap: 50px;
-      align-items: end;
+    h1, h2, h3, p {
+      margin: 0;
     }
 
     .eyebrow {
@@ -428,12 +324,51 @@ const heroSlides = [
       flex-shrink: 0;
     }
 
-    .eyebrow--dark {
+    em {
+      font-style: normal;
       color: var(--orange);
     }
 
-    h1, h2, h3, p {
-      margin: 0;
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      min-height: 560px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+      color: #fff;
+      isolation: isolate;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero__glow {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 85% 20%, rgba(255, 105, 0, 0.16), transparent 70%),
+        radial-gradient(ellipse 50% 60% at 10% 100%, rgba(255, 255, 255, 0.05), transparent 70%);
+      z-index: -2;
+    }
+
+    .hero__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(90deg, black, transparent 80%);
+      -webkit-mask-image: linear-gradient(90deg, black, transparent 80%);
+      z-index: -1;
+    }
+
+    .hero__content {
+      padding-top: 120px;
+      padding-bottom: 64px;
+      display: grid;
+      grid-template-columns: minmax(0, 720px) 1fr;
+      gap: 50px;
+      align-items: end;
     }
 
     .hero h1 {
@@ -444,13 +379,6 @@ const heroSlides = [
       letter-spacing: -0.04em;
       font-weight: 800;
       color: #fff;
-    }
-
-    .hero h1 em,
-    .form-card__head h2 em,
-    .cta h2 em {
-      font-style: normal;
-      color: var(--orange);
     }
 
     .hero__lead {
@@ -466,45 +394,6 @@ const heroSlides = [
       gap: 12px;
       flex-wrap: wrap;
       margin-top: 32px;
-    }
-
-    /* Tačkice slajdera */
-    .hero__dots {
-      position: absolute;
-      right: max(20px, calc((100% - 1280px) / 2));
-      bottom: 24px;
-      display: flex;
-      gap: 8px;
-      z-index: 3;
-    }
-
-    .hero__dot {
-      width: 28px;
-      height: 4px;
-      padding: 0;
-      border: 0;
-      border-radius: 2px;
-      background: rgba(255, 255, 255, 0.35);
-      cursor: pointer;
-      transition: background 0.3s ease, width 0.3s ease;
-    }
-
-    .hero__dot:hover {
-      background: rgba(255, 255, 255, 0.7);
-    }
-
-    .hero__dot.is-active {
-      width: 44px;
-      background: var(--orange);
-    }
-
-    .hero__dot:focus-visible {
-      outline: 2px solid #fff;
-      outline-offset: 3px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .hero__slide { transition: none; }
     }
 
     .btn {
@@ -542,6 +431,12 @@ const heroSlides = [
       transform: translateY(-2px);
     }
 
+    .btn--orange:disabled {
+      opacity: 0.7;
+      cursor: wait;
+      transform: none;
+    }
+
     .btn--ghost {
       border: 1px solid rgba(255, 255, 255, 0.45);
       color: #fff;
@@ -562,6 +457,7 @@ const heroSlides = [
     }
 
     .hero__specs strong {
+      display: block;
       font-size: 14px;
       letter-spacing: 0.03em;
       font-weight: 700;
@@ -569,9 +465,10 @@ const heroSlides = [
     }
 
     .hero__specs span {
+      display: block;
       margin-top: 4px;
-      color: #94a3ad;
-      font-size: 10px;
+      color: #a9b6be;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.09em;
     }
@@ -620,10 +517,11 @@ const heroSlides = [
       font-weight: 800;
       color: #07111e;
       text-decoration: none;
+      overflow-wrap: anywhere;
       transition: color 0.2s;
     }
 
-    .bar-val:hover {
+    a.bar-val:hover {
       color: var(--orange);
     }
 
@@ -639,7 +537,7 @@ const heroSlides = [
     .bar-sub {
       margin-top: 3px;
       font-size: 11px;
-      color: #8c9da8;
+      color: #6d7d89;
     }
 
     /* ========== MAIN FORM SECTION ========== */
@@ -647,6 +545,7 @@ const heroSlides = [
       padding: 80px 0;
       background: #f6f7f9;
       border-bottom: 1px solid var(--line);
+      scroll-margin-top: 80px;
     }
 
     .form-container {
@@ -684,6 +583,10 @@ const heroSlides = [
       display: flex;
       flex-direction: column;
       gap: 20px;
+    }
+
+    .hp {
+      display: none;
     }
 
     .form-row {
@@ -746,16 +649,18 @@ const heroSlides = [
       cursor: pointer;
     }
 
-    .file-dropzone:hover {
+    .file-dropzone:hover,
+    .file-dropzone:focus-within {
       border-color: var(--orange);
       background: #fff;
     }
 
-    .file-dropzone input[type="file"] {
+    .form-group .file-dropzone input[type="file"] {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
+      padding: 0;
       opacity: 0;
       cursor: pointer;
     }
@@ -776,6 +681,7 @@ const heroSlides = [
       font-size: 13px;
       font-weight: 700;
       color: #07111e;
+      overflow-wrap: anywhere;
     }
 
     .upload-hint {
@@ -796,21 +702,37 @@ const heroSlides = [
     .form-note {
       font-size: 12px;
       color: var(--muted);
-      line-height: 1.4;
+      line-height: 1.5;
       max-width: 480px;
+    }
+
+    .form-note a {
+      color: #07111e;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .form-note a:hover {
+      color: var(--orange);
     }
 
     .form-status {
       padding: 14px 18px;
       border-radius: 2px;
       font-size: 13px;
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
-    .form-status.is-success {
-      background: #edfbf2;
-      border: 1px solid #a3e6ba;
-      color: #12632e;
+    .form-status.is-error {
+      background: #fff1ee;
+      border: 1px solid #f3b5a6;
+      color: #9a2a10;
+    }
+
+    .form-status.is-error a {
+      color: inherit;
+      font-weight: 700;
+      text-decoration: underline;
     }
 
     /* Guidelines card */
@@ -867,32 +789,23 @@ const heroSlides = [
     /* ========== CTA BANER ========== */
     .cta {
       position: relative;
-      min-height: 340px;
+      min-height: 300px;
       display: flex;
       align-items: center;
       color: #fff;
       overflow: hidden;
-      background: var(--navy);
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+      isolation: isolate;
     }
 
-    .cta > img {
+    .cta__glow {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .cta__shade {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(100deg, rgba(6, 19, 31, 0.95) 0%, rgba(6, 19, 31, 0.75) 55%, rgba(6, 19, 31, 0.45) 100%);
+      background: radial-gradient(ellipse 50% 90% at 90% 50%, rgba(255, 105, 0, 0.14), transparent 70%);
+      z-index: -1;
     }
 
     .cta__inner {
-      position: relative;
-      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -946,7 +859,10 @@ const heroSlides = [
       }
 
       .hero__specs {
-        display: none;
+        border-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-left: 0;
+        padding-top: 24px;
       }
 
       .cta__inner {
@@ -956,6 +872,7 @@ const heroSlides = [
 
       .cta__actions {
         flex-direction: row;
+        flex-wrap: wrap;
       }
     }
 
@@ -965,11 +882,11 @@ const heroSlides = [
       }
 
       .hero {
-        min-height: 520px;
+        min-height: 0;
       }
 
       .hero__content {
-        padding-top: 70px;
+        padding-top: 90px;
         padding-bottom: 40px;
       }
 
@@ -977,13 +894,28 @@ const heroSlides = [
         font-size: 32px;
       }
 
+      .main-form-section {
+        padding: 56px 0;
+      }
+
       .form-card {
+        padding: 24px 18px;
+      }
+
+      .guidelines-card {
         padding: 24px 18px;
       }
 
       .form-row {
         grid-template-columns: 1fr;
         gap: 16px;
+      }
+
+      /* 16px sprečava automatski zoom na iPhone-u pri fokusu polja */
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        font-size: 16px;
       }
 
       .form-footer {
@@ -993,10 +925,6 @@ const heroSlides = [
 
       .form-footer .btn {
         width: 100%;
-      }
-
-      .cta {
-        min-height: 340px;
       }
 
       .cta__inner {
@@ -1012,79 +940,102 @@ const heroSlides = [
         width: 100%;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .btn,
+      .file-dropzone,
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        transition: none;
+      }
+
+      .btn--orange:hover {
+        transform: none;
+      }
+
+      :global(html) {
+        scroll-behavior: auto;
+      }
+    }
   </style>
 
   <script>
-    // Hero slajder: automatska rotacija sve 3 slike na svake 3 sekunde
-    const slides = document.querySelectorAll<HTMLElement>('.hero__slide');
-    const dots = document.querySelectorAll<HTMLButtonElement>('.hero__dot');
+    // Slanje upita na Netlify Forms (AJAX, sa prilogom) i preusmeravanje na /hvala/
+    const MAX_FILE_BYTES = 8 * 1024 * 1024; // Netlify Forms: ukupno do 8 MB po slanju
 
-    if (slides.length > 1) {
-      let current = 0;
-      let timer: number | undefined;
-
-      const show = (index: number) => {
-        current = (index + slides.length) % slides.length;
-        slides.forEach((s, i) => s.classList.toggle('is-active', i === current));
-        dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
-      };
-
-      const stop = () => {
-        if (timer) window.clearInterval(timer);
-      };
-      const start = () => {
-        stop();
-        timer = window.setInterval(() => show(current + 1), 3000);
-      };
-
-      dots.forEach((dot) => {
-        dot.addEventListener('click', () => {
-          show(Number(dot.dataset.index));
-          start();
-        });
-      });
-
-      start();
-    }
-
-    // Rukovanje formom i fajlovima
     const projectForm = document.getElementById('project-form') as HTMLFormElement | null;
-    const successMsg = document.getElementById('form-success') as HTMLElement | null;
+    const errorMsg = document.getElementById('form-error') as HTMLElement | null;
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
     const fileInput = document.getElementById('project-file') as HTMLInputElement | null;
     const dropzoneText = document.querySelector('.dropzone-text strong') as HTMLElement | null;
+    const defaultDropzoneLabel = dropzoneText ? dropzoneText.textContent : '';
+
+    const showError = (html: string) => {
+      if (!errorMsg) return;
+      errorMsg.innerHTML = html;
+      errorMsg.style.display = 'block';
+      errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
+
+    const hideError = () => {
+      if (errorMsg) errorMsg.style.display = 'none';
+    };
 
     if (fileInput && dropzoneText) {
       fileInput.addEventListener('change', () => {
-        if (fileInput.files && fileInput.files.length > 0) {
-          dropzoneText.textContent = `Izabran fajl: ${fileInput.files[0].name}`;
+        hideError();
+        const file = fileInput.files && fileInput.files[0];
+
+        if (!file) {
+          dropzoneText.textContent = defaultDropzoneLabel;
+          return;
         }
+
+        if (file.size > MAX_FILE_BYTES) {
+          fileInput.value = '';
+          dropzoneText.textContent = defaultDropzoneLabel;
+          showError(
+            '<strong>Fajl je prevelik.</strong> Preko forme možete poslati do 8 MB. Za veće fajlove nalepite link u polje ispod ili ih pošaljite emailom.'
+          );
+          return;
+        }
+
+        dropzoneText.textContent = `Izabran fajl: ${file.name}`;
       });
     }
 
-    if (projectForm) {
-      projectForm.addEventListener('submit', (e) => {
+    if (projectForm && submitBtn) {
+      projectForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        hideError();
 
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.innerHTML = 'Slanje upita u toku...';
+        const originalLabel = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Slanje upita u toku...';
+
+        try {
+          // FormData sa prilogom; Content-Type (multipart) postavlja pregledač
+          const response = await fetch('/', {
+            method: 'POST',
+            body: new FormData(projectForm),
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+
+          // Stranica zahvalnice se koristi i za merenje konverzija
+          window.location.href = '/hvala/';
+          return;
+        } catch (err) {
+          showError(
+            '<strong>Slanje nije uspelo.</strong> Pokušajte ponovo ili nas pozovite na <a href="tel:+38166241386">+381 66 241 386</a>, odnosno pošaljite upit na <a href="mailto:projekti@modularnisistemi.com">projekti@modularnisistemi.com</a>.'
+          );
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalLabel;
         }
-
-        setTimeout(() => {
-          projectForm.reset();
-          if (dropzoneText) {
-            dropzoneText.textContent = 'Izaberite fajl ili ga prevucite ovde';
-          }
-          if (successMsg) {
-            successMsg.style.display = 'block';
-            successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = 'Pošaljite upit <b>→</b>';
-          }
-        }, 700);
       });
     }
   </script>

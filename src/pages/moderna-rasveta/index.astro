@@ -2,10 +2,12 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const canonicalURL = 'https://modularnisistemi.com/moderna-rasveta/';
-const pageTitle = 'Z Lampa / Bandera – Moderna LED Rasveta | Modularni Sistemi';
+// BaseLayout sam dodaje " · Modularni Sistemi" na kraj naslova
+const pageTitle = 'Z lampa / bandera – moderna LED rasveta';
 const pageDescription = 'Elegantna i funkcionalna Z lampa / bandera sa usmerenom LED rasvetom u visinama 3 m, 4 m i 5 m. Za urbane, poslovne i privatne prostore.';
 
 const img = '/images/rasveta/';
+const ogImage = `${img}z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp`;
 
 const visine = [
   { m: '3 m', opis: 'Idealna za manje prostore i privatne dvorišne površine.' },
@@ -17,7 +19,7 @@ const karakteristike = [
   { naziv: 'Materijal', opis: 'Kvalitetan čelik (pocinčavanje / farbanje po izboru)', ikona: 'layers' },
   { naziv: 'LED rasveta', opis: 'Od 50 W do 100 W (uz mogućnost podešavanja)', ikona: 'bulb' },
   { naziv: 'Temperatura boje', opis: '3000 K / 4000 K / 6000 K', ikona: 'sun' },
-  { naziv: 'IP zaštita', opis: 'IP65 (otpornost na vremenske uslove)', ikona: 'shield' },
+  { naziv: 'IP zaštita', opis: 'IP66 (otpornost na vremenske uslove)', ikona: 'shield' },
   { naziv: 'Montaža', opis: 'Tip: na ploču / ankerisanje', ikona: 'wrench' },
 ];
 
@@ -49,16 +51,7 @@ const icons: Record<string, string> = {
 };
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
-  <Fragment slot="head">
-    <link rel="canonical" href={canonicalURL} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content={`https://modularnisistemi.com${img}z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp`} />
-  </Fragment>
-
+<BaseLayout title={pageTitle} description={pageDescription} canonical={canonicalURL} ogImage={ogImage}>
   <div class="rasveta-page">
 
     <!-- HERO SEKCIJA SA WEBM VIDEOM U POZADINI (PUN EKRAN BEZ SIVE TRAKE) -->
@@ -74,6 +67,7 @@ const icons: Record<string, string> = {
           class="hero__video"
         >
           <source src="/videos/moderna-rasveta.webm" type="video/webm" />
+          <source src="/videos/moderna-rasveta.mp4" type="video/mp4" />
           <img
             src={`${img}z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta.webp`}
             alt="Z lampa moderna LED rasveta"
@@ -103,7 +97,7 @@ const icons: Record<string, string> = {
             {prednosti.map((p) => (
               <li>
                 <span class="badge-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </span>
@@ -136,7 +130,7 @@ const icons: Record<string, string> = {
             <span>Temperatura boje</span>
           </div>
           <div>
-            <strong>IP65 ZAŠTITA</strong>
+            <strong>IP66 ZAŠTITA</strong>
             <span>Otpornost na vreme</span>
           </div>
         </div>
@@ -162,7 +156,7 @@ const icons: Record<string, string> = {
             {visine.map((v) => (
               <div class="height-card">
                 <div class="height-card__badge">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
                     <path d="M12 3v18M8 7l4-4 4 4M8 17l4 4 4-4" />
                   </svg>
                 </div>
@@ -181,7 +175,7 @@ const icons: Record<string, string> = {
               {karakteristike.map((k) => (
                 <li>
                   <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={icons[k.ikona]} />
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={icons[k.ikona]} />
                   </div>
                   <div class="feature-text">
                     <strong>{k.naziv}</strong>
@@ -230,7 +224,7 @@ const icons: Record<string, string> = {
                   <span>temperatura boje</span>
                 </div>
                 <div>
-                  <strong>IP65</strong>
+                  <strong>IP66</strong>
                   <span>zaštita od vremena</span>
                 </div>
               </div>
@@ -289,7 +283,7 @@ const icons: Record<string, string> = {
           {primena.map((p) => (
             <div class="application-card">
               <div class="application-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={icons[p.ikona]} />
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={icons[p.ikona]} />
               </div>
               <strong>{p.naziv}</strong>
             </div>

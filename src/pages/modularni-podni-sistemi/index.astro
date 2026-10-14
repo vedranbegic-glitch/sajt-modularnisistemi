@@ -1,49 +1,23 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { podniModeli } from '../../data/podniModeli';
 
 const canonicalURL = 'https://modularnisistemi.com/modularni-podni-sistemi/';
-const pageTitle = 'Modularni Podni Sistemi — Jedan Sistem. Bezbroj Mogućnosti.';
+// BaseLayout sam dodaje " · Modularni Sistemi" na kraj naslova
+const pageTitle = 'Modularni podni sistemi — jedan sistem, bezbroj mogućnosti';
+const ogImage = '/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp';
 const pageDescription = 'Čelični monoblok podni paneli 1x1m sa teleskopskim stopama za nivelaciju. Četiri vrste završnih obloga: trava, deking, keramika i industrijska rešetka.';
 
-// 4 ključna monoblok sistema
-const podniModeli = [
-  {
-    number: '01',
-    name: 'ECO-GREEN MONOBLOK',
-    short: 'Dvorišta, krovne terase, kafići',
-    desc: 'Prirodan izgled trave, uvek zelen i čist — bez blata, košenja, zalivanja i održavanja.',
-    image: '/images/podovi/eco-green-monoblok-vestacka-trava-1.webp',
-    alt: 'Eco-Green monoblok modularni pod sa veštačkom travom',
-    href: '/modularni-podni-sistemi/eco-green-monoblok/',
-  },
-  {
-    number: '02',
-    name: 'WPC-COMPOUND MONOBLOK',
-    short: 'Terase, bašte restorana, bazeni',
-    desc: 'Toplina i izgled prirodnog drveta, ali bez truljenja, lakiranja, iverja i vlage.',
-    image: '/images/podovi/wpc-deking-monoblok-drvo-kompozit-1.webp',
-    alt: 'WPC-Compound monoblok modularni deking pod',
-    href: '/modularni-podni-sistemi/wpc-compound-monoblok/',
-  },
-  {
-    number: '03',
-    name: 'GRES-PREMIUM MONOBLOK',
-    short: 'Moderne terase, vile, lokali',
-    desc: 'Vrhunska estetika keramike 20mm fabrički montirane na čelik — bez lepkova i fuga koje pucaju.',
-    image: '/images/podovi/gres-premium-monoblok-keramika-1.webp',
-    alt: 'Gres-Premium monoblok modularni pod sa granitnom keramikom',
-    href: '/modularni-podni-sistemi/gres-premium-monoblok/',
-  },
-  {
-    number: '04',
-    name: 'HEAVY-DUTY MONOBLOK',
-    short: 'Radionice, servisi, industrija',
-    desc: 'Ekstremna nosivost za teška vozila, 100% protivklizno, propušta sve tečnosti direktno ispod poda.',
-    image: '/images/podovi/heavy-duty-monoblok-industrijska-resetka-1.webp',
-    alt: 'Heavy-Duty monoblok industrijska rešetka visoke nosivosti',
-    href: '/modularni-podni-sistemi/heavy-duty-monoblok/',
-  },
-];
+// 4 ključna monoblok sistema — podaci su u src/data/podniModeli.ts (isti pokreću i stranice "Više o proizvodu")
+const podniModeliKartice = podniModeli.map((p) => ({
+  number: p.number,
+  name: p.name,
+  short: p.short,
+  desc: p.desc,
+  image: p.image,
+  alt: p.alt,
+  href: `/modularni-podni-sistemi/${p.slug}/`,
+}));
 
 // Zašto modularni sistem
 const prednosti = [
@@ -73,21 +47,12 @@ const prednosti = [
 const montaza = [
   ['01', 'Postavite panele', 'Položite fabrički sklopljene panele 1x1m na bilo koju podlogu (beton, zemlja, šljunak, travnjak).'],
   ['02', 'Klik-spojite', 'Segmenti se bočno uklapaju jedan u drugi u savršenu čvrstu celinu bez ijednog šrafa na licu mesta.'],
-  ['03', 'Nivelišite u milimetar', 'Teleskopske zglobne stope sa kontra-maticom nivelšu neravnine terena od 4 do 12 cm u milimetar.'],
+  ['03', 'Nivelišite u milimetar', 'Teleskopske zglobne stope sa kontra-maticom nivelišu neravnine terena od 4 do 12 cm u milimetar.'],
   ['04', 'Spreman za upotrebu', 'Podloga je odmah spremna za hodanje, teret i nameštaj — bez čekanja da se bilo šta suši.'],
 ];
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
-  <Fragment slot="head">
-    <link rel="canonical" href={canonicalURL} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://modularnisistemi.com/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp" />
-  </Fragment>
-
+<BaseLayout title={pageTitle} description={pageDescription} canonical={canonicalURL} ogImage={ogImage}>
   <div class="podovi-page">
 
     <!-- HERO SEKCIJA SA WEBM VIDEOM U POZADINI (PUN EKRAN BEZ SIVE TRAKE) -->
@@ -103,6 +68,7 @@ const montaza = [
           class="hero__video"
         >
           <source src="/videos/modularni-podovi.webm" type="video/webm" />
+          <source src="/videos/modularni-podovi.mp4" type="video/mp4" />
           <img src="/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp" alt="Modularni podni sistemi" />
         </video>
       </div>
@@ -112,7 +78,7 @@ const montaza = [
         <div class="hero__copy">
           <div class="eyebrow">
             <span></span>
-            Modularni podni sistemi · Fabrički prefabricirani paneli
+            Modularni podni sistemi · Fabrički prefabrikovani paneli
           </div>
 
           <h1>
@@ -123,7 +89,7 @@ const montaza = [
 
           <p class="hero__lead">
             Čelični monoblok paneli dimenzija 1×1m koji se bočno spajaju bez ijednog šrafa. 
-            Teleskopske zglobne stope nivelšu pod u milimetar na svakom terenu, uz izbor 
+            Teleskopske zglobne stope nivelišu pod u milimetar na svakom terenu, uz izbor 
             između trave, dekinga, keramike i industrijske rešetke.
           </p>
 
@@ -188,8 +154,8 @@ const montaza = [
             <span>Brzi bočni klik-spoj</span>
           </div>
           <div>
-            <strong>± mm</strong>
-            <span>Precizno podešavanje visine</span>
+            <strong>4–12 cm</strong>
+            <span>Podešavanje visine stopama</span>
           </div>
         </div>
       </div>
@@ -212,7 +178,7 @@ const montaza = [
         </div>
 
         <div class="forms-grid">
-          {podniModeli.map((item) => (
+          {podniModeliKartice.map((item) => (
             <div class="form-card">
               <div class="form-card__image">
                 <img src={item.image} alt={item.alt} loading="lazy" />

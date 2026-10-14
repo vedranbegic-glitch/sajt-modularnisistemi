@@ -1,51 +1,34 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
-import { SITE, CONTACT } from '../data/siteData';
-
-const breadcrumbItems = [
-  { label: 'Kontakt' },
-];
+import { CONTACT } from '../data/siteData';
 
 const canonicalURL = 'https://modularnisistemi.com/kontakt/';
-const pageTitle = 'Kontakt · Inženjerska podrška i upiti | Modularni Sistemi';
-const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI. Telefon: +381 66 241 386. Email: kontakt@modularnisistemi.com. Tehničke konsultacije za arhitekte i izvođače.';
+const pageTitle = 'Kontakt · Tehnička podrška i upiti';
+const pageDescription = 'Kontaktirajte tim MODULARNI SISTEMI: telefon +381 66 241 386, tehničke konsultacije za arhitekte, projektante i izvođače.';
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
-  <Fragment slot="head">
-    <link rel="canonical" href={canonicalURL} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:type" content="website" />
-  </Fragment>
-
+<BaseLayout title={pageTitle} description={pageDescription} canonical={canonicalURL}>
   <div class="kontakt-page">
-    <div class="wrap breadcrumbs-container">
-      <Breadcrumbs items={breadcrumbItems} />
-    </div>
-
-    <!-- HERO SEKCIJA -->
+    <!-- HERO SEKCIJA (BEZ SLIKA, AKCENAT NA TEKSTU) -->
     <section class="hero">
-      <div class="hero__shade"></div>
+      <div class="hero__glow"></div>
       <div class="hero__grid"></div>
 
       <div class="hero__content wrap">
         <div class="hero__copy">
           <div class="eyebrow">
             <span></span>
-            Direktna komunikacija · Inženjerska podrška
+            Direktna komunikacija · Tehnička podrška
           </div>
 
           <h1>
-            Kontaktirajte naš<br />
-            <em>inženjerski tim.</em>
+            Kontaktirajte<br />
+            <em>naš tim.</em>
           </h1>
 
           <p class="hero__lead">
             Stojimo vam na raspolaganju za tehničke konsultacije, analizu padova i geometrije,
-            kao i za brzu izradu zvaničnih predmera i ponuda za vaše projekte.
+            kao i za brzu izradu predmera i ponuda za vaše projekte.
           </p>
 
           <div class="hero__actions">
@@ -82,25 +65,25 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
     <!-- GLAVNI KONTAKT BLOK -->
     <section class="contact-main" id="forma">
       <div class="wrap contact-grid">
-        
+
         <!-- LEVA KOLONA: ZVANIČNE INFORMACIJE -->
         <div class="info-col">
           <div class="info-card">
-            
+
             <div class="info-card__head">
               <span class="info-badge">Zvanični kontakt</span>
               <h2>MODULARNI SISTEMI</h2>
-              <p class="tagline">"JEDAN SISTEM. BEZBROJ MOGUĆNOSTI."</p>
+              <p class="tagline">„JEDAN SISTEM. BEZBROJ MOGUĆNOSTI."</p>
             </div>
 
             <div class="channels">
               <!-- Telefon -->
               <div class="channel-item">
-                <span class="channel-label">Telefon (Poziv / WhatsApp)</span>
+                <span class="channel-label">Telefon (poziv / WhatsApp)</span>
                 <a href={`tel:${CONTACT.phoneFormatted || '+38166241386'}`} class="channel-val channel-val--phone">
                   {CONTACT.phone || '+381 66 241 386'}
                 </a>
-                <span class="channel-sub">Direktna veza sa inženjerskim timom</span>
+                <span class="channel-sub">Direktna veza sa našim timom</span>
               </div>
 
               <!-- Opšti email -->
@@ -127,8 +110,8 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
               <p>
                 Imate gotove arhitektonske podloge? Koristite našu namensku formu za bržu izradu proračuna i specifikacije.
               </p>
-              <a href="/posaljite-projekat/" class="doc-link">
-                Pošaljite nacrt i specifikaciju <b>→</b>
+              <a href="/posaljite-upit/" class="doc-link">
+                Pošaljite crtež ili skicu <b>→</b>
               </a>
             </div>
 
@@ -139,44 +122,61 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
         <div class="form-col">
           <div class="form-card">
             <div class="form-card__head">
-              <span class="form-badge">B2B i Privatni upiti</span>
-              <h3>Uputite zahtev inženjerskom timu</h3>
+              <span class="form-badge">B2B i privatni upiti</span>
+              <h3>Pošaljite nam svoj upit</h3>
               <p>
                 Popunite osnovne podatke o objektu, a naš inženjer će vam se javiti sa tehničkom analizom i predlogom rešenja.
               </p>
             </div>
 
-            <form id="contact-form" class="engineering-form">
+            <form
+              id="contact-form"
+              class="engineering-form"
+              name="kontakt"
+              method="POST"
+              action="/hvala/"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+            >
+              <!-- Netlify Forms: obavezno polje sa imenom forme -->
+              <input type="hidden" name="form-name" value="kontakt" />
+
+              <!-- Honeypot protiv spam botova (korisnici ga ne vide) -->
+              <p class="hp" aria-hidden="true">
+                <label>Ne popunjavajte ovo polje: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+              </p>
+
               <div class="form-row">
                 <div class="form-group">
                   <label for="name">Ime i prezime <span>*</span></label>
-                  <input type="text" id="name" name="name" placeholder="npr. Marko Jovanović" required />
+                  <input type="text" id="name" name="name" autocomplete="name" placeholder="npr. Marko Jovanović" required />
                 </div>
                 <div class="form-group">
                   <label for="company">Kompanija / Arhitektonski biro</label>
-                  <input type="text" id="company" name="company" placeholder="npr. Studio Arch d.o.o." />
+                  <input type="text" id="company" name="company" autocomplete="organization" placeholder="npr. Studio Arch d.o.o." />
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group">
                   <label for="email">Email adresa <span>*</span></label>
-                  <input type="email" id="email" name="email" placeholder="vas.email@domen.rs" required />
+                  <input type="email" id="email" name="email" autocomplete="email" placeholder="vas.email@domen.rs" required />
                 </div>
                 <div class="form-group">
                   <label for="phone">Broj telefona <span>*</span></label>
-                  <input type="tel" id="phone" name="phone" placeholder="+381 6... ..." required />
+                  <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+381 6... ..." required />
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="system">Sistem od interesa <span>*</span></label>
+                <label for="system">Sistem koji vas zanima <span>*</span></label>
                 <select id="system" name="system" required>
                   <option value="" disabled selected>Izaberite kategoriju sistema</option>
                   <option value="inox">Inox sistemi odvodnjavanja (kanali, rešetke, bazeni)</option>
                   <option value="podovi">Modularni podni sistemi (monoblok 1x1m paneli)</option>
                   <option value="rasveta">Moderna rasveta (Z lampa / bandera 3m, 4m, 5m)</option>
-                  <option value="kombinovano">Kombinovano / Kompletan arhitektonski projekat</option>
+                  <option value="fire-pit">Fire Pit Grill (ložište i roštilj)</option>
+                  <option value="kombinovano">Kombinovano / kompletan arhitektonski projekat</option>
                 </select>
               </div>
 
@@ -191,18 +191,26 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
                 ></textarea>
               </div>
 
+              <p class="form-privacy">
+                Slanjem poruke pristajete da obradimo vaše podatke isključivo radi odgovora na upit, u skladu sa
+                <a href="/privatnost/">Politikom privatnosti</a>.
+              </p>
+
               <div class="form-footer">
                 <p class="form-note">
-                  Za slanje DWG crteža koristite našu stranicu <a href="/posaljite-projekat/">pošaljite projekat</a>.
+                  Imate crtež ili skicu? <a href="/posaljite-upit/">Pošaljite ih ovde</a>.
                 </p>
                 <button type="submit" class="btn btn--orange" id="submit-btn">
                   Pošaljite poruku <b>→</b>
                 </button>
               </div>
 
-              <!-- Poruka uspeha -->
-              <div id="form-success" class="form-status is-success" style="display: none;">
-                ✓ <strong>Hvala vam!</strong> Vaš zahtev je uspešno prosleđen inženjerskom timu. Odgovorićemo u najkraćem roku.
+              <!-- Poruka greške -->
+              <div id="form-error" class="form-status is-error" role="alert" style="display: none;">
+                <strong>Slanje nije uspelo.</strong> Pokušajte ponovo, pozovite nas na
+                <a href={`tel:${CONTACT.phoneFormatted || '+38166241386'}`}>{CONTACT.phone || '+381 66 241 386'}</a>
+                ili pošaljite email na
+                <a href={`mailto:${CONTACT.generalEmail || 'kontakt@modularnisistemi.com'}`}>{CONTACT.generalEmail || 'kontakt@modularnisistemi.com'}</a>.
               </div>
             </form>
           </div>
@@ -211,14 +219,9 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
       </div>
     </section>
 
-    <!-- DONJI BANER (CTA IZNAD FOOTERA) -->
+    <!-- DONJI BANER (CTA IZNAD FOOTERA, BEZ SLIKE) -->
     <section class="cta">
-      <img
-        src="/images/inox/cta-parter-zardinjera.webp"
-        alt="Zainteresovani ste za saradnju?"
-        loading="lazy"
-      />
-      <div class="cta__shade"></div>
+      <div class="cta__glow"></div>
       <div class="wrap cta__inner">
         <div>
           <div class="eyebrow">
@@ -231,11 +234,11 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
           </p>
         </div>
         <div class="cta__actions">
-          <a class="btn btn--orange" href="/posaljite-projekat/">
-            Pošaljite nacrt <b>→</b>
+          <a class="btn btn--orange" href="/posaljite-upit/">
+            Pošaljite upit <b>→</b>
           </a>
           <a class="btn btn--ghost" href={`tel:${CONTACT.phoneFormatted || '+38166241386'}`}>
-            Pozovite: {CONTACT.phone || '066 241 386'} <b>↗</b>
+            Pozovite: {CONTACT.phone || '+381 66 241 386'} <b>↗</b>
           </a>
         </div>
       </div>
@@ -272,28 +275,24 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
       margin-inline: auto;
     }
 
-    .breadcrumbs-container {
-      padding-top: 14px;
-      padding-bottom: 14px;
-    }
-
     /* ========== HERO ========== */
     .hero {
       position: relative;
       min-height: 540px;
-      background: var(--navy);
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
       color: #fff;
       isolation: isolate;
       display: flex;
       align-items: flex-end;
+      overflow: hidden;
     }
 
-    .hero__shade {
+    .hero__glow {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(105deg, rgba(6, 19, 31, 0.98) 0%, rgba(6, 19, 31, 0.9) 45%, rgba(6, 19, 31, 0.75) 100%),
-        linear-gradient(0deg, rgba(6, 19, 31, 0.8) 0%, transparent 48%);
+        radial-gradient(ellipse 60% 70% at 85% 20%, rgba(255, 105, 0, 0.16), transparent 70%),
+        radial-gradient(ellipse 50% 60% at 10% 100%, rgba(255, 255, 255, 0.05), transparent 70%);
       z-index: -2;
     }
 
@@ -301,10 +300,11 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
       background-size: 72px 72px;
-      mask-image: linear-gradient(90deg, black, transparent 75%);
+      mask-image: linear-gradient(90deg, black, transparent 80%);
+      -webkit-mask-image: linear-gradient(90deg, black, transparent 80%);
       z-index: -1;
     }
 
@@ -405,6 +405,12 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
       transform: translateY(-2px);
     }
 
+    .btn--orange:disabled {
+      opacity: 0.7;
+      cursor: wait;
+      transform: none;
+    }
+
     .btn--ghost {
       border: 1px solid rgba(255, 255, 255, 0.45);
       color: #fff;
@@ -435,7 +441,7 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
     .hero__specs span {
       display: block;
       margin-top: 3px;
-      color: #94a3ad;
+      color: #a9b6be;
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -446,13 +452,14 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
       padding: 70px 0 90px;
       background: #f6f7f9;
       border-bottom: 1px solid var(--line);
+      scroll-margin-top: 80px;
     }
 
     .contact-grid {
       display: grid;
       grid-template-columns: minmax(0, 4.5fr) minmax(0, 7.5fr);
       gap: 40px;
-      align-items: start;
+      align-items: stretch;
     }
 
     /* ========== LEVA KARTICA INFORMACIJA ========== */
@@ -463,6 +470,20 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
       padding: 36px 32px;
       color: #fff;
       box-shadow: 0 16px 36px rgba(6, 19, 31, 0.1);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    /* Obe kolone su iste visine: kartice se razvlače do dna */
+    .info-col,
+    .form-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-card {
+      flex: 1;
     }
 
     .info-badge {
@@ -495,6 +516,7 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
       display: flex;
       flex-direction: column;
       gap: 14px;
+      flex: 1;
     }
 
     .channel-item {
@@ -502,6 +524,10 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 2px;
       padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       transition: border-color 0.2s ease;
     }
 
@@ -529,7 +555,7 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
       font-size: 15px;
       font-weight: 700;
       text-decoration: none;
-      word-break: break-all;
+      overflow-wrap: anywhere;
       transition: color 0.2s;
     }
 
@@ -546,7 +572,7 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
       display: block;
       margin-top: 4px;
       font-size: 11px;
-      color: #647582;
+      color: #8c9da8;
     }
 
     .doc-notice {
@@ -558,7 +584,7 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
     .doc-notice p {
       font-size: 12px;
       line-height: 1.55;
-      color: #8c9da8;
+      color: #a9b6be;
     }
 
     .doc-link {
@@ -618,6 +644,10 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
       gap: 20px;
     }
 
+    .hp {
+      display: none;
+    }
+
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -666,6 +696,22 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
       box-shadow: 0 0 0 3px rgba(255, 105, 0, 0.12);
     }
 
+    .form-privacy {
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .form-privacy a {
+      color: #07111e;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .form-privacy a:hover {
+      color: var(--orange);
+    }
+
     .form-footer {
       display: flex;
       align-items: center;
@@ -696,7 +742,7 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
       padding: 14px 18px;
       border-radius: 2px;
       font-size: 13px;
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
     .form-status.is-success {
@@ -705,35 +751,38 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
       color: #12632e;
     }
 
+    .form-status.is-error {
+      background: #fff1ee;
+      border: 1px solid #f3b5a6;
+      color: #9a2a10;
+    }
+
+    .form-status.is-error a {
+      color: inherit;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
     /* ========== CTA BANER ========== */
     .cta {
       position: relative;
-      min-height: 340px;
+      min-height: 300px;
       display: flex;
       align-items: center;
       color: #fff;
       overflow: hidden;
-      background: var(--navy);
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+      isolation: isolate;
     }
 
-    .cta > img {
+    .cta__glow {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .cta__shade {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(100deg, rgba(6, 19, 31, 0.95) 0%, rgba(6, 19, 31, 0.75) 55%, rgba(6, 19, 31, 0.45) 100%);
+      background: radial-gradient(ellipse 50% 90% at 90% 50%, rgba(255, 105, 0, 0.14), transparent 70%);
+      z-index: -1;
     }
 
     .cta__inner {
-      position: relative;
-      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -790,6 +839,7 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
 
       .cta__actions {
         flex-direction: row;
+        flex-wrap: wrap;
       }
     }
 
@@ -821,6 +871,13 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
         gap: 20px;
       }
 
+      /* 16px sprečava automatski zoom na iPhone-u pri fokusu polja */
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        font-size: 16px;
+      }
+
       .form-footer {
         flex-direction: column;
         align-items: flex-start;
@@ -828,10 +885,6 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
 
       .form-footer .btn {
         width: 100%;
-      }
-
-      .cta {
-        min-height: 340px;
       }
 
       .cta__inner {
@@ -847,34 +900,68 @@ const pageDescription = 'Stupite u kontakt sa stručnim timom MODULARNI SISTEMI.
         width: 100%;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .btn,
+      .channel-item,
+      .channel-val,
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        transition: none;
+      }
+
+      .btn--orange:hover {
+        transform: none;
+      }
+
+      :global(html) {
+        scroll-behavior: auto;
+      }
+    }
   </style>
 
   <script>
-    // Obrada slanja kontakt forme sa prikazom obaveštenja
+    // Slanje kontakt forme na Netlify Forms (AJAX) sa prikazom uspeha / greške
     const form = document.getElementById('contact-form') as HTMLFormElement | null;
-    const successMsg = document.getElementById('form-success') as HTMLElement | null;
+    const errorMsg = document.getElementById('form-error') as HTMLElement | null;
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
 
-    if (form) {
-      form.addEventListener('submit', (e) => {
+    if (form && submitBtn) {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.innerHTML = 'Slanje u toku...';
-        }
+        const originalLabel = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Slanje u toku...';
+        if (errorMsg) errorMsg.style.display = 'none';
 
-        setTimeout(() => {
-          form.reset();
-          if (successMsg) {
-            successMsg.style.display = 'block';
-            successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        try {
+          const formData = new FormData(form);
+          const body = new URLSearchParams(formData as unknown as Record<string, string>).toString();
+
+          const response = await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body,
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
           }
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = 'Pošaljite poruku <b>→</b>';
+
+          // Stranica zahvalnice se koristi i za merenje konverzija
+          window.location.href = '/hvala/';
+          return;
+        } catch (err) {
+          if (errorMsg) {
+            errorMsg.style.display = 'block';
+            errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           }
-        }, 600);
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalLabel;
+        }
       });
     }
   </script>
