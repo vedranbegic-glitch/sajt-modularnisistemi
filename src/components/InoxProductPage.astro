@@ -8,19 +8,15 @@ import {
   PROJECT_URL,
 } from '../data/inoxProducts';
 import type { InoxProduct } from '../data/inoxProducts';
-
 interface Props {
   product: InoxProduct;
 }
-
 const { product } = Astro.props;
-
 const SITE_URL = 'https://modularnisistemi.com';
 const sectionPath = '/inox-sistemi-odvodnjavanja/';
 const pagePath = `${sectionPath}${product.slug}/`;
 const canonical = `${SITE_URL}${pagePath}`;
 const others = inoxProducts.filter((p) => p.slug !== product.slug);
-
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -31,7 +27,6 @@ const breadcrumbSchema = {
   ],
 };
 ---
-
 <BaseLayout
   title={product.metaTitle}
   description={product.metaDescription}
@@ -41,7 +36,6 @@ const breadcrumbSchema = {
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   </Fragment>
-
   <div class="product-page">
     <!-- HERO -->
     <section class="hero">
@@ -54,28 +48,23 @@ const breadcrumbSchema = {
             <span aria-hidden="true">/</span>
             <strong aria-current="page">{product.name}</strong>
           </nav>
-
           <div class="eyebrow">
             <span></span>
             Inox odvodnjavanje · Po meri
           </div>
-
+          <div class="hero__series">MODEL / {product.number} <span>·</span> INOX SISTEMI</div>
           <h1>{product.h1[0]} <em>{product.h1[1]}</em></h1>
-
           <p class="hero__lead">{product.lead}</p>
-
           <p class="hero__usage">
             <b>Karakteristična primena</b>
             {product.usage}
           </p>
-
           <div class="hero__actions">
             <a class="btn btn--orange" href={PROJECT_URL}>
-              Zatražite predmer za ovaj model <b>→</b>
+              Pošaljite upit za ovaj model <b>→</b>
             </a>
             <a class="btn btn--ghost" href={PHONE_HREF}>{PHONE_DISPLAY}</a>
           </div>
-
           <div class="hero__facts">
             {commonFacts.map((fact) => (
               <div>
@@ -85,19 +74,24 @@ const breadcrumbSchema = {
             ))}
           </div>
         </div>
-
         <figure class="hero__media">
           <div class="hero__image">
-            <img src={product.image} alt={product.alt} />
+            <img src={product.image} alt={product.alt} fetchpriority="high" decoding="async" />
           </div>
           <figcaption>
-            <span>Konfiguracija: po nacrtu</span>
-            <b>AISI 304 / 316</b>
+            <span>Konfiguracija po nacrtu</span>
+            <b>MODEL {product.number}</b>
           </figcaption>
         </figure>
       </div>
     </section>
-
+    <div class="detail-bridge" aria-label="Naš pristup">
+      <div class="wrap detail-bridge__inner">
+        <span>PRVO CRTEŽ. PA ONDA PROIZVOD.</span>
+        <p>Oblik i detalje razrađujemo pre izrade, prema dogovorenim merama i uslovima prostora.</p>
+        <a href="#specifikacija">Pogledajte karakteristike <b aria-hidden="true">↘</b></a>
+      </div>
+    </div>
     <!-- SPECIFIKACIJA -->
     <section class="spec" id="specifikacija">
       <div class="wrap spec__grid">
@@ -106,12 +100,10 @@ const breadcrumbSchema = {
             <span></span>
             Specifikacija izrade
           </div>
-          <h2>Inženjerske osobine <em>i ugradnja.</em></h2>
-
+          <h2>Tehničke karakteristike <em>i ugradnja.</em></h2>
           <div class="spec__text">
             {product.specIntro.map((paragraph) => <p>{paragraph}</p>)}
           </div>
-
           <div class="info-boxes">
             <div class="info-box">
               <span class="info-box__label">Materijal i završna obrada</span>
@@ -123,7 +115,6 @@ const breadcrumbSchema = {
             </div>
           </div>
         </div>
-
         <div class="spec__features">
           {product.features.map((feature, index) => (
             <article class="feature">
@@ -135,7 +126,6 @@ const breadcrumbSchema = {
         </div>
       </div>
     </section>
-
     <!-- TEHNIČKI DETALJI + PRIMENA -->
     <section class="showcase">
       <div class:list={['wrap showcase__grid', { 'showcase__grid--single': !product.application }]}>
@@ -156,7 +146,6 @@ const breadcrumbSchema = {
             </div>
           </div>
         </article>
-
         {product.application && (
           <article class="show-card show-card--application">
             <img src={product.application.image} alt={product.application.alt} loading="lazy" />
@@ -164,19 +153,18 @@ const breadcrumbSchema = {
             <div class="show-card__content">
               <div class="eyebrow">
                 <span></span>
-                Primena u praksi
+                Primena u prostoru
               </div>
               <h2>{product.application.title}</h2>
               <p class="show-card__meta">{product.application.meta}</p>
               <a class="btn btn--orange" href={PROJECT_URL}>
-                Projektujte sa nama <b>→</b>
+                Pošaljite upit <b>→</b>
               </a>
             </div>
           </article>
         )}
       </div>
     </section>
-
     <!-- OSTALI MODELI -->
     <section class="others">
       <div class="wrap">
@@ -188,9 +176,8 @@ const breadcrumbSchema = {
             </div>
             <h2>Ostali inox <em>drenažni modeli.</em></h2>
           </div>
-          <p>Pogledajte druga konfiguraciona rešenja iz programa inox odvodnjavanja.</p>
+          <p>Uporedite ostale oblike i izaberite formu koja odgovara vašem prostoru.</p>
         </div>
-
         <div class="others__grid">
           {others.map((item) => (
             <a href={`${sectionPath}${item.slug}/`} class="form-card">
@@ -208,7 +195,6 @@ const breadcrumbSchema = {
         </div>
       </div>
     </section>
-
     <!-- CTA -->
     <section class="cta">
       <img
@@ -221,17 +207,17 @@ const breadcrumbSchema = {
         <div>
           <div class="eyebrow">
             <span></span>
-            Izrada predmera
+            Upit za vaš prostor
           </div>
-          <h2>Dostavite crtež za izradu: <em>{product.name}</em></h2>
+          <h2>Zanima vas <em>{product.name}</em>?</h2>
           <p>
-            Pošaljite nam situaciju sa dužinama i visinama. Naš tim priprema specifikaciju
-            segmenata u roku od 24–48h.
+            Pošaljite nam skicu, dimenzije ili jednostavno opišite šta vam je potrebno.
+            Zajedno ćemo razmotriti odgovarajuće rešenje.
           </p>
         </div>
         <div class="cta__actions">
           <a class="btn btn--orange" href={PROJECT_URL}>
-            Pošaljite nacrt na analizu <b>→</b>
+            Pošaljite upit <b>→</b>
           </a>
           <a class="btn btn--ghost" href={PHONE_HREF}>{PHONE_DISPLAY}</a>
         </div>
@@ -239,7 +225,6 @@ const breadcrumbSchema = {
     </section>
   </div>
 </BaseLayout>
-
 <style>
   .product-page {
     --navy: #06131f;
@@ -256,7 +241,6 @@ const breadcrumbSchema = {
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-
   .product-page h1,
   .product-page h2,
   .product-page h3,
@@ -264,18 +248,15 @@ const breadcrumbSchema = {
   .product-page figure {
     margin: 0;
   }
-
   .product-page h1 em,
   .product-page h2 em {
     font-style: normal;
     color: var(--orange);
   }
-
   .wrap {
     width: min(1440px, calc(100% - 48px));
     margin-inline: auto;
   }
-
   /* ========== ZAJEDNIČKI ELEMENTI ========== */
   .eyebrow {
     display: flex;
@@ -287,7 +268,6 @@ const breadcrumbSchema = {
     letter-spacing: 0.18em;
     text-transform: uppercase;
   }
-
   .eyebrow span {
     display: inline-block;
     width: 20px;
@@ -295,7 +275,6 @@ const breadcrumbSchema = {
     background: var(--orange);
     flex-shrink: 0;
   }
-
   .btn {
     min-height: 48px;
     padding: 0 20px;
@@ -311,34 +290,28 @@ const breadcrumbSchema = {
     border-radius: 2px;
     transition: all 0.25s ease;
   }
-
   .btn b {
     font-size: 15px;
     font-weight: 600;
   }
-
   .btn--orange {
     background: var(--orange);
     color: #fff;
   }
-
   .btn--orange:hover {
     background: var(--orange-hover);
     transform: translateY(-2px);
   }
-
   .btn--ghost {
     border: 1px solid rgba(255, 255, 255, 0.45);
     color: #fff;
     background: rgba(0, 0, 0, 0.12);
   }
-
   .btn--ghost:hover {
     background: #fff;
     color: var(--navy);
     border-color: #fff;
   }
-
   .section-head {
     display: flex;
     align-items: end;
@@ -346,7 +319,6 @@ const breadcrumbSchema = {
     gap: 36px;
     margin-bottom: 32px;
   }
-
   .section-head h2 {
     margin-top: 8px;
     font-size: clamp(28px, 3.2vw, 42px);
@@ -355,7 +327,6 @@ const breadcrumbSchema = {
     font-weight: 800;
     color: #07111e;
   }
-
   .section-head > p {
     max-width: 380px;
     color: var(--muted);
@@ -363,7 +334,6 @@ const breadcrumbSchema = {
     line-height: 1.6;
     padding-bottom: 4px;
   }
-
   /* ========== HERO ========== */
   .hero {
     position: relative;
@@ -373,7 +343,6 @@ const breadcrumbSchema = {
       radial-gradient(900px 480px at 85% 20%, rgba(255, 105, 0, 0.14), transparent 70%),
       linear-gradient(135deg, #06131f 0%, #0b1d2b 100%);
   }
-
   .hero__content {
     padding-top: 130px;
     padding-bottom: 72px;
@@ -382,7 +351,6 @@ const breadcrumbSchema = {
     gap: 64px;
     align-items: center;
   }
-
   .crumbs {
     display: flex;
     flex-wrap: wrap;
@@ -395,22 +363,18 @@ const breadcrumbSchema = {
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
-
   .crumbs a {
     color: #94a3ad;
     text-decoration: none;
     transition: color 0.2s;
   }
-
   .crumbs a:hover {
     color: #fff;
   }
-
   .crumbs strong {
     color: #fff;
     font-weight: 700;
   }
-
   .hero h1 {
     margin-top: 20px;
     max-width: 760px;
@@ -420,7 +384,6 @@ const breadcrumbSchema = {
     font-weight: 800;
     color: #fff;
   }
-
   .hero__lead {
     margin-top: 20px;
     max-width: 620px;
@@ -428,7 +391,6 @@ const breadcrumbSchema = {
     font-size: 15px;
     line-height: 1.65;
   }
-
   .hero__usage {
     margin-top: 24px;
     max-width: 620px;
@@ -439,7 +401,6 @@ const breadcrumbSchema = {
     font-size: 13.5px;
     line-height: 1.55;
   }
-
   .hero__usage b {
     display: block;
     margin-bottom: 4px;
@@ -449,14 +410,12 @@ const breadcrumbSchema = {
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }
-
   .hero__actions {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
     margin-top: 28px;
   }
-
   .hero__facts {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -464,24 +423,20 @@ const breadcrumbSchema = {
     margin-top: 36px;
     border-top: 1px solid rgba(255, 255, 255, 0.18);
   }
-
   .hero__facts div {
     display: flex;
     flex-direction: column;
     padding: 16px 14px 0 0;
   }
-
   .hero__facts div + div {
     padding-left: 16px;
     border-left: 1px solid rgba(255, 255, 255, 0.12);
   }
-
   .hero__facts strong {
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.02em;
   }
-
   .hero__facts span {
     margin-top: 4px;
     color: #94a3ad;
@@ -489,7 +444,6 @@ const breadcrumbSchema = {
     text-transform: uppercase;
     letter-spacing: 0.09em;
   }
-
   .hero__media {
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 4px;
@@ -497,7 +451,6 @@ const breadcrumbSchema = {
     background: #0a1620;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
   }
-
   .hero__image {
     aspect-ratio: 5 / 4;
     background: #fff;
@@ -506,14 +459,12 @@ const breadcrumbSchema = {
     justify-content: center;
     padding: 18px;
   }
-
   .hero__image img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     display: block;
   }
-
   .hero__media figcaption {
     display: flex;
     justify-content: space-between;
@@ -525,26 +476,22 @@ const breadcrumbSchema = {
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
-
   .hero__media figcaption b {
     color: var(--orange);
     font-weight: 700;
   }
-
   /* ========== SPECIFIKACIJA ========== */
   .spec {
     padding: 80px 0;
     background: #f6f7f9;
     scroll-margin-top: 80px;
   }
-
   .spec__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 56px;
     align-items: start;
   }
-
   .spec__main h2 {
     margin-top: 10px;
     font-size: clamp(28px, 3.2vw, 42px);
@@ -553,27 +500,23 @@ const breadcrumbSchema = {
     font-weight: 800;
     color: #07111e;
   }
-
   .spec__text {
     margin-top: 22px;
     display: grid;
     gap: 14px;
     max-width: 560px;
   }
-
   .spec__text p {
     color: var(--muted);
     font-size: 14.5px;
     line-height: 1.65;
   }
-
   .info-boxes {
     margin-top: 28px;
     display: grid;
     gap: 12px;
     max-width: 560px;
   }
-
   .info-box {
     padding: 16px 18px;
     background: #fff;
@@ -581,7 +524,6 @@ const breadcrumbSchema = {
     border-left: 2px solid var(--orange);
     border-radius: 3px;
   }
-
   .info-box__label {
     display: block;
     margin-bottom: 6px;
@@ -591,18 +533,15 @@ const breadcrumbSchema = {
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }
-
   .info-box p {
     color: #3d4a55;
     font-size: 13.5px;
     line-height: 1.6;
   }
-
   .spec__features {
     display: grid;
     gap: 14px;
   }
-
   .feature {
     padding: 22px 24px;
     background: #fff;
@@ -611,13 +550,11 @@ const breadcrumbSchema = {
     box-shadow: 0 4px 16px rgba(6, 19, 31, 0.04);
     transition: all 0.3s ease;
   }
-
   .feature:hover {
     transform: translateY(-3px);
     border-color: var(--orange);
     box-shadow: 0 16px 34px rgba(6, 19, 31, 0.1);
   }
-
   .feature__tag {
     display: block;
     color: var(--orange);
@@ -626,7 +563,6 @@ const breadcrumbSchema = {
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }
-
   .feature h3 {
     margin-top: 8px;
     font-size: 15px;
@@ -635,30 +571,25 @@ const breadcrumbSchema = {
     text-transform: uppercase;
     color: #07111e;
   }
-
   .feature p {
     margin-top: 8px;
     color: var(--muted);
     font-size: 13.5px;
     line-height: 1.6;
   }
-
   /* ========== TEHNIČKI DETALJI + PRIMENA ========== */
   .showcase {
     background: var(--navy);
     padding: 70px 0;
   }
-
   .showcase__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
-
   .showcase__grid--single {
     grid-template-columns: 1fr;
   }
-
   .show-card {
     position: relative;
     min-height: 520px;
@@ -667,7 +598,6 @@ const breadcrumbSchema = {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 4px;
   }
-
   .show-card > img {
     position: absolute;
     inset: 0;
@@ -676,11 +606,9 @@ const breadcrumbSchema = {
     object-fit: cover;
     transition: transform 0.7s ease;
   }
-
   .show-card:hover > img {
     transform: scale(1.03);
   }
-
   .show-card__shade {
     position: absolute;
     inset: 0;
@@ -692,7 +620,6 @@ const breadcrumbSchema = {
       rgba(4, 14, 23, 0.98) 100%
     );
   }
-
   .show-card__content {
     position: absolute;
     z-index: 3;
@@ -701,7 +628,6 @@ const breadcrumbSchema = {
     bottom: 0;
     padding: 36px;
   }
-
   .show-card__content h2 {
     margin-top: 10px;
     max-width: 480px;
@@ -711,7 +637,6 @@ const breadcrumbSchema = {
     color: #fff;
     font-weight: 800;
   }
-
   .show-card__content > p {
     margin-top: 12px;
     max-width: 480px;
@@ -719,14 +644,12 @@ const breadcrumbSchema = {
     font-size: 13.5px;
     line-height: 1.6;
   }
-
   .show-card__meta {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 11px !important;
     margin-bottom: 22px;
   }
-
   .show-card__facts {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -734,7 +657,6 @@ const breadcrumbSchema = {
     margin-top: 22px;
     border-top: 1px solid rgba(255, 255, 255, 0.15);
   }
-
   .show-card__facts span {
     padding: 12px 12px 0 0;
     color: #a0b0b9;
@@ -742,17 +664,14 @@ const breadcrumbSchema = {
     line-height: 1.4;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
   }
-
   .show-card__facts span:nth-child(2n) {
     padding-left: 12px;
     border-right: 0;
   }
-
   .show-card__facts span:nth-child(n + 3) {
     margin-top: 12px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
-
   .show-card__facts b {
     display: block;
     margin-bottom: 2px;
@@ -760,7 +679,6 @@ const breadcrumbSchema = {
     font-size: 12px;
     font-weight: 700;
   }
-
   /* ========== OSTALI MODELI ========== */
   .others {
     padding: 70px 0 80px;
@@ -768,13 +686,11 @@ const breadcrumbSchema = {
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
-
   .others__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
   }
-
   .form-card {
     display: flex;
     flex-direction: column;
@@ -787,13 +703,11 @@ const breadcrumbSchema = {
     box-shadow: 0 4px 16px rgba(6, 19, 31, 0.04);
     transition: all 0.3s ease;
   }
-
   .form-card:hover {
     transform: translateY(-6px);
     border-color: var(--orange);
     box-shadow: 0 20px 40px rgba(6, 19, 31, 0.12);
   }
-
   .form-card__image {
     position: relative;
     aspect-ratio: 1 / 1;
@@ -805,7 +719,6 @@ const breadcrumbSchema = {
     background: #fff;
     border-bottom: 1px solid #edf1f5;
   }
-
   .form-card__image img {
     width: 100%;
     height: 100%;
@@ -814,11 +727,9 @@ const breadcrumbSchema = {
     display: block;
     transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   }
-
   .form-card:hover img {
     transform: scale(1.08);
   }
-
   .form-card__image span {
     position: absolute;
     left: 12px;
@@ -833,14 +744,12 @@ const breadcrumbSchema = {
     border-radius: 2px;
     box-shadow: 0 2px 6px rgba(255, 105, 0, 0.35);
   }
-
   .form-card__body {
     display: flex;
     flex: 1;
     flex-direction: column;
     padding: 18px 16px 20px;
   }
-
   .form-card__tag {
     color: var(--orange);
     font-size: 10px;
@@ -848,7 +757,6 @@ const breadcrumbSchema = {
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
-
   .form-card h3 {
     margin-top: 6px;
     font-size: 14.5px;
@@ -857,7 +765,6 @@ const breadcrumbSchema = {
     text-transform: uppercase;
     color: #07111e;
   }
-
   .form-card__link {
     display: inline-flex;
     align-items: center;
@@ -871,20 +778,16 @@ const breadcrumbSchema = {
     text-transform: uppercase;
     transition: color 0.2s;
   }
-
   .form-card__link b {
     color: var(--orange);
     transition: transform 0.2s ease;
   }
-
   .form-card:hover .form-card__link {
     color: var(--orange);
   }
-
   .form-card:hover .form-card__link b {
     transform: translateX(4px);
   }
-
   /* ========== CTA ========== */
   .cta {
     position: relative;
@@ -895,7 +798,6 @@ const breadcrumbSchema = {
     color: #fff;
     background: var(--navy);
   }
-
   .cta > img {
     position: absolute;
     inset: 0;
@@ -904,13 +806,11 @@ const breadcrumbSchema = {
     object-fit: cover;
     object-position: center;
   }
-
   .cta__shade {
     position: absolute;
     inset: 0;
     background: linear-gradient(100deg, rgba(2, 12, 20, 0.94) 0%, rgba(2, 12, 20, 0.7) 55%, rgba(2, 12, 20, 0.42) 100%);
   }
-
   .cta__inner {
     position: relative;
     z-index: 2;
@@ -920,7 +820,6 @@ const breadcrumbSchema = {
     gap: 36px;
     padding: 48px 0;
   }
-
   .cta h2 {
     margin-top: 12px;
     max-width: 760px;
@@ -930,7 +829,6 @@ const breadcrumbSchema = {
     font-weight: 800;
     color: #fff;
   }
-
   .cta p {
     margin-top: 12px;
     max-width: 520px;
@@ -938,137 +836,266 @@ const breadcrumbSchema = {
     font-size: 14px;
     line-height: 1.6;
   }
-
   .cta__actions {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
     flex-shrink: 0;
   }
-
   /* ========== RESPONSIVE ========== */
   @media (max-width: 1200px) {
     .others__grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
-
   @media (max-width: 980px) {
     .hero__content {
       grid-template-columns: 1fr;
       gap: 40px;
     }
-
     .hero__media {
       max-width: 620px;
     }
-
     .spec__grid {
       grid-template-columns: 1fr;
       gap: 36px;
     }
-
     .showcase__grid {
       grid-template-columns: 1fr;
     }
-
     .show-card {
       min-height: 480px;
     }
-
     .cta__inner {
       flex-direction: column;
       align-items: flex-start;
     }
   }
-
   @media (max-width: 640px) {
     .wrap {
       width: min(100% - 24px, 1440px);
     }
-
     .hero__content {
       padding-top: 100px;
       padding-bottom: 48px;
     }
-
     .hero h1 {
       font-size: 34px;
     }
-
     .hero__lead {
       font-size: 14px;
     }
-
     .hero__facts {
       grid-template-columns: 1fr 1fr;
     }
-
     .hero__facts div:nth-child(odd) {
       padding-left: 0;
       border-left: 0;
     }
-
     .hero__facts div:nth-child(n + 3) {
       margin-top: 4px;
     }
-
     .spec,
     .showcase {
       padding: 48px 0;
     }
-
     .others {
       padding: 48px 0;
     }
-
     .section-head {
       display: block;
       margin-bottom: 24px;
     }
-
     .section-head > p {
       margin-top: 14px;
     }
-
     .others__grid {
       grid-template-columns: 1fr;
       gap: 14px;
     }
-
     .show-card {
       min-height: 440px;
     }
-
     .show-card__content {
       padding: 24px;
     }
-
     .show-card__facts {
       grid-template-columns: 1fr;
     }
-
     .show-card__facts span,
     .show-card__facts span:nth-child(2n) {
       padding-left: 0;
       border-right: 0;
     }
-
     .show-card__facts span:nth-child(n + 2) {
       margin-top: 12px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
-
     .cta {
       min-height: 340px;
     }
-
     .cta > img {
       object-position: 60% center;
     }
-
     .cta__inner {
       padding: 40px 0;
     }
+  }
+
+  /* =====================================================
+     HYBRID PREMIUM / ZAJEDNIČKI PRIKAZ PET INOX MODELA
+     Svi podaci ostaju u inoxProducts.ts.
+     ===================================================== */
+  .product-page { --premium-ink: #061521; }
+  .product-page :is(a, button):focus-visible {
+    outline: 3px solid #ff8b38;
+    outline-offset: 4px;
+  }
+  .hero {
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, .14);
+    background:
+      radial-gradient(650px 600px at 88% 32%, rgba(255,105,0,.11), transparent 70%),
+      linear-gradient(135deg,#071a28,#04111d);
+  }
+  .hero__content {
+    width: min(1320px, calc(100% - 48px));
+    padding-top: clamp(110px, 10vw, 165px);
+    padding-bottom: clamp(85px, 7vw, 118px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, .92fr);
+    gap: clamp(45px, 7vw, 110px);
+    align-items: center;
+  }
+  .hero__series {
+    margin-top: 24px;
+    color: #9aafbd;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: .2em;
+  }
+  .hero__series span { color: var(--orange); padding-inline: 7px; }
+  .hero h1 { font-size: clamp(45px, 5.2vw, 76px); max-width: 800px; }
+  .hero__lead { color: #d4dee5; font-size: 16px; line-height: 1.8; }
+  .hero__usage {
+    margin-top: 28px;
+    padding: 18px 20px;
+    border-left-width: 3px;
+    background: rgba(255,255,255,.065);
+  }
+  .hero__facts { margin-top: 40px; }
+  .hero__facts strong { font-size: 15px; }
+  .hero__media {
+    position: relative;
+    border-radius: 2px;
+    background: #111f2b;
+    box-shadow: 0 38px 95px rgba(0,0,0,.3);
+  }
+  .hero__image {
+    aspect-ratio: 1.1;
+    padding: clamp(8px, 1.5vw, 25px);
+    background: #f6f6f5;
+  }
+  .hero__image img { max-width: 100%; }
+  .hero__media figcaption { padding: 19px 22px; }
+  .detail-bridge {
+    background: #142735;
+    border-top: 1px solid rgba(255,255,255,.12);
+    border-bottom: 1px solid rgba(255,255,255,.13);
+  }
+  .detail-bridge__inner {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(0,1.7fr) auto;
+    align-items: center;
+    gap: 36px;
+    min-height: 110px;
+    padding-block: 24px;
+  }
+  .detail-bridge span {
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .14em;
+  }
+  .detail-bridge p {
+    color: #bdccd5;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .detail-bridge a {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid var(--orange);
+    padding-bottom: 7px;
+    white-space: nowrap;
+  }
+  .detail-bridge a b { color: var(--orange); padding-left: 8px; }
+  .spec { background: #f7f8f8; padding-block: clamp(75px, 8vw, 124px); }
+  .spec__grid { gap: clamp(38px, 6vw, 100px); }
+  .spec__main h2 { font-size: clamp(34px, 3.7vw, 55px); }
+  .spec__text { margin-top: 30px; gap: 18px; }
+  .spec__text p { font-size: 15px; line-height: 1.83; }
+  .info-boxes { margin-top: 35px; gap: 14px; }
+  .info-box { padding: 23px 24px; }
+  .info-box p { font-size: 14px; }
+  .spec__features { gap: 17px; }
+  .feature {
+    padding: clamp(24px, 3vw, 38px);
+    border-radius: 2px;
+    box-shadow: 0 10px 30px rgba(6,19,31,.05);
+  }
+  .feature:first-child {
+    border-color: #0d2636;
+    background: #0c2130;
+  }
+  .feature:first-child h3 { color: #fff; }
+  .feature:first-child p { color: #aebfc9; }
+  .feature h3 { font-size: 17px; }
+  .feature p { font-size: 14px; line-height: 1.7; }
+  .showcase { padding-block: clamp(75px, 8vw, 118px); background: #061521; }
+  .showcase__grid { gap: 24px; }
+  .show-card { min-height: 620px; border-radius: 2px; }
+  .show-card__content { padding: clamp(30px, 3.2vw, 50px); }
+  .show-card__content h2 { font-size: clamp(30px, 3.15vw, 47px); }
+  .show-card__content > p { font-size: 14px; }
+  .show-card--application .eyebrow { color: #ff8b38; }
+  .others { padding-block: clamp(75px, 7vw, 115px); }
+  .others .section-head h2 { font-size: clamp(33px, 3.6vw, 52px); }
+  .others__grid { gap: 21px; }
+  .form-card { border-radius: 2px; box-shadow: 0 9px 27px rgba(6,19,31,.06); }
+  .form-card__image { background: radial-gradient(circle at 60% 40%, #fff, #f0f1f0); }
+  .form-card__body { padding: 22px; }
+  .form-card h3 { font-size: 16px; }
+  .cta { min-height: 350px; }
+  .cta h2 { font-size: clamp(34px, 4vw, 55px); }
+  .cta p { font-size: 15px; }
+  @media (max-width: 1200px) {
+    .detail-bridge__inner { grid-template-columns: 1fr 2fr; }
+    .detail-bridge a { grid-column: 2; width: max-content; }
+  }
+  @media (max-width: 980px) {
+    .hero__content { grid-template-columns: 1fr; gap: 38px; }
+    .hero__media { max-width: 800px; }
+    .detail-bridge__inner { grid-template-columns: 1fr; gap: 12px; }
+    .detail-bridge a { grid-column: 1; }
+    .spec__grid { grid-template-columns: 1fr; }
+    .showcase__grid { grid-template-columns: 1fr; }
+    .show-card { min-height: 520px; }
+  }
+  @media (max-width: 640px) {
+    .hero__content { width: min(100% - 28px,1320px); padding-top: 95px; padding-bottom: 58px; }
+    .hero h1 { font-size: clamp(34px, 9vw, 50px); }
+    .hero__facts { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .hero__image { aspect-ratio: 1.1; }
+    .hero__media figcaption { font-size: 9px; }
+    .detail-bridge__inner { padding-block: 22px; }
+    .show-card { min-height: 500px; }
+    .show-card__content { padding: 26px; }
+    .others__grid { grid-template-columns: 1fr; }
+    .cta__actions { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .show-card > img, .form-card, .feature { transition: none; }
   }
 </style>

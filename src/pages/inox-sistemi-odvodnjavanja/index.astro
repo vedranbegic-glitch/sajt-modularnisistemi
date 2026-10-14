@@ -1,13 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { inoxProducts } from '../../data/inoxProducts';
-
 const canonicalURL = 'https://modularnisistemi.com/inox-sistemi-odvodnjavanja/';
 // BaseLayout sam dodaje " · Modularni Sistemi" na kraj naslova, pa ovde ide samo kratak naslov
 const pageTitle = 'Inox sistemi odvodnjavanja';
 const ogImage = '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp';
 const pageDescription = 'Inox sistemi odvodnjavanja za savremenu arhitekturu — ravne, lučne, kružne, elipsaste i S-forme prema geometriji prostora.';
-
 // Pet kartica proizvoda dolazi iz zajedničkog fajla (isti podaci pokreću i stranice "Više o proizvodu")
 const forms = inoxProducts.map((p) => ({
   number: p.number,
@@ -17,14 +15,13 @@ const forms = inoxProducts.map((p) => ({
   alt: p.alt,
   href: `/inox-sistemi-odvodnjavanja/${p.slug}/`,
 }));
-
 const applications = [
-  { image: '/images/inox/skriveni-modularni-inox-kanal-s-forma-bazen-suva-plaza.webp', title: 'Bazen i suva plaža', meta: 'S-forma / bazen' },
+  { image: '/images/inox/ravna-inox-kanalica-bazen-suva-plaza.webp', title: 'Ravna kanalica na terasi', meta: 'Ravna geometrija' },
+  { image: '/images/inox/skriveni-modularni-inox-kanal-s-forma-bazen-suva-plaza.webp', title: 'Bazen i suva plaža', meta: 'S-forma' },
   { image: '/images/inox/lucni-skriveni-inox-kanal-zalazak-sunca.webp', title: 'Lučni parter', meta: 'Lučna geometrija' },
   { image: '/images/inox/kruzni-skriveni-inox-kanal-oko-zardinjere.webp', title: 'Kružna žardinjera', meta: 'Kružna geometrija' },
   { image: '/images/inox/elipsasti-skriveni-inox-kanal-poslovni-centar.webp', title: 'Savremeni objekat', meta: 'Elipsasta geometrija' },
 ];
-
 const steps = [
   ['01', 'Pošaljite nacrt', 'Osnovu, DWG, skicu ili dimenzije prostora.'],
   ['02', 'Definišemo formu', 'Geometriju pretvaramo u jasne modularne segmente.'],
@@ -33,10 +30,8 @@ const steps = [
   ['05', 'Spremno za ugradnju', 'Komponente stižu pripremljene za montažu na objektu.'],
 ];
 ---
-
 <BaseLayout title={pageTitle} description={pageDescription} canonical={canonicalURL} ogImage={ogImage}>
   <div class="inox-page">
-
     <!-- HERO SEKCIJA SA WEBM VIDEOM -->
     <section class="hero">
       <div class="hero__video-box">
@@ -55,35 +50,30 @@ const steps = [
         </video>
       </div>
       <div class="hero__shade"></div>
-
       <div class="hero__content wrap">
         <div class="hero__copy">
           <div class="eyebrow">
             <span></span>
-            Modularni sistemi · Premium inox linijska drenaža
+            Modularni sistemi / INOX odvodnjavanje
           </div>
-
           <h1>
             Odvodnjavanje koje prati<br />
             <em>oblik prostora</em><br />
             bez geometrijskog ograničenja.
           </h1>
-
           <p class="hero__lead">
             Modularni inox sistemi sa integrisanim fabričkim padom i nivelirajućim stopama.
             Ravne, lučne, kružne, elipsaste i S-forme projektujemo prema stvarnoj geometriji prostora.
           </p>
-
           <div class="hero__actions">
-            <a class="btn btn--orange" href="#specifikacije">
-              Pogledajte specifikacije <b>→</b>
+            <a class="btn btn--orange" href="#modeli">
+              Istražite {forms.length} oblika <b>↗</b>
             </a>
             <a class="btn btn--ghost" href="/posaljite-projekat/">
               Pošaljite nam nacrt <b>↗</b>
             </a>
           </div>
         </div>
-
         <div class="hero__specs">
           <div>
             <strong>AISI 304 / 316</strong>
@@ -103,28 +93,37 @@ const steps = [
           </div>
         </div>
       </div>
+      <nav class="hero__quicknav" aria-label="Brz izbor inox kanalice">
+        <div class="wrap hero__quicknav-inner">
+          <div class="hero__quicknav-caption">FORME / <strong>{String(forms.length).padStart(2, '0')}</strong></div>
+          {forms.map((item) => (
+            <a href={item.href} aria-label={`Pogledajte model ${item.name}`}>
+              <span>{item.number}</span>
+              <strong>{item.name}</strong>
+              <b aria-hidden="true">↗</b>
+            </a>
+          ))}
+        </div>
+      </nav>
     </section>
-
     <!-- INTRO (PORAVNATO NA ISTU 1440px OSU) -->
     <section class="intro wrap" id="specifikacije">
       <div class="intro__heading">
         <div class="eyebrow eyebrow--dark">
           <span></span>
-          Ne mora svaka kanalica da bude prava
+          Po meri vašeg prostora
         </div>
         <h2>
           Forma prostora<br />
           <em>postaje deo rešenja.</em>
         </h2>
       </div>
-
       <div class="intro__text">
         <p>
           Kada odvodnjavanje prati liniju terase, bazena, partera ili druge arhitektonske površine,
           tehnički element postaje deo ukupne kompozicije. Vi zadajete geometriju — mi je pretvaramo
           u funkcionalan i precizan sistem.
         </p>
-
         <div class="intro__metrics">
           <div>
             <strong>01</strong>
@@ -141,9 +140,8 @@ const steps = [
         </div>
       </div>
     </section>
-
     <!-- FORMS (PORAVNATO NA ISTU 1440px OSU) -->
-    <section class="forms-section">
+    <section class="forms-section" id="modeli">
       <div class="wrap">
         <div class="section-head">
           <div>
@@ -151,19 +149,18 @@ const steps = [
               <span></span>
               Izbor forme prema geometriji partera
             </div>
-            <h2>Izaberite formu prema <em>geometriji prostora.</em></h2>
+            <h2>{forms.length} oblika. <em>Sloboda projektovanja.</em></h2>
           </div>
           <p>
             Ravna, lučna, kružna, elipsasta ili S-forma — sistem prati arhitektonsku liniju
             umesto da je ograničava.
           </p>
         </div>
-
         <div class="forms-grid">
           {forms.map((item) => (
             <a href={item.href} class="form-card">
               <div class="form-card__image">
-                <img src={item.image} alt={item.alt} loading="lazy" />
+                <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
                 <span>{item.number}</span>
               </div>
               <div class="form-card__body">
@@ -176,9 +173,15 @@ const steps = [
         </div>
       </div>
     </section>
-
     <!-- FEATURE DUO (PORAVNATO NA ISTU 1440px OSU KAO I FORME) -->
-    <section class="feature-duo">
+    <section class="feature-duo" aria-labelledby="studio-heading">
+      <div class="wrap studio__heading">
+        <div>
+          <div class="eyebrow"><span></span>3D razrada i izrada</div>
+          <h2 id="studio-heading">Prvo crtež. <em>Pa onda proizvod.</em></h2>
+        </div>
+        <p>Oblik, mere i detalje usaglašavamo pre izrade. Zatim pripremamo sistem prema dogovorenom rešenju — od ravne linije do složenije geometrije.</p>
+      </div>
       <div class="wrap feature-duo__grid">
         <article class="feature-card feature-card--technical">
           <img
@@ -208,7 +211,6 @@ const steps = [
             </a>
           </div>
         </article>
-
         <article class="feature-card feature-card--geometry">
           <img
             src="/images/inox/elipsasti-inox-kanal-za-odvodnjavanje-siva.webp"
@@ -239,7 +241,6 @@ const steps = [
         </article>
       </div>
     </section>
-
     <!-- APPLICATIONS (PORAVNATO NA ISTU 1440px OSU) -->
     <section class="applications">
       <div class="wrap">
@@ -255,7 +256,6 @@ const steps = [
             Rešenja za savremene eksterijere u kojima funkcija i arhitektonska linija moraju da rade zajedno.
           </p>
         </div>
-
         <div class="applications__grid">
           {applications.map((item) => (
             <figure>
@@ -271,18 +271,16 @@ const steps = [
         </div>
       </div>
     </section>
-
     <!-- PROCESS (PORAVNATO NA ISTU 1440px OSU) -->
-    <section class="process">
+    <section class="process" aria-labelledby="process-title">
       <div class="wrap">
         <div class="process__head">
           <div class="eyebrow eyebrow--dark">
             <span></span>
             Od ideje do ugradnje
           </div>
-          <h2>Pet koraka do <em>gotovog rešenja.</em></h2>
+          <h2 id="process-title">Od skice do <em>gotovog sistema.</em></h2>
         </div>
-
         <div class="steps">
           {steps.map(([num, title, text]) => (
             <article>
@@ -294,7 +292,6 @@ const steps = [
         </div>
       </div>
     </section>
-
     <!-- CTA BANER (PORAVNATO NA ISTU 1440px OSU) -->
     <section class="cta">
       <img
@@ -307,27 +304,25 @@ const steps = [
         <div>
           <div class="eyebrow">
             <span></span>
-            Za arhitekte, projektante i izvođače
+              Ideja, skica ili dimenzije
           </div>
-          <h2>Projektujete prostor <em>specifične geometrije?</em></h2>
+          <h2>Imate ideju? <em>Razradimo je zajedno.</em></h2>
           <p>
-            Pošaljite nam DWG, skicu ili osnovu prostora. Razradićemo formu i predložiti rešenje
-            koje prati vaš projekat.
+            Pošaljite nam nacrt, dimenzije ili jednostavno opišite prostor.
+            Zajedno ćemo razmotriti odgovarajući oblik i način izrade.
           </p>
         </div>
         <a class="btn btn--orange" href="/posaljite-projekat/">
-          Pošaljite nam projekat <b>→</b>
+          Pošaljite upit <b>→</b>
         </a>
       </div>
     </section>
   </div>
 </BaseLayout>
-
 <style>
   :global(html) {
     scroll-behavior: smooth;
   }
-
   :global(body) {
     margin: 0;
     background: #f6f7f9;
@@ -335,7 +330,6 @@ const steps = [
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-
   .inox-page {
     --navy: #06131f;
     --navy2: #0b1d2b;
@@ -347,13 +341,11 @@ const steps = [
     z-index: 1;
     overflow: hidden;
   }
-
   /* ========== JEDINSTVENA ŠIRINA (1440px) ZA SAVRŠENO PORAVNANJE ========== */
   .wrap {
     width: min(1440px, calc(100% - 48px));
     margin-inline: auto;
   }
-
   /* ========== HERO (PUN EKRAN BEZ SIVE TRAKE) ========== */
   .hero {
     position: relative;
@@ -364,21 +356,18 @@ const steps = [
     display: flex;
     align-items: flex-end;
   }
-
   .hero__video-box {
     position: absolute;
     inset: 0;
     z-index: -3;
     overflow: hidden;
   }
-
   .hero__video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
   }
-
   .hero__shade {
     position: absolute;
     inset: 0;
@@ -387,12 +376,10 @@ const steps = [
       linear-gradient(0deg, rgba(6, 19, 31, 0.55) 0%, transparent 35%);
     z-index: -2;
   }
-
   .hero h1,
   .hero__lead {
     text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
   }
-
   .hero__content {
     padding-top: 130px;
     padding-bottom: 64px;
@@ -401,7 +388,6 @@ const steps = [
     gap: 50px;
     align-items: end;
   }
-
   .eyebrow {
     display: flex;
     align-items: center;
@@ -412,7 +398,6 @@ const steps = [
     letter-spacing: 0.18em;
     text-transform: uppercase;
   }
-
   .eyebrow span {
     display: inline-block;
     width: 20px;
@@ -420,15 +405,12 @@ const steps = [
     background: var(--orange);
     flex-shrink: 0;
   }
-
   .eyebrow--dark {
     color: var(--orange);
   }
-
   h1, h2, h3, p {
     margin: 0;
   }
-
   .hero h1 {
     margin-top: 20px;
     max-width: 860px;
@@ -438,7 +420,6 @@ const steps = [
     font-weight: 800;
     color: #fff;
   }
-
   .hero h1 em,
   .intro h2 em,
   .section-head h2 em,
@@ -449,7 +430,6 @@ const steps = [
     font-style: normal;
     color: var(--orange);
   }
-
   .hero__lead {
     margin-top: 20px;
     max-width: 620px;
@@ -457,14 +437,12 @@ const steps = [
     font-size: 15px;
     line-height: 1.65;
   }
-
   .hero__actions {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
     margin-top: 28px;
   }
-
   .btn {
     min-height: 48px;
     padding: 0 20px;
@@ -480,52 +458,43 @@ const steps = [
     border-radius: 2px;
     transition: all 0.25s ease;
   }
-
   .btn b {
     font-size: 15px;
     font-weight: 600;
   }
-
   .btn--orange {
     background: var(--orange);
     color: #fff;
   }
-
   .btn--orange:hover {
     background: var(--orange-hover);
     transform: translateY(-2px);
   }
-
   .btn--ghost {
     border: 1px solid rgba(255, 255, 255, 0.45);
     color: #fff;
     background: rgba(0, 0, 0, 0.12);
   }
-
   .btn--ghost:hover {
     background: #fff;
     color: var(--navy);
     border-color: #fff;
   }
-
   .hero__specs {
     border-left: 1px solid rgba(255, 255, 255, 0.18);
     padding-left: 26px;
     display: grid;
     gap: 20px;
   }
-
   .hero__specs div {
     display: flex;
     flex-direction: column;
   }
-
   .hero__specs strong {
     font-size: 14px;
     letter-spacing: 0.03em;
     font-weight: 700;
   }
-
   .hero__specs span {
     margin-top: 4px;
     color: #94a3ad;
@@ -533,7 +502,6 @@ const steps = [
     text-transform: uppercase;
     letter-spacing: 0.09em;
   }
-
   /* ========== INTRO (KOMPAKTNO I PORAVNATO) ========== */
   .intro {
     padding: 40px 0 32px;
@@ -542,7 +510,6 @@ const steps = [
     gap: 48px;
     align-items: start;
   }
-
   .intro h2 {
     margin-top: 8px;
     font-size: clamp(26px, 2.8vw, 38px);
@@ -551,17 +518,14 @@ const steps = [
     font-weight: 800;
     color: #07111e;
   }
-
   .intro__text {
     padding-top: 6px;
   }
-
   .intro__text > p {
     color: var(--muted);
     font-size: 14.5px;
     line-height: 1.6;
   }
-
   .intro__metrics {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -569,27 +533,22 @@ const steps = [
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
-
   .intro__metrics div {
     padding: 12px 14px 12px 0;
     border-right: 1px solid var(--line);
   }
-
   .intro__metrics div + div {
     padding-left: 14px;
   }
-
   .intro__metrics div:last-child {
     border-right: 0;
   }
-
   .intro__metrics strong {
     display: block;
     color: var(--orange);
     font-size: 19px;
     font-weight: 800;
   }
-
   .intro__metrics span {
     display: block;
     margin-top: 2px;
@@ -597,7 +556,6 @@ const steps = [
     font-size: 11.5px;
     line-height: 1.35;
   }
-
   /* ========== FORMS SEKCIJA (PORAVNATO NA 1440px) ========== */
   .forms-section {
     background: #eef1f4;
@@ -605,7 +563,6 @@ const steps = [
     border-bottom: 1px solid var(--line);
     padding: 68px 0 80px;
   }
-
   .section-head {
     display: flex;
     align-items: end;
@@ -613,7 +570,6 @@ const steps = [
     gap: 36px;
     margin-bottom: 32px;
   }
-
   .section-head h2 {
     margin-top: 8px;
     font-size: clamp(28px, 3.2vw, 42px);
@@ -622,7 +578,6 @@ const steps = [
     font-weight: 800;
     color: #07111e;
   }
-
   .section-head > p {
     max-width: 380px;
     color: var(--muted);
@@ -630,13 +585,11 @@ const steps = [
     line-height: 1.6;
     padding-bottom: 4px;
   }
-
   .forms-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 16px;
   }
-
   .form-card {
     background: #fff;
     color: var(--navy);
@@ -649,13 +602,11 @@ const steps = [
     flex-direction: column;
     box-shadow: 0 4px 16px rgba(6, 19, 31, 0.04);
   }
-
   .form-card:hover {
     transform: translateY(-6px);
     border-color: var(--orange);
     box-shadow: 0 20px 40px rgba(6, 19, 31, 0.12);
   }
-
   .form-card__image {
     position: relative;
     aspect-ratio: 1 / 1;
@@ -667,7 +618,6 @@ const steps = [
     padding: 10px;
     border-bottom: 1px solid #edf1f5;
   }
-
   .form-card__image img {
     width: 100%;
     height: 100%;
@@ -676,11 +626,9 @@ const steps = [
     transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
     display: block;
   }
-
   .form-card:hover img {
     transform: scale(1.08);
   }
-
   .form-card__image span {
     position: absolute;
     left: 12px;
@@ -695,14 +643,12 @@ const steps = [
     z-index: 2;
     box-shadow: 0 2px 6px rgba(255, 105, 0, 0.35);
   }
-
   .form-card__body {
     padding: 18px 16px 20px;
     flex: 1;
     display: flex;
     flex-direction: column;
   }
-
   .form-card__tag {
     color: var(--orange);
     font-size: 10px;
@@ -710,7 +656,6 @@ const steps = [
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
-
   .form-card h3 {
     margin-top: 6px;
     font-size: 14.5px;
@@ -719,7 +664,6 @@ const steps = [
     text-transform: uppercase;
     color: #07111e;
   }
-
   .form-card__link {
     display: inline-flex;
     align-items: center;
@@ -733,32 +677,26 @@ const steps = [
     letter-spacing: 0.08em;
     transition: color 0.2s;
   }
-
   .form-card__link b {
     color: var(--orange);
     transition: transform 0.2s ease;
   }
-
   .form-card:hover .form-card__link {
     color: var(--orange);
   }
-
   .form-card:hover .form-card__link b {
     transform: translateX(4px);
   }
-
   /* ========== FEATURE DUO (SAVRŠENO U PORAVNANJU SA FORMAMA IZNAD) ========== */
   .feature-duo {
     background: var(--navy);
     padding: 70px 0;
   }
-
   .feature-duo__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
-
   .feature-card {
     position: relative;
     min-height: 520px;
@@ -767,7 +705,6 @@ const steps = [
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 4px;
   }
-
   .feature-card > img {
     position: absolute;
     inset: 0;
@@ -776,11 +713,9 @@ const steps = [
     object-fit: cover;
     transition: transform 0.7s ease;
   }
-
   .feature-card:hover > img {
     transform: scale(1.03);
   }
-
   .feature-card__shade {
     position: absolute;
     inset: 0;
@@ -792,7 +727,6 @@ const steps = [
       rgba(4, 14, 23, 0.97) 100%
     );
   }
-
   .feature-card__content {
     position: absolute;
     z-index: 3;
@@ -801,7 +735,6 @@ const steps = [
     bottom: 0;
     padding: 36px;
   }
-
   .feature-card__content h2 {
     margin-top: 10px;
     max-width: 480px;
@@ -811,7 +744,6 @@ const steps = [
     color: #fff;
     font-weight: 800;
   }
-
   .feature-card__content > p {
     margin-top: 12px;
     max-width: 480px;
@@ -819,7 +751,6 @@ const steps = [
     font-size: 13.5px;
     line-height: 1.6;
   }
-
   .feature-card__facts {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -827,7 +758,6 @@ const steps = [
     margin-top: 22px;
     border-top: 1px solid rgba(255, 255, 255, 0.15);
   }
-
   .feature-card__facts span {
     padding: 12px 12px 0 0;
     color: #a0b0b9;
@@ -835,17 +765,14 @@ const steps = [
     line-height: 1.4;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
   }
-
   .feature-card__facts span:nth-child(2n) {
     padding-left: 12px;
     border-right: 0;
   }
-
   .feature-card__facts span:nth-child(n + 3) {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 12px;
   }
-
   .feature-card__facts b {
     display: block;
     color: #fff;
@@ -853,7 +780,6 @@ const steps = [
     font-weight: 700;
     margin-bottom: 2px;
   }
-
   .feature-card__link {
     display: inline-flex;
     margin-top: 22px;
@@ -867,16 +793,13 @@ const steps = [
     text-transform: uppercase;
     transition: opacity 0.2s;
   }
-
   .feature-card__link:hover {
     opacity: 0.85;
   }
-
   .feature-card__link b {
     color: var(--orange);
     margin-left: 8px;
   }
-
   .feature-card--technical .feature-card__shade {
     background: linear-gradient(
       180deg,
@@ -886,7 +809,6 @@ const steps = [
       rgba(4, 14, 23, 0.98) 100%
     );
   }
-
   .feature-card--geometry .feature-card__shade {
     background: linear-gradient(
       100deg,
@@ -895,19 +817,16 @@ const steps = [
       rgba(4, 14, 23, 0.92) 100%
     );
   }
-
   .feature-card--geometry .feature-card__content {
     left: auto;
     width: 56%;
     padding: 36px;
   }
-
   /* ========== APPLICATIONS (PORAVNATO) ========== */
   .applications {
     padding: 70px 0;
     background: #f6f7f9;
   }
-
   .applications h2,
   .process h2 {
     margin-top: 10px;
@@ -917,24 +836,20 @@ const steps = [
     font-weight: 800;
     color: #07111e;
   }
-
   .applications__grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 18px;
   }
-
   .applications figure {
     margin: 0;
   }
-
   .application__image {
     overflow: hidden;
     aspect-ratio: 5 / 4;
     background: #d8dde2;
     border-radius: 3px;
   }
-
   .application__image img {
     width: 100%;
     height: 100%;
@@ -942,22 +857,18 @@ const steps = [
     display: block;
     transition: transform 0.55s ease;
   }
-
   .applications figure:hover img {
     transform: scale(1.04);
   }
-
   .applications figcaption {
     padding-top: 12px;
   }
-
   .applications figcaption strong {
     display: block;
     font-size: 13.5px;
     font-weight: 700;
     color: #07111e;
   }
-
   .applications figcaption span {
     display: block;
     margin-top: 3px;
@@ -966,7 +877,6 @@ const steps = [
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
-
   /* ========== PROCESS (PORAVNATO) ========== */
   .process {
     background: #eef1f4;
@@ -974,37 +884,31 @@ const steps = [
     border-bottom: 1px solid var(--line);
     padding: 70px 0;
   }
-
   .process__head {
     max-width: 560px;
   }
-
   .steps {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     margin-top: 40px;
     gap: 0;
   }
-
   .steps article {
     position: relative;
     border-left: 1px solid #c9d2d8;
     padding: 0 20px;
     min-height: 130px;
   }
-
   .steps article:first-child {
     border-left: 0;
     padding-left: 0;
   }
-
   .step-num {
     color: var(--orange);
     font-size: 12px;
     font-weight: 800;
     letter-spacing: 0.08em;
   }
-
   .steps h3 {
     margin-top: 12px;
     font-size: 14.5px;
@@ -1012,14 +916,12 @@ const steps = [
     line-height: 1.25;
     color: #07111e;
   }
-
   .steps p {
     margin-top: 8px;
     color: #66747d;
     font-size: 12.5px;
     line-height: 1.5;
   }
-
   .steps article:not(:last-child)::after {
     content: "→";
     position: absolute;
@@ -1030,7 +932,6 @@ const steps = [
     padding: 0 3px;
     font-size: 13px;
   }
-
   /* ========== CTA ========== */
   .cta {
     position: relative;
@@ -1041,7 +942,6 @@ const steps = [
     overflow: hidden;
     background: var(--navy);
   }
-
   .cta > img {
     position: absolute;
     inset: 0;
@@ -1050,13 +950,11 @@ const steps = [
     object-fit: cover;
     object-position: center;
   }
-
   .cta__shade {
     position: absolute;
     inset: 0;
     background: linear-gradient(100deg, rgba(2, 12, 20, 0.94) 0%, rgba(2, 12, 20, 0.7) 55%, rgba(2, 12, 20, 0.42) 100%);
   }
-
   .cta__inner {
     position: relative;
     z-index: 2;
@@ -1066,7 +964,6 @@ const steps = [
     gap: 36px;
     padding: 48px 0;
   }
-
   .cta h2 {
     margin-top: 12px;
     font-size: clamp(26px, 3.3vw, 42px);
@@ -1075,7 +972,6 @@ const steps = [
     font-weight: 800;
     color: #fff;
   }
-
   .cta p {
     margin-top: 12px;
     max-width: 520px;
@@ -1083,167 +979,398 @@ const steps = [
     font-size: 14px;
     line-height: 1.6;
   }
-
   /* ========== RESPONSIVE ========== */
   @media (max-width: 1200px) {
+    .applications__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
     .forms-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
-
   @media (max-width: 980px) {
     .hero__content {
       grid-template-columns: 1fr;
       gap: 32px;
     }
-
     .hero__specs {
       display: none;
     }
-
     .intro {
       grid-template-columns: 1fr;
       gap: 24px;
       padding: 30px 0;
     }
-
     .feature-duo__grid {
       grid-template-columns: 1fr;
     }
-
     .feature-card {
       min-height: 480px;
     }
-
     .feature-card--geometry .feature-card__content {
       width: 70%;
     }
-
     .applications__grid {
       grid-template-columns: repeat(2, 1fr);
     }
-
     .steps {
       grid-template-columns: repeat(2, 1fr);
       gap: 24px 0;
     }
-
     .steps article {
       border-left: 0;
       border-top: 1px solid #c9d2d8;
       padding: 18px 0 0;
     }
-
     .steps article:first-child {
       border-top: 0;
       padding-top: 0;
     }
-
     .steps article:not(:last-child)::after {
       display: none;
     }
-
     .cta__inner {
       flex-direction: column;
       align-items: flex-start;
     }
   }
-
   @media (max-width: 768px) {
     .forms-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
-
   @media (max-width: 640px) {
     .wrap {
       width: min(100% - 24px, 1440px);
     }
-
     .hero {
       min-height: 580px;
     }
-
     .hero__content {
       padding-top: 100px;
       padding-bottom: 40px;
     }
-
     .hero h1 {
       font-size: 32px;
     }
-
     .hero__lead {
       font-size: 14px;
     }
-
     .intro {
       padding: 24px 0;
     }
-
     .forms-section,
     .feature-duo,
     .applications,
     .process {
       padding: 48px 0;
     }
-
     .section-head {
       display: block;
       margin-bottom: 24px;
     }
-
     .section-head > p {
       margin-top: 14px;
     }
-
     .forms-grid {
       grid-template-columns: 1fr;
       gap: 14px;
     }
-
     .feature-card {
       min-height: 440px;
     }
-
     .feature-card__content,
     .feature-card--geometry .feature-card__content {
       padding: 24px;
       width: 100%;
     }
-
     .feature-card__facts {
       grid-template-columns: 1fr;
     }
-
     .feature-card__facts span,
     .feature-card__facts span:nth-child(2n) {
       border-right: 0;
       padding-left: 0;
     }
-
     .feature-card__facts span:nth-child(n + 2) {
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
-
     .applications__grid {
       grid-template-columns: 1fr;
     }
-
     .steps {
       grid-template-columns: 1fr;
     }
-
     .cta {
       min-height: 340px;
     }
-
     .cta > img {
       object-position: 60% center;
     }
-
     .cta__inner {
       padding: 40px 0;
     }
+  }
+
+  /* =====================================================
+     HYBRID PREMIUM / INOX 2.0
+     Dorada u jednom fajlu, bez dodatnog JavaScripta.
+     ===================================================== */
+  .inox-page {
+    --premium-ink: #071725;
+    --premium-soft: #f7f8f8;
+    --premium-steel: #758592;
+  }
+  .inox-page :is(a, button):focus-visible {
+    outline: 3px solid #ff8b38;
+    outline-offset: 4px;
+  }
+  .hero {
+    min-height: min(860px, 94svh);
+    overflow: hidden;
+    align-items: flex-end;
+    border-bottom: 1px solid rgba(255, 255, 255, .15);
+  }
+  .hero__video {
+    transform: scale(1.025);
+  }
+  .hero__shade {
+    background:
+      linear-gradient(90deg, rgba(3, 16, 28, .88) 0%, rgba(3, 16, 28, .65) 37%, rgba(3, 16, 28, .15) 80%),
+      linear-gradient(0deg, rgba(3, 16, 28, .94) 0%, rgba(3, 16, 28, .15) 45%);
+  }
+  .hero__content {
+    position: relative;
+    width: min(1320px, calc(100% - 48px));
+    padding-top: 180px;
+    padding-bottom: 182px;
+    gap: 72px;
+    grid-template-columns: minmax(0, 730px) minmax(0, 250px);
+  }
+  .hero h1 {
+    font-size: clamp(43px, 5.1vw, 76px);
+    max-width: 850px;
+    letter-spacing: -.052em;
+    line-height: 1.015;
+  }
+  .hero__lead {
+    max-width: 620px;
+    color: #e0e7eb;
+    font-size: clamp(15px, 1.25vw, 17px);
+    line-height: 1.65;
+  }
+  .hero__specs {
+    padding: 14px 0 14px 24px;
+    background: linear-gradient(90deg, rgba(2, 15, 26, .54), transparent);
+    gap: 21px;
+  }
+  .hero__specs strong { font-size: 15px; }
+  .hero__quicknav {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(3, 16, 28, .82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-top: 1px solid rgba(255,255,255,.19);
+    z-index: 4;
+  }
+  .hero__quicknav-inner {
+    display: grid;
+    grid-template-columns: 142px repeat(5, minmax(0, 1fr));
+    align-items: stretch;
+    width: min(1320px, calc(100% - 48px));
+  }
+  .hero__quicknav-caption {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    color: #b5c5d0;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .14em;
+  }
+  .hero__quicknav-caption strong {
+    color: var(--orange);
+    font-size: 22px;
+    letter-spacing: -.02em;
+  }
+  .hero__quicknav a {
+    display: flex;
+    align-items: center;
+    min-height: 91px;
+    padding: 20px 12px;
+    border-left: 1px solid rgba(255,255,255,.12);
+    color: #eef3f5;
+    gap: 9px;
+    text-decoration: none;
+    transition: background-color .2s ease;
+  }
+  .hero__quicknav a:hover { background: rgba(255,105,0,.14); }
+  .hero__quicknav a span {
+    color: var(--orange);
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .hero__quicknav a strong {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .hero__quicknav a b {
+    color: var(--orange);
+    margin-left: auto;
+    font-size: 15px;
+  }
+  .intro {
+    padding-block: clamp(72px, 7vw, 112px);
+    grid-template-columns: .95fr 1.05fr;
+    gap: clamp(36px, 5vw, 88px);
+  }
+  .intro h2, .section-head h2, .process h2 {
+    font-size: clamp(34px, 3.7vw, 52px);
+  }
+  .intro__text > p {
+    font-size: 16px;
+    line-height: 1.85;
+  }
+  .intro__metrics {
+    margin-top: 35px;
+    border-bottom: none;
+  }
+  .intro__metrics div { padding-top: 18px; }
+  .intro__metrics strong { font-size: 24px; }
+  .intro__metrics span { font-size: 12px; }
+  .forms-section {
+    padding-block: clamp(68px, 7vw, 106px);
+    scroll-margin-top: 90px;
+    background: #eff2f3;
+  }
+  .forms-section .section-head { margin-bottom: 42px; }
+  .forms-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .form-card {
+    min-width: 0;
+    border-color: #dbe3e8;
+    border-radius: 2px;
+    box-shadow: 0 9px 28px rgba(6,19,31,.055);
+  }
+  .form-card:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+    background: #fbfbfa;
+  }
+  .form-card__image {
+    aspect-ratio: 1.2;
+    min-height: 190px;
+    padding: 12px;
+    background: radial-gradient(circle at 58% 42%, #fff, #f0f1f0);
+  }
+  .form-card:first-child .form-card__image {
+    flex: 1;
+    aspect-ratio: auto;
+    min-height: 390px;
+    padding: clamp(14px, 2.5vw, 35px);
+  }
+  .form-card__body { padding: 22px; }
+  .form-card:first-child .form-card__body { padding: 26px 30px 32px; flex: 0; }
+  .form-card h3 { font-size: clamp(16px, 1.3vw, 21px); }
+  .form-card:first-child h3 { font-size: clamp(23px, 2.3vw, 32px); }
+  .form-card__link { font-size: 11px; }
+  .feature-duo {
+    padding-block: clamp(68px, 7vw, 108px);
+    background: #061521;
+  }
+  .studio__heading {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: end;
+    margin-bottom: 36px;
+  }
+  .studio__heading h2 {
+    max-width: 780px;
+    margin-top: 12px;
+    color: #fff;
+    font-size: clamp(34px, 4.3vw, 62px);
+    line-height: 1.04;
+    letter-spacing: -.05em;
+    font-weight: 800;
+  }
+  .studio__heading h2 em { color: var(--orange); font-style: normal; }
+  .studio__heading p {
+    max-width: 480px;
+    color: #aebfc9;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .feature-duo__grid { gap: 22px; }
+  .feature-card { min-height: 575px; }
+  .feature-card__content { padding: clamp(25px, 3vw, 46px); box-sizing: border-box; }
+  .feature-card--geometry .feature-card__content { width: 70%; }
+  .feature-card__content > p { font-size: 14px; }
+  .applications { padding-block: clamp(70px, 8vw, 120px); }
+  .applications__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 25px;
+  }
+  .applications figure { grid-column: span 4; min-width: 0; }
+  .applications figure:nth-child(-n+2) { grid-column: span 6; }
+  .application__image { aspect-ratio: 1.55; border-radius: 2px; }
+  .applications figure:nth-child(-n+2) .application__image { aspect-ratio: 1.55; }
+  .applications figcaption { padding-top: 14px; }
+  .applications figcaption strong { font-size: 16px; }
+  .applications figcaption span { font-size: 10px; }
+  .process { padding-block: clamp(70px, 7vw, 106px); }
+  .steps { margin-top: 50px; }
+  .steps article { min-height: 160px; }
+  .steps h3 { font-size: 16px; }
+  .steps p { font-size: 13px; line-height: 1.6; }
+  .cta { min-height: 350px; }
+  .cta h2 { font-size: clamp(32px, 3.6vw, 50px); }
+  .cta p { font-size: 15px; }
+  @media (max-width: 1180px) {
+    .hero__quicknav-inner { grid-template-columns: repeat(5, minmax(0,1fr)); }
+    .hero__quicknav-caption { display: none; }
+    .hero__quicknav a { padding: 15px 9px; }
+    .forms-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .form-card:first-child { grid-column: span 2; grid-row: auto; }
+    .form-card:first-child .form-card__image { min-height: 320px; aspect-ratio: 2.1; }
+    .feature-card--geometry .feature-card__content { width: 85%; }
+  }
+  @media (max-width: 980px) {
+    .hero__content { grid-template-columns: 1fr; gap: 26px; padding-top: 135px; padding-bottom: 142px; }
+    .hero__specs { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); padding: 16px; border-left: 0; border-top: 1px solid rgba(255,255,255,.22); }
+    .hero { min-height: 780px; }
+    .intro { grid-template-columns: 1fr; }
+    .studio__heading { grid-template-columns: 1fr; gap: 15px; }
+    .feature-card--geometry .feature-card__content { width: 75%; }
+    .applications figure, .applications figure:nth-child(-n+2) { grid-column: span 6; }
+  }
+  @media (max-width: 640px) {
+    .hero { min-height: 705px; }
+    .hero__content { width: min(100% - 28px, 1320px); padding-top: 110px; padding-bottom: 132px; }
+    .hero h1 { font-size: clamp(32px, 8.8vw, 47px); }
+    .hero__specs { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .hero__specs strong { font-size: 12px; }
+    .hero__specs span { font-size: 9px; }
+    .hero__quicknav { overflow-x: auto; scrollbar-width: thin; }
+    .hero__quicknav-inner { width: max-content; min-width: 100%; grid-template-columns: repeat(5, 145px); }
+    .hero__quicknav a { min-height: 76px; }
+    .forms-grid { grid-template-columns: 1fr; }
+    .form-card:first-child { grid-column: span 1; }
+    .form-card:first-child .form-card__image { min-height: 260px; aspect-ratio: 1.3; }
+    .studio__heading h2 { font-size: 37px; }
+    .feature-card, .feature-card--geometry { min-height: 490px; }
+    .feature-card--geometry .feature-card__content { width: 100%; }
+    .applications figure, .applications figure:nth-child(-n+2) { grid-column: span 12; }
+    .steps article { min-height: auto; padding-bottom: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .form-card, .feature-card > img, .application__image img { transition: none; }
   }
 </style>
