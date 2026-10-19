@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const pageTitle = 'Modularna čelična podkonstrukcija';
+const pageDescription = 'Modularna čelična podkonstrukcija za industrijske podeste, platforme, tehničke pristupe i arhitektonske površine. Čelični moduli, klizni konektori i nivelacione stope; završna obloga prema nameni.';
+const canonicalURL = 'https://modularnisistemi.com/modularni-podni-sistemi/';
+const applications = [
+  { no: '01', title: 'Industrija i mašine', description: 'Podesti uz mašine, pristupne i servisne površine — geometrija prema konkretnom radnom prostoru.' },
+  { no: '02', title: 'Tehničke platforme', description: 'Podignute modularne površine za tehničke zone i mesta gde je važno planirati pristup i raspored.' },
+  { no: '03', title: 'Radionice i poslovni objekti', description: 'Fleksibilna osnova za radne, pomoćne i privremene organizacione zone.' },
+  { no: '04', title: 'Terase i spoljašnji prostori', description: 'Čelična osnova koju je moguće prilagoditi konfiguraciji podloge i izabranoj završnoj oblozi.' },
+];
+const elements = [
+  { no: '01', title: 'Čelični ram', desc: 'Osnovni modul nominalnog formata 1000 × 1000 mm, sa profilom 40 × 40 × 2 mm prema dostavljenom tehničkom listu.' },
+  { no: '02', title: 'Klizni konektor', desc: 'Element za povezivanje susednih modula u jedinstvenu konstrukcionu celinu.' },
+  { no: '03', title: 'Nivelaciona stopa', desc: 'Podešavanje položaja i visine pomoću stope M16. Visine i konfiguracija usklađuju se sa konkretnom primenom.' },
+];
+const process = [
+  { no: '01', title: 'Definišemo namenu', desc: 'Šta se na platformi nalazi, gde je pristup, kakvo je opterećenje i kakva je podloga.' },
+  { no: '02', title: 'Razrađujemo konstrukciju', desc: 'Raspored modula, oslonaca, spojeva i potrebnih visina.' },
+  { no: '03', title: 'Usklađujemo završnu površinu', desc: 'Završni sloj se bira prema uslovima korišćenja, ne prema nazivu čeličnog modula.' },
+  { no: '04', title: 'Pripremamo realizaciju', desc: 'Usaglašavanje rešenja, tehničkih detalja i daljih koraka izrade i montaže.' },
+];
+---
+<BaseLayout title={pageTitle} description={pageDescription} canonical={canonicalURL}>
+  <div class="engineering-page">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> MODULARNI SISTEMI / PREMIUM ENGINEERING</div>
+          <h1 id="hero-heading">Čelična osnova.<br /><em>Sloboda primene.</em></h1>
+          <p>Modularna čelična podkonstrukcija za podeste, platforme i tehničke površine. Od industrijskih zona oko mašina do arhitektonskih prostora — konstrukciju prilagođavamo nameni.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#sistem">Istražite sistem <span>↗</span></a>
+            <a class="button button-outline" href="/kontakt/">Pošaljite upit <span>↗</span></a>
+          </div>
+          <div class="hero-note"><span class="orange-dot"></span> Jedan konstrukcioni princip. Različiti zadaci.</div>
+        </div>
+        <div class="hero-art" aria-label="Fotografija modularne čelične podkonstrukcije">
+          <div class="art-top"><span>MS / STEEL STRUCTURE</span><span>MCP — 1000</span></div>
+          <div class="hero-photo-frame">
+            <img class="module-photo" src="/images/podovi/modularna-podkonstrukcija-premium.webp" alt="Modularna čelična podkonstrukcija sa unutrašnjim profilima i nivelirajućim stopama — originalni proizvod" width="1600" height="900" fetchpriority="high" decoding="async" />
+            <div class="hero-photo-signature" aria-hidden="true"><span class="signature-line"></span><span>01 / ČELIČNI MODUL</span></div>
+          </div>
+          <div class="art-bottom"><span>ORIGINALNI PROIZVOD / KONSTRUKCIJA</span><span>01 — 03</span></div>
+        </div>
+      </div>
+      <div class="wrap hero-strip"><span>ČELIČNI RAM</span><span>KLIZNI KONEKTOR</span><span>NIVELACIONA STOPA</span><span>ZAVRŠNA OBLOGA PO IZBORU</span></div>
+    </section>
+    <section class="system section-light" id="sistem">
+      <div class="wrap">
+        <div class="section-head"><div><div class="eyebrow dark"><span></span> SISTEM / KONSTRUKCIJA</div><h2>Jedna konstrukcija.<br /><em>Različite mogućnosti.</em></h2></div><p>Modularna čelična podkonstrukcija predstavlja prilagodljivu osnovu za podeste, platforme i tehničke površine. Geometriju, raspored oslonaca i konstrukcione detalje usklađujemo sa konkretnom namenom.</p></div>
+        <div class="system-layout">
+          <div class="system-statement system-statement--foot" aria-label="Nivelirajuća stopa modularne podkonstrukcije">
+            <div class="foot-image-area">
+              <img class="foot-studio-product" src="/images/podovi/nivelirajuca-stopa-premium.webp" alt="Originalna nivelirajuća stopa modularne čelične podkonstrukcije" loading="lazy" decoding="async" />
+              <span class="foot-index">MS / KONSTRUKCIONI DETALJ</span>
+              <span class="foot-count">03 / 03</span>
+            </div>
+            <div class="foot-information">
+              <div><span>03 / PRECIZNO PODEŠAVANJE</span><strong>Nivelirajuća stopa.</strong><small>Konstrukcioni detalj modularnog sistema.</small></div>
+              <span class="foot-direction" aria-hidden="true">↗</span>
+            </div>
+          </div>
+          <div class="system-elements">{elements.map(item => <article class="element"><div class="element-number">{item.no}</div><div><h3>{item.title}</h3><p>{item.desc}</p></div><span class="element-arrow" aria-hidden="true">↗</span></article>)}</div>
+        </div>
+      </div>
+    </section>
+    <section class="applications section-dark" id="primena">
+      <div class="wrap">
+        <div class="section-head on-dark"><div><div class="eyebrow"><span></span> GDE SISTEM IMA SMISLA</div><h2>Podesti. Platforme.<br /><em>Tehnički prostori.</em></h2></div><p>Počinjemo od zadatka koji konstrukcija treba da reši — ne od kataloga dekorativnih završnih obloga.</p></div>
+        <div class="application-grid">{applications.map(item => <article class="application"><div class="application-no">{item.no} / PRIMENA</div><h3>{item.title}</h3><p>{item.description}</p><div class="application-rule"></div></article>)}</div>
+      </div>
+    </section>
+    <section class="finish section-light">
+      <div class="wrap finish-grid"><div><div class="eyebrow dark"><span></span> ZAVRŠNA POVRŠINA</div><h2>Vi birate oblogu.<br /><em>Mi rešavamo osnovu.</em></h2><p>WPC, drvo, veštačka trava, laminat, keramika, rešetkaste površine ili druga obloga — izbor zavisi od prostora, nosivosti, oslonaca, pričvršćivanja i uslova upotrebe.</p><p class="disclaimer">Navedeni materijali su primeri mogućih završnih površina, ne posebni modeli podkonstrukcije. Pogodnost svake obloge proverava se za konkretan projekat.</p></div><div class="finish-visual"><img src="/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp" alt="Primer spoljne površine; završna obloga je nezavisna od čelične podkonstrukcije" loading="lazy"/><div class="finish-label">PRIMER PRIMENE / ZAVRŠNA OBLOGA PO IZBORU</div></div></div>
+    </section>
+    <section class="tech section-muted">
+      <div class="wrap"><div class="section-head"><div><div class="eyebrow dark"><span></span> OSNOVNI TEHNIČKI PODACI</div><h2>Konstrukcija počinje<br /><em>preciznim detaljem.</em></h2></div><p>Podaci za osnovni modul MCP-1000 preuzeti su iz dostavljenog tehničkog lista. Ostale konfiguracije i potrebne provere definišu se prema zadatku.</p></div>
+      <div class="specs"><div><span>OSNOVNI MODUL</span><strong>1000 × 1000 mm</strong></div><div><span>ČELIČNI PROFIL</span><strong>40 × 40 × 2 mm</strong></div><div><span>NIVELACIONA STOPA</span><strong>M16</strong></div><div><span>VISINE / KONFIGURACIJA</span><strong>Na zahtev</strong></div></div>
+      <p class="tech-note">Nosivost, broj i raspored oslonaca, završna zaštita i pogodnost za određenu industrijsku primenu moraju se potvrditi za konkretan projekat. Fotografija prikazuje originalnu konstrukciju; za izradu se koriste usaglašeni tehnički crteži.</p></div>
+    </section>
+    <section class="process section-light"><div class="wrap"><div class="section-head"><div><div class="eyebrow dark"><span></span> OD ZAHTEVA DO REŠENJA</div><h2>Prvo prostor i funkcija.<br /><em>Zatim konstrukcija.</em></h2></div></div><div class="process-grid">{process.map(item => <article><span>{item.no}</span><h3>{item.title}</h3><p>{item.desc}</p></article>)}</div></div></section>
+    <section class="cta"><div class="wrap cta-inner"><div><div class="eyebrow"><span></span> VAŠ ZADATAK / NAŠA KONSTRUKCIJA</div><h2>Imate prostor koji treba<br /><em>pretvoriti u funkcionalnu površinu?</em></h2><p>Dovoljni su skica, fotografija, dimenzije ili opis namene da započnemo razgovor.</p></div><div class="cta-actions"><a class="button button-primary" href="/kontakt/">Pošaljite upit <span>↗</span></a><a class="mail" href="mailto:kontakt@modularnisistemi.com">kontakt@modularnisistemi.com <span>↗</span></a></div></div></section>
+  </div>
+</BaseLayout>
+<style>
+  .engineering-page{--ink:#091b28;--ink2:#102634;--orange:#ff6900;--soft:#eef2f3;--line:#d9e0e3;font-family:'Manrope',sans-serif;color:var(--ink);overflow:hidden}
+  .wrap{width:min(1200px,calc(100% - 48px));margin-inline:auto}.section-light{background:#f7f8f8}.section-dark{background:#071a26;color:white}.section-muted{background:#eaf0f2}.eyebrow{display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.16em;font-weight:800;color:#ff8b45;text-transform:uppercase}.eyebrow span{width:22px;height:2px;background:var(--orange);flex:none}.eyebrow.dark{color:#b44c0b}h1,h2,h3,p{margin:0}h1,h2{letter-spacing:-.052em;font-weight:800;line-height:1.08}em{font-style:normal;color:var(--orange)}
+  .hero{background:radial-gradient(ellipse at 70% 25%,#162f3b 0%,#071822 65%);color:white}.hero-grid{display:grid;grid-template-columns:44% 56%;align-items:center;gap:20px;min-height:510px;padding-block:32px}.hero h1{font-size:clamp(40px,4.3vw,66px);margin:22px 0}.hero-copy>p{font-size:15px;line-height:1.75;color:#b7c7d0;max-width:440px}.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.button{display:inline-flex;align-items:center;justify-content:space-between;gap:25px;padding:15px 18px;min-width:166px;text-decoration:none;font-size:12px;font-weight:800;border:1px solid transparent;transition:background .2s,color .2s}.button span{font-size:18px}.button-primary{background:var(--orange);color:#0e1820}.button-primary:hover{background:#ff8d3b}.button-outline{border-color:#536673;color:white}.button-outline:hover{background:#233c4a}.hero-note{margin-top:42px;color:#8da2af;font-size:10px;letter-spacing:.12em;text-transform:uppercase}.orange-dot{display:inline-block;width:6px;height:6px;background:var(--orange);margin-right:9px}.hero-art{position:relative;background:linear-gradient(135deg,#102632,#091620);border:1px solid #35505e;min-width:0;box-shadow:0 30px 80px #0004}.hero-art:before,.hero-art:after{content:'';position:absolute;width:20px;height:20px;border-color:var(--orange);pointer-events:none}.hero-art:before{top:8px;left:8px;border-top:2px solid;border-left:2px solid}.hero-art:after{bottom:8px;right:8px;border-right:2px solid;border-bottom:2px solid}.art-top,.art-bottom{display:flex;justify-content:space-between;padding:14px 19px;color:#9fb4be;font-size:9px;letter-spacing:.14em}.art-top{border-bottom:1px solid #29424e}.art-bottom{border-top:1px solid #29424e}.module-photo{display:block;width:100%;aspect-ratio:16/9;height:auto;object-fit:contain;background:#dfe2e3}.hero-strip{border-top:1px solid #25404f;display:grid;grid-template-columns:repeat(4,1fr);color:#a3b6bf;font-size:10px;letter-spacing:.1em}.hero-strip span{padding:17px 15px;border-right:1px solid #25404f}.hero-strip span:first-child{padding-left:0}.hero-strip span:last-child{border:0}
+  .system,.applications,.finish,.tech,.process{padding-block:74px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:30px}.section-head h2,.finish h2{font-size:clamp(30px,3.1vw,46px);margin-top:13px}.section-head p{max-width:365px;color:#677985;font-size:14px;line-height:1.7}.section-head.on-dark p{color:#9bb1bd}.system-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:20px}.system-statement{background:#0b202d;min-height:295px;color:white;position:relative;padding:38px;display:flex;flex-direction:column;justify-content:center}.system-large{font-size:clamp(48px,5.6vw,80px);font-weight:800;letter-spacing:-.07em;white-space:nowrap;line-height:1}.system-large span{color:var(--orange)}.system-large small{font-size:18px;letter-spacing:0;margin-left:8px}.system-statement p{margin-top:22px;max-width:370px;color:#9eb0bb;font-size:13px;line-height:1.6}.system-mark{position:absolute;bottom:20px;left:38px;font-size:9px;letter-spacing:.15em;color:#667d89}.system-elements{border-top:1px solid var(--line)}.element{display:grid;grid-template-columns:42px 1fr 20px;gap:8px;padding:20px 0;border-bottom:1px solid var(--line)}.element-number{font-size:12px;color:#bd4d0c;font-weight:800}.element h3{font-size:18px}.element p{font-size:13px;color:#71808a;line-height:1.6;margin-top:6px;max-width:470px}.element-arrow{color:var(--orange)}.foot-photo{display:block;max-width:185px;width:100%;aspect-ratio:3/4;object-fit:contain;margin-top:16px;background:#eee;border:1px solid var(--line)}
+  .application-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.application{min-height:250px;display:flex;flex-direction:column;padding:25px;border:1px solid #35505a;background:linear-gradient(140deg,#102b38,#071b27)}.application-no{font-size:10px;color:#ff975d;letter-spacing:.15em}.application h3{font-size:22px;line-height:1.18;margin-top:38px}.application p{font-size:12px;line-height:1.6;color:#acc0cb;margin-top:13px}.application-rule{height:2px;width:34px;background:var(--orange);margin-top:auto;padding-top:0}
+  .finish-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:55px;align-items:center}.finish p{max-width:500px;margin-top:22px;font-size:14px;line-height:1.75;color:#637582}.finish .disclaimer{border-left:2px solid var(--orange);padding-left:16px;font-size:12px}.finish-visual{height:320px;position:relative;overflow:hidden;background:#25323b}.finish-visual img{width:100%;height:100%;object-fit:cover;filter:saturate(.68)}.finish-visual:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#071a26b3,transparent 55%)}.finish-label{position:absolute;z-index:1;bottom:18px;left:20px;color:white;font-size:10px;letter-spacing:.12em;font-weight:700}
+  .specs{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #c4d0d5;border-bottom:1px solid #c4d0d5}.specs>div{padding:23px 18px;border-right:1px solid #c4d0d5}.specs>div:first-child{padding-left:0}.specs>div:last-child{border:0}.specs span{display:block;color:#7b8b96;font-size:10px;letter-spacing:.11em}.specs strong{display:block;font-size:clamp(16px,1.65vw,23px);letter-spacing:-.04em;margin-top:10px}.tech-note{max-width:840px;color:#647580;font-size:12px;line-height:1.65;margin-top:20px}.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}.process-grid article{padding:7px 25px 12px;border-left:1px solid var(--line)}.process-grid article:first-child{padding-left:0;border-left:0}.process-grid span{color:#c15412;font-weight:800;font-size:12px}.process-grid h3{font-size:17px;margin-top:15px}.process-grid p{font-size:12px;color:#687b85;line-height:1.65;margin-top:10px}
+  .cta{background:#081c29;color:white;padding:68px 0}.cta-inner{display:flex;align-items:center;justify-content:space-between;gap:40px}.cta h2{font-size:clamp(29px,3vw,44px);margin-top:15px}.cta p{color:#adbec8;font-size:13px;margin-top:15px}.cta-actions{min-width:270px;display:grid;gap:15px}.cta-actions .button{width:100%}.mail{display:flex;justify-content:space-between;gap:12px;color:#c0d1db;text-decoration:none;font-size:12px;padding-bottom:12px;border-bottom:1px solid #56707b}.mail span{color:var(--orange)}
+  @media(max-width:1000px){.hero-grid{grid-template-columns:1fr 1fr}.application-grid{grid-template-columns:repeat(2,1fr)}.system-large{font-size:48px}.finish-grid{gap:25px}.specs{grid-template-columns:repeat(2,1fr)}.specs>div:nth-child(2){border-right:0}.specs>div:nth-child(-n+2){border-bottom:1px solid #c4d0d5}}
+  @media(max-width:720px){.wrap{width:min(100% - 32px,1200px)}.hero-grid{display:flex;flex-direction:column;align-items:stretch;gap:27px;padding-top:40px}.hero h1{font-size:clamp(36px,9vw,51px);margin:19px 0}.hero-copy>p{font-size:14px}.hero-note{display:none}.hero-art{width:100%}.hero-strip{grid-template-columns:repeat(2,1fr)}.hero-strip span{border-bottom:1px solid #25404f;font-size:9px;padding:13px 9px}.system,.applications,.finish,.tech,.process{padding-block:48px}.section-head{display:block}.section-head p{margin-top:16px}.section-head h2,.finish h2{font-size:32px}.system-layout,.finish-grid{grid-template-columns:1fr}.system-statement{min-height:230px;padding:25px}.system-large{font-size:clamp(39px,11vw,60px)}.system-mark{left:25px}.application-grid{grid-template-columns:1fr 1fr}.application{padding:17px;min-height:240px}.application h3{font-size:18px;margin-top:23px}.finish-visual{height:250px}.process-grid{grid-template-columns:repeat(2,1fr);row-gap:22px}.process-grid article:nth-child(odd){border-left:0;padding-left:0}.cta-inner{display:block}.cta-actions{margin-top:28px;min-width:0}.hero-actions .button{min-width:0;flex:1}.hero-actions{flex-wrap:nowrap}.hero-actions .button{font-size:11px;padding:12px}.art-top,.art-bottom{font-size:8px}}
+  @media(max-width:420px){.application-grid{grid-template-columns:1fr}.application{min-height:180px}.application h3{margin-top:22px}.specs{grid-template-columns:1fr}.specs>div{border-right:0;border-bottom:1px solid #c4d0d5!important;padding-left:0}.specs>div:last-child{border-bottom:0!important}.process-grid{grid-template-columns:1fr}.process-grid article{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:15px}.process-grid article:first-child{border-top:0}.hero-actions{flex-wrap:wrap}.hero-actions .button{width:100%}}
+  @media(prefers-reduced-motion:reduce){.button{transition:none}}
+  /* PREMIUM ENGINEERING — prezentacija postojećih fotografija, bez promena putanja */
+  .hero-photo-frame{position:relative;overflow:hidden;background:#242424;isolation:isolate}
+  .hero-photo-frame .module-photo{width:100%;height:auto;aspect-ratio:16/9;display:block;object-fit:contain;background:#242424;transition:transform .65s cubic-bezier(.2,.65,.25,1)}
+  .hero-art:hover .module-photo{transform:scale(1.025)}
+  .hero-photo-frame:after{content:"";position:absolute;inset:72% 0 0;background:linear-gradient(transparent,rgba(3,15,22,.35));pointer-events:none}
+  .hero-photo-signature{position:absolute;left:19px;bottom:14px;z-index:2;display:flex;align-items:center;gap:9px;font-size:9px;letter-spacing:.14em;font-weight:800;color:#fff;text-shadow:0 1px 8px #000b}
+  .signature-line{display:block;width:17px;height:2px;background:var(--orange)}
+  .system-statement--foot{padding:0;min-height:0;display:flex;flex-direction:column;justify-content:stretch;background:#202020;overflow:hidden;border:1px solid #314451}
+  .foot-image-area{position:relative;height:330px;overflow:hidden;background:#262626}
+  .foot-studio-product{display:block;width:100%;height:100%;object-fit:contain;object-position:center;background:#262626;transition:transform .65s cubic-bezier(.2,.65,.25,1)}
+  .system-statement--foot:hover .foot-studio-product{transform:scale(1.035)}
+  .foot-index,.foot-count{position:absolute;top:17px;z-index:1;font-size:9px;font-weight:800;letter-spacing:.14em;color:#fff;text-shadow:0 1px 5px #0009}
+  .foot-index{left:19px}.foot-count{right:19px}
+  .foot-information{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:17px 22px 19px;background:#081e2b;border-top:2px solid var(--orange)}
+  .foot-information>div{display:flex;flex-direction:column;gap:5px}
+  .foot-information span:not(.foot-direction){color:#ff945a;font-size:9px;font-weight:800;letter-spacing:.12em}
+  .foot-information strong{font-size:clamp(20px,2vw,27px);letter-spacing:-.04em;line-height:1.12;color:#fff}
+  .foot-information small{font-size:11px;color:#b4c6d0;line-height:1.4}
+  .foot-direction{font-size:20px;color:#ff6900;flex:none}
+  @media(max-width:720px){.foot-image-area{height:285px}.foot-information{padding:16px}.hero-photo-signature{left:15px;bottom:12px}}
+  @media(prefers-reduced-motion:reduce){.hero-photo-frame .module-photo,.foot-studio-product{transition:none}.hero-art:hover .module-photo,.system-statement--foot:hover .foot-studio-product{transform:none}}
+</style>

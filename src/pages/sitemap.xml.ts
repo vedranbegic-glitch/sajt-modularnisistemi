@@ -1,9 +1,9 @@
 import type { APIRoute } from 'astro';
-import { CATEGORIES_DATA } from '../data/products';
+import { inoxProducts } from '../data/inoxProducts';
 
 const SITE_URL = 'https://modularnisistemi.com';
 
-// Samo stranice koje treba da budu u pretrazi (bez /hvala/ i /404/)
+// Javne stranice koje treba navesti u Google sitemapu.
 const staticRoutes = [
   '/',
   '/proizvodi/',
@@ -11,18 +11,15 @@ const staticRoutes = [
   '/moderna-rasveta/',
   '/modularni-podni-sistemi/',
   '/fire-pit-grill/',
+  '/projektovanje-i-3d-modelovanje/',
   '/galerija/',
   '/o-nama/',
   '/partneri/',
   '/kontakt/',
-  '/posaljite-upit/',
+  '/posaljite-projekat/',
 ];
 
-// Ravna kanalica se dodaje u [slug].astro, pa je dodajemo i ovde
-const EXTRA_INOX_IDS = ['ravni-modularni-inox-kanal'];
-
-// Podstranice podnih sistema (src/pages/modularni-podni-sistemi/[slug].astro)
-// Ako se doda novi tip poda, dodaj njegov slug i ovde.
+// Postojeće podstranice podnih sistema.
 const PODNI_IDS = [
   'eco-green-monoblok',
   'wpc-compound-monoblok',
@@ -31,25 +28,18 @@ const PODNI_IDS = [
 ];
 
 export const GET: APIRoute = async () => {
-  const inoxSubtypes = CATEGORIES_DATA.inox.subtypes;
-
-  // Spaja ID-jeve iz podataka sa dodatnim, bez duplikata
-  const inoxIds = Array.from(
-    new Set([...EXTRA_INOX_IDS, ...inoxSubtypes.map((item) => item.id)])
-  );
-
-  const dynamicInoxRoutes = inoxIds.map(
-    (id) => `/inox-sistemi-odvodnjavanja/${id}/`
+  const dynamicInoxRoutes = inoxProducts.map(
+    (product) => `/inox-sistemi-odvodnjavanja/${product.slug}/`
   );
 
   const dynamicPodniRoutes = PODNI_IDS.map(
     (id) => `/modularni-podni-sistemi/${id}/`
   );
 
-  const allUrls = [...staticRoutes, ...dynamicInoxRoutes, ...dynamicPodniRoutes];
+  const allUrls = Array.from(
+    new Set([...staticRoutes, ...dynamicInoxRoutes, ...dynamicPodniRoutes])
+  );
 
-  // Google ignoriše priority i changefreq, a netačan lastmod mu umanjuje poverenje,
-  // pa sitemap sadrži samo adrese.
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${allUrls

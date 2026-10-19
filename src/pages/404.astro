@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE, CONTACT } from '../data/siteData';
+import { CONTACT } from '../data/siteData';
 ---
 
 <BaseLayout
   title="404 — Stranica nije pronađena"
-  description="Tražena stranica ne postoji na serveru MODULARNI SISTEMI. Vratite se na početnu stranu ili pogledajte naše sisteme."
+  description="Tražena stranica ne postoji na serveru MODULARNI SISTEMI. Vratite se na početnu stranu ili pogledajte naše proizvode."
   noindex={true}
 >
   <section class="min-h-[75vh] flex items-center justify-center py-20 bg-navy bg-grid-pattern relative overflow-hidden">
@@ -42,16 +42,16 @@ import { SITE, CONTACT } from '../data/siteData';
           Inox odvodnjavanje &rarr;
         </a>
         <a
-          href="/moderna-rasveta/"
+          href="/modularne-celicne-podkonstrukcije/"
           class="p-3 bg-navy-surface border border-white/10 hover:border-accent text-white transition-colors"
         >
-          Moderna rasveta &rarr;
+          Modularne čelične podkonstrukcije &rarr;
         </a>
         <a
-          href="/modularni-podni-sistemi/"
+          href="/fire-pit-grill/"
           class="p-3 bg-navy-surface border border-white/10 hover:border-accent text-white transition-colors"
         >
-          Podni sistemi &rarr;
+          Fire Pit Grill &rarr;
         </a>
       </div>
 
@@ -64,15 +64,15 @@ import { SITE, CONTACT } from '../data/siteData';
           Povratak na početnu stranu
         </a>
         <a
-          href="/kontakt/"
+          href="/posaljite-upit/"
           class="w-full sm:w-auto px-8 py-4 bg-navy-surface hover:bg-white/10 text-white text-xs uppercase tracking-architectural font-bold border border-white/20 transition-all text-center"
         >
-          Kontakt inženjeringa
+          Pošaljite upit
         </a>
       </div>
 
       <div class="pt-4 font-mono text-[11px] text-slate-muted">
-        Direktna tehnička podrška: <a href={`tel:${CONTACT.phoneFormatted}`} class="text-white hover:text-accent font-semibold">{CONTACT.phone}</a>
+        Direktan kontakt: <a href={`tel:${CONTACT.phoneFormatted}`} class="text-white hover:text-accent font-semibold">{CONTACT.phone}</a>
       </div>
 
     </div>

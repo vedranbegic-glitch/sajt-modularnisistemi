@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT } from '../data/siteData';
+
+const phoneHref = `tel:${(CONTACT.phoneFormatted || CONTACT.phone || '+38166241386').replace(/[^+\d]/g, '')}`;
+const projectEmail = CONTACT.generalEmail || 'kontakt@modularnisistemi.com';
+const generalEmail = CONTACT.generalEmail || 'kontakt@modularnisistemi.com';
+---
+
+<BaseLayout
+  title="Pošaljite upit"
+  description="Pošaljite ideju, skicu, crtež ili opis zadatka. Modularni Sistemi — inox odvodnjavanje, čelične podkonstrukcije, Fire Pit Grill, projektovanje i 3D modelovanje."
+>
+  <div class="project-page">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">MODULARNI SISTEMI / PREMIUM ENGINEERING</p>
+          <h1>Pošaljite upit.<br /><span>Razradimo rešenje.</span></h1>
+          <p class="lead">Imate ideju, skicu, tehnički crtež ili konkretan problem? Opišite zadatak i priložite dokumentaciju koju imate. Razgovor počinje razumevanjem vaših potreba.</p>
+          <div class="hero-actions"><a class="btn primary" href="#forma">Pošaljite upit <span aria-hidden="true">↗</span></a><a class="btn outline" href={phoneHref}>Pozovite nas <span aria-hidden="true">↗</span></a></div>
+          <p class="hero-foot">OBLIK. FUNKCIJA. KONSTRUKCIJA.</p>
+        </div>
+        <aside class="study" aria-label="Pristup projektu">
+          <div class="study-top"><span>MS / PROJECT STUDY</span><span>01 — 04</span></div>
+          <div class="study-main"><small>OD IDEJE DO REALIZACIJE</small><strong>Prvo razumemo zadatak.<br /><em>Zatim razvijamo rešenje.</em></strong><div class="study-lines" aria-hidden="true"></div></div>
+          <div class="study-bottom">RAZGOVOR / KONSTRUKCIJA / IZRADA <span aria-hidden="true">↗</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="form-section" id="forma">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="eyebrow">DOKUMENTACIJA / UPIT</p><h2>Vaš zadatak.<br /><span>Naš sledeći korak.</span></h2></div><p>Za početak je dovoljan kratak opis. Fotografija, skica i tehnički crtež su dobrodošli, ali nisu obavezni.</p></div>
+        <div class="content-grid">
+          <aside class="contact-card">
+            <div class="card-top">DIREKTAN KONTAKT <span>01 / 02</span></div>
+            <a href={`mailto:${projectEmail}`} class="contact-line"><small>PROJEKTI I TEHNIČKI UPITI</small><strong>{projectEmail}</strong><span aria-hidden="true">↗</span></a>
+            <a href={`mailto:${generalEmail}`} class="contact-line"><small>OPŠTE INFORMACIJE</small><strong>{generalEmail}</strong><span aria-hidden="true">↗</span></a>
+            <a href={phoneHref} class="contact-line"><small>TELEFON</small><strong>{CONTACT.phone || '+381 66 241 386'}</strong><span aria-hidden="true">↗</span></a>
+            <div class="contact-hint"><p>Za veće datoteke možete poslati link do dokumentacije ili nam se javiti direktno putem emaila.</p><p class="signature">JEDAN SISTEM. BEZBROJ MOGUĆNOSTI.</p></div>
+          </aside>
+
+          <div class="form-panel">
+            <div class="card-top">POŠALJITE UPIT <span>02 / 02</span></div>
+            <h3>Recite nam šta želite da realizujete.</h3>
+            <p class="form-intro">Polja označena zvezdicom su obavezna.</p>
+            <form id="project-form" name="upit" method="POST" action="/hvala/" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+              <input type="hidden" name="form-name" value="upit" />
+              <p class="hidden-trap" aria-hidden="true"><label>Ostavite prazno <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+              <div class="two"><label>Ime i prezime *<input name="name" type="text" autocomplete="name" required placeholder="Ime i prezime" /></label><label>Kompanija / organizacija<input name="company" type="text" autocomplete="organization" placeholder="Opciono" /></label></div>
+              <div class="two"><label>Email adresa *<input name="email" type="email" autocomplete="email" required placeholder="ime@kompanija.rs" /></label><label>Telefon<input name="phone" type="tel" autocomplete="tel" placeholder="+381 ..." /></label></div>
+              <label>Oblast interesovanja *<select name="system" required><option value="" disabled selected>Izaberite oblast</option><option value="inox">Inox sistemi odvodnjavanja</option><option value="konstrukcije">Modularne čelične podkonstrukcije</option><option value="fire-pit">Fire Pit Grill</option><option value="projektovanje">Projektovanje i 3D modelovanje</option><option value="drugo">Drugi zadatak / kombinovano rešenje</option></select></label>
+              <label>Opis zadatka *<textarea name="message" rows="5" required placeholder="Opišite namenu, prostor, željenu konstrukciju, okvirne mere ili problem koji želite da rešite..."></textarea></label>
+              <label class="upload-label" for="project-file">Crtež, skica ili fotografija (opciono)</label>
+              <div class="upload-box"><input id="project-file" name="project-file" type="file" accept=".pdf,.dwg,.dxf,.zip,.rar,.png,.jpg,.jpeg,.webp" aria-describedby="upload-help" /><span aria-hidden="true">↥</span><strong id="file-name">Izaberite datoteku</strong><small id="upload-help">PDF, DWG, DXF, ZIP, RAR, JPG, PNG, WEBP · do 8 MB</small></div>
+              <label>Link do većih datoteka<input name="link" type="url" placeholder="Link do dokumentacije (opciono)" /></label>
+              <div class="form-footer"><p>Podatke koristimo za obradu upita. <a href="/privatnost/">Politika privatnosti</a>.</p><button class="btn primary" id="submit-project" type="submit">Pošaljite upit <span aria-hidden="true">↗</span></button></div>
+              <p id="form-status" role="alert" aria-live="polite" hidden></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="next"><div class="wrap next-grid"><div><p class="eyebrow">NAČIN RADA</p><h2>Prvo crtež.<br /><span>Zatim proizvod.</span></h2></div><p>Krećemo od namene i funkcije. Konstrukciju, materijale i detalje razrađujemo prema konkretnom zadatku, od početne ideje do realizacije.</p></div></section>
+  </div>
+  <style>
+    .project-page{--ink:#071b28;--dark:#061a26;--orange:#ff6900;--line:#d7e0e4;font-family:inherit;color:#102637;overflow-x:clip}.wrap{width:min(1180px,calc(100% - 40px));margin-inline:auto}.hero{background:linear-gradient(120deg,#061723,#082330);color:#f7f9fa;padding:72px 0 62px}.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:9%;align-items:center}.eyebrow{color:#e96413;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;display:flex;gap:12px;align-items:center;margin:0 0 22px}.eyebrow:before{content:"";width:22px;height:2px;background:#ff6900;flex:none}.hero h1{font-size:clamp(40px,4.4vw,64px);letter-spacing:-.055em;line-height:1.07;font-weight:800;margin:0 0 22px}.hero h1 span,h2 span,.study em{color:#ff6900;font-style:normal}.lead{color:#b6c8d2;font-size:15px;line-height:1.8;max-width:510px}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:27px}.btn{display:inline-flex;align-items:center;justify-content:space-between;gap:27px;min-height:44px;padding:0 19px;text-decoration:none;border:1px solid transparent;font-family:inherit;font-size:12px;font-weight:800;cursor:pointer;transition:background .2s ease}.primary{background:#ff6900;color:#061724}.primary:hover{background:#ff832b}.outline{border-color:#58707c;color:#fff;background:transparent}.outline:hover{border-color:#fff}.hero-foot{font-size:10px;letter-spacing:.12em;color:#7292a5;margin-top:40px}.study{border:1px solid #284859;background:linear-gradient(140deg,#0b2838,#06202d);min-height:280px;display:flex;flex-direction:column}.study-top,.study-bottom{display:flex;justify-content:space-between;padding:15px 20px;font-size:10px;letter-spacing:.12em;color:#829fb0}.study-top{border-bottom:1px solid #274554}.study-bottom{border-top:1px solid #274554;margin-top:auto}.study-bottom span{color:#ff6900}.study-main{position:relative;overflow:hidden;padding:32px 24px 36px}.study-main small{font-size:10px;font-weight:800;color:#ff6900}.study-main strong{display:block;font-size:clamp(23px,2.8vw,36px);letter-spacing:-.035em;line-height:1.14;margin-top:20px}.study-lines{position:absolute;right:-12px;bottom:0;width:110px;height:90px;background:repeating-linear-gradient(145deg,transparent 0 13px,#214454 13px 14px)}.form-section{background:#f0f4f5;padding:72px 0 84px;scroll-margin-top:86px}.section-heading{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:35px;margin-bottom:25px}.section-heading h2,.next h2{font-size:clamp(30px,3vw,43px);font-weight:700;letter-spacing:-.047em;line-height:1.14;margin:0}.section-heading>p,.next-grid>p{font-size:14px;color:#627a88;line-height:1.7;max-width:400px;justify-self:end}.content-grid{display:grid;grid-template-columns:.81fr 1.19fr;gap:12px;align-items:start}.contact-card{background:#071e2a;color:#fff;padding:27px;display:flex;flex-direction:column}.card-top{display:flex;justify-content:space-between;font-size:10px;font-weight:800;letter-spacing:.12em;color:#88a9ba;padding-bottom:18px;border-bottom:1px solid #2b4a5a}.contact-line{display:grid;grid-template-columns:1fr auto;gap:9px;color:white;text-decoration:none;padding:24px 0;border-bottom:1px solid #2b4a5a}.contact-line small{grid-column:1/-1;color:#8ba9ba;font-size:10px;letter-spacing:.08em}.contact-line strong{font-size:clamp(13px,1.3vw,18px);overflow-wrap:anywhere}.contact-line span{color:#ff6900}.contact-hint{margin-top:0;color:#a9c0cb;font-size:13px;line-height:1.8;padding-top:24px}.signature{color:#ff6900;font-size:10px;letter-spacing:.1em;margin-top:18px}.form-panel{border:1px solid #d9e2e6;background:#fff;padding:27px 30px}.form-panel .card-top{color:#728b98;border-bottom-color:#dce4e8}.form-panel h3{font-size:25px;letter-spacing:-.04em;font-weight:650;margin:25px 0 6px}.form-intro{font-size:12px;color:#6a7b85;margin-bottom:22px}form{display:grid;gap:17px}.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}form label{display:grid;gap:7px;font-weight:750;font-size:11px;color:#0f2633}form input,form select,form textarea{box-sizing:border-box;width:100%;border:1px solid #d5dfe5;background:#f8fafb;color:#123041;padding:12px 13px;border-radius:0;font-family:inherit;font-size:14px;min-height:44px}form textarea{resize:vertical;min-height:120px}form input:focus-visible,form textarea:focus-visible,form select:focus-visible{outline:2px solid #ff6900;outline-offset:1px}.hidden-trap{display:none}.upload-box{position:relative;min-height:100px;border:1px dashed #bacad3;background:#f9fbfc;display:flex;flex-direction:column;gap:6px;align-items:center;justify-content:center;text-align:center;padding:15px;color:#163342}.upload-box>span{font-size:25px;color:#ff6900}.upload-box small{font-size:11px;color:#647a85}.upload-box input{position:absolute;inset:0;opacity:0;height:100%;cursor:pointer}.upload-box:focus-within{outline:2px solid #ff6900;outline-offset:2px}.form-footer{border-top:1px solid #d9e2e6;padding-top:20px;display:flex;justify-content:space-between;align-items:center;gap:18px}.form-footer p{font-size:11px;color:#647a85;line-height:1.6}.form-footer a{color:#122d3d}.form-footer .btn{white-space:nowrap}.form-footer button:disabled{opacity:.6;cursor:wait}#form-status{color:#9a2a10;background:#fff0ea;padding:12px;font-size:13px}#form-status[hidden]{display:none}.next{background:#071e2a;color:#fff;padding:65px 0}.next-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}.next-grid>p{color:#afc3ce}@media(max-width:800px){.hero-grid,.section-heading,.content-grid,.next-grid{grid-template-columns:1fr}.hero{padding:50px 0}.study{min-height:230px}.section-heading>p,.next-grid>p{justify-self:start}.contact-hint{padding-top:20px}}@media(max-width:520px){.wrap{width:calc(100% - 32px)}.hero h1{font-size:38px}.form-section{padding:47px 0}.form-panel,.contact-card{padding:20px}.two{grid-template-columns:1fr}.form-footer{align-items:stretch;flex-direction:column}.form-footer .btn{width:100%}form input,form textarea,form select{font-size:16px}.hero-actions .btn{flex:1}.next{padding:44px 0}}@media(prefers-reduced-motion:reduce){.btn{transition:none}}
+  </style>
+  <script>
+    const MAX_FILE_BYTES = 8 * 1024 * 1024;
+    const form = document.querySelector<HTMLFormElement>('#project-form');
+    const fileInput = document.querySelector<HTMLInputElement>('#project-file');
+    const fileName = document.querySelector<HTMLElement>('#file-name');
+    const status = document.querySelector<HTMLElement>('#form-status');
+    const submit = document.querySelector<HTMLButtonElement>('#submit-project');
+    const setError = (message: string) => { if(status){status.textContent=message;status.hidden=false;} };
+    fileInput?.addEventListener('change', () => {
+      const f = fileInput.files?.[0];
+      if (!f) { if(fileName) fileName.textContent='Izaberite datoteku'; return; }
+      if (f.size > MAX_FILE_BYTES) { fileInput.value=''; if(fileName) fileName.textContent='Izaberite datoteku'; setError('Datoteka je veća od 8 MB. Pošaljite link do dokumentacije ili nam pišite emailom.'); return; }
+      if(fileName) fileName.textContent=f.name;
+      if(status) status.hidden=true;
+    });
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if(!form.reportValidity()) return;
+      if(fileInput?.files?.[0] && fileInput.files[0].size > MAX_FILE_BYTES){setError('Datoteka je veća od 8 MB.');return;}
+      if(status) status.hidden=true;
+      if(submit) submit.disabled=true;
+      try {
+        const response = await fetch('/', {method:'POST',body:new FormData(form)});
+        if(!response.ok) throw new Error(`HTTP ${response.status}`);
+        window.location.assign('/hvala/');
+      } catch {
+        setError('Upit nije uspešno poslat. Pokušajte ponovo ili nam pošaljite email na kontakt@modularnisistemi.com.');
+        if(submit) submit.disabled=false;
+      }
+    });
+  </script>
+</BaseLayout>

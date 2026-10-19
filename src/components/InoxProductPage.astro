@@ -1,1101 +1,535 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import {
-  inoxProducts,
-  commonFacts,
-  PHONE_DISPLAY,
-  PHONE_HREF,
-  PROJECT_URL,
-} from '../data/inoxProducts';
-import type { InoxProduct } from '../data/inoxProducts';
-interface Props {
-  product: InoxProduct;
-}
-const { product } = Astro.props;
-const SITE_URL = 'https://modularnisistemi.com';
-const sectionPath = '/inox-sistemi-odvodnjavanja/';
-const pagePath = `${sectionPath}${product.slug}/`;
-const canonical = `${SITE_URL}${pagePath}`;
-const others = inoxProducts.filter((p) => p.slug !== product.slug);
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Početna', item: `${SITE_URL}/` },
-    { '@type': 'ListItem', position: 2, name: 'Inox sistemi odvodnjavanja', item: `${SITE_URL}${sectionPath}` },
-    { '@type': 'ListItem', position: 3, name: product.name, item: canonical },
-  ],
-};
----
-<BaseLayout
-  title={product.metaTitle}
-  description={product.metaDescription}
-  canonical={canonical}
-  ogImage={product.image}
->
-  <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-  </Fragment>
-  <div class="product-page">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero__content wrap">
-        <div class="hero__copy">
-          <nav class="crumbs" aria-label="Putanja">
-            <a href="/">Početna</a>
-            <span aria-hidden="true">/</span>
-            <a href={sectionPath}>Inox sistemi odvodnjavanja</a>
-            <span aria-hidden="true">/</span>
-            <strong aria-current="page">{product.name}</strong>
-          </nav>
-          <div class="eyebrow">
-            <span></span>
-            Inox odvodnjavanje · Po meri
-          </div>
-          <div class="hero__series">MODEL / {product.number} <span>·</span> INOX SISTEMI</div>
-          <h1>{product.h1[0]} <em>{product.h1[1]}</em></h1>
-          <p class="hero__lead">{product.lead}</p>
-          <p class="hero__usage">
-            <b>Karakteristična primena</b>
-            {product.usage}
-          </p>
-          <div class="hero__actions">
-            <a class="btn btn--orange" href={PROJECT_URL}>
-              Pošaljite upit za ovaj model <b>→</b>
-            </a>
-            <a class="btn btn--ghost" href={PHONE_HREF}>{PHONE_DISPLAY}</a>
-          </div>
-          <div class="hero__facts">
-            {commonFacts.map((fact) => (
-              <div>
-                <strong>{fact.value}</strong>
-                <span>{fact.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <figure class="hero__media">
-          <div class="hero__image">
-            <img src={product.image} alt={product.alt} fetchpriority="high" decoding="async" />
-          </div>
-          <figcaption>
-            <span>Konfiguracija po nacrtu</span>
-            <b>MODEL {product.number}</b>
-          </figcaption>
-        </figure>
-      </div>
-    </section>
-    <div class="detail-bridge" aria-label="Naš pristup">
-      <div class="wrap detail-bridge__inner">
-        <span>PRVO CRTEŽ. PA ONDA PROIZVOD.</span>
-        <p>Oblik i detalje razrađujemo pre izrade, prema dogovorenim merama i uslovima prostora.</p>
-        <a href="#specifikacija">Pogledajte karakteristike <b aria-hidden="true">↘</b></a>
-      </div>
-    </div>
-    <!-- SPECIFIKACIJA -->
-    <section class="spec" id="specifikacija">
-      <div class="wrap spec__grid">
-        <div class="spec__main">
-          <div class="eyebrow">
-            <span></span>
-            Specifikacija izrade
-          </div>
-          <h2>Tehničke karakteristike <em>i ugradnja.</em></h2>
-          <div class="spec__text">
-            {product.specIntro.map((paragraph) => <p>{paragraph}</p>)}
-          </div>
-          <div class="info-boxes">
-            <div class="info-box">
-              <span class="info-box__label">Materijal i završna obrada</span>
-              <p>{product.material}</p>
-            </div>
-            <div class="info-box">
-              <span class="info-box__label">Spajanje i nivelacija</span>
-              <p>{product.joining}</p>
-            </div>
-          </div>
-        </div>
-        <div class="spec__features">
-          {product.features.map((feature, index) => (
-            <article class="feature">
-              <span class="feature__tag">0{index + 1} / {feature.tag}</span>
-              <h3>{feature.title}</h3>
-              <p>{feature.text}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-    <!-- TEHNIČKI DETALJI + PRIMENA -->
-    <section class="showcase">
-      <div class:list={['wrap showcase__grid', { 'showcase__grid--single': !product.application }]}>
-        <article class="show-card show-card--detail">
-          <img src={product.detail.image} alt={product.detail.alt} loading="lazy" />
-          <div class="show-card__shade"></div>
-          <div class="show-card__content">
-            <div class="eyebrow">
-              <span></span>
-              Tehnički detalji
-            </div>
-            <h2>Kvalitet u svakom <em>detalju.</em></h2>
-            <p>{product.detail.text}</p>
-            <div class="show-card__facts">
-              {commonFacts.map((fact) => (
-                <span><b>{fact.value}</b> {fact.label}</span>
-              ))}
-            </div>
-          </div>
-        </article>
-        {product.application && (
-          <article class="show-card show-card--application">
-            <img src={product.application.image} alt={product.application.alt} loading="lazy" />
-            <div class="show-card__shade"></div>
-            <div class="show-card__content">
-              <div class="eyebrow">
-                <span></span>
-                Primena u prostoru
-              </div>
-              <h2>{product.application.title}</h2>
-              <p class="show-card__meta">{product.application.meta}</p>
-              <a class="btn btn--orange" href={PROJECT_URL}>
-                Pošaljite upit <b>→</b>
-              </a>
-            </div>
-          </article>
-        )}
-      </div>
-    </section>
-    <!-- OSTALI MODELI -->
-    <section class="others">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">
-              <span></span>
-              Povezani sistemi
-            </div>
-            <h2>Ostali inox <em>drenažni modeli.</em></h2>
-          </div>
-          <p>Uporedite ostale oblike i izaberite formu koja odgovara vašem prostoru.</p>
-        </div>
-        <div class="others__grid">
-          {others.map((item) => (
-            <a href={`${sectionPath}${item.slug}/`} class="form-card">
-              <div class="form-card__image">
-                <img src={item.image} alt={item.alt} loading="lazy" />
-                <span>{item.number}</span>
-              </div>
-              <div class="form-card__body">
-                <div class="form-card__tag">{item.short}</div>
-                <h3>{item.name}</h3>
-                <span class="form-card__link">Više o proizvodu <b>→</b></span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-    <!-- CTA -->
-    <section class="cta">
-      <img
-        src="/images/inox/lucni-inox-kanal-sa-perforiranom-resetkom-gradski-trg.webp"
-        alt="Lučni inox kanal sa perforiranom rešetkom na gradskom trgu"
-        loading="lazy"
-      />
-      <div class="cta__shade"></div>
-      <div class="wrap cta__inner">
-        <div>
-          <div class="eyebrow">
-            <span></span>
-            Upit za vaš prostor
-          </div>
-          <h2>Zanima vas <em>{product.name}</em>?</h2>
-          <p>
-            Pošaljite nam skicu, dimenzije ili jednostavno opišite šta vam je potrebno.
-            Zajedno ćemo razmotriti odgovarajuće rešenje.
-          </p>
-        </div>
-        <div class="cta__actions">
-          <a class="btn btn--orange" href={PROJECT_URL}>
-            Pošaljite upit <b>→</b>
-          </a>
-          <a class="btn btn--ghost" href={PHONE_HREF}>{PHONE_DISPLAY}</a>
-        </div>
-      </div>
-    </section>
-  </div>
-</BaseLayout>
-<style>
-  .product-page {
-    --navy: #06131f;
-    --navy2: #0b1d2b;
-    --orange: #ff6900;
-    --orange-hover: #e85e00;
-    --line: #dce2e7;
-    --muted: #64717c;
-    position: relative;
-    z-index: 1;
-    overflow-x: clip;
-    background: #f6f7f9;
-    color: #07111e;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  .product-page h1,
-  .product-page h2,
-  .product-page h3,
-  .product-page p,
-  .product-page figure {
-    margin: 0;
-  }
-  .product-page h1 em,
-  .product-page h2 em {
-    font-style: normal;
-    color: var(--orange);
-  }
-  .wrap {
-    width: min(1440px, calc(100% - 48px));
-    margin-inline: auto;
-  }
-  /* ========== ZAJEDNIČKI ELEMENTI ========== */
-  .eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--orange);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-  .eyebrow span {
-    display: inline-block;
-    width: 20px;
-    height: 1.5px;
-    background: var(--orange);
-    flex-shrink: 0;
-  }
-  .btn {
-    min-height: 48px;
-    padding: 0 20px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    text-decoration: none;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    border-radius: 2px;
-    transition: all 0.25s ease;
-  }
-  .btn b {
-    font-size: 15px;
-    font-weight: 600;
-  }
-  .btn--orange {
-    background: var(--orange);
-    color: #fff;
-  }
-  .btn--orange:hover {
-    background: var(--orange-hover);
-    transform: translateY(-2px);
-  }
-  .btn--ghost {
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    color: #fff;
-    background: rgba(0, 0, 0, 0.12);
-  }
-  .btn--ghost:hover {
-    background: #fff;
-    color: var(--navy);
-    border-color: #fff;
-  }
-  .section-head {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 36px;
-    margin-bottom: 32px;
-  }
-  .section-head h2 {
-    margin-top: 8px;
-    font-size: clamp(28px, 3.2vw, 42px);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    font-weight: 800;
-    color: #07111e;
-  }
-  .section-head > p {
-    max-width: 380px;
-    color: var(--muted);
-    font-size: 14.5px;
-    line-height: 1.6;
-    padding-bottom: 4px;
-  }
-  /* ========== HERO ========== */
-  .hero {
-    position: relative;
-    color: #fff;
-    isolation: isolate;
-    background:
-      radial-gradient(900px 480px at 85% 20%, rgba(255, 105, 0, 0.14), transparent 70%),
-      linear-gradient(135deg, #06131f 0%, #0b1d2b 100%);
-  }
-  .hero__content {
-    padding-top: 130px;
-    padding-bottom: 72px;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
-    gap: 64px;
-    align-items: center;
-  }
-  .crumbs {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 28px;
-    color: #94a3ad;
-    font-size: 10.5px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .crumbs a {
-    color: #94a3ad;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .crumbs a:hover {
-    color: #fff;
-  }
-  .crumbs strong {
-    color: #fff;
-    font-weight: 700;
-  }
-  .hero h1 {
-    margin-top: 20px;
-    max-width: 760px;
-    font-size: clamp(38px, 4.6vw, 62px);
-    line-height: 1.02;
-    letter-spacing: -0.045em;
-    font-weight: 800;
-    color: #fff;
-  }
-  .hero__lead {
-    margin-top: 20px;
-    max-width: 620px;
-    color: #d4dee4;
-    font-size: 15px;
-    line-height: 1.65;
-  }
-  .hero__usage {
-    margin-top: 24px;
-    max-width: 620px;
-    padding: 14px 18px;
-    border-left: 2px solid var(--orange);
-    background: rgba(255, 255, 255, 0.05);
-    color: #d4dee4;
-    font-size: 13.5px;
-    line-height: 1.55;
-  }
-  .hero__usage b {
-    display: block;
-    margin-bottom: 4px;
-    color: var(--orange);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-  .hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 28px;
-  }
-  .hero__facts {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    max-width: 700px;
-    margin-top: 36px;
-    border-top: 1px solid rgba(255, 255, 255, 0.18);
-  }
-  .hero__facts div {
-    display: flex;
-    flex-direction: column;
-    padding: 16px 14px 0 0;
-  }
-  .hero__facts div + div {
-    padding-left: 16px;
-    border-left: 1px solid rgba(255, 255, 255, 0.12);
-  }
-  .hero__facts strong {
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-  .hero__facts span {
-    margin-top: 4px;
-    color: #94a3ad;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-  }
-  .hero__media {
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 4px;
-    overflow: hidden;
-    background: #0a1620;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
-  }
-  .hero__image {
-    aspect-ratio: 5 / 4;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 18px;
-  }
-  .hero__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-  }
-  .hero__media figcaption {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 13px 18px;
-    color: #94a3ad;
-    font-size: 10.5px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .hero__media figcaption b {
-    color: var(--orange);
-    font-weight: 700;
-  }
-  /* ========== SPECIFIKACIJA ========== */
-  .spec {
-    padding: 80px 0;
-    background: #f6f7f9;
-    scroll-margin-top: 80px;
-  }
-  .spec__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 56px;
-    align-items: start;
-  }
-  .spec__main h2 {
-    margin-top: 10px;
-    font-size: clamp(28px, 3.2vw, 42px);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    font-weight: 800;
-    color: #07111e;
-  }
-  .spec__text {
-    margin-top: 22px;
-    display: grid;
-    gap: 14px;
-    max-width: 560px;
-  }
-  .spec__text p {
-    color: var(--muted);
-    font-size: 14.5px;
-    line-height: 1.65;
-  }
-  .info-boxes {
-    margin-top: 28px;
-    display: grid;
-    gap: 12px;
-    max-width: 560px;
-  }
-  .info-box {
-    padding: 16px 18px;
-    background: #fff;
-    border: 1px solid var(--line);
-    border-left: 2px solid var(--orange);
-    border-radius: 3px;
-  }
-  .info-box__label {
-    display: block;
-    margin-bottom: 6px;
-    color: var(--orange);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-  .info-box p {
-    color: #3d4a55;
-    font-size: 13.5px;
-    line-height: 1.6;
-  }
-  .spec__features {
-    display: grid;
-    gap: 14px;
-  }
-  .feature {
-    padding: 22px 24px;
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    box-shadow: 0 4px 16px rgba(6, 19, 31, 0.04);
-    transition: all 0.3s ease;
-  }
-  .feature:hover {
-    transform: translateY(-3px);
-    border-color: var(--orange);
-    box-shadow: 0 16px 34px rgba(6, 19, 31, 0.1);
-  }
-  .feature__tag {
-    display: block;
-    color: var(--orange);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-  .feature h3 {
-    margin-top: 8px;
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    color: #07111e;
-  }
-  .feature p {
-    margin-top: 8px;
-    color: var(--muted);
-    font-size: 13.5px;
-    line-height: 1.6;
-  }
-  /* ========== TEHNIČKI DETALJI + PRIMENA ========== */
-  .showcase {
-    background: var(--navy);
-    padding: 70px 0;
-  }
-  .showcase__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .showcase__grid--single {
-    grid-template-columns: 1fr;
-  }
-  .show-card {
-    position: relative;
-    min-height: 520px;
-    overflow: hidden;
-    background: #0a1620;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 4px;
-  }
-  .show-card > img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s ease;
-  }
-  .show-card:hover > img {
-    transform: scale(1.03);
-  }
-  .show-card__shade {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(4, 14, 23, 0.02) 0%,
-      rgba(4, 14, 23, 0.12) 30%,
-      rgba(4, 14, 23, 0.88) 66%,
-      rgba(4, 14, 23, 0.98) 100%
-    );
-  }
-  .show-card__content {
-    position: absolute;
-    z-index: 3;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 36px;
-  }
-  .show-card__content h2 {
-    margin-top: 10px;
-    max-width: 480px;
-    font-size: clamp(28px, 2.8vw, 42px);
-    line-height: 1.02;
-    letter-spacing: -0.04em;
-    color: #fff;
-    font-weight: 800;
-  }
-  .show-card__content > p {
-    margin-top: 12px;
-    max-width: 480px;
-    color: #b8c4cb;
-    font-size: 13.5px;
-    line-height: 1.6;
-  }
-  .show-card__meta {
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 11px !important;
-    margin-bottom: 22px;
-  }
-  .show-card__facts {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    max-width: 560px;
-    margin-top: 22px;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-  }
-  .show-card__facts span {
-    padding: 12px 12px 0 0;
-    color: #a0b0b9;
-    font-size: 11px;
-    line-height: 1.4;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  .show-card__facts span:nth-child(2n) {
-    padding-left: 12px;
-    border-right: 0;
-  }
-  .show-card__facts span:nth-child(n + 3) {
-    margin-top: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  .show-card__facts b {
-    display: block;
-    margin-bottom: 2px;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-  }
-  /* ========== OSTALI MODELI ========== */
-  .others {
-    padding: 70px 0 80px;
-    background: #eef1f4;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-  .others__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-  }
-  .form-card {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    background: #fff;
-    color: var(--navy);
-    text-decoration: none;
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    box-shadow: 0 4px 16px rgba(6, 19, 31, 0.04);
-    transition: all 0.3s ease;
-  }
-  .form-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--orange);
-    box-shadow: 0 20px 40px rgba(6, 19, 31, 0.12);
-  }
-  .form-card__image {
-    position: relative;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    background: #fff;
-    border-bottom: 1px solid #edf1f5;
-  }
-  .form-card__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    display: block;
-    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .form-card:hover img {
-    transform: scale(1.08);
-  }
-  .form-card__image span {
-    position: absolute;
-    left: 12px;
-    top: 12px;
-    z-index: 2;
-    padding: 3px 8px;
-    color: #fff;
-    background: var(--orange);
-    font-size: 10.5px;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    border-radius: 2px;
-    box-shadow: 0 2px 6px rgba(255, 105, 0, 0.35);
-  }
-  .form-card__body {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    padding: 18px 16px 20px;
-  }
-  .form-card__tag {
-    color: var(--orange);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .form-card h3 {
-    margin-top: 6px;
-    font-size: 14.5px;
-    font-weight: 800;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    color: #07111e;
-  }
-  .form-card__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    margin-top: auto;
-    padding-top: 16px;
-    color: #55636e;
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .form-card__link b {
-    color: var(--orange);
-    transition: transform 0.2s ease;
-  }
-  .form-card:hover .form-card__link {
-    color: var(--orange);
-  }
-  .form-card:hover .form-card__link b {
-    transform: translateX(4px);
-  }
-  /* ========== CTA ========== */
-  .cta {
-    position: relative;
-    min-height: 320px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    color: #fff;
-    background: var(--navy);
-  }
-  .cta > img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-  .cta__shade {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(100deg, rgba(2, 12, 20, 0.94) 0%, rgba(2, 12, 20, 0.7) 55%, rgba(2, 12, 20, 0.42) 100%);
-  }
-  .cta__inner {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 36px;
-    padding: 48px 0;
-  }
-  .cta h2 {
-    margin-top: 12px;
-    max-width: 760px;
-    font-size: clamp(26px, 3.3vw, 42px);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    font-weight: 800;
-    color: #fff;
-  }
-  .cta p {
-    margin-top: 12px;
-    max-width: 520px;
-    color: #b5c2ca;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  .cta__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    flex-shrink: 0;
-  }
-  /* ========== RESPONSIVE ========== */
-  @media (max-width: 1200px) {
-    .others__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (max-width: 980px) {
-    .hero__content {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-    .hero__media {
-      max-width: 620px;
-    }
-    .spec__grid {
-      grid-template-columns: 1fr;
-      gap: 36px;
-    }
-    .showcase__grid {
-      grid-template-columns: 1fr;
-    }
-    .show-card {
-      min-height: 480px;
-    }
-    .cta__inner {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-  @media (max-width: 640px) {
-    .wrap {
-      width: min(100% - 24px, 1440px);
-    }
-    .hero__content {
-      padding-top: 100px;
-      padding-bottom: 48px;
-    }
-    .hero h1 {
-      font-size: 34px;
-    }
-    .hero__lead {
-      font-size: 14px;
-    }
-    .hero__facts {
-      grid-template-columns: 1fr 1fr;
-    }
-    .hero__facts div:nth-child(odd) {
-      padding-left: 0;
-      border-left: 0;
-    }
-    .hero__facts div:nth-child(n + 3) {
-      margin-top: 4px;
-    }
-    .spec,
-    .showcase {
-      padding: 48px 0;
-    }
-    .others {
-      padding: 48px 0;
-    }
-    .section-head {
-      display: block;
-      margin-bottom: 24px;
-    }
-    .section-head > p {
-      margin-top: 14px;
-    }
-    .others__grid {
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-    .show-card {
-      min-height: 440px;
-    }
-    .show-card__content {
-      padding: 24px;
-    }
-    .show-card__facts {
-      grid-template-columns: 1fr;
-    }
-    .show-card__facts span,
-    .show-card__facts span:nth-child(2n) {
-      padding-left: 0;
-      border-right: 0;
-    }
-    .show-card__facts span:nth-child(n + 2) {
-      margin-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .cta {
-      min-height: 340px;
-    }
-    .cta > img {
-      object-position: 60% center;
-    }
-    .cta__inner {
-      padding: 40px 0;
-    }
-  }
 
-  /* =====================================================
-     HYBRID PREMIUM / ZAJEDNIČKI PRIKAZ PET INOX MODELA
-     Svi podaci ostaju u inoxProducts.ts.
-     ===================================================== */
-  .product-page { --premium-ink: #061521; }
-  .product-page :is(a, button):focus-visible {
-    outline: 3px solid #ff8b38;
-    outline-offset: 4px;
-  }
-  .hero {
-    overflow: hidden;
-    border-bottom: 1px solid rgba(255, 255, 255, .14);
-    background:
-      radial-gradient(650px 600px at 88% 32%, rgba(255,105,0,.11), transparent 70%),
-      linear-gradient(135deg,#071a28,#04111d);
-  }
-  .hero__content {
-    width: min(1320px, calc(100% - 48px));
-    padding-top: clamp(110px, 10vw, 165px);
-    padding-bottom: clamp(85px, 7vw, 118px);
-    grid-template-columns: minmax(0, 1fr) minmax(0, .92fr);
-    gap: clamp(45px, 7vw, 110px);
-    align-items: center;
-  }
-  .hero__series {
-    margin-top: 24px;
-    color: #9aafbd;
-    font-weight: 800;
-    font-size: 11px;
-    letter-spacing: .2em;
-  }
-  .hero__series span { color: var(--orange); padding-inline: 7px; }
-  .hero h1 { font-size: clamp(45px, 5.2vw, 76px); max-width: 800px; }
-  .hero__lead { color: #d4dee5; font-size: 16px; line-height: 1.8; }
-  .hero__usage {
-    margin-top: 28px;
-    padding: 18px 20px;
-    border-left-width: 3px;
-    background: rgba(255,255,255,.065);
-  }
-  .hero__facts { margin-top: 40px; }
-  .hero__facts strong { font-size: 15px; }
-  .hero__media {
-    position: relative;
-    border-radius: 2px;
-    background: #111f2b;
-    box-shadow: 0 38px 95px rgba(0,0,0,.3);
-  }
-  .hero__image {
-    aspect-ratio: 1.1;
-    padding: clamp(8px, 1.5vw, 25px);
-    background: #f6f6f5;
-  }
-  .hero__image img { max-width: 100%; }
-  .hero__media figcaption { padding: 19px 22px; }
-  .detail-bridge {
-    background: #142735;
-    border-top: 1px solid rgba(255,255,255,.12);
-    border-bottom: 1px solid rgba(255,255,255,.13);
-  }
-  .detail-bridge__inner {
-    display: grid;
-    grid-template-columns: minmax(0,1fr) minmax(0,1.7fr) auto;
-    align-items: center;
-    gap: 36px;
-    min-height: 110px;
-    padding-block: 24px;
-  }
-  .detail-bridge span {
-    color: var(--orange);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: .14em;
-  }
-  .detail-bridge p {
-    color: #bdccd5;
-    font-size: 14px;
-    line-height: 1.65;
-  }
-  .detail-bridge a {
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-    text-decoration: none;
-    border-bottom: 1px solid var(--orange);
-    padding-bottom: 7px;
-    white-space: nowrap;
-  }
-  .detail-bridge a b { color: var(--orange); padding-left: 8px; }
-  .spec { background: #f7f8f8; padding-block: clamp(75px, 8vw, 124px); }
-  .spec__grid { gap: clamp(38px, 6vw, 100px); }
-  .spec__main h2 { font-size: clamp(34px, 3.7vw, 55px); }
-  .spec__text { margin-top: 30px; gap: 18px; }
-  .spec__text p { font-size: 15px; line-height: 1.83; }
-  .info-boxes { margin-top: 35px; gap: 14px; }
-  .info-box { padding: 23px 24px; }
-  .info-box p { font-size: 14px; }
-  .spec__features { gap: 17px; }
-  .feature {
-    padding: clamp(24px, 3vw, 38px);
-    border-radius: 2px;
-    box-shadow: 0 10px 30px rgba(6,19,31,.05);
-  }
-  .feature:first-child {
-    border-color: #0d2636;
-    background: #0c2130;
-  }
-  .feature:first-child h3 { color: #fff; }
-  .feature:first-child p { color: #aebfc9; }
-  .feature h3 { font-size: 17px; }
-  .feature p { font-size: 14px; line-height: 1.7; }
-  .showcase { padding-block: clamp(75px, 8vw, 118px); background: #061521; }
-  .showcase__grid { gap: 24px; }
-  .show-card { min-height: 620px; border-radius: 2px; }
-  .show-card__content { padding: clamp(30px, 3.2vw, 50px); }
-  .show-card__content h2 { font-size: clamp(30px, 3.15vw, 47px); }
-  .show-card__content > p { font-size: 14px; }
-  .show-card--application .eyebrow { color: #ff8b38; }
-  .others { padding-block: clamp(75px, 7vw, 115px); }
-  .others .section-head h2 { font-size: clamp(33px, 3.6vw, 52px); }
-  .others__grid { gap: 21px; }
-  .form-card { border-radius: 2px; box-shadow: 0 9px 27px rgba(6,19,31,.06); }
-  .form-card__image { background: radial-gradient(circle at 60% 40%, #fff, #f0f1f0); }
-  .form-card__body { padding: 22px; }
-  .form-card h3 { font-size: 16px; }
-  .cta { min-height: 350px; }
-  .cta h2 { font-size: clamp(34px, 4vw, 55px); }
-  .cta p { font-size: 15px; }
-  @media (max-width: 1200px) {
-    .detail-bridge__inner { grid-template-columns: 1fr 2fr; }
-    .detail-bridge a { grid-column: 2; width: max-content; }
-  }
-  @media (max-width: 980px) {
-    .hero__content { grid-template-columns: 1fr; gap: 38px; }
-    .hero__media { max-width: 800px; }
-    .detail-bridge__inner { grid-template-columns: 1fr; gap: 12px; }
-    .detail-bridge a { grid-column: 1; }
-    .spec__grid { grid-template-columns: 1fr; }
-    .showcase__grid { grid-template-columns: 1fr; }
-    .show-card { min-height: 520px; }
-  }
-  @media (max-width: 640px) {
-    .hero__content { width: min(100% - 28px,1320px); padding-top: 95px; padding-bottom: 58px; }
-    .hero h1 { font-size: clamp(34px, 9vw, 50px); }
-    .hero__facts { grid-template-columns: repeat(2,minmax(0,1fr)); }
-    .hero__image { aspect-ratio: 1.1; }
-    .hero__media figcaption { font-size: 9px; }
-    .detail-bridge__inner { padding-block: 22px; }
-    .show-card { min-height: 500px; }
-    .show-card__content { padding: 26px; }
-    .others__grid { grid-template-columns: 1fr; }
-    .cta__actions { width: 100%; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .show-card > img, .form-card, .feature { transition: none; }
-  }
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import {
+
+  inoxProducts,
+
+  commonFacts,
+
+  PHONE_DISPLAY,
+
+  PHONE_HREF,
+
+  PROJECT_URL,
+
+} from '../data/inoxProducts';
+
+import type { InoxProduct } from '../data/inoxProducts';
+
+interface Props {
+
+  product: InoxProduct;
+
+}
+
+const { product } = Astro.props;
+
+const SITE_URL = 'https://modularnisistemi.com';
+
+const sectionPath = '/inox-sistemi-odvodnjavanja/';
+
+const pagePath = `${sectionPath}${product.slug}/`;
+
+const canonical = `${SITE_URL}${pagePath}`;
+
+const others = inoxProducts.filter((p) => p.slug !== product.slug);
+
+const allForms = inoxProducts;
+
+// Isti novi 16:9 renderi za hero i interaktivni izbor svih pet geometrija.
+
+const grayImage = (src: string) => src.replace(/(?:-siva)?(\.[^./?#]+)([?#].*)?$/i, '-siva$1$2');
+
+const heroImages: Record<string, string> = {
+
+  'ravni-modularni-inox-kanal': '/images/engineering/hero-inox-ravna-16x9.webp',
+
+  'lucni-inox-kanal': '/images/engineering/hero-inox-lucna-16x9.webp',
+
+  'kruzni-inox-kanal': '/images/engineering/hero-inox-kruzna-16x9.webp',
+
+  'elipsasti-inox-kanal': '/images/engineering/hero-inox-elipsasta-16x9.webp',
+
+  's-forma-kanalica': '/images/engineering/hero-inox-s-forma-16x9.webp',
+
+};
+
+const productImage = heroImages[product.slug] ?? grayImage(product.image);
+
+const modelImage = productImage;
+
+const shape = product.slug.toLowerCase();
+
+const imageStory = shape.includes('s-form')
+
+  ? { title: 'Povezane krivine.', accent: 'Jedna celina.', text: 'S-forma povezuje promene pravca u neprekidnu liniju odvodnjavanja.' }
+
+  : shape.includes('elips')
+
+  ? { title: 'Izdužena forma.', accent: 'Zaobljena linija.', text: 'Elipsasta kanalica prati zatvorenu konturu prostora, sa geometrijom i dimenzijama na zahtev.' }
+
+  : shape.includes('kruzn')
+
+  ? { title: 'Kružna forma.', accent: 'Celovito rešenje.', text: 'Kontinualna kružna linija odvodnjavanja oko centralnih elemenata prostora.' }
+
+  : shape.includes('lucn')
+
+  ? { title: 'Linija koja', accent: 'prati luk.', text: 'Lučna kanalica prati zakrivljene ivice i povezuje odvodnjavanje sa oblikom prostora.' }
+
+  : { title: 'Kvalitet u svakom', accent: 'detalju.', text: 'Ravna linija, brušeni inox i podesive stope za precizno uklapanje u prostor.' };
+
+// Jedna matrica naziva za svih pet kanalica. Zamena dokumenta istim imenom
+
+// ne zahteva nikakvu naknadnu izmenu Astro komponente.
+
+const slugKey = product.slug.toLocaleLowerCase('sr-Latn-RS');
+
+const technicalSheetPrefix = slugKey.includes('s-form') ? 's-forma'
+
+  : slugKey.includes('elips') ? 'elipsasta-kanalica'
+
+  : slugKey.includes('kruzn') ? 'kruzni-kanalica'
+
+  : slugKey.includes('lucn') ? 'lucni-kanalica'
+
+  : 'ravna-kanalica';
+
+const technicalSheetImage = `/images/inox/${technicalSheetPrefix}-tehnicki-list.webp`;
+
+const technicalSheetPdf = `/inox/${technicalSheetPrefix}-tehnicki-list.pdf`;
+
+const breadcrumbSchema = {
+
+  '@context': 'https://schema.org',
+
+  '@type': 'BreadcrumbList',
+
+  itemListElement: [
+
+    { '@type': 'ListItem', position: 1, name: 'Početna', item: `${SITE_URL}/` },
+
+    { '@type': 'ListItem', position: 2, name: 'Inox sistemi odvodnjavanja', item: `${SITE_URL}${sectionPath}` },
+
+    { '@type': 'ListItem', position: 3, name: product.name, item: canonical },
+
+  ],
+
+};
+
+---
+
+<BaseLayout title={product.metaTitle} description={product.metaDescription} canonical={canonical} ogImage={productImage}>
+
+  <Fragment slot="head"><script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} /></Fragment>
+
+  <div class="inox-page">
+
+    <section class="hero">
+
+      <div class="wrap hero-grid">
+
+        <div class="hero-copy">
+
+          <nav class="crumbs" aria-label="Putanja"><a href="/">Početna</a><span>/</span><a href={sectionPath}>Inox odvodnjavanje</a><span>/</span><span aria-current="page">{product.name}</span></nav>
+
+          <div class="eyebrow"><i></i> MODULARNI SISTEMI / PREMIUM ENGINEERING</div>
+
+          <div class="model">INOX / MODEL {product.number}</div>
+
+          <h1>{product.h1[0]} <em>{product.h1[1]}</em></h1>
+
+          <p class="lead">{product.lead}</p>
+
+          <div class="hero-actions"><a class="button primary" href={PROJECT_URL}>Pošaljite upit <span>↗</span></a><a class="button outline" href="#tehnicki-list">Tehnički list <span>↓</span></a></div>
+
+          <div class="hero-foot"><span>OBLIK. FUNKCIJA. KONSTRUKCIJA.</span><span>MS / {product.number}</span></div>
+
+        </div>
+
+        <div class="hero-scene">
+
+          <img src={productImage} alt={product.alt} fetchpriority="high" decoding="async" />
+
+          <div class="scene-story">
+
+            <div class="eyebrow"><i></i> FORMA / KONSTRUKCIJA</div>
+
+            <h2>{imageStory.title}<br /><em>{imageStory.accent}</em></h2>
+
+            <p>{imageStory.text}</p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="technical" id="tehnicki-list">
+
+      <div class="wrap">
+
+        <div class="section-top">
+
+          <div><div class="eyebrow"><i></i> DOKUMENTACIJA / INOX</div><h2>Tehnički list. <em>Svaki detalj.</em></h2></div>
+
+          <p>Pregledajte tehnički list direktno na stranici, uvećajte detalje ili preuzmite PDF.</p>
+
+        </div>
+
+        <button class="sheet-preview" type="button" data-sheet-open aria-label={`Otvorite uvećani tehnički list: ${product.name}`}>
+
+          <img src={technicalSheetImage} alt={`Tehnički list — ${product.name}`} loading="lazy" decoding="async" />
+
+          <span class="sheet-preview-caption"><span>POGLEDAJTE TEHNIČKI LIST</span><strong>UVEĆAJTE <span aria-hidden="true">↗</span></strong></span>
+
+        </button>
+
+        <div class="sheet-download-bar">
+
+          <div><span>DOKUMENT / {product.number}</span><strong>{product.name}</strong></div>
+
+          <a class="button primary" href={technicalSheetPdf} download>Preuzmite tehnički list / PDF <span aria-hidden="true">↓</span></a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="overview" id="specifikacija">
+
+      <div class="wrap">
+
+        <div class="section-top"><div><div class="eyebrow"><i></i> INOX / KONSTRUKCIJA</div><h2>Forma koja prati <em>zadatak.</em></h2></div><p>Precizna konstrukcija i geometrija prilagođena konkretnom prostoru. Od pojedinačnog elementa do složenijeg sistema.</p></div>
+
+        <div class="overview-grid">
+
+          <div class="facts-panel"><div class="facts-head">TEHNIČKA OSNOVA <span>01 / 04</span></div><div class="facts-list"><div><small>MATERIJAL</small><strong>INOX AISI 304 / 316</strong></div><div><small>DEBLJINA LIMA</small><strong>2 mm</strong></div><div><small>GEOMETRIJA I DIMENZIJE</small><strong>Na zahtev</strong></div><div><small>IZRADA</small><strong>Prema usaglašenom rešenju</strong></div></div><a href="#tehnicki-list">Pregledajte tehničku dokumentaciju <span>↗</span></a></div>
+
+          <div class="description-panel"><span class="overline">MODEL / {product.number}</span><h3>{product.name}</h3><p>{product.usage}</p><div class="fine-line"></div><div class="mini-points">{product.features.slice(0,3).map((f,i)=><div><span>0{i+1}</span><div><b>{f.title}</b><small>{f.text}</small></div></div>)}</div></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="models"><div class="wrap"><div class="section-top"><div><div class="eyebrow"><i></i> INOX / GEOMETRIJE</div><h2>Različite forme. <em>Jedan princip.</em></h2></div><p>Pređite mišem preko naziva za trenutni pregled. Klikom otvorite stranicu izabranog modela.</p></div><div class="model-showcase" data-model-showcase><a class="model-photo" href={`${sectionPath}${product.slug}/`} data-model-link aria-label={`Pogledajte ${product.name}`}><img src={modelImage} alt={product.alt} data-model-image loading="lazy"/><span class="model-photo-bottom"><strong data-model-title>{product.name}</strong><b>↗</b></span></a><div class="model-menu"><div class="menu-caption">IZABERITE GEOMETRIJU <span>01 — 05</span></div>{allForms.map((item,i)=><a class:list={['model-option',{active:item.slug===product.slug}]} data-model-item data-image={heroImages[item.slug] ?? grayImage(item.image)} data-alt={item.alt} data-title={item.name} data-href={`${sectionPath}${item.slug}/`} href={`${sectionPath}${item.slug}/`} aria-label={`Otvorite ${item.name}`}><span class="model-option-number">{String(i+1).padStart(2,'0')}</span><strong>{item.name}</strong><span class="option-link" aria-hidden="true">↗</span></a>)}</div></div></div></section>
+
+    <section class="cta"><div class="wrap cta-grid"><div><div class="eyebrow"><i></i> VAŠA IDEJA JE DOBAR POČETAK</div><h2>Imate geometriju?<br/><em>Razradimo rešenje.</em></h2><p>Fotografija, skica ili dimenzije dovoljni su za početak razgovora.</p></div><div class="cta-actions"><a class="button primary" href={PROJECT_URL}>Pošaljite upit <span>↗</span></a><a href="mailto:kontakt@modularnisistemi.com">kontakt@modularnisistemi.com <span>↗</span></a></div></div></section>
+
+    <dialog class="sheet-modal" data-sheet-dialog aria-label={`Pregled tehničkog lista — ${product.name}`}>
+
+      <div class="sheet-modal-toolbar">
+
+        <span>TEHNIČKI LIST / {product.name}</span>
+
+        <div class="sheet-modal-controls">
+
+          <button type="button" data-sheet-minus aria-label="Umanji prikaz">−</button>
+
+          <output data-sheet-percent aria-live="off">100%</output>
+
+          <button type="button" data-sheet-plus aria-label="Uvećaj prikaz">+</button>
+
+          <button type="button" data-sheet-reset aria-label="Vrati na početnu veličinu">↺</button>
+
+          <button type="button" class="sheet-modal-close" data-sheet-close aria-label="Zatvori tehnički list">✕</button>
+
+        </div>
+
+      </div>
+
+      <div class="sheet-modal-scroll" data-sheet-scroll tabindex="0" aria-label="Tehnički list — pomerajte prikaz nakon zumiranja">
+
+        <div class="sheet-zoom-stage" data-sheet-stage>
+
+          <img src={technicalSheetImage} alt={`Tehnički list u punoj veličini — ${product.name}`} data-sheet-zoom-image draggable="false" />
+
+        </div>
+
+      </div>
+
+      <div class="sheet-modal-footer"><span>Točkić za pomeranje · Ctrl + točkić za zum · Esc za izlaz</span><a href={technicalSheetPdf} download>PREUZMITE PDF ↓</a></div>
+
+    </dialog>
+
+  </div>
+
+</BaseLayout>
+
+<script>
+
+ function setupInoxModels(){
+
+  document.querySelectorAll<HTMLElement>('[data-model-showcase]').forEach((root)=>{
+
+   if(root.dataset.initialized==='true')return;root.dataset.initialized='true';
+
+   const image=root.querySelector<HTMLImageElement>('[data-model-image]');const title=root.querySelector<HTMLElement>('[data-model-title]');const link=root.querySelector<HTMLAnchorElement>('[data-model-link]');
+
+   const items=Array.from(root.querySelectorAll<HTMLElement>('[data-model-item]'));
+
+   const select=(item:HTMLElement)=>{if(!image||!title||!link)return;const next=item.dataset.image;if(!next)return;
+
+    image.src=next;image.alt=item.dataset.alt||'';title.textContent=item.dataset.title||'';link.href=item.dataset.href||'#';link.setAttribute('aria-label',`Pogledajte ${item.dataset.title||'model'}`);
+
+    items.forEach(el=>{const active=el===item;el.classList.toggle('active',active);if(active)el.setAttribute('aria-current','true');else el.removeAttribute('aria-current');});};
+
+   items.forEach(item=>{const button=item;button.addEventListener('pointerenter',(ev:PointerEvent)=>{if(ev.pointerType==='mouse'||ev.pointerType==='pen')select(item)});button.addEventListener('focus',()=>select(item));});
+
+  });
+
+ }
+
+ setupInoxModels();document.addEventListener('astro:page-load',setupInoxModels);
+
+ function setupTechnicalViewer(){
+
+  const dialog=document.querySelector<HTMLDialogElement>('[data-sheet-dialog]');
+
+  const opener=document.querySelector<HTMLButtonElement>('[data-sheet-open]');
+
+  if(!dialog||!opener||dialog.dataset.initialized==='true')return;
+
+  dialog.dataset.initialized='true';
+
+  const photo=dialog.querySelector<HTMLImageElement>('[data-sheet-zoom-image]');
+
+  const scroll=dialog.querySelector<HTMLElement>('[data-sheet-scroll]');
+
+  const stage=dialog.querySelector<HTMLElement>('[data-sheet-stage]');
+
+  const output=dialog.querySelector<HTMLOutputElement>('[data-sheet-percent]');
+
+  if(!photo||!scroll||!stage||!output)return;
+
+  let zoom=1, fitWidth=0, fitHeight=0;
+
+  const refreshFit=()=>{
+
+    if(!dialog.open||!photo.naturalWidth||!photo.naturalHeight)return;
+
+    const availableWidth=Math.max(100,scroll.clientWidth-24);
+
+    const availableHeight=Math.max(100,scroll.clientHeight-24);
+
+    const ratio=Math.min(availableWidth/photo.naturalWidth,availableHeight/photo.naturalHeight);
+
+    fitWidth=photo.naturalWidth*ratio;
+
+    fitHeight=photo.naturalHeight*ratio;
+
+    render();
+
+  };
+
+  const render=()=>{
+
+    if(!fitWidth||!fitHeight)return;
+
+    const imageWidth=Math.round(fitWidth*zoom),imageHeight=Math.round(fitHeight*zoom);
+
+    stage.style.width=`${Math.max(scroll.clientWidth,imageWidth+24)}px`;
+
+    stage.style.height=`${Math.max(scroll.clientHeight,imageHeight+24)}px`;
+
+    photo.style.width=`${imageWidth}px`;
+
+    photo.style.height=`${imageHeight}px`;
+
+    output.textContent=`${Math.round(zoom*100)}%`;
+
+  };
+
+  const setZoom=(value:number)=>{
+
+    const midX=(scroll.scrollLeft+scroll.clientWidth/2)/(scroll.scrollWidth||1);
+
+    const midY=(scroll.scrollTop+scroll.clientHeight/2)/(scroll.scrollHeight||1);
+
+    zoom=Math.min(5,Math.max(.5,Math.round(value*10)/10));
+
+    render();
+
+    scroll.scrollLeft=Math.max(0,midX*scroll.scrollWidth-scroll.clientWidth/2);
+
+    scroll.scrollTop=Math.max(0,midY*scroll.scrollHeight-scroll.clientHeight/2);
+
+  };
+
+  opener.addEventListener('click',()=>{
+
+    zoom=1;
+
+    dialog.showModal();
+
+    requestAnimationFrame(()=>{refreshFit();scroll.scrollTo(0,0)});
+
+  });
+
+  photo.addEventListener('load',refreshFit);
+
+  dialog.querySelector('[data-sheet-close]')?.addEventListener('click',()=>dialog.close());
+
+  dialog.querySelector('[data-sheet-plus]')?.addEventListener('click',()=>setZoom(zoom+.25));
+
+  dialog.querySelector('[data-sheet-minus]')?.addEventListener('click',()=>setZoom(zoom-.25));
+
+  dialog.querySelector('[data-sheet-reset]')?.addEventListener('click',()=>{zoom=1;refreshFit();scroll.scrollTo(0,0)});
+
+  // Običan točkić pomera dokument. Ctrl + točkić uvećava.
+
+  scroll.addEventListener('wheel',(e:WheelEvent)=>{if(e.ctrlKey){e.preventDefault();setZoom(zoom+(e.deltaY<0?.2:-.2))}},{passive:false});
+
+  const observer=new ResizeObserver(()=>refreshFit());observer.observe(scroll);
+
+  let pinchStart=0,pinchZoom=1;
+
+  const distance=(a:Touch,b:Touch)=>Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
+
+  scroll.addEventListener('touchstart',(e:TouchEvent)=>{if(e.touches.length===2){pinchStart=distance(e.touches[0],e.touches[1]);pinchZoom=zoom}},{passive:true});
+
+  scroll.addEventListener('touchmove',(e:TouchEvent)=>{if(e.touches.length===2&&pinchStart){e.preventDefault();setZoom(pinchZoom*distance(e.touches[0],e.touches[1])/pinchStart)}},{passive:false});
+
+  scroll.addEventListener('touchend',()=>pinchStart=0,{passive:true});
+
+ }
+
+ setupTechnicalViewer();document.addEventListener('astro:page-load',setupTechnicalViewer);
+
+</script>
+
+<style>
+
+.inox-page{--dark:#061925;--panel:#0b2332;--orange:#ff6900;--pale:#eff3f4;color:#102331;background:var(--pale);font-family:Manrope,Montserrat,system-ui,sans-serif;overflow-x:clip}
+
+.inox-page *{box-sizing:border-box}.inox-page :is(h1,h2,h3,p,figure){margin:0}.inox-page a{text-decoration:none}.inox-page :is(a,button):focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+
+.inox-page em{font-style:normal;color:var(--orange)}.wrap{width:min(1240px,calc(100% - 48px));margin-inline:auto}.eyebrow{display:flex;align-items:center;gap:11px;font-size:10px;font-weight:800;letter-spacing:.16em;color:var(--orange)}.eyebrow i{width:20px;height:2px;background:var(--orange);display:block;flex:none}
+
+.hero{background:linear-gradient(115deg,#071a27,#06131e);color:white;border-bottom:1px solid #203542}.hero-grid{display:grid;grid-template-columns:1fr 1.06fr;align-items:center;gap:50px;padding-block:49px 44px;min-height:470px}.crumbs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:35px;color:#8a9da9;font-size:10px}.crumbs a{color:inherit}.crumbs a:hover{color:white}.model{font-size:10px;letter-spacing:.2em;color:#94a7b2;margin-top:29px}.hero h1{margin-top:13px;font-size:clamp(39px,4.7vw,65px);line-height:1.04;letter-spacing:-.055em;font-weight:800;max-width:520px}.lead{font-size:14px;color:#b7c6cf;line-height:1.7;max-width:485px;margin-top:18px!important}.hero-actions{display:flex;gap:10px;margin-top:26px}.button{min-height:42px;padding:0 17px;display:inline-flex;align-items:center;justify-content:space-between;gap:25px;font-size:11px;font-weight:800;white-space:nowrap}.button span{font-size:16px}.primary{background:var(--orange);color:#071925}.primary:hover{background:#ff852d}.outline{border:1px solid #526572;color:white}.outline:hover{background:#172e3a}.hero-foot{margin-top:39px;padding-top:13px;border-top:1px solid #29404b;display:flex;justify-content:space-between;font-size:9px;letter-spacing:.09em;color:#8ca0ac}.hero-scene{height:340px;position:relative;overflow:hidden;background:#252728;border:1px solid #30404a}.hero-scene img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}.hero-scene:after{content:'';position:absolute;inset:40% 0 0;background:linear-gradient(transparent,rgba(2,12,20,.75));pointer-events:none}.scene-top,.scene-bottom{position:absolute;z-index:2;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center}.scene-top{top:16px;color:#dee8e9;font-size:9px;letter-spacing:.13em}.scene-bottom{bottom:18px;color:white;font-size:17px;font-weight:800}.scene-bottom span:last-child{color:var(--orange)}
+
+.section-top{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:23px}.section-top h2{margin-top:12px;font-size:clamp(29px,3.4vw,42px);line-height:1.08;letter-spacing:-.045em}.section-top>p{max-width:365px;color:#647783;font-size:13px;line-height:1.7}.overview{padding:60px 0 64px}.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.facts-panel{background:#081e2c;color:white;padding:24px 26px;display:flex;flex-direction:column}.facts-head,.menu-caption{display:flex;justify-content:space-between;font-size:10px;font-weight:800;letter-spacing:.13em;color:#a6bac6;padding-bottom:16px;border-bottom:1px solid #2a4453}.facts-head span{color:var(--orange)}.facts-list{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:11px}.facts-list>div{padding:16px 10px 18px 0;border-bottom:1px solid #29424f}.facts-list small{display:block;color:#93a8b5;font-size:10px;letter-spacing:.1em}.facts-list strong{display:block;font-size:17px;margin-top:7px}.facts-panel>a{display:flex;justify-content:space-between;color:white;font-size:12px;font-weight:700;margin-top:auto;padding-top:21px}.facts-panel>a span{color:var(--orange)}.description-panel{padding:26px 30px;background:#fff;border:1px solid #d7e0e5}.overline{font-size:10px;letter-spacing:.13em;font-weight:800;color:var(--orange)}.description-panel h3{font-size:25px;letter-spacing:-.04em;margin-top:11px}.description-panel>p{color:#687984;font-size:13px;line-height:1.7;margin-top:10px}.fine-line{height:1px;background:#e4e9ec;margin:18px 0}.mini-points{display:grid;gap:11px}.mini-points>div{display:flex;gap:14px}.mini-points>div>span{font-size:11px;color:var(--orange);font-weight:800}.mini-points b{font-size:12px;display:block}.mini-points small{font-size:11px;line-height:1.5;color:#687984;display:block;margin-top:3px}
+
+.engineering{padding:60px 0 65px;background:#061925;color:white}.section-top.light>p{color:#9fb3bf}.detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.detail-grid figure{min-width:0;background:#102b3a;border:1px solid #29414f}.detail-grid img{width:100%;height:220px;object-fit:cover;display:block}.detail-grid figcaption{padding:13px 16px}.detail-grid figcaption small{font-size:9px;color:var(--orange);display:block;font-weight:800;letter-spacing:.1em}.detail-grid figcaption strong{display:block;font-size:13px;margin-top:5px}
+
+.technical{padding:62px 0 65px;background:#e9f0f2;scroll-margin-top:85px}.technical-grid{display:grid;grid-template-columns:1.65fr .85fr;background:#081e2c;color:white;border:1px solid #cadae0}.sheet-image{min-width:0;position:relative;display:block;background:#102333}.sheet-image img{width:100%;height:100%;min-height:280px;max-height:490px;object-fit:contain;display:block}.sheet-image>span{position:absolute;bottom:0;left:0;right:0;padding:10px 17px;background:#071d2a;color:#bed0da;font-size:10px;display:flex;justify-content:space-between}.sheet-image b{color:var(--orange)}.sheet-info{padding:28px;display:flex;flex-direction:column;border-left:1px solid #29414e}.sheet-info h3{font-size:26px;line-height:1.1;letter-spacing:-.04em;margin-top:12px}.sheet-info>p{font-size:12px;line-height:1.7;color:#a5b8c4;margin-top:12px}.sheet-facts{margin:22px 0 25px}.sheet-facts>div{display:flex;justify-content:space-between;gap:16px;border-top:1px solid #2a4250;padding:13px 0;font-size:11px}.sheet-facts span{color:#9bb1bd}.sheet-facts b{text-align:right}.sheet-info .button{margin-top:auto}.pdf-open{margin-top:15px;color:#d2e2e8;font-size:11px;text-decoration:underline!important;text-underline-offset:4px}
+
+.application{padding:54px 0;background:#f6f8f8}.application-grid{display:grid;grid-template-columns:.8fr 1.2fr;align-items:center;gap:35px}.application-text h2{font-size:clamp(28px,3.2vw,43px);margin-top:15px;letter-spacing:-.04em;line-height:1.1}.application-text p{color:#667782;margin-top:14px;font-size:13px}.application-text>a{display:inline-block;color:#0b2535;font-size:12px;font-weight:800;margin-top:20px;border-bottom:1px solid var(--orange);padding-bottom:8px}.application-image{height:265px;overflow:hidden}.application-image img{width:100%;height:100%;object-fit:cover}
+
+.models{padding:61px 0 66px;background:#eff3f4}.model-showcase{display:grid;grid-template-columns:1.1fr .9fr;min-height:360px;background:#071e2b}.model-photo{position:relative;min-width:0;display:block;background:#303234}.model-photo>img{width:100%;height:100%;position:absolute;inset:0;object-fit:contain}.model-photo:after{content:'';position:absolute;inset:50% 0 0;background:linear-gradient(transparent,#081925da);pointer-events:none}.model-photo-bottom{position:absolute;z-index:1;bottom:22px;left:22px;right:22px;display:flex;justify-content:space-between;color:#fff;font-size:21px}.model-photo-bottom b{color:var(--orange)}.model-menu{padding:19px 22px;color:white}.menu-caption{margin-bottom:7px}.model-option{border-bottom:1px solid #25414f;display:flex;align-items:center;position:relative}.model-option.active{background:#153545;border-left:3px solid var(--orange);margin-left:-3px}.model-option{gap:15px;padding:13px 8px;color:white;cursor:pointer}.model-option-number{color:var(--orange);font-size:11px}.model-option strong{font-size:13px;flex:1}.option-arrow{display:none}.option-link{font-size:10px;color:#ff8834;white-space:nowrap;padding:14px 4px 14px 8px}.model-option:hover{background:#163647}
+
+.cta{background:#f6f8f8;padding:55px 0 60px}.cta-grid{display:grid;grid-template-columns:1fr 270px;gap:40px;align-items:center}.cta h2{margin-top:13px;font-size:clamp(32px,3.2vw,45px);line-height:1.1;letter-spacing:-.045em}.cta p{margin-top:10px;color:#748590;font-size:13px}.cta-actions{display:grid;gap:15px}.cta-actions>a:last-child{display:flex;justify-content:space-between;color:#102332;border-bottom:1px solid #d6dfe3;padding-bottom:12px;font-size:12px}
+
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:25px}.hero-scene{height:340px}.overview-grid,.technical-grid,.application-grid,.model-showcase{grid-template-columns:1fr}.sheet-info{border-left:0;border-top:1px solid #29414e}.model-photo{min-height:330px}.detail-grid img{height:175px}.section-top{align-items:start}.facts-panel>a{margin-top:20px}}
+
+@media(max-width:650px){.wrap{width:calc(100% - 30px)}.hero-grid{padding-block:30px 35px;min-height:0}.crumbs{margin-bottom:25px}.hero h1{font-size:clamp(36px,10vw,48px)}.hero-scene{height:250px}.hero-actions{flex-wrap:wrap}.section-top{display:block}.section-top>p{margin-top:14px}.overview,.engineering,.technical,.models{padding:43px 0 48px}.facts-list{grid-template-columns:1fr 1fr}.facts-list strong{font-size:13px}.detail-grid{grid-template-columns:1fr;gap:10px}.detail-grid img{height:215px}.technical-grid{display:block}.sheet-image img{min-height:0;height:auto;max-height:none}.sheet-info{padding:23px}.application-grid{gap:22px}.application-image{height:225px}.model-photo{min-height:260px}.model-menu{padding:14px}.cta-grid{grid-template-columns:1fr;gap:25px}.cta-actions{width:100%}}
+
+@media(prefers-reduced-motion:reduce){.inox-page *{scroll-behavior:auto!important;transition:none!important}}
+
+/* PREMIUM ENGINEERING / TECHNICAL SHEET VIEWER */
+
+.technical{padding:55px 0 59px;background:#e9f0f2}
+
+.sheet-preview{display:block;position:relative;width:100%;padding:0;border:0;background:transparent;cursor:zoom-in;overflow:visible;text-align:left}
+
+.sheet-preview>img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;object-position:center;background:transparent}
+
+.sheet-preview-caption{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:12px 0;background:transparent;color:#536a78;font-size:10px;font-weight:800;letter-spacing:.08em}
+
+.sheet-preview-caption strong{color:#102a39}.sheet-preview-caption strong span{color:var(--orange);padding-left:12px}
+
+.sheet-preview:hover .sheet-preview-caption{background:transparent;color:#0b2535}
+
+.sheet-download-bar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:15px 0}
+
+.sheet-download-bar>div{display:grid;gap:4px}.sheet-download-bar>div>span{font-size:9px;font-weight:800;color:#ff6900;letter-spacing:.12em}.sheet-download-bar>div>strong{font-size:14px}
+
+.sheet-modal{position:fixed;inset:0;width:100vw;max-width:none;height:100dvh;max-height:none;margin:0;padding:0;border:0;color:white;background:#071925;overflow:hidden}
+
+.sheet-modal::backdrop{background:rgba(0,0,0,.86)}
+
+.sheet-modal[open]{display:flex;flex-direction:column}
+
+.sheet-modal-toolbar{flex:none;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:58px;padding:10px clamp(12px,3vw,36px);background:#061722;border-bottom:1px solid #27404e}
+
+.sheet-modal-toolbar>span{font-size:11px;font-weight:800;letter-spacing:.09em}
+
+.sheet-modal-controls{display:flex;align-items:center;gap:7px}.sheet-modal-controls button{width:35px;height:35px;border:1px solid #36515f;background:#102c3c;color:white;font-size:19px;cursor:pointer}.sheet-modal-controls button:hover{background:#1b4559}.sheet-modal-controls output{font-size:11px;min-width:45px;text-align:center}.sheet-modal-controls .sheet-modal-close{background:#ff6900;color:#061925;border-color:#ff6900;font-size:16px;margin-left:8px}
+
+.sheet-modal-scroll{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;text-align:center;padding:20px;touch-action:pan-x pan-y;background:#122937}
+
+.sheet-zoom-stage{display:flex;align-items:center;justify-content:center;min-width:100%;min-height:100%}.sheet-modal-scroll img{display:block;max-width:none;max-height:none;flex:none;object-fit:fill;user-select:none;-webkit-user-drag:none}
+
+.sheet-modal-footer{flex:none;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px clamp(12px,3vw,36px);border-top:1px solid #27404e;background:#061722;color:#95adbb;font-size:11px}.sheet-modal-footer a{color:#ff8a39;font-size:11px;font-weight:800}
+
+@media(max-width:650px){.technical{padding:40px 0 44px}.sheet-preview>img{max-height:none}.sheet-download-bar{flex-direction:column;align-items:stretch}.sheet-modal-toolbar{gap:8px}.sheet-modal-toolbar>span{font-size:9px;max-width:108px}.sheet-modal-controls{gap:3px}.sheet-modal-controls button{height:32px;width:30px}.sheet-modal-controls output{min-width:36px}.sheet-modal-scroll{padding:8px}.sheet-modal-footer>span{font-size:9px}.sheet-modal-footer a{white-space:nowrap}}
+
+/* Širina i raspored prema početnoj; visinu slike određuju njene proporcije. */
+
+.wrap{width:min(1240px,calc(100% - 48px))}
+
+.hero-grid{grid-template-columns:minmax(0,.89fr) minmax(0,1.11fr);gap:clamp(28px,5vw,75px);padding-block:54px 32px;min-height:0}
+
+.hero-copy{min-width:0}
+
+.crumbs{margin-bottom:18px}
+
+.model{margin-top:16px}
+
+.hero h1{font-size:clamp(43px,4.3vw,69px);line-height:1.08;letter-spacing:-.053em;margin-top:13px}
+
+.lead{max-width:455px;font-size:15px;line-height:1.7;margin-top:23px!important}
+
+.hero-actions{margin-top:27px;flex-wrap:wrap}
+
+.hero-actions .button{min-height:46px;padding:0 20px;gap:26px;font-size:12px}
+
+.hero-foot{margin-top:26px}
+
+.hero-scene{width:100%;height:auto;min-height:0;aspect-ratio:auto;position:relative;display:block;overflow:hidden;background:#252626;border:1px solid #32444c;isolation:isolate}
+
+.hero-scene>img{position:relative;inset:auto;display:block;width:100%;height:auto;max-height:none;object-fit:contain;object-position:center;z-index:0}
+
+.hero-scene:after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(4,17,26,.75) 0%,rgba(4,17,26,.30) 30%,transparent 65%);pointer-events:none}
+
+.scene-story{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:18px 22px;color:#fff;max-width:520px}
+
+.scene-story .eyebrow{font-size:9px;letter-spacing:.12em}
+
+.scene-story h2{font-size:clamp(27px,2.55vw,39px);line-height:1.08;letter-spacing:-.045em;font-weight:600;margin-top:10px;text-wrap:balance;text-shadow:0 2px 8px #06131e88}
+
+.scene-story>p{font-size:12px;line-height:1.6;color:#e1e9ee;max-width:360px;margin-top:10px;text-wrap:pretty;text-shadow:0 1px 6px #06131e99}
+
+@media(max-width:1050px){.hero-grid{gap:22px}.hero h1{font-size:48px}}
+
+@media(max-width:740px){
+
+ .wrap{width:calc(100% - 32px)}
+
+ .hero-grid{grid-template-columns:1fr;padding-block:38px 32px;gap:22px}
+
+ .hero h1{font-size:clamp(38px,10vw,54px);margin-top:19px}
+
+ .lead{margin-top:16px!important}
+
+ .hero-foot{display:none}
+
+ .hero-scene{height:auto;aspect-ratio:auto}
+
+ .scene-story{padding:13px 18px 15px}
+
+ .scene-story h2{font-size:clamp(22px,5vw,30px)}
+
+ .scene-story>p{font-size:11px;line-height:1.4;margin-top:6px}
+
+}
+
+@media(max-width:380px){.scene-story>p{display:none}}
+
 </style>

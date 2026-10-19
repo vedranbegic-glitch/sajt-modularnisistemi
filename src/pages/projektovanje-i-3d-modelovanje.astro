@@ -1,0 +1,577 @@
+---
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+
+
+const email = 'projekti@modularnisistemi.com';
+
+const inquiry = '/posaljite-projekat/';
+
+
+
+// Snimke smestiti u public/videos/mehanizmi/ pod ovim imenima.
+
+const studies = [
+
+  { id: '01', title: 'Sklopivi mehanizam', category: 'POVEZANI ELEMENTI', description: 'Povezani elementi i njihovo usklađeno preklapanje.', video: '/videos/mehanizmi/padajuca.mp4' },
+
+  { id: '02', title: 'Padajući element', category: 'OTVARANJE / PREKLAPANJE', description: 'Razrada poluga i položaja tokom otvaranja i zatvaranja.', video: '/videos/mehanizmi/padajuca-2.mp4' },
+
+  { id: '03', title: 'Pontonski pristup', category: 'PRISTUP / KRETANJE', description: 'Konstrukciona studija promenljivog položaja pristupnih stepenica.', video: '/videos/mehanizmi/ponton.mp4' },
+
+  { id: '04', title: 'Zupčasti mehanizam', category: 'LINEARNO KRETANJE', description: 'Pogon i vođenje pomičnih elemenata pomoću zupčastog sklopa.', video: '/videos/mehanizmi/zupcasta.mp4' },
+
+];
+
+const pillars = [
+
+  { id: '01', title: 'Projektovanje i razvoj', description: 'Razrada novih proizvoda, pojedinačnih elemenata i složenih sklopova — od početne zamisli do definisanog tehničkog rešenja.' },
+
+  { id: '02', title: '3D modelovanje', description: 'Precizni modeli delova i sklopova, provera geometrije, uklapanja i funkcije, razrada postojećih i novih rešenja.' },
+
+  { id: '03', title: 'Tehnička dokumentacija', description: 'Radionički i sklopni crteži, preseci, detalji i proizvodni fajlovi — pripremljeni prema zahtevu konkretnog projekta.' },
+
+];
+
+const fields = [
+  { id: '01', title: 'Razvoj novih proizvoda', description: 'Od idejnog rešenja do konstrukcione razrade proizvoda različitih namena, oblika i materijala.' },
+  { id: '02', title: 'Pojedinačni delovi i sklopovi', description: 'Modelovanje elemenata, međusobnih veza, sklopova i tehničkih detalja potrebnih za njihovu izradu.' },
+  { id: '03', title: 'Radionička dokumentacija', description: 'Kotirani crteži, preseci, sklopne dokumentacije, pozicije i specifikacije prema zahtevima proizvodnje.' },
+  { id: '04', title: 'DXF / DWG priprema', description: 'Tehnička priprema geometrije i datoteka za odgovarajuće postupke sečenja i obrade.' },
+  { id: '05', title: 'Razrada postojećih rešenja', description: 'Izmene, prilagođavanje i dalji razvoj postojećih proizvoda na osnovu raspoloživih podloga.' },
+  { id: '06', title: '3D prikazi i studije funkcije', description: 'Prikaz sklopova, međusobnog položaja elemenata i načina kretanja kada je to važno za razumevanje rešenja.' },
+];
+
+const process = [
+  { id: '01', title: 'Razgovor o zadatku', description: 'Upoznajemo se sa vašom idejom, postojećim podlogama, zahtevima i ciljevima projekta.' },
+  { id: '02', title: 'Definisanje saradnje', description: 'Dogovaramo obim razrade, potrebnu dokumentaciju i način razmene informacija.' },
+  { id: '03', title: 'Projektovanje i razrada', description: 'Razvijamo modele, konstrukciona rešenja i tehničke detalje uz dogovorenu komunikaciju.' },
+  { id: '04', title: 'Isporuka dokumentacije', description: 'Predajemo dogovorene modele, crteže i fajlove za dalju realizaciju projekta.' },
+];
+
+---
+
+<BaseLayout
+
+  title="Projektovanje i 3D modelovanje"
+
+  description="Projektovanje i 3D modelovanje proizvoda i sklopova, konstrukciona razrada, radionički crteži i tehnička dokumentacija. Modularni Sistemi."
+
+  canonical="https://modularnisistemi.com/projektovanje-i-3d-modelovanje/"
+
+>
+
+  <div class="mechanisms">
+
+    <section class="hero">
+
+      <div class="wrap hero-grid">
+
+        <div class="hero-copy">
+
+          <p class="eyebrow">MODULARNI SISTEMI / PREMIUM ENGINEERING</p>
+
+          <h1>Od ideje do<br /><span>tehničkog rešenja.</span></h1>
+
+          <p class="lead">Projektovanje, 3D modelovanje i tehnička dokumentacija za razvoj proizvoda, delova i sklopova različite namene. Stručna razrada od početne ideje do realizacije.</p>
+
+          <div class="actions">
+
+            <a class="btn primary" href="#pristup">Naše usluge <span aria-hidden="true">↗</span></a>
+
+            <a class="btn secondary" href={inquiry}>Pošaljite upit <span aria-hidden="true">↗</span></a>
+
+          </div>
+
+          <p class="micro">PROJEKTOVANJE. 3D MODELOVANJE. DOKUMENTACIJA.</p>
+
+        </div>
+
+        <a class="hero-visual" href="#mehanizmi" aria-label="Pogledajte studije mehanizama">
+
+          <video data-hero-player autoplay muted loop playsinline preload="metadata" src={studies[0].video} aria-label="Animacija: Sklopivi mehanizam"></video>
+
+          <div class="hero-top"><span>MS / 3D MODEL STUDY</span><span>01 — 04</span></div>
+
+          <div class="hero-bottom"><div><small>3D MODEL / KONSTRUKCIONA STUDIJA</small><strong>Mehanizmi u pokretu.</strong></div><span aria-hidden="true">↗</span></div>
+
+        </a>
+
+      </div>
+
+      <div class="wrap rail"><span>PROJEKTOVANJE I RAZVOJ</span><span>3D MODELOVANJE</span><span>TEHNIČKA DOKUMENTACIJA</span></div>
+
+    </section>
+
+
+
+    <section class="section light" id="pristup">
+
+      <div class="wrap">
+
+        <header class="section-heading"><div><p class="eyebrow">PROJEKTOVANJE / 3D MODELOVANJE</p><h2>Od prvog koncepta.<br /><span>Do razrađenog rešenja.</span></h2></div><p>Projektantska podrška prilagođena zadatku — za pojedince, preduzetnike i proizvodne kompanije. Bavimo se geometrijom, funkcijom i tehničkom razradom, bez ograničavanja na jednu vrstu proizvoda ili materijala.</p></header>
+
+        <div class="pillars">{pillars.map(p => <article class="pillar"><small>{p.id} / OSNOVA</small><h3>{p.title}</h3><p>{p.description}</p></article>)}</div>
+
+      </div>
+
+    </section>
+
+
+
+    <section class="section dark" id="mehanizmi">
+
+      <div class="wrap">
+
+        <header class="section-heading"><div><p class="eyebrow">DOKAZ KONSTRUKCIONOG ZNANJA / STUDIJE MEHANIZAMA</p><h2>Kretanje koje<br /><span>ima svrhu.</span></h2></div><p>Četiri konstrukcione studije prikazuju razumevanje sklopova, veza i kretanja. One su deo našeg rada na 3D modelovanju i projektovanju.</p></header>
+
+        <div class="study-layout" data-mechanisms>
+
+          <div class="study-stage">
+
+            <video
+
+              class="study-video active"
+
+              data-study-player
+
+              autoplay muted loop playsinline preload="auto"
+
+              aria-label="Animacija: Sklopivi mehanizam"
+
+              src={studies[0].video}
+
+            ></video>
+
+            <div class="study-video-status" data-video-status role="status" aria-live="polite" hidden></div>
+
+            <div class="stage-top"><span>MS / MOTION STUDY</span><span data-counter>01 / 04</span></div>
+
+            <div class="stage-bottom"><div><small data-category>POVEZANI ELEMENTI</small><h3 data-title>Sklopivi mehanizam</h3><p data-description>{studies[0].description}</p></div><span aria-hidden="true">↗</span></div>
+
+          </div>
+
+          <div class="study-controls">
+
+            <div class="controls-heading"><span>IZABERITE MEHANIZAM</span><span>01 — 04</span></div>
+
+            {studies.map((study, index) => (
+
+              <button type="button" class:list={['study-option', { active: index === 0 }]} data-select={index} aria-pressed={index === 0 ? 'true' : 'false'}>
+
+                <span class="option-id">{study.id}</span><span class="option-copy"><strong>{study.title}</strong><small>{study.category}</small></span><span class="option-arrow" aria-hidden="true">↗</span>
+
+              </button>
+
+            ))}
+
+            <div class="study-note">KONCEPTI / STUDIJE KRETANJA</div>
+
+          </div>
+
+        </div>
+
+        <p class="footnote">Prikazani 3D modeli predstavljaju konstrukcione studije i demonstracije kretanja; ne podrazumevaju gotove ili serijske proizvode.</p>
+
+      </div>
+
+    </section>
+
+
+
+    <section class="section light" id="primena">
+
+      <div class="wrap">
+
+        <header class="section-heading"><div><p class="eyebrow">OBLASTI RADA</p><h2>Različiti zadaci.<br /><span>Isti fokus na detalje.</span></h2></div><p>Projektujemo proizvode i sklopove različite složenosti, pripremamo tehničke podloge i razvijamo postojeća rešenja u skladu sa potrebama projekta.</p></header>
+
+        <div class="fields">{fields.map(field => <article class="field"><small>{field.id} / PRIMENA</small><h3>{field.title}</h3><p>{field.description}</p></article>)}</div>
+
+      </div>
+
+    </section>
+
+
+
+    <section class="section partner" id="saradnja">
+      <div class="wrap">
+        <header class="section-heading"><div><p class="eyebrow">PROJEKTANTSKA SARADNJA</p><h2>Podrška vašem timu.<br /><span>Od zadatka do rešenja.</span></h2></div><p>Sarađujemo sa pojedincima, razvojnim timovima i proizvodnim kompanijama u zemlji i inostranstvu. Uključujemo se u dogovoreni deo posla — od modelovanja do kompletne tehničke razrade.</p></header>
+        <div class="partner-grid">
+          <article class="partner-panel"><small>ZA KOMPANIJE I PROIZVODNE TIMOVE</small><h3>Projektantski partner za vaše projekte.</h3><p>Razvoj novih proizvoda, izmene konstrukcije, priprema crteža i tehnička podrška vašoj proizvodnji. Saradnju usklađujemo sa potrebama vašeg tima i obimom projekata.</p></article>
+          <article class="partner-panel partner-panel--dark"><small>SLOBODA REALIZACIJE</small><h3>Projektovanje bez ograničenja proizvodnje.</h3><p>Po završetku dogovorenog posla predajemo potrebnu tehničku dokumentaciju. Klijent sam bira gde i sa kim će organizovati izradu — saradnja na projektovanju nije uslovljena proizvodnjom kod nas.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pale" id="proces">
+
+      <div class="wrap">
+
+        <header class="section-heading"><div><p class="eyebrow">NAČIN SARADNJE</p><h2>Jasan dogovor.<br /><span>Precizna realizacija.</span></h2></div><p>Svaki posao započinjemo razumevanjem cilja. Dalju razradu i isporuku dokumentacije usklađujemo sa potrebama konkretnog projekta.</p></header>
+
+        <div class="process">{process.map(step => <article class="step"><small>{step.id}</small><h3>{step.title}</h3><p>{step.description}</p></article>)}</div>
+
+      </div>
+
+    </section>
+
+
+
+    <section class="contact">
+
+      <div class="wrap contact-grid"><div><p class="eyebrow">VAŠ PROJEKAT / NAŠA PODRŠKA</p><h2>Imate ideju ili zadatak?<br /><span>Razgovarajmo o projektu.</span></h2><p>Pošaljite opis, skicu ili postojeću dokumentaciju. Zajedno definišemo tehničku razradu koja je potrebna za sledeći korak.</p></div><div class="contact-actions"><a class="btn primary" href={inquiry}>Pošaljite upit <span aria-hidden="true">↗</span></a><a class="email" href={`mailto:${email}`}>{email} <span aria-hidden="true">↗</span></a></div></div>
+
+    </section>
+
+  </div>
+
+</BaseLayout>
+
+
+
+<script>
+
+  function initMechanisms() {
+
+    const rootCandidate = document.querySelector<HTMLElement>('[data-mechanisms]');
+
+    if (!rootCandidate || rootCandidate.dataset.ready === 'true') return;
+
+    const root: HTMLElement = rootCandidate;
+
+
+
+    const playerCandidate = root.querySelector<HTMLVideoElement>('[data-study-player]');
+
+    const heroPlayer = document.querySelector<HTMLVideoElement>('[data-hero-player]');
+
+    const status = root.querySelector<HTMLElement>('[data-video-status]');
+
+    const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-select]'));
+
+    if (!playerCandidate) return;
+
+    const player: HTMLVideoElement = playerCandidate;
+
+    root.dataset.ready = 'true';
+
+
+
+    const studies = [
+
+      { title: 'Sklopivi mehanizam', category: 'POVEZANI ELEMENTI', description: 'Povezani elementi i njihovo usklađeno preklapanje.', src: '/videos/mehanizmi/padajuca.mp4' },
+
+      { title: 'Padajući element', category: 'OTVARANJE / PREKLAPANJE', description: 'Razrada poluga i položaja tokom otvaranja i zatvaranja.', src: '/videos/mehanizmi/padajuca-2.mp4' },
+
+      { title: 'Pontonski pristup', category: 'PRISTUP / KRETANJE', description: 'Konstrukciona studija promenljivog položaja pristupnih stepenica.', src: '/videos/mehanizmi/ponton.mp4' },
+
+      { title: 'Zupčasti mehanizam', category: 'LINEARNO KRETANJE', description: 'Pogon i vođenje pomičnih elemenata pomoću zupčastog sklopa.', src: '/videos/mehanizmi/zupcasta.mp4' },
+
+    ];
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let selected = -1;
+
+
+
+    function setStatus(message: string) {
+
+      if (!status) return;
+
+      status.textContent = message;
+
+      status.hidden = !message;
+
+    }
+
+
+
+    // Autoplay u savremenim browserima zahteva isključen zvuk.
+
+    // Promise rejection pri brzoj promeni videa nije greška fajla.
+
+    function playVideo(video: HTMLVideoElement) {
+
+      if (document.hidden || reduceMotion || !video.paused) return;
+
+      video.muted = true;
+
+      const attempt = video.play();
+
+      if (attempt) {
+
+        attempt.catch((error: unknown) => {
+
+          if (error instanceof DOMException && error.name === 'AbortError') return;
+
+          // Ako browser blokira autoplay, korisnički klik na izbor ponavlja play().
+
+          if (!(error instanceof DOMException && error.name === 'NotAllowedError')) {
+
+            console.warn('Reprodukcija videa:', error);
+
+          }
+
+        });
+
+      }
+
+    }
+
+
+
+    function configureVideo(video: HTMLVideoElement, src: string, title: string) {
+
+      video.muted = true;
+
+      video.defaultMuted = true;
+
+      video.autoplay = true;
+
+      video.loop = true;
+
+      video.playsInline = true;
+
+      video.setAttribute('aria-label', `Animacija: ${title}`);
+
+      // Izvor menjamo samo kad je korisnik odabrao drugi mehanizam.
+
+      if (video.getAttribute('src') !== src) {
+
+        video.pause();
+
+        video.src = src;
+
+        video.load();
+
+      }
+
+      // Bez čekanja dodatnog događaja kad su podaci već dostupni.
+
+      if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) playVideo(video);
+
+    }
+
+
+
+    // Isti događaji važe za oba prikaza. Video se ne učitava ponovo na canplay.
+
+    [player, heroPlayer].forEach(video => {
+
+      if (!video) return;
+
+      video.muted = true;
+
+      video.defaultMuted = true;
+
+      video.autoplay = true;
+
+      video.loop = true;
+
+      video.playsInline = true;
+
+      video.addEventListener('canplay', () => playVideo(video));
+
+    });
+
+
+
+    player.addEventListener('playing', () => setStatus(''));
+
+    player.addEventListener('error', () => {
+
+      setStatus('Animacija trenutno nije dostupna.');
+
+    });
+
+
+
+    function choose(index: number) {
+
+      if (index < 0 || index >= studies.length) return;
+
+      const study = studies[index];
+
+      const changed = selected !== index;
+
+      selected = index;
+
+
+
+      buttons.forEach((button, i) => {
+
+        const active = i === index;
+
+        button.classList.toggle('active', active);
+
+        button.setAttribute('aria-pressed', String(active));
+
+      });
+
+
+
+      const update = (selector: string, value: string) => {
+
+        const element = root.querySelector<HTMLElement>(selector);
+
+        if (element) element.textContent = value;
+
+      };
+
+      update('[data-title]', study.title);
+
+      update('[data-category]', study.category);
+
+      update('[data-description]', study.description);
+
+      update('[data-counter]', `${String(index + 1).padStart(2, '0')} / 04`);
+
+      if (changed) setStatus('');
+
+      configureVideo(player, study.src, study.title);
+
+      if (heroPlayer) configureVideo(heroPlayer, study.src, study.title);
+
+    }
+
+
+
+    buttons.forEach((button, index) => {
+
+      button.addEventListener('pointerenter', event => {
+
+        if (event.pointerType === 'mouse' || event.pointerType === 'pen') choose(index);
+
+      });
+
+      button.addEventListener('focus', () => choose(index));
+
+      button.addEventListener('click', () => {
+
+        choose(index);
+
+        // Klik je eksplicitna korisnička akcija, dozvoljava browseru reprodukciju.
+
+        playVideo(player);
+
+        if (heroPlayer) playVideo(heroPlayer);
+
+      });
+
+    });
+
+
+
+    document.addEventListener('visibilitychange', () => {
+
+      if (!document.hidden) {
+
+        playVideo(player);
+
+        if (heroPlayer) playVideo(heroPlayer);
+
+      }
+
+    });
+
+
+
+    choose(0);
+
+    playVideo(player);
+
+    if (heroPlayer) playVideo(heroPlayer);
+
+  }
+
+
+
+  initMechanisms();
+
+  document.addEventListener('astro:page-load', initMechanisms);
+
+</script>
+
+
+
+<style>
+
+.mechanisms{--navy:#061b28;--dark:#051520;--accent:#ff6900;--muted:#76909f;--line:#d8e0e4;font-family:Manrope,Montserrat,system-ui,sans-serif;color:#092032;overflow:hidden}
+
+.wrap{width:min(1200px,calc(100% - 48px));margin-inline:auto}
+
+.mechanisms :is(h1,h2,h3,p){margin:0}
+
+.mechanisms a{text-decoration:none}
+
+.eyebrow{display:flex;align-items:center;gap:12px;color:var(--accent);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+
+.eyebrow:before{content:'';height:2px;width:20px;flex:none;background:var(--accent)}
+
+.hero{background:radial-gradient(ellipse at 70% 27%,#102e3b 0%,#061b28 43%,#051520 100%);color:#fff}
+
+.hero-grid{display:grid;grid-template-columns:.85fr 1.15fr;align-items:center;gap:45px;padding:64px 0 45px}
+
+.hero h1{font-size:clamp(43px,4.5vw,67px);font-weight:800;letter-spacing:-.055em;line-height:1.07;margin-top:27px}
+
+.hero h1 span,.section-heading h2 span,.contact h2 span{color:var(--accent)}
+
+.lead{font-size:14px;line-height:1.8;color:#b3c5cf;max-width:460px;margin-top:19px!important}
+
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:25px}
+
+.btn{display:inline-flex;align-items:center;justify-content:space-between;gap:20px;min-height:44px;padding:0 17px;font-weight:800;font-size:11px;transition:background .2s,border-color .2s}
+
+.btn span{font-size:18px}.primary{background:var(--accent);border:1px solid var(--accent);color:#091b25}.primary:hover{background:#ff8939}.secondary{background:transparent;color:#fff;border:1px solid #506674}.secondary:hover{border-color:#fff}
+
+.micro{margin-top:34px!important;color:#7595a5;letter-spacing:.12em;font-size:9px}.micro:before{content:'';display:inline-block;width:20px;height:1px;background:var(--accent);margin-right:9px;vertical-align:middle}
+
+.hero-visual{height:440px;position:relative;background:#e9ece9;display:block;overflow:hidden;border:1px solid #2c4755;color:#fff}
+
+.hero-visual video{display:block;width:100%;height:100%;object-fit:contain}
+
+.hero-visual:after,.study-stage:after{position:absolute;content:'';inset:40% 0 0;background:linear-gradient(transparent,rgba(4,18,28,.89));pointer-events:none}
+
+.hero-top,.hero-bottom{position:absolute;left:18px;right:18px;z-index:1;display:flex;justify-content:space-between;gap:15px}.hero-top{top:15px;font-size:9px;letter-spacing:.12em;color:#153042;font-weight:800}.hero-bottom{bottom:17px;align-items:end}.hero-bottom small,.stage-bottom small{font-size:9px;letter-spacing:.12em;color:#ff944d;font-weight:800;display:block}.hero-bottom strong{font-size:25px;display:block;margin-top:6px}.hero-bottom>span{font-size:24px;color:var(--accent)}
+
+.rail{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #29404e}.rail span{border-right:1px solid #29404e;padding:14px 10px;font-size:9px;letter-spacing:.09em;color:#a0b7c1}.rail span:first-child{padding-left:0}.rail span:last-child{border-right:0}
+
+.section{padding:75px 0 80px}.light{background:#f0f4f5}.pale{background:#e8eff2}.dark{background:#061b28;color:#fff}
+
+.section-heading{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:28px}.section-heading h2{font-size:clamp(29px,3vw,43px);letter-spacing:-.052em;line-height:1.1;margin-top:15px;font-weight:800}.section-heading>p{max-width:365px;color:var(--muted);line-height:1.75;font-size:13px}.dark .section-heading>p{color:#9db2be}
+
+.pillars,.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.pillar,.field{padding:26px 24px 29px;background:#fff;border:1px solid #dfe5e8;min-height:188px}.pillar small,.field small,.step small{font-size:10px;color:var(--accent);font-weight:800;letter-spacing:.1em}.pillar h3,.field h3{font-size:20px;letter-spacing:-.035em;margin-top:26px;font-weight:800}.pillar p,.field p,.step p{font-size:12px;line-height:1.7;color:#647d8c;margin-top:9px}
+
+.study-layout{display:grid;grid-template-columns:1.2fr .8fr;background:#061b28;border:1px solid #2b4654;min-height:465px}.study-stage{position:relative;min-width:0;min-height:460px;background:#eef0eb;overflow:hidden}.study-video{width:100%;height:100%;object-fit:contain;position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .24s}.study-video.active{opacity:1;visibility:visible}.stage-top{z-index:2;position:absolute;top:18px;left:19px;right:19px;display:flex;justify-content:space-between;font-size:9px;font-weight:800;letter-spacing:.13em;color:#103246}.stage-bottom{position:absolute;z-index:2;bottom:18px;left:20px;right:20px;display:flex;align-items:end;justify-content:space-between;color:#fff}.stage-bottom h3{font-size:clamp(22px,2.4vw,32px);letter-spacing:-.04em;margin-top:4px}.stage-bottom p{font-size:11px;color:#d4e0e4;margin-top:6px;max-width:400px}.stage-bottom>span{font-size:23px;color:var(--accent)}
+
+.study-controls{padding:25px 24px 0;display:flex;flex-direction:column}.controls-heading{display:flex;justify-content:space-between;gap:10px;color:#84abbd;letter-spacing:.13em;font-size:10px;font-weight:800;padding:0 3px 18px;border-bottom:1px solid #314b58}.study-option{width:100%;display:flex;gap:15px;align-items:center;text-align:left;border:0;border-bottom:1px solid #314b58;background:transparent;color:#fff;cursor:pointer;padding:16px 12px;min-height:78px;transition:background .18s}.study-option:hover,.study-option.active{background:#143646}.study-option.active{box-shadow:inset 3px 0 0 var(--accent)}.option-id{color:var(--accent);font-size:11px;font-weight:800}.option-copy{display:grid;gap:6px;min-width:0;flex:1}.option-copy strong{font-size:14px}.option-copy small{color:#8dabba;font-size:10px}.option-arrow{color:var(--accent);font-size:17px}.study-note{margin-top:auto;color:#87a6b4;font-size:9px;letter-spacing:.13em;padding:19px 3px}.footnote{font-size:11px;color:#98adbb;margin-top:17px!important;line-height:1.6}
+
+.process{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #cfdae0}.step{padding:24px 18px 15px;border-right:1px solid #cfdae0}.step:first-child{padding-left:0}.step:last-child{border-right:0}.step h3{margin-top:26px;font-size:16px;font-weight:800}
+
+.contact{background:#061b28;color:#fff;padding:63px 0}.contact-grid{display:flex;align-items:center;justify-content:space-between;gap:50px}.contact h2{font-size:clamp(28px,3vw,43px);letter-spacing:-.05em;line-height:1.1;margin-top:15px;font-weight:800}.contact p:not(.eyebrow){font-size:12px;color:#a7bec9;margin-top:12px;line-height:1.7;max-width:600px}.contact-actions{min-width:250px;display:grid;gap:14px}.contact-actions .btn{width:100%}.email{border-bottom:1px solid #345060;color:#c4d3db;display:flex;justify-content:space-between;gap:10px;padding-bottom:11px;font-size:11px;overflow-wrap:anywhere}.email span{color:var(--accent)}
+
+.partner{background:#f0f4f5}.partner-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.partner-panel{padding:32px 28px;border:1px solid #dce4e7;background:#fff}.partner-panel small{color:var(--accent);font-size:10px;font-weight:800;letter-spacing:.11em}.partner-panel h3{font-size:clamp(21px,2.2vw,30px);line-height:1.16;letter-spacing:-.04em;margin-top:19px}.partner-panel p{margin-top:15px;font-size:13px;line-height:1.8;color:#607986}.partner-panel--dark{background:#0b2533;border-color:#244858;color:white}.partner-panel--dark p{color:#afc5d0}.fields{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:760px){.partner-grid{grid-template-columns:1fr}.partner-panel{padding:25px 22px}}
+@media(max-width:900px){.hero-grid{gap:24px}.hero-visual{height:390px}.study-layout{grid-template-columns:1fr 1fr}}
+
+@media(max-width:760px){.wrap{width:calc(100% - 32px)}.hero-grid{grid-template-columns:1fr;padding:40px 0 30px;gap:25px}.hero h1{font-size:clamp(34px,9vw,51px)}.lead{font-size:13px}.hero-visual{height:auto;aspect-ratio:1.2}.hero-bottom strong{font-size:19px}.rail{grid-template-columns:1fr}.rail span{border-right:0;border-bottom:1px solid #284453;padding:11px 0}.section{padding:52px 0}.section-heading{display:block}.section-heading>p{margin-top:15px}.pillars,.fields{grid-template-columns:1fr}.pillar,.field{min-height:0;padding:21px}.pillar h3,.field h3{margin-top:12px}.study-layout{grid-template-columns:1fr}.study-stage{height:auto;min-height:0;aspect-ratio:1.05}.study-controls{padding:12px 13px}.study-option{min-height:65px;padding:12px}.study-note{padding:14px 3px}.process{grid-template-columns:repeat(2,minmax(0,1fr))}.step{border-bottom:1px solid #cfdae0;padding:18px!important}.step:nth-child(even){border-right:0}.step h3{margin-top:14px}.contact-grid{display:block}.contact-actions{min-width:0;max-width:410px;margin-top:24px}}
+
+@media(max-width:440px){.actions .btn{font-size:10px;padding:0 11px;gap:9px}.hero-visual{aspect-ratio:1}.stage-bottom h3{font-size:21px}.stage-bottom p{font-size:10px}.controls-heading{font-size:9px}.section-heading h2{font-size:29px}.process{grid-template-columns:1fr}.step{border-right:0!important}}
+
+@media(prefers-reduced-motion:reduce){.study-video,.btn,.study-option{transition:none}}
+
+</style>
+
+
+
+<style>
+
+.study-stage .study-video.active{opacity:1;visibility:visible}
+
+.study-option.active{border-left:3px solid #ff6900;padding-left:9px}
+
+.study-video-status:not([hidden]){position:absolute;z-index:3;top:50%;left:50%;transform:translate(-50%,-50%);padding:10px 14px;background:#061b28;color:#fff;font-size:12px;text-align:center;max-width:85%}
+
+</style>

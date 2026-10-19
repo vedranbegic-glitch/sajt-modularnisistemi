@@ -1,902 +1,155 @@
 ---
+
 import BaseLayout from '../layouts/BaseLayout.astro';
+
 import { CONTACT } from '../data/siteData';
 
-const canonicalURL = 'https://modularnisistemi.com/partneri/';
-const pageTitle = 'Partneri · B2B saradnja i podrška';
-const pageDescription = 'B2B saradnja za arhitektonske biroe, projektante, izvođače radova i investitore. Razrada rešenja i tehnička podrška brenda MODULARNI SISTEMI.';
+const profiles = [
 
-const targetProfiles = [
-  {
-    num: '01',
-    role: 'Arhitekte i projektanti',
-    subtitle: 'Autorska sloboda i čiste linije',
-    description: 'Pomažemo vam da ostvarite složene geometrije bez vizuelnih kompromisa. Dobijate 2D i 3D CAD detalje koje direktno ubacujete u tehničku dokumentaciju.',
-    benefits: [
-      'CAD podloge i preseci za glavne projekte',
-      'Izrada radijalnih formi prema željenom radijusu (R)',
-      'Konsultacije o detaljima prelaza i visinskim kotama',
-      'Predmer i opis stavki za tendersku dokumentaciju',
-    ],
-  },
-  {
-    num: '02',
-    role: 'Građevinski izvođači i monteri',
-    subtitle: 'Brza montaža bez improvizacija na terenu',
-    description: 'Isporučujemo prefabrikovane sisteme sa numerisanim segmentima, pripremljenim spojevima i nivelirajućim stopama, tako da na licu mesta nema dorade ni sečenja.',
-    benefits: [
-      'Numerisani elementi usklađeni sa montažnom šemom',
-      'Prirubnički spojevi sa EPDM zaptivkama',
-      'Jasna tehnička uputstva za postavljanje i nivelisanje',
-      'Direktna telefonska podrška tokom radova na terenu',
-    ],
-  },
-  {
-    num: '03',
-    role: 'Investitori',
-    subtitle: 'Pouzdanost na duži rok',
-    description: 'Konstrukcije od kvalitetnog nerđajućeg čelika štite objekat od prodiranja vode i zahtevaju minimalno održavanje tokom dugog veka korišćenja.',
-    benefits: [
-      'Materijal otporan na koroziju i dugotrajan',
-      'Jednostavan pristup sifonskim korpama i revizijama',
-      'Pojedinačni segmenti rešetki se lako zamenjuju',
-      'Niži troškovi zahvaljujući tipskim prefabrikovanim rešenjima',
-    ],
-  },
+  { number: '01', name: 'Arhitekte i projektanti', category: 'PROJEKTOVANJE', description: 'Razrada geometrije, konstrukcionih detalja i rešenja koja prate projektantsku zamisao.', items: ['Usklađivanje sa projektom', 'Geometrija i detalji na zahtev', 'Tehnička komunikacija tokom razrade'] },
+
+  { number: '02', name: 'Izvođači i montažni timovi', category: 'REALIZACIJA', description: 'Konstrukcija koja uzima u obzir stvarne uslove izvođenja, povezivanja i montaže.', items: ['Dogovor oko spojeva i pozicija', 'Usklađivanje sa uslovima na terenu', 'Razrada detalja za izradu'] },
+
+  { number: '03', name: 'Industrija i kompanije', category: 'INŽENJERING', description: 'Prilagođeni metalni elementi, čelične konstrukcije i tehnička rešenja za proizvodne i radne prostore.', items: ['Konstrukcije po zadatku', 'Podesti i tehničke platforme', 'Projektovanje i mašinska izrada'] },
+
+  { number: '04', name: 'Investitori i poslovni partneri', category: 'SARADNJA', description: 'Jasan razgovor o nameni, izgledu, materijalu i mogućnostima realizacije od prvog upita.', items: ['Razumevanje ciljeva projekta', 'Dogovor oko tehničkog rešenja', 'Komunikacija do realizacije'] },
+
 ];
+
+const steps = [
+
+  { num: '01', title: 'Predstavite zadatak', body: 'Pošaljite opis, skicu, fotografiju ili postojeći crtež.' },
+
+  { num: '02', title: 'Razradimo rešenje', body: 'Razmatramo funkciju, geometriju, materijal i konstrukciju.' },
+
+  { num: '03', title: 'Uskladimo detalje', body: 'Dogovaramo ključne tehničke zahteve pre izrade.' },
+
+  { num: '04', title: 'Pređemo na realizaciju', body: 'Nastavljamo prema usaglašenom obimu i planu projekta.' },
+
+];
+
+const email = CONTACT.generalEmail;
+
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} canonical={canonicalURL}>
-  <div class="partneri-page">
-    <!-- HERO SEKCIJA (BEZ SLIKA, AKCENAT NA TEKSTU) -->
+<BaseLayout
+
+  title="Partneri · Inženjerska saradnja"
+
+  description="Saradnja Modularnih Sistema sa projektantima, arhitektama, izvođačima, industrijom i poslovnim partnerima. Konstrukcija i izrada prema konkretnom zadatku."
+
+  canonical="https://modularnisistemi.com/partneri/"
+
+>
+
+  <div class="partner-page">
+
     <section class="hero">
-      <div class="hero__glow"></div>
-      <div class="hero__grid"></div>
 
-      <div class="hero__content wrap">
-        <div class="hero__copy">
-          <div class="eyebrow">
-            <span></span>
-            B2B saradnja · Tehnička podrška
+      <div class="wrap hero-grid">
+
+        <div class="hero-copy">
+
+          <p class="eyebrow">MODULARNI SISTEMI / PREMIUM ENGINEERING</p>
+
+          <h1>Dobri projekti.<br /><span>Pravi partneri.</span></h1>
+
+          <p class="lead">Od prve skice do gotove konstrukcije. Sarađujemo sa ljudima koji od tehničkog zadatka očekuju promišljeno i funkcionalno rešenje.</p>
+
+          <div class="actions">
+
+            <a class="btn primary" href="/kontakt/">Započnite saradnju <span aria-hidden="true">↗</span></a>
+
+            <a class="btn secondary" href="/proizvodi/">Istražite proizvode <span aria-hidden="true">↗</span></a>
+
           </div>
 
-          <h1>
-            Pouzdan partner u realizaciji<br />
-            <em>arhitektonskih zamisli.</em>
-          </h1>
+          <p class="micro">OBLIK. FUNKCIJA. KONSTRUKCIJA.</p>
 
-          <p class="hero__lead">
-            Nudimo namensku tehničku i operativnu podršku projektantima, inženjerima i građevinskim kompanijama.
-            Sarađujemo na objektu od idejnog crteža do završne ugradnje, bez zastoja.
-          </p>
-
-          <div class="hero__badges">
-            <span class="badge-tag">Arhitektonski biroi</span>
-            <span class="badge-tag">Glavni izvođači</span>
-            <span class="badge-tag">Investitori</span>
-          </div>
-
-          <div class="hero__actions">
-            <a class="btn btn--orange" href="/posaljite-projekat/">
-              Pošaljite nam projekat <b>→</b>
-            </a>
-            <a class="btn btn--ghost" href={`tel:${CONTACT.phoneFormatted || '+38166241386'}`}>
-              Pozovite: {CONTACT.phone || '+381 66 241 386'} <b>↗</b>
-            </a>
-          </div>
         </div>
 
-        <div class="hero__specs">
-          <div>
-            <strong>2D / 3D CAD MODELI</strong>
-            <span>Direktno u vaš projekat</span>
-          </div>
-          <div>
-            <strong>100% PREFABRIKACIJA</strong>
-            <span>Elementi obeleženi po segmentima</span>
-          </div>
-          <div>
-            <strong>ANALIZA KOTA I PADOVA</strong>
-            <span>Procena u roku od 24h</span>
-          </div>
-          <div>
-            <strong>DIREKTNA LINIJA</strong>
-            <span>Naš tim uz vas tokom montaže</span>
-          </div>
+        <div class="hero-panel" aria-label="Inženjerski pristup saradnji">
+
+          <div class="panel-top"><span>MS / PARTNERSHIP STUDY</span><span>01 — 04</span></div>
+
+          <div class="panel-center"><span class="tiny">JEDAN PRINCIP SARADNJE</span><h2>Razumemo zadatak.<br /><span>Razvijamo rešenje.</span></h2><div class="drawing" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div>
+
+          <div class="panel-bottom">PROJEKTOVANJE / KONSTRUKCIJA / REALIZACIJA <span aria-hidden="true">↗</span></div>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- PROFILI SARADNJE (3 B2B KARTICE) -->
-    <section class="profiles-section">
+    <section class="audience section-light">
+
       <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">
-              <span></span>
-              Kome pomažemo
-            </div>
-            <h2>Podrška prilagođena <em>vašoj ulozi.</em></h2>
-          </div>
-          <p>
-            Poznajemo tok planiranja, tendera i svakodnevne zahteve gradilišta.
-          </p>
-        </div>
 
-        <div class="profiles-grid">
-          {targetProfiles.map((profile) => (
-            <article class="profile-card">
-              <div class="profile-card__head">
-                <span class="profile-num">Sektor {profile.num}</span>
-                <h3>{profile.role}</h3>
-                <p class="profile-subtitle">„{profile.subtitle}"</p>
-                <p class="profile-desc">{profile.description}</p>
-              </div>
+        <div class="section-heading"><div><p class="eyebrow">OBLASTI SARADNJE</p><h2>Različiti partneri.<br /><span>Zajednički cilj.</span></h2></div><p>Saradnju oblikujemo prema ulozi partnera i specifičnostima projekta — bez nametanja unapred definisanog rešenja.</p></div>
 
-              <div class="profile-card__benefits">
-                <span class="benefits-title">Šta dobijate:</span>
-                <ul>
-                  {profile.benefits.map((b) => (
-                    <li>
-                      <span class="bullet"></span>
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        <div class="partner-list">
 
-              <div class="profile-card__footer">
-                <a href="/posaljite-projekat/" class="btn btn--profile">
-                  Započnite saradnju <b>→</b>
-                </a>
-              </div>
+          {profiles.map((p) => (
+
+            <article class="partner-row">
+
+              <div class="row-id"><span>{p.number}</span><small>{p.category}</small></div>
+
+              <div class="row-title"><h3>{p.name}</h3><p>{p.description}</p></div>
+
+              <ul>{p.items.map((item) => <li>{item}</li>)}</ul>
+
+              <a href="/kontakt/" aria-label={`Kontakt za saradnju: ${p.name}`} class="row-arrow">↗</a>
+
             </article>
+
           ))}
-        </div>
-      </div>
-    </section>
 
-    <!-- RADNI KORACI SARADNJE (DVE KOLONE) -->
-    <section class="steps-section">
-      <div class="wrap steps-grid">
-
-        <!-- Leva kolona -->
-        <div class="steps-left">
-          <div class="eyebrow">
-            <span></span>
-            Tok saradnje
-          </div>
-          <h2>Kako započinjemo <em>saradnju?</em></h2>
-
-          <p class="steps-desc">
-            Svaki projekat ima jedinstvene parametre. Dovoljno je da nam pošaljete osnovne podatke o geometriji ili preliminarni crtež, a naš tim preuzima analizu i proračun.
-          </p>
-
-          <div class="contact-box">
-            <div>
-              <span class="contact-box__label">Prijem crteža i projekata</span>
-              <a href={`mailto:${CONTACT.projectEmail || 'projekti@modularnisistemi.com'}`} class="contact-box__val">
-                {CONTACT.projectEmail || 'projekti@modularnisistemi.com'}
-              </a>
-            </div>
-            <div class="contact-box__sep"></div>
-            <div>
-              <span class="contact-box__label">Telefon za konsultacije</span>
-              <a href={`tel:${CONTACT.phoneFormatted || '+38166241386'}`} class="contact-box__val contact-box__val--phone">
-                {CONTACT.phone || '+381 66 241 386'}
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Desna kolona: 3 numerisana koraka -->
-        <div class="steps-right">
-          <div class="step-card">
-            <span class="step-card__num">01</span>
-            <div class="step-card__content">
-              <h4>Dostava podloga i crteža</h4>
-              <p>
-                Pošaljite nam DWG ili PDF osnovu sa zadatim padovima, kotama i željenom završnom oblogom ili drenažnim linijama.
-              </p>
-            </div>
-          </div>
-
-          <div class="step-card">
-            <span class="step-card__num">02</span>
-            <div class="step-card__content">
-              <h4>Predlog i predmer</h4>
-              <p>
-                Dostavljamo predlog podele na modularne segmente, uz specifikaciju spremnu za ponudu.
-              </p>
-            </div>
-          </div>
-
-          <div class="step-card">
-            <span class="step-card__num">03</span>
-            <div class="step-card__content">
-              <h4>Prefabrikacija i isporuka</h4>
-              <p>
-                Izrađeni elementi dolaze na gradilište obeleženi po segmentima, spremni za brzu ugradnju.
-              </p>
-            </div>
-          </div>
         </div>
 
       </div>
+
     </section>
 
-    <!-- CTA BANER IZNAD FOOTERA (BEZ SLIKE) -->
-    <section class="cta">
-      <div class="cta__glow"></div>
-      <div class="wrap cta__inner">
-        <div>
-          <div class="eyebrow">
-            <span></span>
-            Prvi korak
-          </div>
-          <h2>Dostavite nacrt za analizu <em>bez obaveze.</em></h2>
-          <p>
-            Naš tim detaljno pregleda vaše crteže i predlaže najekonomičniju i tehnički najčistiju konfiguraciju elemenata.
-          </p>
-        </div>
-        <div class="cta__actions">
-          <a class="btn btn--orange" href="/posaljite-projekat/">
-            Pošaljite nam projekat <b>→</b>
-          </a>
-          <a class="btn btn--ghost" href={`tel:${CONTACT.phoneFormatted || '+38166241386'}`}>
-            Pozovite: {CONTACT.phone || '+381 66 241 386'} <b>↗</b>
-          </a>
-        </div>
+    <section class="principles section-dark">
+
+      <div class="wrap">
+
+        <div class="section-heading"><div><p class="eyebrow">NAŠ PRISTUP</p><h2>Ne prilagođavamo zadatak proizvodu.<br /><span>Prilagođavamo konstrukciju zadatku.</span></h2></div><p>Razmišljamo o celom sistemu: nameni, materijalu, spojevima, dostupnosti za održavanje i uslovima ugradnje.</p></div>
+
+        <div class="principle-grid"><div><b>01 / FUNKCIJA</b><h3>Razumevanje primene</h3><p>Polazimo od toga šta sistem treba da omogući.</p></div><div><b>02 / KONSTRUKCIJA</b><h3>Detalj koji ima smisla</h3><p>Oblik i povezivanje elemenata razrađujemo prema zadatku.</p></div><div><b>03 / SARADNJA</b><h3>Otvoren tehnički dijalog</h3><p>Rešenje usklađujemo sa partnerima uključenim u projekat.</p></div></div>
+
       </div>
+
     </section>
+
+    <section class="process section-light">
+
+      <div class="wrap"><div class="section-heading"><div><p class="eyebrow">TOK SARADNJE</p><h2>Prvo razumevanje.<br /><span>Zatim realizacija.</span></h2></div><p>Jednostavan put od prvog razgovora do usaglašenog tehničkog rešenja.</p></div>
+
+      <div class="step-grid">{steps.map((step) => <div class="step"><b>{step.num}</b><h3>{step.title}</h3><p>{step.body}</p></div>)}</div>
+
+      </div>
+
+    </section>
+
+    <section class="contact-strip"><div class="wrap contact-grid"><div><p class="eyebrow">VAŠ ZADATAK / NAŠA KONSTRUKCIJA</p><h2>Imate projekat?<br /><span>Razgovarajmo.</span></h2><p>Dovoljni su skica, fotografija, crtež ili kratak opis onoga što želite da realizujete.</p></div><div class="contact-links"><a href="/kontakt/" class="btn primary">Pošaljite upit <span aria-hidden="true">↗</span></a><a href={`mailto:${email}`} class="email-link">{email} <span aria-hidden="true">↗</span></a></div></div></section>
+
   </div>
 
-  <style>
-    :global(html) {
-      scroll-behavior: smooth;
-    }
-
-    :global(body) {
-      margin: 0;
-      background: #f6f7f9;
-      color: #07111e;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .partneri-page {
-      --navy: #06131f;
-      --navy2: #0b1d2b;
-      --orange: #ff6900;
-      --orange-hover: #e85e00;
-      --line: #dce2e7;
-      --muted: #64717c;
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    .wrap {
-      width: min(1280px, calc(100% - 40px));
-      margin-inline: auto;
-    }
-
-    h1, h2, h3, h4, p {
-      margin: 0;
-    }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--orange);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow span {
-      display: inline-block;
-      width: 20px;
-      height: 2px;
-      background: var(--orange);
-      flex-shrink: 0;
-    }
-
-    em {
-      font-style: normal;
-      color: var(--orange);
-    }
-
-    /* ========== HERO ========== */
-    .hero {
-      position: relative;
-      min-height: 560px;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
-      color: #fff;
-      isolation: isolate;
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
-    }
-
-    .hero__glow {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 70% at 85% 20%, rgba(255, 105, 0, 0.16), transparent 70%),
-        radial-gradient(ellipse 50% 60% at 10% 100%, rgba(255, 255, 255, 0.05), transparent 70%);
-      z-index: -2;
-    }
-
-    .hero__grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: linear-gradient(90deg, black, transparent 80%);
-      -webkit-mask-image: linear-gradient(90deg, black, transparent 80%);
-      z-index: -1;
-    }
-
-    .hero__content {
-      padding-top: 120px;
-      padding-bottom: 64px;
-      display: grid;
-      grid-template-columns: minmax(0, 720px) 1fr;
-      gap: 50px;
-      align-items: end;
-    }
-
-    .hero h1 {
-      margin-top: 18px;
-      max-width: 860px;
-      font-size: clamp(36px, 4.4vw, 56px);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .hero__lead {
-      margin-top: 20px;
-      max-width: 620px;
-      color: #d4dee4;
-      font-size: 15px;
-      line-height: 1.65;
-    }
-
-    .hero__badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 24px;
-    }
-
-    .badge-tag {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      padding: 6px 14px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      color: #fff;
-    }
-
-    .hero__actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 28px;
-    }
-
-    .btn {
-      min-height: 48px;
-      padding: 0 24px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: all 0.25s ease;
-      cursor: pointer;
-    }
-
-    .btn b {
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .btn--orange {
-      background: var(--orange);
-      color: #fff;
-      border: 1px solid var(--orange);
-    }
-
-    .btn--orange:hover {
-      background: var(--orange-hover);
-      border-color: var(--orange-hover);
-      transform: translateY(-2px);
-    }
-
-    .btn--ghost {
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      color: #fff;
-      background: rgba(0, 0, 0, 0.15);
-    }
-
-    .btn--ghost:hover {
-      background: #fff;
-      color: var(--navy);
-      border-color: #fff;
-    }
-
-    .hero__specs {
-      border-left: 1px solid rgba(255, 255, 255, 0.2);
-      padding-left: 28px;
-      display: grid;
-      gap: 20px;
-    }
-
-    .hero__specs strong {
-      display: block;
-      font-size: 14px;
-      letter-spacing: 0.03em;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .hero__specs span {
-      display: block;
-      margin-top: 4px;
-      color: #a9b6be;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-    }
-
-    /* ========== PROFILI SARADNJE ========== */
-    .profiles-section {
-      padding: 80px 0;
-      background: #f6f7f9;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 36px;
-      margin-bottom: 36px;
-    }
-
-    .section-head > div {
-      max-width: 680px;
-    }
-
-    .section-head > p {
-      max-width: 380px;
-      padding-bottom: 4px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
-    .section-head h2 {
-      margin-top: 12px;
-      font-size: clamp(30px, 3.4vw, 46px);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      color: #07111e;
-    }
-
-    .profiles-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .profile-card {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 2px;
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 16px rgba(6, 19, 31, 0.04);
-    }
-
-    .profile-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--orange);
-      box-shadow: 0 16px 36px rgba(6, 19, 31, 0.08);
-    }
-
-    .profile-num {
-      color: var(--orange);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .profile-card h3 {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: #07111e;
-    }
-
-    .profile-subtitle {
-      margin-top: 8px;
-      color: var(--orange);
-      font-size: 11.5px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      line-height: 1.4;
-    }
-
-    .profile-desc {
-      margin-top: 12px;
-      color: #55636e;
-      font-size: 13.5px;
-      line-height: 1.6;
-    }
-
-    .profile-card__benefits {
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px solid var(--line);
-    }
-
-    .benefits-title {
-      display: block;
-      color: #07111e;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 12px;
-    }
-
-    .profile-card__benefits ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .profile-card__benefits li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      color: #3d4a55;
-      font-size: 12.5px;
-      line-height: 1.45;
-    }
-
-    .bullet {
-      width: 6px;
-      height: 6px;
-      background: var(--orange);
-      border-radius: 1px;
-      margin-top: 5px;
-      flex-shrink: 0;
-    }
-
-    .profile-card__footer {
-      margin-top: 28px;
-      padding-top: 16px;
-      border-top: 1px solid var(--line);
-    }
-
-    .btn--profile {
-      width: 100%;
-      background: #f6f7f9;
-      color: #07111e;
-      border: 1px solid var(--line);
-      box-sizing: border-box;
-      transition: all 0.25s ease;
-    }
-
-    .btn--profile:hover {
-      background: var(--orange);
-      color: #fff;
-      border-color: var(--orange);
-    }
-
-    /* ========== RADNI KORACI SARADNJE ========== */
-    .steps-section {
-      padding: 80px 0;
-      background: #fff;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-      gap: 50px;
-      align-items: start;
-    }
-
-    .steps-left h2 {
-      margin-top: 12px;
-      font-size: clamp(28px, 3.2vw, 42px);
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      color: #07111e;
-    }
-
-    .steps-desc {
-      margin-top: 16px;
-      font-size: 14.5px;
-      line-height: 1.65;
-      color: #55636e;
-    }
-
-    .contact-box {
-      margin-top: 28px;
-      padding: 24px;
-      background: var(--navy);
-      border-radius: 2px;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .contact-box__label {
-      display: block;
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #8c9da8;
-      margin-bottom: 4px;
-    }
-
-    .contact-box__val {
-      color: #fff;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      overflow-wrap: anywhere;
-      transition: color 0.2s;
-    }
-
-    .contact-box__val:hover {
-      color: var(--orange);
-    }
-
-    .contact-box__val--phone {
-      font-size: 18px;
-      color: var(--orange);
-    }
-
-    .contact-box__sep {
-      height: 1px;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .steps-right {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .step-card {
-      background: #f6f7f9;
-      border: 1px solid var(--line);
-      border-radius: 2px;
-      padding: 24px;
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-      transition: all 0.25s ease;
-    }
-
-    .step-card:hover {
-      border-color: var(--orange);
-      background: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(6, 19, 31, 0.05);
-    }
-
-    .step-card__num {
-      font-size: 28px;
-      font-weight: 900;
-      color: var(--orange);
-      line-height: 1;
-      flex-shrink: 0;
-    }
-
-    .step-card__content h4 {
-      font-size: 15px;
-      font-weight: 800;
-      color: #07111e;
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
-    }
-
-    .step-card__content p {
-      margin-top: 6px;
-      font-size: 13px;
-      line-height: 1.55;
-      color: #55636e;
-    }
-
-    /* ========== CTA BANER ========== */
-    .cta {
-      position: relative;
-      min-height: 300px;
-      display: flex;
-      align-items: center;
-      color: #fff;
-      overflow: hidden;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
-      isolation: isolate;
-    }
-
-    .cta__glow {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 50% 90% at 90% 50%, rgba(255, 105, 0, 0.14), transparent 70%);
-      z-index: -1;
-    }
-
-    .cta__inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 36px;
-      padding: 56px 0;
-    }
-
-    .cta h2 {
-      margin-top: 12px;
-      font-size: clamp(26px, 3.3vw, 42px);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .cta p {
-      margin-top: 12px;
-      max-width: 520px;
-      color: #b5c2ca;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .cta__actions {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 1024px) {
-      .profiles-grid {
-        grid-template-columns: 1fr;
-      }
-      .steps-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
-      }
-    }
-
-    @media (max-width: 980px) {
-      .hero__content {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .hero__specs {
-        border-left: 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-        padding-left: 0;
-        padding-top: 24px;
-      }
-
-      .section-head {
-        display: block;
-        margin-bottom: 24px;
-      }
-
-      .section-head > p {
-        margin-top: 12px;
-      }
-
-      .cta__inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .cta__actions {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .wrap {
-        width: min(100% - 24px, 1280px);
-      }
-
-      .hero {
-        min-height: 0;
-      }
-
-      .hero__content {
-        padding-top: 90px;
-        padding-bottom: 40px;
-      }
-
-      .hero h1 {
-        font-size: 32px;
-      }
-
-      .profiles-section,
-      .steps-section {
-        padding: 56px 0;
-      }
-
-      .step-card {
-        padding: 20px 16px;
-      }
-
-      .cta__inner {
-        padding: 40px 0;
-      }
-
-      .cta__actions {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .cta__actions .btn {
-        width: 100%;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .btn,
-      .profile-card,
-      .step-card,
-      .contact-box__val {
-        transition: none;
-      }
-
-      .btn--orange:hover,
-      .profile-card:hover,
-      .step-card:hover {
-        transform: none;
-      }
-
-      :global(html) {
-        scroll-behavior: auto;
-      }
-    }
-  </style>
 </BaseLayout>
+
+<style>
+
+.partner-page{--navy:#061b28;--navy-deep:#06131f;--accent:#ff6900;--muted:#748896;--line:#d8e0e4;color:#0b2030;font-family:Manrope,Montserrat,system-ui,sans-serif;overflow:hidden}.wrap{width:min(1200px,calc(100% - 48px));margin-inline:auto}.partner-page h1,.partner-page h2,.partner-page h3,.partner-page p{margin:0}.eyebrow{display:flex;align-items:center;gap:12px;color:var(--accent);font-size:10px;letter-spacing:.14em;font-weight:800;text-transform:uppercase}.eyebrow:before{content:'';width:20px;height:2px;flex:none;background:var(--accent)}h1,h2{letter-spacing:-.052em;line-height:1.09}.hero{background:radial-gradient(ellipse at 64% 34%,#0a2a39 0%,#061a27 43%,#051520 100%);color:#fff}.hero-grid{padding:72px 0 66px;display:grid;grid-template-columns:.95fr 1.05fr;align-items:center;gap:76px}.hero h1{font-size:clamp(42px,4.8vw,68px);font-weight:800;margin-top:27px}.hero h1 span,.section-heading h2 span,.contact-strip h2 span,.panel-center h2 span{color:var(--accent)}.lead{margin-top:18px!important;max-width:490px;color:#afc0ca;font-size:14px;line-height:1.8}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}.btn{display:inline-flex;justify-content:space-between;align-items:center;gap:22px;min-height:43px;padding:0 16px;font-size:11px;font-weight:800;text-decoration:none;transition:background .2s,border-color .2s}.btn span{font-size:17px}.primary{background:var(--accent);color:#06131f;border:1px solid var(--accent)}.primary:hover{background:#ff852d}.secondary{background:transparent;color:#fff;border:1px solid #435667}.secondary:hover{border-color:#fff}.micro{font-size:9px;letter-spacing:.14em;color:#78909d;margin-top:33px!important}.micro:before{content:'';display:inline-block;width:20px;height:1px;vertical-align:middle;background:var(--accent);margin-right:10px}.hero-panel{border:1px solid #254150;min-height:320px;display:flex;flex-direction:column;position:relative;background:linear-gradient(140deg,#0b2938,#071b29);box-shadow:13px 14px 0 #092231}.panel-top,.panel-bottom{display:flex;justify-content:space-between;padding:12px 16px;color:#83a8bd;letter-spacing:.15em;font-size:9px}.panel-top{border-bottom:1px solid #294352}.panel-bottom{border-top:1px solid #294352;margin-top:auto}.panel-bottom span{color:var(--accent)}.panel-center{padding:36px 28px;position:relative;min-height:230px}.tiny{font-size:10px;letter-spacing:.13em;font-weight:800;color:var(--accent)}.panel-center h2{position:relative;z-index:1;font-size:clamp(24px,2.5vw,36px);max-width:360px;margin-top:12px;font-weight:800}.drawing{position:absolute;right:22px;bottom:14px;width:38%;height:80%;overflow:hidden;opacity:.48}.drawing i{display:block;position:absolute;width:175%;height:1px;background:#4f8298;transform:rotate(-34deg);right:-45%;bottom:15%}.drawing i:nth-child(2){bottom:27%}.drawing i:nth-child(3){bottom:39%}.drawing i:nth-child(4){bottom:51%}.section-light{background:#f0f4f5;padding:70px 0 76px}.section-dark{background:#061b28;color:#fff;padding:70px 0 76px}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:42px;margin-bottom:30px}.section-heading h2{font-size:clamp(29px,3vw,43px);margin-top:16px;font-weight:800}.section-heading>p{max-width:360px;line-height:1.75;font-size:13px;color:var(--muted)}.section-dark .section-heading>p{color:#a3b8c3}.partner-list{border-top:1px solid var(--line)}.partner-row{display:grid;grid-template-columns:170px minmax(230px,1fr) minmax(210px,.9fr) 35px;align-items:center;gap:20px;padding:24px 0;border-bottom:1px solid var(--line)}.row-id{display:flex;gap:14px;align-items:center}.row-id span{font-size:13px;font-weight:800;color:var(--accent)}.row-id small{font-size:9px;font-weight:800;color:#7790a0;letter-spacing:.08em}.row-title h3{font-size:19px;font-weight:800;letter-spacing:-.025em}.row-title p{font-size:12px;line-height:1.7;color:#657885;margin-top:7px}.partner-row ul{margin:0;padding:0;list-style:none}.partner-row li{font-size:11px;line-height:1.9;color:#526b7b}.partner-row li:before{content:'—';color:var(--accent);margin-right:8px}.row-arrow{display:grid;place-items:center;color:var(--accent);font-size:21px;text-decoration:none;align-self:stretch;transition:background .2s}.row-arrow:hover{background:#e2eaed}.principle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.principle-grid>div{border:1px solid #284252;background:#092434;min-height:158px;padding:22px}.principle-grid b{font-size:10px;letter-spacing:.1em;color:var(--accent)}.principle-grid h3{font-weight:700;margin-top:25px;font-size:17px}.principle-grid p{margin-top:8px;color:#a0b3bf;font-size:12px;line-height:1.6}.step-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}.step{padding:23px 20px 6px;border-right:1px solid var(--line)}.step:first-child{padding-left:0}.step:last-child{border-right:0}.step b{color:var(--accent);font-size:11px}.step h3{margin-top:25px;font-size:16px;font-weight:800}.step p{color:#657885;font-size:12px;line-height:1.7;margin-top:9px}.contact-strip{background:#071c29;color:#fff;padding:59px 0}.contact-grid{display:flex;align-items:center;justify-content:space-between;gap:40px}.contact-strip h2{font-size:clamp(31px,3vw,44px);margin-top:13px;font-weight:800}.contact-strip p:not(.eyebrow){font-size:12px;color:#abc0ca;line-height:1.7;margin-top:10px}.contact-links{min-width:270px;display:grid;gap:12px}.email-link{font-size:11px;text-decoration:none;color:#d1dce2;border-bottom:1px solid #354955;padding:8px 0;display:flex;justify-content:space-between;gap:12px;overflow-wrap:anywhere}.email-link span{color:var(--accent)}.email-link:hover{color:#fff}
+
+@media(max-width:1000px){.hero-grid{gap:35px}.partner-row{grid-template-columns:120px 1fr 1fr 30px;gap:14px}.row-id{display:block}.row-id small{display:block;margin-top:5px}}
+
+@media(max-width:760px){.wrap{width:min(100% - 32px,1200px)}.hero-grid{grid-template-columns:1fr;padding:50px 0;gap:34px}.hero h1{font-size:clamp(39px,9vw,58px)}.hero-panel{min-height:250px}.section-light,.section-dark{padding:50px 0 55px}.section-heading{display:block}.section-heading>p{margin-top:16px}.partner-row{grid-template-columns:45px 1fr 27px;gap:13px}.row-id small{display:none}.partner-row ul{grid-column:2;grid-row:2}.row-arrow{grid-column:3;grid-row:1 / 3}.principle-grid{grid-template-columns:1fr}.principle-grid>div{min-height:auto}.principle-grid h3{margin-top:16px}.step-grid{grid-template-columns:repeat(2,1fr);gap:12px}.step{border:1px solid var(--line);padding:18px!important}.contact-grid{display:block}.contact-links{margin-top:28px;min-width:0;max-width:390px}}
+
+@media(max-width:440px){.step-grid{grid-template-columns:1fr}.hero-panel{min-height:230px}.panel-center{padding:25px 18px;min-height:185px}.panel-center h2{font-size:24px}.partner-row{padding:18px 0}.row-title h3{font-size:17px}.row-title p{font-size:11px}.partner-row li{font-size:10px}}
+
+@media(prefers-reduced-motion:reduce){.partner-page .btn,.partner-page .row-arrow{transition:none}}
+
+</style>

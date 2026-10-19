@@ -2,604 +2,199 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LightboxModal from '../components/LightboxModal.astro';
 
-const pageTitle = 'Galerija sistema i realizacija';
-const pageDescription = 'Fotografije primene modularnih sistema: inox drenažni kanali, arhitektonska rasveta, čelični monoblok podovi i Fire Pit vatrišta.';
-const ogImage = '/images/inox/lucni-skriveni-inox-kanal-zalazak-sunca.webp';
-
-// Galerija: po dve slike od svakog proizvoda, hronološki (kasnije se menjaju stvarnim slikama)
-const galleryGroups = [
+// Galerija koristi postojeće WEBP fotografije; sadržaj se kasnije menja samo ovde.
+const gallery = [
   {
-    category: 'inox',
-    categoryLabel: 'Inox odvodnjavanje',
-    num: '01',
-    title: 'S-forma i lučna forma',
+    id: 'inox', label: 'Inox odvodnjavanje',
     images: [
-      {
-        src: '/images/inox/skriveni-modularni-inox-kanal-s-forma-bazen-suva-plaza.webp',
-        alt: 'S-forma skriveni inox kanal uz bazen i suvu plažu',
-        desc: 'Skriveni modularni inox kanal u S-formi uz bazen i suvu plažu.',
-      },
-      {
-        src: '/images/inox/lucni-skriveni-inox-kanal-zalazak-sunca.webp',
-        alt: 'Lučni skriveni inox kanal na parteru u zalasku sunca',
-        desc: 'Lučni skriveni inox kanal na parteru u zalasku sunca.',
-      },
+      { src: '/images/inox/skriveni-modularni-inox-kanal-s-forma-bazen-suva-plaza.webp', title: 'S-forma · Linija koja prati prostor', alt: 'S-forma inox kanalice uz bazen', desc: 'Prikaz primene inox odvodnjavanja uz bazen.' },
+      { src: '/images/inox/lucni-skriveni-inox-kanal-zalazak-sunca.webp', title: 'Lučna forma · Kontinuitet linije', alt: 'Lučni inox kanal u arhitektonskom parteru', desc: 'Prikaz lučnog inox odvodnjavanja u spoljašnjem prostoru.' },
     ],
   },
   {
-    category: 'rasveta',
-    categoryLabel: 'Moderna rasveta',
-    num: '02',
-    title: 'Z lampa za dvorišta i šetališta',
+    id: 'podkonstrukcije', label: 'Čelične podkonstrukcije',
     images: [
-      {
-        src: '/images/rasveta/z-lampa-moderna-led-rasveta-za-dvoriste-ulicna-rasveta-sneg.webp',
-        alt: 'Z lampa — moderna LED rasveta za dvorište i ulicu',
-        desc: 'Z lampa — moderna LED rasveta za dvorišta i ulice.',
-      },
-      {
-        src: '/images/rasveta/led-rasveta-za-setalista-i-parkove.webp',
-        alt: 'LED rasveta za šetališta i parkove',
-        desc: 'LED rasveta za šetališta i parkove.',
-      },
+      { src: '/images/podovi/modularni-pod-terasa-kisa-noc-1.webp', title: 'Podna površina · Eksterijer', alt: 'Terasa sa modularnim podnim sistemom u večernjem ambijentu', desc: 'Prikaz završne podne površine. Čelična podkonstrukcija nije vidljiva.' },
+      { src: '/images/podovi/modularni-pod-terasa-exterijer-moderna-4.webp', title: 'Podna površina · Terasa', alt: 'Moderna terasa sa podnom oblogom', desc: 'Primer završne obloge; izbor obloge zavisi od namene prostora.' },
     ],
   },
   {
-    category: 'podovi',
-    categoryLabel: 'Modularni podovi',
-    num: '03',
-    title: 'Terase i eksterijeri',
+    id: 'firepit', label: 'Fire Pit Grill',
     images: [
-      {
-        src: '/images/podovi/modularni-pod-terasa-kisa-noc-1.webp',
-        alt: 'Modularni pod na terasi u večernjem ambijentu',
-        desc: 'Modularni pod na terasi u večernjem ambijentu.',
-      },
-      {
-        src: '/images/podovi/modularni-pod-terasa-exterijer-moderna-4.webp',
-        alt: 'Savremena terasa sa modularnim podnim sistemom',
-        desc: 'Savremena eksterijerna terasa sa modularnim podom.',
-      },
-    ],
-  },
-  {
-    category: 'firepit',
-    categoryLabel: 'Fire Pit Grill',
-    num: '04',
-    title: 'Čelično ložište i roštilj',
-    images: [
-      {
-        src: '/images/fire-pit/fire-pit-grill-celicna-vatra-rostilj.webp',
-        alt: 'Fire Pit Grill — čelično ložište i roštilj sa laserskim ornamentima',
-        desc: 'Čelično ložište i roštilj sa laserski sečenim ornamentima.',
-      },
-      {
-        src: '/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp',
-        alt: 'Fire Pit Grill na terasi u sumrak',
-        desc: 'Fire Pit Grill na terasi u sumrak.',
-      },
+      { src: '/images/fire-pit/fire-pit-grill-celicna-vatra-rostilj.webp', title: 'Fire Pit Grill · Konstrukcija', alt: 'Čelični Fire Pit Grill sa ornamentima', desc: 'Prikaz čeličnog ložišta i roštilja.' },
+      { src: '/images/fire-pit/fire-pit-grill-terasa-vatra-sumrak.webp', title: 'Fire Pit Grill · Atmosfera', alt: 'Fire Pit Grill u ambijentu terase u sumrak', desc: 'Prikaz upotrebe Fire Pit Grill proizvoda u spoljašnjem prostoru.' },
     ],
   },
 ];
 
-const totalImages = galleryGroups.reduce((sum, group) => sum + group.images.length, 0);
+const items = gallery.flatMap((group, groupIndex) => group.images.map((item, imageIndex) => ({
+  ...item,
+  category: group.id,
+  categoryLabel: group.label,
+  number: String(groupIndex * 2 + imageIndex + 1).padStart(2, '0'),
+})));
 ---
-
-<BaseLayout title={pageTitle} description={pageDescription} ogImage={ogImage}>
-  <div class="galerija-page">
-    <!-- HERO & FILTER HEADER -->
-    <section class="gallery-hero">
-      <div class="wrap">
-        <div class="gallery-hero__inner">
-          <div class="gallery-hero__text">
-            <div class="eyebrow">
-              <span></span>
-              Vizuelna tehnička arhiva
-            </div>
-            <h1>Galerija sistema <em>i realizacija.</em></h1>
-            <p>
-              Fotografije primene naših modularnih sistema na stambenim, javnim i industrijskim objektima.
-            </p>
-          </div>
-
-          <!-- INTERAKTIVNI FILTER TABOVI -->
-          <div class="gallery-filters" role="group" aria-label="Filter galerije">
-            <button type="button" class="filter-btn is-active" data-filter="all">Sve ({totalImages})</button>
-            <button type="button" class="filter-btn" data-filter="inox">Inox odvodnjavanje</button>
-            <button type="button" class="filter-btn" data-filter="rasveta">Moderna rasveta</button>
-            <button type="button" class="filter-btn" data-filter="podovi">Modularni podovi</button>
-            <button type="button" class="filter-btn" data-filter="firepit">Fire Pit Grill</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- GALERIJA PO PROIZVODIMA -->
-    <section class="gallery-content">
-      <div class="wrap">
-        {galleryGroups.map((group) => (
-          <div class="gallery-group" data-category={group.category}>
-            <div class="group-head">
-              <div class="eyebrow">
-                <span></span>
-                {group.num} · {group.categoryLabel}
-              </div>
-              <h2>{group.title}</h2>
-            </div>
-
-            <div class="group-grid">
-              {group.images.map((image) => (
-                <button
-                  type="button"
-                  class="gallery-item"
-                  data-src={image.src}
-                  data-title={group.title}
-                  data-desc={image.desc}
-                  data-category-label={group.categoryLabel}
-                  aria-label={`Uvećaj: ${image.alt}`}
-                >
-                  <img src={image.src} alt={image.alt} loading="lazy" />
-                  <span class="gallery-item__hover">
-                    <span>Uvećaj <b>↗</b></span>
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <!-- CTA BANER IZNAD FOOTERA -->
-    <section class="cta">
-      <img
-        src="/images/inox/kruzni-skriveni-inox-kanal-oko-zardinjere.webp"
-        alt="Zainteresovani ste za primenu ovih rešenja?"
-        loading="lazy"
-      />
-      <div class="cta__shade"></div>
-      <div class="wrap cta__inner">
+<BaseLayout
+  title="Galerija proizvoda i primene"
+  description="Galerija Modularnih Sistema: inox odvodnjavanje, čelične podkonstrukcije i Fire Pit Grill. Fotografije proizvoda, detalja i primene u prostoru."
+  ogImage="/images/inox/lucni-skriveni-inox-kanal-zalazak-sunca.webp"
+>
+  <div class="gallery-page">
+    <section class="hero" aria-labelledby="gallery-title">
+      <div class="wrap hero__inner">
         <div>
-          <div class="eyebrow">
-            <span></span>
-            Prilagođena proizvodnja prema projektu
-          </div>
-          <h2>Zainteresovani ste za primenu <em>ovih rešenja na objektu?</em></h2>
-          <p>
-            Pošaljite nam arhitektonske podloge, DWG skice ili dimenzije prostora.
-            Naš tim priprema kompletan proračun i specifikaciju sistema.
-          </p>
+          <p class="eyebrow">Modularni Sistemi / Premium Engineering</p>
+          <h1 id="gallery-title">Detalji koji <span>govore za sebe.</span></h1>
         </div>
-        <div class="cta__actions">
-          <a class="btn btn--orange" href="/posaljite-projekat/">
-            Pošaljite nam projekat <b>→</b>
-          </a>
-          <a class="btn btn--ghost" href="tel:+38166241386">
-            Pozovite: 066 241 386 <b>↗</b>
-          </a>
+        <p class="hero__description">Proizvodi, konstrukcija i primena u prostoru. Istražite postojeće prikaze, od inženjerskog detalja do završnog ambijenta.</p>
+      </div>
+    </section>
+
+    <section class="gallery" aria-label="Fotografije proizvoda">
+      <div class="wrap">
+        <div class="gallery__top">
+          <div>
+            <p class="eyebrow">Vizuelna arhiva</p>
+            <h2>Proizvodi <span>u fokusu.</span></h2>
+          </div>
+          <p class="gallery__counter" id="gallery-count" aria-live="polite">{items.length} fotografija</p>
+        </div>
+
+        <div class="filters" role="group" aria-label="Filtrirajte fotografije">
+          <button class="filter is-active" type="button" data-filter="all" aria-pressed="true">Sve fotografije</button>
+          {gallery.map((group) => (
+            <button class="filter" type="button" data-filter={group.id} aria-pressed="false">{group.label}</button>
+          ))}
+        </div>
+
+        <div class="gallery-grid" id="gallery-grid">
+          {items.map((item) => (
+            <button
+              type="button"
+              class="gallery-card"
+              data-category={item.category}
+              data-src={item.src}
+              data-title={item.title}
+              data-desc={item.desc}
+              data-category-label={item.categoryLabel}
+              aria-label={`Otvori fotografiju: ${item.title}`}
+            >
+              <span class="gallery-card__media">
+                <img src={item.src} alt={item.alt} loading="lazy" decoding="async" width="960" height="600" />
+                <span class="gallery-card__number">{item.number}</span>
+                <span class="gallery-card__arrow" aria-hidden="true">↗</span>
+              </span>
+              <span class="gallery-card__caption">
+                <span class="gallery-card__category">{item.categoryLabel}</span>
+                <span class="gallery-card__title">{item.title}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+        <p class="gallery__footnote">Prikazani ambijenti služe za predstavljanje mogućnosti primene. Tehnički podaci nalaze se na stranicama proizvoda.</p>
+      </div>
+    </section>
+
+    <section class="contact" aria-labelledby="contact-title">
+      <div class="wrap contact__inner">
+        <div>
+          <p class="eyebrow">Vaša ideja je dobar početak</p>
+          <h2 id="contact-title">Imate zadatak? <span>Pronađimo rešenje.</span></h2>
+          <p>Fotografija, skica ili dimenzije dovoljni su za početak razgovora.</p>
+        </div>
+        <div class="contact__actions">
+          <a class="contact__button" href="/kontakt/">Pošaljite upit <span aria-hidden="true">↗</span></a>
+          <a class="contact__email" href="mailto:kontakt@modularnisistemi.com">kontakt@modularnisistemi.com <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
   </div>
-
-  <!-- LIGHTBOX MODAL -->
   <LightboxModal />
 </BaseLayout>
 
 <style>
-  :global(html) {
-    scroll-behavior: smooth;
-  }
-
-  :global(body) {
-    margin: 0;
-    background: #f6f7f9;
-    color: #07111e;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .galerija-page {
-    --navy: #06131f;
-    --navy2: #0b1d2b;
-    --orange: #ff6900;
-    --orange-hover: #e85e00;
-    --line: #dce2e7;
-    --muted: #64717c;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-  }
-
-  .wrap {
-    width: min(1280px, calc(100% - 40px));
-    margin-inline: auto;
-  }
-
-  .eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--orange);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  .eyebrow span {
-    display: inline-block;
-    width: 20px;
-    height: 2px;
-    background: var(--orange);
-    flex-shrink: 0;
-  }
-
-  /* ========== HERO HEADER ========== */
-  .gallery-hero {
-    background: var(--navy);
-    color: #fff;
-    padding: 70px 0 54px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .gallery-hero__inner {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-  }
-
-  .gallery-hero__text h1 {
-    margin: 14px 0 0;
-    font-size: clamp(32px, 3.8vw, 48px);
-    line-height: 1.1;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-  }
-
-  .gallery-hero__text h1 em,
-  .cta h2 em {
-    font-style: normal;
-    color: var(--orange);
-  }
-
-  .gallery-hero__text p {
-    margin: 14px 0 0;
-    max-width: 640px;
-    color: #b8c4cb;
-    font-size: 15px;
-    line-height: 1.6;
-  }
-
-  /* ========== FILTER TABOVI ========== */
-  .gallery-filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .filter-btn {
-    background: rgba(255, 255, 255, 0.08);
-    color: #d4dee4;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 10px 18px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-  }
-
-  .filter-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
-    color: #fff;
-  }
-
-  .filter-btn.is-active {
-    background: var(--orange);
-    color: #fff;
-    border-color: var(--orange);
-    box-shadow: 0 4px 14px rgba(255, 105, 0, 0.3);
-  }
-
-  /* ========== GRUPE SLIKA ========== */
-  .gallery-content {
-    padding: 70px 0 90px;
-    background: #f6f7f9;
-  }
-
-  .gallery-group + .gallery-group {
-    margin-top: 64px;
-  }
-
-  .gallery-group.is-hidden {
-    display: none;
-  }
-
-  .group-head {
-    margin-bottom: 22px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .group-head h2 {
-    margin: 10px 0 0;
-    font-size: clamp(24px, 2.6vw, 34px);
-    line-height: 1.1;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: #07111e;
-  }
-
-  .group-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-
-  .gallery-item {
-    position: relative;
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    border-radius: 3px;
-    background: #06131f;
-    cursor: pointer;
-    font: inherit;
-    box-shadow: 0 4px 16px rgba(6, 19, 31, 0.04);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .gallery-item:hover,
-  .gallery-item:focus-visible {
-    transform: translateY(-5px);
-    border-color: var(--orange);
-    box-shadow: 0 16px 36px rgba(6, 19, 31, 0.12);
-  }
-
-  .gallery-item:focus-visible {
-    outline: 2px solid var(--orange);
-    outline-offset: 3px;
-  }
-
-  .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .gallery-item:hover img {
-    transform: scale(1.05);
-  }
-
-  .gallery-item__hover {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(6, 19, 31, 0.5);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .gallery-item:hover .gallery-item__hover,
-  .gallery-item:focus-visible .gallery-item__hover {
-    opacity: 1;
-  }
-
-  .gallery-item__hover span {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 16px;
-    color: var(--orange);
-    background: var(--navy);
-    border: 1px solid var(--orange);
-    border-radius: 2px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  /* ========== CTA BANER ========== */
-  .cta {
-    position: relative;
-    min-height: 340px;
-    display: flex;
-    align-items: center;
-    color: #fff;
-    overflow: hidden;
-    background: var(--navy);
-  }
-
-  .cta > img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .cta__shade {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(100deg, rgba(6, 19, 31, 0.95) 0%, rgba(6, 19, 31, 0.75) 55%, rgba(6, 19, 31, 0.45) 100%);
-  }
-
-  .cta__inner {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 36px;
-    padding: 56px 0;
-  }
-
-  .cta h2 {
-    margin: 12px 0 0;
-    font-size: clamp(26px, 3.3vw, 42px);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    font-weight: 800;
-    color: #fff;
-  }
-
-  .cta p {
-    margin: 12px 0 0;
-    max-width: 520px;
-    color: #b5c2ca;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  .cta__actions {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex-shrink: 0;
-  }
-
-  .btn {
-    min-height: 48px;
-    padding: 0 24px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    text-decoration: none;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border-radius: 2px;
-    transition: all 0.25s ease;
-    cursor: pointer;
-  }
-
-  .btn b { font-size: 15px; font-weight: 600; }
-
-  .btn--orange {
-    background: var(--orange);
-    color: #fff;
-    border: 1px solid var(--orange);
-  }
-
-  .btn--orange:hover {
-    background: var(--orange-hover);
-    border-color: var(--orange-hover);
-    transform: translateY(-2px);
-  }
-
-  .btn--ghost {
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    color: #fff;
-    background: rgba(0, 0, 0, 0.15);
-  }
-
-  .btn--ghost:hover {
-    background: #fff;
-    color: var(--navy);
-    border-color: #fff;
-  }
-
-  /* ========== RESPONSIVE ========== */
-  @media (max-width: 980px) {
-    .cta__inner {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .cta__actions {
-      flex-direction: row;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .wrap {
-      width: min(100% - 24px, 1280px);
-    }
-
-    .group-grid {
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-
-    .gallery-group + .gallery-group {
-      margin-top: 48px;
-    }
-
-    .gallery-filters {
-      width: 100%;
-    }
-
-    .filter-btn {
-      flex: 1 1 calc(50% - 6px);
-      text-align: center;
-    }
-
-    .cta {
-      min-height: 340px;
-    }
-
-    .cta__inner {
-      padding: 40px 0;
-    }
-
-    .cta__actions {
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .cta__actions .btn {
-      width: 100%;
-    }
-  }
+  .gallery-page { --navy: #061b28; --ink: #102432; --orange: #ff6900; --muted: #738794; background: #f1f4f5; color: var(--ink); }
+  .wrap { width: min(1200px, calc(100% - 48px)); margin-inline: auto; }
+  .eyebrow { display: flex; align-items: center; gap: 11px; margin: 0; color: var(--orange); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .14em; }
+  .eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--orange); }
+  .hero { background: var(--navy); color: #fff; padding: 62px 0 56px; }
+  .hero__inner { display: grid; grid-template-columns: 1.3fr .7fr; gap: 55px; align-items: end; }
+  .hero h1 { font-size: clamp(38px, 4.3vw, 66px); line-height: 1.02; letter-spacing: -.055em; font-weight: 800; margin: 22px 0 0; max-width: 760px; }
+  .hero h1 span, .gallery h2 span, .contact h2 span { color: var(--orange); }
+  .hero__description { max-width: 390px; color: #bfd0da; font-size: 14px; line-height: 1.8; margin: 0 0 6px; }
+  .gallery { padding: 66px 0 78px; }
+  .gallery__top { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
+  .gallery h2 { font-size: clamp(30px, 3.1vw, 44px); line-height: 1.1; letter-spacing: -.045em; margin: 17px 0 0; }
+  .gallery__counter { color: var(--muted); font-size: 12px; white-space: nowrap; margin: 0 0 4px; }
+  .filters { display: flex; flex-wrap: wrap; gap: 0; margin: 29px 0 20px; border-top: 1px solid #cdd6dc; border-bottom: 1px solid #cdd6dc; }
+  .filter { background: transparent; border: 0; border-bottom: 2px solid transparent; color: #6b7d89; padding: 15px 22px 13px 0; margin-right: 18px; font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; transition: color .2s, border-color .2s; }
+  .filter:hover, .filter.is-active { color: var(--ink); border-bottom-color: var(--orange); }
+  .filter:focus-visible, .gallery-card:focus-visible, .contact a:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 17px; }
+  .gallery-card { padding: 0; background: #fff; border: 1px solid #dde4e7; color: inherit; text-align: left; cursor: pointer; min-width: 0; font: inherit; }
+  .gallery-card[hidden] { display: none !important; }
+  .gallery-card__media { display: block; position: relative; overflow: hidden; aspect-ratio: 1.55; background: #17242c; }
+  .gallery-card__media::after { content: ''; position: absolute; inset: 45% 0 0; background: linear-gradient(transparent,rgba(0,0,0,.23)); pointer-events: none; }
+  .gallery-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .gallery-card:hover img { transform: scale(1.045); }
+  .gallery-card__number { position: absolute; top: 14px; left: 15px; z-index: 1; color: var(--orange); font: 800 11px/1 'Manrope',sans-serif; }
+  .gallery-card__arrow { position: absolute; z-index: 1; right: 15px; bottom: 14px; color: #fff; font-size: 24px; line-height: 1; transition: transform .2s; }
+  .gallery-card:hover .gallery-card__arrow { transform: translate(3px,-3px); color: var(--orange); }
+  .gallery-card__caption { display: flex; flex-direction: column; gap: 7px; padding: 16px 17px 19px; }
+  .gallery-card__category { color: var(--orange); font-size: 10px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+  .gallery-card__title { color: var(--ink); font-size: 17px; line-height: 1.3; font-weight: 800; }
+  .gallery__footnote { margin: 19px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+  .contact { background: #e5ecef; padding: 51px 0 58px; border-top: 1px solid #d7e0e5; }
+  .contact__inner { display: grid; grid-template-columns: 1fr 270px; gap: 50px; align-items: center; }
+  .contact h2 { font-size: clamp(29px,3vw,42px); margin: 15px 0 9px; line-height: 1.14; letter-spacing: -.045em; }
+  .contact p:not(.eyebrow) { margin: 0; color: #617888; font-size: 13px; }
+  .contact__actions { display: grid; gap: 13px; }
+  .contact__button { display: flex; justify-content: space-between; padding: 15px 18px; text-decoration: none; color: #091925; background: var(--orange); font-size: 12px; font-weight: 800; }
+  .contact__button:hover { background: #e65f00; }
+  .contact__email { display: flex; justify-content: space-between; border-bottom: 1px solid #c4d0d7; padding-bottom: 10px; text-decoration: none; color: var(--ink); font-size: 12px; }
+  .contact__email span { color: var(--orange); }
+  @media (max-width: 900px) { .hero__inner { grid-template-columns: 1fr; gap: 18px; } .gallery-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .contact__inner { grid-template-columns: 1fr; gap: 25px; } .contact__actions { max-width: 340px; } }
+  @media (max-width: 600px) { .wrap { width: calc(100% - 32px); } .hero { padding: 43px 0; } .hero h1 { font-size: clamp(36px,10vw,48px); } .gallery { padding: 45px 0 52px; } .gallery__counter { display: none; } .gallery-grid { grid-template-columns: 1fr; gap: 15px; } .filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; } .filter { white-space: nowrap; flex: 0 0 auto; margin-right: 13px; padding-right: 8px; } .gallery-card__media { aspect-ratio: 1.6; } .contact { padding: 45px 0; } }
+  @media (prefers-reduced-motion: reduce) { .gallery-card img, .gallery-card__arrow { transition: none; } }
 </style>
 
 <script>
-  // Filtriranje grupa po proizvodu
-  const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
-  const groups = document.querySelectorAll<HTMLElement>('.gallery-group');
+  function initGallery() {
+    const root = document.querySelector<HTMLElement>('.gallery-page');
+    if (!root || root.dataset.initialized === 'true') return;
+    root.dataset.initialized = 'true';
+    const filters = [...root.querySelectorAll<HTMLButtonElement>('.filter')];
+    const cards = [...root.querySelectorAll<HTMLButtonElement>('.gallery-card')];
+    const counter = root.querySelector<HTMLElement>('#gallery-count');
 
-  filterButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter;
-
-      filterButtons.forEach((b) => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-
-      groups.forEach((group) => {
-        const show = filter === 'all' || group.dataset.category === filter;
-        group.classList.toggle('is-hidden', !show);
+    filters.forEach(button => button.addEventListener('click', () => {
+      const selected = button.dataset.filter ?? 'all';
+      filters.forEach(other => {
+        const active = other === button;
+        other.classList.toggle('is-active', active);
+        other.setAttribute('aria-pressed', String(active));
       });
-    });
-  });
-
-  // Uvećanje slike u lightbox-u (komponenta LightboxModal izlaže window.openModularLightbox)
-  type LightboxData = { src: string; title: string; desc: string; category: string };
-  const lightboxWindow = window as unknown as {
-    openModularLightbox?: (data: LightboxData) => void;
-  };
-
-  document.querySelectorAll<HTMLButtonElement>('.gallery-item').forEach((item) => {
-    item.addEventListener('click', () => {
-      lightboxWindow.openModularLightbox?.({
-        src: item.dataset.src ?? '',
-        title: item.dataset.title ?? '',
-        desc: item.dataset.desc ?? '',
-        category: item.dataset.categoryLabel ?? '',
+      let visible = 0;
+      cards.forEach(card => {
+        card.hidden = selected !== 'all' && card.dataset.category !== selected;
+        if (!card.hidden) visible++;
       });
-    });
-  });
+      if (counter) counter.textContent = `${visible} ${visible === 1 ? 'fotografija' : 'fotografija'}`;
+    }));
+
+    type LightboxData = { src: string; title: string; desc: string; category: string };
+    const modalWindow = window as typeof window & { openModularLightbox?: (data: LightboxData) => void };
+    cards.forEach(card => card.addEventListener('click', () => {
+      const data = {
+        src: card.dataset.src ?? '',
+        title: card.dataset.title ?? '',
+        desc: card.dataset.desc ?? '',
+        category: card.dataset.categoryLabel ?? '',
+      };
+      if (modalWindow.openModularLightbox) modalWindow.openModularLightbox(data);
+      else if (data.src) window.open(data.src, '_blank', 'noopener,noreferrer');
+    }));
+  }
+  initGallery();
+  document.addEventListener('astro:page-load', initGallery);
 </script>

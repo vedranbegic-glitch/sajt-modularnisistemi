@@ -26,18 +26,18 @@ export const SITE = {
   tagline: 'JEDAN SISTEM. BEZBROJ MOGUĆNOSTI.',
   url: 'https://modularnisistemi.com',
   domain: 'modularnisistemi.com',
-  description: 'Modularna rešenja za odvodnjavanje, rasvetu i podne sisteme — projektovana za savremenu arhitekturu i konkretan prostor.',
+  description: 'Inox sistemi odvodnjavanja, modularne čelične podkonstrukcije i Fire Pit Grill. Projektovanje i 3D modelovanje prema konkretnom zadatku.',
   philosophy: 'Ne prodajemo samo proizvod. Projektujemo rešenje prema prostoru.',
-  heroEyebrow: 'MODULARNI SISTEMI · REŠENJA ZA SAVREMENU ARHITEKTURU',
+  heroEyebrow: 'MODULARNI SISTEMI · OBLIK. FUNKCIJA. KONSTRUKCIJA.',
   heroH1: 'Jedan sistem. Bezbroj mogućnosti.',
-  heroSubtitle: 'Modularna rešenja za odvodnjavanje, rasvetu i podne sisteme — projektovana za savremenu arhitekturu i konkretan prostor.',
+  heroSubtitle: 'Inox sistemi odvodnjavanja, modularne čelične podkonstrukcije i Fire Pit Grill. Projektovanje i 3D modelovanje prema konkretnom zadatku.',
   primaryCtaText: 'POGLEDAJTE PROIZVODE',
-  secondaryCtaText: 'POŠALJITE NAM PROJEKAT',
+  secondaryCtaText: 'POŠALJITE UPIT',
 };
 
 export const CONTACT: ContactInfo = {
   generalEmail: 'kontakt@modularnisistemi.com',
-  projectEmail: 'projekti@modularnisistemi.com',
+  projectEmail: 'kontakt@modularnisistemi.com',
   phone: '+381 66 241 386',
   phoneFormatted: '+38166241386',
 };
@@ -45,8 +45,9 @@ export const CONTACT: ContactInfo = {
 export const NAVIGATION: NavItem[] = [
   { label: 'Proizvodi', href: '/proizvodi/' },
   { label: 'Inox odvodnjavanje', href: '/inox-sistemi-odvodnjavanja/' },
-  { label: 'Moderna rasveta', href: '/moderna-rasveta/' },
-  { label: 'Podni sistemi', href: '/modularni-podni-sistemi/' },
+  { label: 'Modularne čelične podkonstrukcije', href: '/modularne-celicne-podkonstrukcije/' },
+  { label: 'Fire Pit Grill', href: '/fire-pit-grill/' },
+  { label: 'Projektovanje i 3D modelovanje', href: '/projektovanje-i-3d-modelovanje/' },
   { label: 'Galerija', href: '/galerija/' },
   { label: 'O nama', href: '/o-nama/' },
   { label: 'Partneri', href: '/partneri/' },
@@ -57,22 +58,22 @@ export const ENGINEERING_STEPS: EngineeringStep[] = [
   {
     number: '01',
     title: 'Analiza geometrije i podloga',
-    description: 'Proučavanje arhitektonske situacije, podloga u PDF/DWG formatu, zadatih visinskih kota, padova i prostornih ograničenja.',
+    description: 'Analiza namene, raspoloživih crteža, geometrije i tehničkih zahteva konkretnog zadatka.',
   },
   {
     number: '02',
-    title: 'Inženjerska konfiguracija sistema',
-    description: 'Definisanje geometrije elemenata — pravolinijski potezi, tačni radijusi, raspored revizija, odvodnih tačaka i svetlosnih pozicija.',
+    title: 'Projektovanje i 3D modelovanje',
+    description: 'Razrada 3D modela, konstrukcije, spojeva i mehanizama prema usaglašenim zahtevima.',
   },
   {
     number: '03',
-    title: 'Precizna izrada i prefabrikacija',
-    description: 'Izrada elemenata prema usaglašenom rešenju, sa pripremljenim spojevima i kontrolom mera pre isporuke na lokaciju.',
+    title: 'Tehnička razrada i priprema',
+    description: 'Priprema modela i tehničkih detalja potrebnih za proveru rešenja i dalju realizaciju.',
   },
   {
     number: '04',
-    title: 'Tehnička koordinacija ugradnje',
-    description: 'Jasno obeležavanje segmenata uz prateća uputstva za montažne timove kako bi se eliminisale improvizacije na objektu.',
+    title: 'Izrada i realizacija',
+    description: 'Izrada proizvoda iz naših programa prema usaglašenoj konstrukciji i zahtevima primene.',
   },
 ];
 
@@ -94,24 +95,30 @@ export const SEO_TOPICS: SeoTopicGroup[] = [
     ],
   },
   {
-    category: 'Moderna rasveta',
+    category: 'Modularne čelične podkonstrukcije',
     keywords: [
-      'moderna rasveta',
-      'arhitektonska rasveta',
-      'urbana rasveta',
-      'LED urbana rasveta',
-      'rasveta za parking',
-      'rasveta za javne površine',
+      'modularne čelične podkonstrukcije',
+      'čelične podkonstrukcije',
+      'modularna čelična konstrukcija',
+      'čelična podkonstrukcija za terasu',
+      'čelični podesti i platforme',
     ],
   },
   {
-    category: 'Modularni podni sistemi',
+    category: 'Fire Pit Grill',
     keywords: [
-      'modularni pod',
-      'modularni podni sistemi',
-      'modularne podne ploče',
-      'podni sistemi',
-      'pod za terase',
+      'Fire Pit Grill',
+      'čelično ložište',
+      'spoljašnje ložište i roštilj',
+    ],
+  },
+  {
+    category: 'Projektovanje i 3D modelovanje',
+    keywords: [
+      'projektovanje i 3D modelovanje',
+      '3D modelovanje proizvoda',
+      'projektovanje konstrukcija',
+      'konstrukcija i mehanizmi',
     ],
   },
 ];

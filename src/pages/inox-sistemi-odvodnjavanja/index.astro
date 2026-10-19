@@ -1,1376 +1,493 @@
 ---
+
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
 import { inoxProducts } from '../../data/inoxProducts';
+
 const canonicalURL = 'https://modularnisistemi.com/inox-sistemi-odvodnjavanja/';
-// BaseLayout sam dodaje " · Modularni Sistemi" na kraj naslova, pa ovde ide samo kratak naslov
-const pageTitle = 'Inox sistemi odvodnjavanja';
-const ogImage = '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp';
-const pageDescription = 'Inox sistemi odvodnjavanja za savremenu arhitekturu — ravne, lučne, kružne, elipsaste i S-forme prema geometriji prostora.';
-// Pet kartica proizvoda dolazi iz zajedničkog fajla (isti podaci pokreću i stranice "Više o proizvodu")
+
+// Fotografije iz public/images/engineering/ — bez promene postojećih slugova.
+
+const premiumImages: Record<string, string> = {
+
+  'ravni-modularni-inox-kanal': '/images/engineering/hero-inox-ravna-premium.webp',
+
+  'lucni-inox-kanal': '/images/engineering/hero-inox-lucna-premium.webp',
+
+  'kruzni-inox-kanal': '/images/engineering/hero-inox-kruzna-premium.webp',
+
+  'elipsasti-inox-kanal': '/images/engineering/hero-inox-elipsasta-premium.webp',
+
+  's-forma-kanalica': '/images/engineering/hero-inox-s-forma-premium.webp',
+
+};
+
 const forms = inoxProducts.map((p) => ({
+
   number: p.number,
+
   name: p.name,
+
   short: p.short,
-  image: p.image,
-  alt: p.alt,
+
+  image: premiumImages[p.slug] ?? p.image,
+
+  alt: `${p.name} — premium fotografija inox kanalice u arhitektonskom studiju`,
+
   href: `/inox-sistemi-odvodnjavanja/${p.slug}/`,
+
 }));
-const applications = [
-  { image: '/images/inox/ravna-inox-kanalica-bazen-suva-plaza.webp', title: 'Ravna kanalica na terasi', meta: 'Ravna geometrija' },
-  { image: '/images/inox/skriveni-modularni-inox-kanal-s-forma-bazen-suva-plaza.webp', title: 'Bazen i suva plaža', meta: 'S-forma' },
-  { image: '/images/inox/lucni-skriveni-inox-kanal-zalazak-sunca.webp', title: 'Lučni parter', meta: 'Lučna geometrija' },
-  { image: '/images/inox/kruzni-skriveni-inox-kanal-oko-zardinjere.webp', title: 'Kružna žardinjera', meta: 'Kružna geometrija' },
-  { image: '/images/inox/elipsasti-skriveni-inox-kanal-poslovni-centar.webp', title: 'Savremeni objekat', meta: 'Elipsasta geometrija' },
+
+const details = [
+
+  {
+
+    number: '01',
+
+    name: 'Završetak kanala',
+
+    description: 'Završni profil i spojni detalji.',
+
+    image: '/images/engineering/zavrsetak-kanala-premium.webp',
+
+  },
+
+  {
+
+    number: '02',
+
+    name: 'Spoj segmenata',
+
+    description: 'Konstrukcioni spoj modularnih elemenata.',
+
+    image: '/images/engineering/spoj-segmenata-premium.webp',
+
+  },
+
+  {
+
+    number: '03',
+
+    name: 'Nivelirajuća stopa',
+
+    description: 'Podešavanje položaja tokom ugradnje.',
+
+    image: '/images/engineering/nivelirajuca-stopa-premium.webp',
+
+  },
+
 ];
-const steps = [
-  ['01', 'Pošaljite nacrt', 'Osnovu, DWG, skicu ili dimenzije prostora.'],
-  ['02', 'Definišemo formu', 'Geometriju pretvaramo u jasne modularne segmente.'],
-  ['03', 'Određujemo pad i odvod', 'Usklađujemo pad, završnu kotu i poziciju odvoda.'],
-  ['04', 'Izrađujemo sistem', 'Precizna izrada inox segmenata prema dogovorenom rešenju.'],
-  ['05', 'Spremno za ugradnju', 'Komponente stižu pripremljene za montažu na objektu.'],
-];
+
 ---
-<BaseLayout title={pageTitle} description={pageDescription} canonical={canonicalURL} ogImage={ogImage}>
-  <div class="inox-page">
-    <!-- HERO SEKCIJA SA WEBM VIDEOM -->
-    <section class="hero">
-      <div class="hero__video-box">
-        <video
-          autoplay
-          loop
-          muted
-          playsinline
-          preload="auto"
-          poster="/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp"
-          class="hero__video"
-        >
-          <source src="/videos/inox-sistemi-odvodnjavanja.webm" type="video/webm" />
-          <source src="/videos/inox-sistemi-odvodnjavanja.mp4" type="video/mp4" />
-          <img src="/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp" alt="Inox linijsko odvodnjavanje" />
-        </video>
+
+<BaseLayout
+
+  title="Inox sistemi odvodnjavanja"
+
+  description="Inox kanalice po meri: ravna, lučna, kružna, elipsasta i S-forma. Precizna geometrija, inox AISI 304/316 i modularna konstrukcija."
+
+  canonical={canonicalURL}
+
+  ogImage="/images/engineering/hero-inox-s-forma-premium.webp"
+
+>
+
+  <div class="inox-engineering">
+
+    <section class="hero" aria-labelledby="inox-title">
+
+      <div class="container hero-grid">
+
+        <div class="hero-copy">
+
+          <div class="eyebrow"><span></span> MODULARNI SISTEMI / PREMIUM ENGINEERING</div>
+
+          <h1 id="inox-title">Geometrija koja<br /><em>prati prostor.</em></h1>
+
+          <p class="hero-lead">Precizno oblikovani inox sistemi odvodnjavanja. Od ravne linije do složene S-forme — konstrukcija i dimenzije na zahtev.</p>
+
+          <div class="actions">
+
+            <a class="button button-main" href="#forme">Istražite forme <span aria-hidden="true">↗</span></a>
+
+            <a class="button button-outline" href="/posaljite-projekat/">Pošaljite upit <span aria-hidden="true">↗</span></a>
+
+          </div>
+
+          <p class="hero-caption">OBLIK. FUNKCIJA. KONSTRUKCIJA.</p>
+
+        </div>
+
+        <div class="hero-visual">
+
+          <img src="/images/engineering/hero-inox-s-forma-premium.webp" alt="S-forma inox kanalice na nivelirajućim stopama u arhitektonskom studiju" fetchpriority="high" decoding="async" />
+
+          <button class="inox-hero-video-trigger" type="button" data-open-inox-video aria-haspopup="dialog" aria-label="Pogledajte promotivni video inox odvodnjavanja">
+            <span class="inox-hero-video-icon" aria-hidden="true">▶</span>
+            <span class="inox-hero-video-copy"><strong>Pogledajte video</strong><small>INOX / VIDEO PREZENTACIJA</small></span>
+          </button>
+
+          <div class="visual-top"><span>PROIZVOD U FOKUSU</span><span>INOX / 05</span></div>
+
+          <div class="visual-bottom"><span>05</span><strong>S-forma</strong><a href="#forme" aria-label="Pogledajte inox forme">↗</a></div>
+
+        </div>
+
       </div>
-      <div class="hero__shade"></div>
-      <div class="hero__content wrap">
-        <div class="hero__copy">
-          <div class="eyebrow">
-            <span></span>
-            Modularni sistemi / INOX odvodnjavanje
-          </div>
-          <h1>
-            Odvodnjavanje koje prati<br />
-            <em>oblik prostora</em><br />
-            bez geometrijskog ograničenja.
-          </h1>
-          <p class="hero__lead">
-            Modularni inox sistemi sa integrisanim fabričkim padom i nivelirajućim stopama.
-            Ravne, lučne, kružne, elipsaste i S-forme projektujemo prema stvarnoj geometriji prostora.
-          </p>
-          <div class="hero__actions">
-            <a class="btn btn--orange" href="#modeli">
-              Istražite {forms.length} oblika <b>↗</b>
-            </a>
-            <a class="btn btn--ghost" href="/posaljite-projekat/">
-              Pošaljite nam nacrt <b>↗</b>
-            </a>
-          </div>
-        </div>
-        <div class="hero__specs">
-          <div>
-            <strong>AISI 304 / 316</strong>
-            <span>Nerđajući čelik</span>
-          </div>
-          <div>
-            <strong>0.5% – 1%</strong>
-            <span>Integrisani pad</span>
-          </div>
-          <div>
-            <strong>2.0 mm</strong>
-            <span>Debljina lima</span>
-          </div>
-          <div>
-            <strong>Podesive stope</strong>
-            <span>Precizno nivelisanje</span>
-          </div>
-        </div>
+
+      <div class="container hero-foot">
+
+        <span>INOX ODVODNJAVANJE / PRILAGODLJIVA GEOMETRIJA</span>
+
+        <a href="#forme">Pogledajte sve forme <span aria-hidden="true">↓</span></a>
+
       </div>
-      <nav class="hero__quicknav" aria-label="Brz izbor inox kanalice">
-        <div class="wrap hero__quicknav-inner">
-          <div class="hero__quicknav-caption">FORME / <strong>{String(forms.length).padStart(2, '0')}</strong></div>
-          {forms.map((item) => (
-            <a href={item.href} aria-label={`Pogledajte model ${item.name}`}>
-              <span>{item.number}</span>
-              <strong>{item.name}</strong>
-              <b aria-hidden="true">↗</b>
-            </a>
-          ))}
-        </div>
-      </nav>
+
     </section>
-    <!-- INTRO (PORAVNATO NA ISTU 1440px OSU) -->
-    <section class="intro wrap" id="specifikacije">
-      <div class="intro__heading">
-        <div class="eyebrow eyebrow--dark">
-          <span></span>
-          Po meri vašeg prostora
+
+    <section class="forms" id="forme" aria-labelledby="forms-heading">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div><div class="eyebrow"><span></span> GEOMETRIJA / PO MERI</div><h2 id="forms-heading">Bez geometrijskih<br /><em>ograničenja.</em></h2></div>
+
+          <p>Od jednostavne linije do složenih krivina. Pet prikazanih formi, sa geometrijom i dimenzijama na zahtev.</p>
+
         </div>
-        <h2>
-          Forma prostora<br />
-          <em>postaje deo rešenja.</em>
-        </h2>
-      </div>
-      <div class="intro__text">
-        <p>
-          Kada odvodnjavanje prati liniju terase, bazena, partera ili druge arhitektonske površine,
-          tehnički element postaje deo ukupne kompozicije. Vi zadajete geometriju — mi je pretvaramo
-          u funkcionalan i precizan sistem.
-        </p>
-        <div class="intro__metrics">
-          <div>
-            <strong>01</strong>
-            <span>Geometrija prema projektu</span>
+
+        <div class="geometry-showcase" data-geometry-showcase>
+
+          <a class="geometry-feature" href={forms[4]?.href ?? forms[0]?.href} data-geometry-feature aria-label="Pogledajte izabranu geometriju">
+
+            <div class="geometry-feature-media">
+
+              <img src={forms[4]?.image ?? forms[0]?.image} alt={forms[4]?.alt ?? forms[0]?.alt} data-geometry-image loading="lazy" decoding="async" />
+
+              <span class="geometry-kicker">INOX / GEOMETRIJA <span data-geometry-count>05</span></span>
+
+              <div class="geometry-feature-caption"><div><small>ODABRANA FORMA</small><h3 data-geometry-name>{forms[4]?.name ?? forms[0]?.name}</h3><p data-geometry-description>{forms[4]?.short ?? forms[0]?.short}</p></div><span aria-hidden="true">↗</span></div>
+
+            </div>
+
+          </a>
+
+          <div class="geometry-panel">
+
+            <div class="geometry-panel-head"><span>INOX SISTEMI ODVODNJAVANJA</span><strong>Različite forme.<br />Jedan princip.</strong></div>
+
+            <div class="geometry-options" role="group" aria-label="Izbor geometrije kanalice">
+
+              {forms.map((form, index) => (
+
+                <a href={form.href} class:list={['geometry-option', {'is-active': index === 4}]} data-geometry-index={index} aria-label={`Otvorite ${form.name}`} >
+
+                  <span class="geometry-option-num">{form.number}</span><span class="geometry-option-label"><strong>{form.name}</strong><small>{form.short}</small></span><span class="geometry-option-action"><span>Više o proizvodu</span><span class="geometry-option-arrow" aria-hidden="true">↗</span></span>
+
+                </a>
+
+              ))}
+
+            </div>
+
+            <a class="geometry-panel-link" href={forms[4]?.href ?? forms[0]?.href} data-geometry-link>Upoznajte izabranu formu <span aria-hidden="true">↗</span></a>
+
           </div>
-          <div>
-            <strong>02</strong>
-            <span>Precizno nivelisanje</span>
-          </div>
-          <div>
-            <strong>03</strong>
-            <span>Diskretna završna obrada</span>
-          </div>
+
         </div>
+
+        <div class="geometry-footnote"><span>FORMA / FUNKCIJA / PRECIZNOST</span><p>Geometrija koja prati prostor. Detalji konstrukcije se usaglašavaju prema konkretnoj nameni.</p></div>
+
       </div>
+
     </section>
-    <!-- FORMS (PORAVNATO NA ISTU 1440px OSU) -->
-    <section class="forms-section" id="modeli">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow eyebrow--dark">
-              <span></span>
-              Izbor forme prema geometriji partera
-            </div>
-            <h2>{forms.length} oblika. <em>Sloboda projektovanja.</em></h2>
-          </div>
-          <p>
-            Ravna, lučna, kružna, elipsasta ili S-forma — sistem prati arhitektonsku liniju
-            umesto da je ograničava.
-          </p>
+
+    <section class="engineering" aria-labelledby="engineering-heading">
+
+      <div class="container">
+
+        <div class="section-heading dark-head">
+
+          <div><div class="eyebrow"><span></span> PRECIZNOST U DETALJU</div><h2 id="engineering-heading">Konstrukcija koja<br /><em>govori za sebe.</em></h2></div>
+
+          <div class="engineering-intro"><p>Originalni elementi sistema. Pažnja je posvećena spojevima, završecima i podešavanju položaja tokom ugradnje.</p><a class="inline-link" href="/posaljite-projekat/">Razgovarajmo o vašem projektu ↗</a></div>
+
         </div>
-        <div class="forms-grid">
-          {forms.map((item) => (
-            <a href={item.href} class="form-card">
-              <div class="form-card__image">
-                <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
-                <span>{item.number}</span>
-              </div>
-              <div class="form-card__body">
-                <div class="form-card__tag">{item.short}</div>
-                <h3>{item.name}</h3>
-                <span class="form-card__link">Više o proizvodu <b>→</b></span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-    <!-- FEATURE DUO (PORAVNATO NA ISTU 1440px OSU KAO I FORME) -->
-    <section class="feature-duo" aria-labelledby="studio-heading">
-      <div class="wrap studio__heading">
-        <div>
-          <div class="eyebrow"><span></span>3D razrada i izrada</div>
-          <h2 id="studio-heading">Prvo crtež. <em>Pa onda proizvod.</em></h2>
-        </div>
-        <p>Oblik, mere i detalje usaglašavamo pre izrade. Zatim pripremamo sistem prema dogovorenom rešenju — od ravne linije do složenije geometrije.</p>
-      </div>
-      <div class="wrap feature-duo__grid">
-        <article class="feature-card feature-card--technical">
-          <img
-            src="/images/inox/ravni-modularni-inox-kanal-odvodnjavanje-drenaza-siva.webp"
-            alt="Detalj ravnog modularnog inox kanala"
-            loading="lazy"
-          />
-          <div class="feature-card__shade"></div>
-          <div class="feature-card__content">
-            <div class="eyebrow">
-              <span></span>
-              Tehnički detalji
-            </div>
-            <h2>Kvalitet u svakom <em>detalju.</em></h2>
-            <p>
-              Ravni inox kanal prikazuje osnovu sistema: precizna izrada, saten-brušena završna obrada,
-              nivelisanje i detalji koji omogućavaju pouzdanu ugradnju.
-            </p>
-            <div class="feature-card__facts">
-              <span><b>2.0 mm</b> inox lim</span>
-              <span><b>0.5–1%</b> integrisani pad</span>
-              <span><b>AISI 304 / 316</b> nerđajući čelik</span>
-              <span><b>Podesive stope</b> precizno nivelisanje</span>
-            </div>
-            <a class="feature-card__link" href="/inox-sistemi-odvodnjavanja/ravni-modularni-inox-kanal/#specifikacija">
-              Pogledajte tehničke detalje <b>→</b>
-            </a>
-          </div>
-        </article>
-        <article class="feature-card feature-card--geometry">
-          <img
-            src="/images/inox/elipsasti-inox-kanal-za-odvodnjavanje-siva.webp"
-            alt="Elipsasti inox kanal prema geometriji prostora"
-            loading="lazy"
-          />
-          <div class="feature-card__shade"></div>
-          <div class="feature-card__content">
-            <div class="eyebrow">
-              <span></span>
-              Projektovano prema vašoj geometriji
-            </div>
-            <h2>Bez geometrijskih <em>ograničenja.</em></h2>
-            <p>
-              Elipsasta forma pokazuje ono što standardne kanalice ne mogu: sistem prati arhitektonsku
-              liniju prostora, a ne obrnuto.
-            </p>
-            <div class="feature-card__facts">
-              <span>Vanstandardne dubine</span>
-              <span>Prilagođene širine</span>
-              <span>Posebni radijusi</span>
-              <span>Kompleksne forme</span>
-            </div>
-            <a class="btn btn--orange" href="/posaljite-projekat/">
-              Projektujte sa nama <b>→</b>
-            </a>
-          </div>
-        </article>
-      </div>
-    </section>
-    <!-- APPLICATIONS (PORAVNATO NA ISTU 1440px OSU) -->
-    <section class="applications">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow eyebrow--dark">
-              <span></span>
-              Primena u praksi
-            </div>
-            <h2>Od terase do <em>javnog prostora.</em></h2>
-          </div>
-          <p>
-            Rešenja za savremene eksterijere u kojima funkcija i arhitektonska linija moraju da rade zajedno.
-          </p>
-        </div>
-        <div class="applications__grid">
-          {applications.map((item) => (
-            <figure>
-              <div class="application__image">
-                <img src={item.image} alt={item.title} loading="lazy" />
-              </div>
-              <figcaption>
-                <strong>{item.title}</strong>
-                <span>{item.meta}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
-    </section>
-    <!-- PROCESS (PORAVNATO NA ISTU 1440px OSU) -->
-    <section class="process" aria-labelledby="process-title">
-      <div class="wrap">
-        <div class="process__head">
-          <div class="eyebrow eyebrow--dark">
-            <span></span>
-            Od ideje do ugradnje
-          </div>
-          <h2 id="process-title">Od skice do <em>gotovog sistema.</em></h2>
-        </div>
-        <div class="steps">
-          {steps.map(([num, title, text]) => (
-            <article>
-              <span class="step-num">{num}</span>
-              <h3>{title}</h3>
-              <p>{text}</p>
+
+        <div class="detail-grid">
+
+          {details.map((detail) => (
+
+            <article class="detail-card">
+
+              <div class="detail-image"><img src={detail.image} alt={detail.name} loading="lazy" decoding="async" /></div>
+
+              <div class="detail-text"><small>{detail.number} / KONSTRUKCIJA</small><h3>{detail.name}</h3><p>{detail.description}</p></div>
+
             </article>
+
           ))}
+
         </div>
+
       </div>
+
     </section>
-    <!-- CTA BANER (PORAVNATO NA ISTU 1440px OSU) -->
-    <section class="cta">
-      <img
-        src="/images/inox/lucni-inox-kanal-sa-perforiranom-resetkom-gradski-trg.webp"
-        alt="Lučni inox kanal sa perforiranom rešetkom na gradskom trgu"
-        loading="lazy"
-      />
-      <div class="cta__shade"></div>
-      <div class="wrap cta__inner">
-        <div>
-          <div class="eyebrow">
-            <span></span>
-              Ideja, skica ili dimenzije
-          </div>
-          <h2>Imate ideju? <em>Razradimo je zajedno.</em></h2>
-          <p>
-            Pošaljite nam nacrt, dimenzije ili jednostavno opišite prostor.
-            Zajedno ćemo razmotriti odgovarajući oblik i način izrade.
-          </p>
+
+    <section class="specs" aria-labelledby="specs-heading">
+
+      <div class="container specs-layout">
+
+        <div><div class="eyebrow"><span></span> TEHNIČKA OSNOVA</div><h2 id="specs-heading">Precizan materijal.<br /><em>Forma na zahtev.</em></h2></div>
+
+        <div class="spec-table">
+
+          <div><span>01 / MATERIJAL</span><strong>Inox AISI 304 / 316</strong></div>
+
+          <div><span>02 / DEBLJINA LIMA</span><strong>2 mm</strong></div>
+
+          <div><span>03 / GEOMETRIJA I DIMENZIJE</span><strong>Na zahtev</strong></div>
+
+          <div><span>04 / KONSTRUKCIONI DETALJI</span><strong>Prema usaglašenom rešenju</strong></div>
+
         </div>
-        <a class="btn btn--orange" href="/posaljite-projekat/">
-          Pošaljite upit <b>→</b>
-        </a>
+
       </div>
+
     </section>
+
+    <section class="contact" aria-labelledby="contact-heading">
+
+      <div class="container contact-layout">
+
+        <div><div class="eyebrow"><span></span> VAŠA IDEJA JE DOBAR POČETAK</div><h2 id="contact-heading">Imate geometriju?<br /><em>Razradimo rešenje.</em></h2><p>Dovoljni su fotografija, skica, dimenzije ili kratak opis zadatka.</p></div>
+
+        <div class="contact-actions"><a class="button button-main" href="/posaljite-projekat/">Pošaljite upit <span aria-hidden="true">↗</span></a><a class="email" href="mailto:kontakt@modularnisistemi.com">kontakt@modularnisistemi.com <span aria-hidden="true">↗</span></a></div>
+
+      </div>
+
+    </section>
+
+    <dialog class="inox-video-dialog" data-inox-video-dialog aria-label="Promotivni video inox odvodnjavanja">
+      <div class="inox-video-bar">
+        <strong>MODULARNI SISTEMI / INOX ODVODNJAVANJE</strong>
+        <button type="button" data-close-inox-video aria-label="Zatvori video">Zatvori <span aria-hidden="true">×</span></button>
+      </div>
+      <video
+        data-inox-video
+        poster="/images/engineering/hero-inox-s-forma-premium.webp"
+        preload="none"
+        muted
+        playsinline
+        loop
+        aria-label="Promotivni video inox sistema odvodnjavanja"
+      >
+        <source src="/videos/modularni-sistemi-inox-drenaza-promo.webm" type="video/webm" />
+        <source src="/videos/modularni-sistemi-inox-drenaza-promo.mp4" type="video/mp4" />
+        Vaš pregledač ne podržava reprodukciju ovog videa.
+      </video>
+      <div class="inox-video-controls">
+        <span>INOX SISTEMI ODVODNJAVANJA</span>
+        <button type="button" data-toggle-inox-video>Pauziraj video</button>
+      </div>
+    </dialog>
   </div>
+
 </BaseLayout>
+
 <style>
-  :global(html) {
-    scroll-behavior: smooth;
-  }
-  :global(body) {
-    margin: 0;
-    background: #f6f7f9;
-    color: #07111e;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  .inox-page {
-    --navy: #06131f;
-    --navy2: #0b1d2b;
-    --orange: #ff6900;
-    --orange-hover: #e85e00;
-    --line: #dce2e7;
-    --muted: #64717c;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-  }
-  /* ========== JEDINSTVENA ŠIRINA (1440px) ZA SAVRŠENO PORAVNANJE ========== */
-  .wrap {
-    width: min(1440px, calc(100% - 48px));
-    margin-inline: auto;
-  }
-  /* ========== HERO (PUN EKRAN BEZ SIVE TRAKE) ========== */
-  .hero {
-    position: relative;
-    min-height: 700px;
-    background: var(--navy);
-    color: #fff;
-    isolation: isolate;
-    display: flex;
-    align-items: flex-end;
-  }
-  .hero__video-box {
-    position: absolute;
-    inset: 0;
-    z-index: -3;
-    overflow: hidden;
-  }
-  .hero__video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-  .hero__shade {
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(95deg, rgba(6, 19, 31, 0.72) 0%, rgba(6, 19, 31, 0.45) 35%, rgba(6, 19, 31, 0.1) 65%, transparent 100%),
-      linear-gradient(0deg, rgba(6, 19, 31, 0.55) 0%, transparent 35%);
-    z-index: -2;
-  }
-  .hero h1,
-  .hero__lead {
-    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
-  }
-  .hero__content {
-    padding-top: 130px;
-    padding-bottom: 64px;
-    display: grid;
-    grid-template-columns: minmax(0, 720px) 1fr;
-    gap: 50px;
-    align-items: end;
-  }
-  .eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--orange);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-  .eyebrow span {
-    display: inline-block;
-    width: 20px;
-    height: 1.5px;
-    background: var(--orange);
-    flex-shrink: 0;
-  }
-  .eyebrow--dark {
-    color: var(--orange);
-  }
-  h1, h2, h3, p {
-    margin: 0;
-  }
-  .hero h1 {
-    margin-top: 20px;
-    max-width: 860px;
-    font-size: clamp(38px, 4.6vw, 62px);
-    line-height: 1.02;
-    letter-spacing: -0.045em;
-    font-weight: 800;
-    color: #fff;
-  }
-  .hero h1 em,
-  .intro h2 em,
-  .section-head h2 em,
-  .feature-card h2 em,
-  .applications h2 em,
-  .process h2 em,
-  .cta h2 em {
-    font-style: normal;
-    color: var(--orange);
-  }
-  .hero__lead {
-    margin-top: 20px;
-    max-width: 620px;
-    color: #d4dee4;
-    font-size: 15px;
-    line-height: 1.65;
-  }
-  .hero__actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 28px;
-  }
-  .btn {
-    min-height: 48px;
-    padding: 0 20px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    text-decoration: none;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    border-radius: 2px;
-    transition: all 0.25s ease;
-  }
-  .btn b {
-    font-size: 15px;
-    font-weight: 600;
-  }
-  .btn--orange {
-    background: var(--orange);
-    color: #fff;
-  }
-  .btn--orange:hover {
-    background: var(--orange-hover);
-    transform: translateY(-2px);
-  }
-  .btn--ghost {
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    color: #fff;
-    background: rgba(0, 0, 0, 0.12);
-  }
-  .btn--ghost:hover {
-    background: #fff;
-    color: var(--navy);
-    border-color: #fff;
-  }
-  .hero__specs {
-    border-left: 1px solid rgba(255, 255, 255, 0.18);
-    padding-left: 26px;
-    display: grid;
-    gap: 20px;
-  }
-  .hero__specs div {
-    display: flex;
-    flex-direction: column;
-  }
-  .hero__specs strong {
-    font-size: 14px;
-    letter-spacing: 0.03em;
-    font-weight: 700;
-  }
-  .hero__specs span {
-    margin-top: 4px;
-    color: #94a3ad;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-  }
-  /* ========== INTRO (KOMPAKTNO I PORAVNATO) ========== */
-  .intro {
-    padding: 40px 0 32px;
-    display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 48px;
-    align-items: start;
-  }
-  .intro h2 {
-    margin-top: 8px;
-    font-size: clamp(26px, 2.8vw, 38px);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    font-weight: 800;
-    color: #07111e;
-  }
-  .intro__text {
-    padding-top: 6px;
-  }
-  .intro__text > p {
-    color: var(--muted);
-    font-size: 14.5px;
-    line-height: 1.6;
-  }
-  .intro__metrics {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-top: 20px;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-  .intro__metrics div {
-    padding: 12px 14px 12px 0;
-    border-right: 1px solid var(--line);
-  }
-  .intro__metrics div + div {
-    padding-left: 14px;
-  }
-  .intro__metrics div:last-child {
-    border-right: 0;
-  }
-  .intro__metrics strong {
-    display: block;
-    color: var(--orange);
-    font-size: 19px;
-    font-weight: 800;
-  }
-  .intro__metrics span {
-    display: block;
-    margin-top: 2px;
-    color: #3d4a55;
-    font-size: 11.5px;
-    line-height: 1.35;
-  }
-  /* ========== FORMS SEKCIJA (PORAVNATO NA 1440px) ========== */
-  .forms-section {
-    background: #eef1f4;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: 68px 0 80px;
-  }
-  .section-head {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 36px;
-    margin-bottom: 32px;
-  }
-  .section-head h2 {
-    margin-top: 8px;
-    font-size: clamp(28px, 3.2vw, 42px);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    font-weight: 800;
-    color: #07111e;
-  }
-  .section-head > p {
-    max-width: 380px;
-    color: var(--muted);
-    font-size: 14.5px;
-    line-height: 1.6;
-    padding-bottom: 4px;
-  }
-  .forms-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
-  }
-  .form-card {
-    background: #fff;
-    color: var(--navy);
-    text-decoration: none;
-    border: 1px solid #dce2e7;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 16px rgba(6, 19, 31, 0.04);
-  }
-  .form-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--orange);
-    box-shadow: 0 20px 40px rgba(6, 19, 31, 0.12);
-  }
-  .form-card__image {
-    position: relative;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    border-bottom: 1px solid #edf1f5;
-  }
-  .form-card__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-    display: block;
-  }
-  .form-card:hover img {
-    transform: scale(1.08);
-  }
-  .form-card__image span {
-    position: absolute;
-    left: 12px;
-    top: 12px;
-    color: #fff;
-    background: var(--orange);
-    font-size: 10.5px;
-    font-weight: 800;
-    padding: 3px 8px;
-    border-radius: 2px;
-    letter-spacing: 0.04em;
-    z-index: 2;
-    box-shadow: 0 2px 6px rgba(255, 105, 0, 0.35);
-  }
-  .form-card__body {
-    padding: 18px 16px 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .form-card__tag {
-    color: var(--orange);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .form-card h3 {
-    margin-top: 6px;
-    font-size: 14.5px;
-    font-weight: 800;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    color: #07111e;
-  }
-  .form-card__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    margin-top: auto;
-    padding-top: 16px;
-    color: #55636e;
-    font-size: 10.5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    transition: color 0.2s;
-  }
-  .form-card__link b {
-    color: var(--orange);
-    transition: transform 0.2s ease;
-  }
-  .form-card:hover .form-card__link {
-    color: var(--orange);
-  }
-  .form-card:hover .form-card__link b {
-    transform: translateX(4px);
-  }
-  /* ========== FEATURE DUO (SAVRŠENO U PORAVNANJU SA FORMAMA IZNAD) ========== */
-  .feature-duo {
-    background: var(--navy);
-    padding: 70px 0;
-  }
-  .feature-duo__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .feature-card {
-    position: relative;
-    min-height: 520px;
-    overflow: hidden;
-    background: #0a1620;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 4px;
-  }
-  .feature-card > img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s ease;
-  }
-  .feature-card:hover > img {
-    transform: scale(1.03);
-  }
-  .feature-card__shade {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(4, 14, 23, 0.05) 0%,
-      rgba(4, 14, 23, 0.15) 28%,
-      rgba(4, 14, 23, 0.85) 68%,
-      rgba(4, 14, 23, 0.97) 100%
-    );
-  }
-  .feature-card__content {
-    position: absolute;
-    z-index: 3;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 36px;
-  }
-  .feature-card__content h2 {
-    margin-top: 10px;
-    max-width: 480px;
-    font-size: clamp(28px, 2.8vw, 42px);
-    line-height: 1.02;
-    letter-spacing: -0.04em;
-    color: #fff;
-    font-weight: 800;
-  }
-  .feature-card__content > p {
-    margin-top: 12px;
-    max-width: 480px;
-    color: #b8c4cb;
-    font-size: 13.5px;
-    line-height: 1.6;
-  }
-  .feature-card__facts {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    margin-top: 22px;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-  }
-  .feature-card__facts span {
-    padding: 12px 12px 0 0;
-    color: #a0b0b9;
-    font-size: 11px;
-    line-height: 1.4;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  .feature-card__facts span:nth-child(2n) {
-    padding-left: 12px;
-    border-right: 0;
-  }
-  .feature-card__facts span:nth-child(n + 3) {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 12px;
-  }
-  .feature-card__facts b {
-    display: block;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-    margin-bottom: 2px;
-  }
-  .feature-card__link {
-    display: inline-flex;
-    margin-top: 22px;
-    color: #fff;
-    text-decoration: none;
-    border-bottom: 1px solid var(--orange);
-    padding-bottom: 5px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    transition: opacity 0.2s;
-  }
-  .feature-card__link:hover {
-    opacity: 0.85;
-  }
-  .feature-card__link b {
-    color: var(--orange);
-    margin-left: 8px;
-  }
-  .feature-card--technical .feature-card__shade {
-    background: linear-gradient(
-      180deg,
-      rgba(4, 14, 23, 0.02) 0%,
-      rgba(4, 14, 23, 0.1) 30%,
-      rgba(4, 14, 23, 0.88) 66%,
-      rgba(4, 14, 23, 0.98) 100%
-    );
-  }
-  .feature-card--geometry .feature-card__shade {
-    background: linear-gradient(
-      100deg,
-      rgba(4, 14, 23, 0.12) 0%,
-      rgba(4, 14, 23, 0.25) 38%,
-      rgba(4, 14, 23, 0.92) 100%
-    );
-  }
-  .feature-card--geometry .feature-card__content {
-    left: auto;
-    width: 56%;
-    padding: 36px;
-  }
-  /* ========== APPLICATIONS (PORAVNATO) ========== */
-  .applications {
-    padding: 70px 0;
-    background: #f6f7f9;
-  }
-  .applications h2,
-  .process h2 {
-    margin-top: 10px;
-    font-size: clamp(28px, 3.2vw, 42px);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    font-weight: 800;
-    color: #07111e;
-  }
-  .applications__grid {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 18px;
-  }
-  .applications figure {
-    margin: 0;
-  }
-  .application__image {
-    overflow: hidden;
-    aspect-ratio: 5 / 4;
-    background: #d8dde2;
-    border-radius: 3px;
-  }
-  .application__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.55s ease;
-  }
-  .applications figure:hover img {
-    transform: scale(1.04);
-  }
-  .applications figcaption {
-    padding-top: 12px;
-  }
-  .applications figcaption strong {
-    display: block;
-    font-size: 13.5px;
-    font-weight: 700;
-    color: #07111e;
-  }
-  .applications figcaption span {
-    display: block;
-    margin-top: 3px;
-    color: #7a8791;
-    font-size: 10.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-  /* ========== PROCESS (PORAVNATO) ========== */
-  .process {
-    background: #eef1f4;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: 70px 0;
-  }
-  .process__head {
-    max-width: 560px;
-  }
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    margin-top: 40px;
-    gap: 0;
-  }
-  .steps article {
-    position: relative;
-    border-left: 1px solid #c9d2d8;
-    padding: 0 20px;
-    min-height: 130px;
-  }
-  .steps article:first-child {
-    border-left: 0;
-    padding-left: 0;
-  }
-  .step-num {
-    color: var(--orange);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-  }
-  .steps h3 {
-    margin-top: 12px;
-    font-size: 14.5px;
-    font-weight: 700;
-    line-height: 1.25;
-    color: #07111e;
-  }
-  .steps p {
-    margin-top: 8px;
-    color: #66747d;
-    font-size: 12.5px;
-    line-height: 1.5;
-  }
-  .steps article:not(:last-child)::after {
-    content: "→";
-    position: absolute;
-    right: -7px;
-    top: 0;
-    color: #a8b4bc;
-    background: #eef1f4;
-    padding: 0 3px;
-    font-size: 13px;
-  }
-  /* ========== CTA ========== */
-  .cta {
-    position: relative;
-    min-height: 320px;
-    display: flex;
-    align-items: center;
-    color: #fff;
-    overflow: hidden;
-    background: var(--navy);
-  }
-  .cta > img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-  .cta__shade {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(100deg, rgba(2, 12, 20, 0.94) 0%, rgba(2, 12, 20, 0.7) 55%, rgba(2, 12, 20, 0.42) 100%);
-  }
-  .cta__inner {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 36px;
-    padding: 48px 0;
-  }
-  .cta h2 {
-    margin-top: 12px;
-    font-size: clamp(26px, 3.3vw, 42px);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    font-weight: 800;
-    color: #fff;
-  }
-  .cta p {
-    margin-top: 12px;
-    max-width: 520px;
-    color: #b5c2ca;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  /* ========== RESPONSIVE ========== */
-  @media (max-width: 1200px) {
-    .applications__grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  .inox-engineering{--dark:#061823;--deep:#03111d;--orange:#ff6900;--pale:#eef2f3;--ink:#102431;--muted:#71818d;font-family:Manrope,Montserrat,system-ui,sans-serif;color:var(--ink);overflow:hidden}
+
+  .container{width:min(1240px,calc(100% - 48px));margin-inline:auto}
+
+  .eyebrow{display:flex;align-items:center;gap:11px;font-size:10px;font-weight:800;letter-spacing:.15em;color:var(--orange)}
+
+  .eyebrow span{display:block;width:21px;height:2px;background:var(--orange);flex:none}
+
+  h1,h2,h3,p{margin:0} h1,h2{font-weight:800;letter-spacing:-.053em;line-height:1.08} h1 em,h2 em{font-style:normal;color:var(--orange)}
+
+  .hero{background:radial-gradient(ellipse at 75% 25%,#142b35 0%,var(--deep) 62%);color:#fff}
+
+  .hero-grid{display:grid;grid-template-columns:.89fr 1.11fr;align-items:center;gap:clamp(28px,5vw,75px);padding-block:54px 32px}
+
+  .hero-copy h1{font-size:clamp(43px,4.3vw,69px);margin-top:28px}.hero-lead{max-width:455px;margin-top:23px;font-size:15px;line-height:1.7;color:#b7c6ce}
+
+  .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:27px}.button{min-height:46px;display:inline-flex;align-items:center;justify-content:space-between;gap:26px;padding:0 20px;text-decoration:none;font-size:12px;font-weight:800;transition:background .2s,border-color .2s}.button-main{background:var(--orange);color:#07111e}.button-main:hover{background:#ff842e}.button-outline{border:1px solid #53616a;color:#fff}.button-outline:hover{border-color:#fff}.button span{font-size:17px}.hero-caption{margin-top:40px;padding-top:13px;border-top:1px solid #34424a;max-width:300px;font-size:9px;letter-spacing:.14em;color:#8296a2}
+
+  .hero-visual{height:clamp(285px,31vw,420px);position:relative;overflow:hidden;background:#252626;border:1px solid #32444c}.hero-visual img{width:100%;height:100%;display:block;object-fit:cover;object-position:center}.hero-visual:after{content:'';position:absolute;inset:42% 0 0;background:linear-gradient(0deg,rgba(3,13,21,.8),transparent);pointer-events:none}.visual-top,.visual-bottom{position:absolute;z-index:1;left:22px;right:22px;display:flex;align-items:center;justify-content:space-between}.visual-top{top:17px;font-size:9px;letter-spacing:.13em;font-weight:800;color:#eee}.visual-top span:last-child{color:#ffad68}.visual-bottom{bottom:18px;justify-content:flex-start;gap:14px}.visual-bottom>span{color:var(--orange);font-size:22px;font-weight:800}.visual-bottom strong{font-size:18px}.visual-bottom a{margin-left:auto;color:var(--orange);font-size:25px;text-decoration:none}
+
+  .hero-foot{display:flex;justify-content:space-between;gap:20px;padding:15px 0 18px;border-top:1px solid #35454d;font-size:10px;letter-spacing:.11em;color:#9db1bb}.hero-foot a{color:#fff;text-decoration:none;white-space:nowrap}.hero-foot a span{color:var(--orange)}
+
+  .forms{background:#eff3f4;padding:64px 0 72px;scroll-margin-top:90px}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-bottom:28px}.section-heading h2,.specs h2,.contact h2{font-size:clamp(31px,3.2vw,46px);margin-top:14px}.section-heading>p,.engineering-intro{max-width:390px;color:#687985;font-size:14px;line-height:1.65}
+
+  .geometry-showcase{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(310px,.88fr);gap:0;border:1px solid #2c4755;background:#071e2c;min-height:420px}
+
+  .geometry-feature{min-width:0;color:white;text-decoration:none}.geometry-feature-media{height:100%;min-height:420px;position:relative;overflow:hidden;background:#22272b}.geometry-feature-media>img{display:block;width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center;background:#2d3032}.geometry-feature-media:after{content:'';position:absolute;inset:30% 0 0;background:linear-gradient(0deg,rgba(2,13,22,.9),transparent);pointer-events:none}.geometry-kicker{position:absolute;top:18px;left:22px;z-index:1;font-size:10px;font-weight:800;letter-spacing:.12em;color:#e5edf1}.geometry-kicker>span{color:var(--orange)}.geometry-feature-caption{position:absolute;bottom:23px;left:24px;right:23px;z-index:1;display:flex;justify-content:space-between;align-items:end;gap:20px}.geometry-feature-caption small{font-size:9px;color:#ff9a52;letter-spacing:.13em;font-weight:800}.geometry-feature-caption h3{margin-top:7px;font-size:clamp(24px,3vw,36px);letter-spacing:-.045em;line-height:1.05}.geometry-feature-caption p{font-size:12px;margin-top:7px;color:#c2d0d7}.geometry-feature-caption>span{font-size:26px;color:var(--orange)}
+
+  .geometry-panel{display:flex;flex-direction:column;min-width:0;background:#091f2d;color:white;border-left:1px solid #2c4755}.geometry-panel-head{padding:24px 25px 19px;border-bottom:1px solid #2c4755}.geometry-panel-head>span{font-size:9px;letter-spacing:.14em;color:#8ba6b5;font-weight:800}.geometry-panel-head strong{display:block;margin-top:8px;font-size:23px;line-height:1.2;letter-spacing:-.03em}.geometry-options{display:grid;flex:1;grid-template-rows:repeat(5,minmax(54px,1fr))}.geometry-option{font:inherit;text-align:left;border:0;border-bottom:1px solid #2c4755;color:#fff;background:transparent;display:grid;grid-template-columns:35px minmax(0,1fr) auto;align-items:center;gap:10px;padding:11px 16px 11px 23px;cursor:pointer;transition:background .2s}.geometry-option:hover,.geometry-option:focus-visible{background:#173342}.geometry-option.is-active{background:#183644;box-shadow:inset 3px 0 0 var(--orange)}.geometry-option-num{font-size:11px;font-weight:800;color:var(--orange)}.geometry-option-label strong{display:block;font-size:15px;line-height:1.25}.geometry-option-label small{display:block;margin-top:3px;font-size:11px;color:#91a9b7}.geometry-option-action{display:flex;align-items:center;gap:9px;white-space:nowrap;color:#ffab72;font-size:10px;font-weight:750}.geometry-option-arrow{font-size:18px;color:var(--orange);text-align:right}
+  .geometry-panel-link{display:flex;justify-content:space-between;gap:12px;text-decoration:none;color:white;font-size:12px;font-weight:800;padding:16px 23px}.geometry-panel-link span{color:var(--orange);font-size:17px}.geometry-footnote{display:flex;justify-content:space-between;align-items:center;gap:25px;margin-top:16px;padding-top:15px;border-top:1px solid #d6e0e5}.geometry-footnote span{font-size:9px;font-weight:800;letter-spacing:.1em;color:#8799a4;white-space:nowrap}.geometry-footnote p{font-size:12px;color:#687985;line-height:1.5}
+
+  .engineering{background:var(--dark);padding:70px 0;color:white}.dark-head>p,.engineering-intro{color:#a8b9c3}.engineering-intro p{margin-bottom:18px}.inline-link{display:inline-block;color:white;border-bottom:1px solid var(--orange);padding-bottom:7px;font-size:12px;font-weight:800;text-decoration:none}.detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.detail-card{min-width:0;border:1px solid #24404f;background:#0b2635}.detail-image{aspect-ratio:1.6;overflow:hidden;background:#2d3134}.detail-image img{display:block;width:100%;height:100%;object-fit:cover}.detail-text{padding:16px 18px 18px}.detail-text h3{font-size:16px;margin-top:7px}.detail-text p{color:#95aeba;font-size:12px;line-height:1.55;margin-top:6px}
+
+  .specs{background:#eaf0f2;padding:58px 0}.specs-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center}.spec-table{border-top:1px solid #cdd8dd}.spec-table>div{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:17px 0;border-bottom:1px solid #cdd8dd}.spec-table span{color:#6d818e;font-size:10px;font-weight:800;letter-spacing:.08em}.spec-table strong{text-align:right;font-size:15px}
+
+  .contact{background:#f7f8f8;padding:60px 0}.contact-layout{display:flex;justify-content:space-between;align-items:center;gap:40px}.contact h2{margin-top:12px}.contact p{color:#71818b;font-size:13px;margin-top:13px}.contact-actions{width:min(315px,100%);display:grid;gap:10px}.contact-actions .button{width:100%}.email{display:flex;justify-content:space-between;gap:12px;text-decoration:none;color:#233d4c;border-bottom:1px solid #ced8dd;padding:13px 2px;font-size:12px;font-weight:700}.email span{color:var(--orange)}
+
+  @media(max-width:1050px){.geometry-showcase{grid-template-columns:1fr}.geometry-panel{border-left:0;border-top:1px solid #2c4755}.geometry-options{grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:1fr}.geometry-option{grid-template-columns:1fr;gap:6px;padding:13px 10px}.geometry-option-action>span:first-child{display:none}.geometry-option-arrow{display:none}.geometry-option-label small{display:none}.hero-grid{gap:22px}.hero-copy h1{font-size:48px}}
+
+  @media(max-width:740px){.container{width:calc(100% - 32px)}.hero-grid{grid-template-columns:1fr;padding-top:38px}.hero-copy h1{font-size:clamp(38px,10vw,54px);margin-top:19px}.hero-lead{margin-top:16px}.hero-caption{display:none}.hero-visual{height:auto;aspect-ratio:1.45}.hero-foot{font-size:9px;letter-spacing:.04em}.section-heading{display:block}.section-heading>p,.engineering-intro{margin-top:18px}.forms,.engineering{padding:48px 0}.geometry-feature-media{min-height:330px}.geometry-showcase{min-height:0}.geometry-options{grid-template-columns:repeat(5,minmax(0,1fr))}.geometry-option-label strong{font-size:12px}.geometry-panel-head{padding:19px}.geometry-footnote{align-items:start;flex-direction:column;gap:7px}.detail-grid{grid-template-columns:1fr;gap:12px}.detail-image{aspect-ratio:2.1}.specs-layout{grid-template-columns:1fr;gap:25px}.contact-layout{align-items:stretch;flex-direction:column;gap:24px}}
+
+  @media(max-width:470px){.geometry-options{grid-template-columns:repeat(5,minmax(0,1fr))}.geometry-option{padding:12px 4px;justify-items:center;text-align:center}.geometry-option-num{font-size:10px}.geometry-option-label strong{font-size:10px;overflow-wrap:anywhere}.geometry-feature-media{min-height:290px}.hero-foot>span{max-width:190px}.visual-bottom strong{font-size:16px}.spec-table>div{align-items:flex-start;flex-direction:column;gap:7px}.spec-table strong{text-align:left}.contact-actions{width:100%}}
+
+  @media(prefers-reduced-motion:reduce){.geometry-option,.button{transition:none}}
+
+
+  /* Vidljiv poziv za video preko postojeće HERO fotografije. */
+  .inox-hero-video-trigger{position:absolute;z-index:3;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:14px;min-width:225px;max-width:calc(100% - 36px);padding:13px 20px 13px 13px;border:1px solid #ffffff85;border-radius:4px;background:rgba(4,20,30,.88);box-shadow:0 12px 36px #0009;color:#fff;text-align:left;cursor:pointer;backdrop-filter:blur(8px);transition:background .2s,border-color .2s}
+  .inox-hero-video-trigger:hover{background:rgba(8,34,49,.98);border-color:#ff8b3a}
+  .inox-hero-video-trigger:focus-visible,.inox-video-dialog button:focus-visible{outline:3px solid #ff9b59;outline-offset:4px}
+  .inox-hero-video-icon{flex:none;width:58px;height:58px;display:grid;place-items:center;border-radius:50%;background:var(--orange);color:#081925;font-size:22px;padding-left:3px}
+  .inox-hero-video-copy{display:flex;flex-direction:column;gap:5px}
+  .inox-hero-video-copy strong{font-size:16px;line-height:1.2;white-space:nowrap}
+  .inox-hero-video-copy small{font-size:9px;letter-spacing:.12em;color:#bdced8;white-space:nowrap}
+  @media(max-width:470px){.inox-hero-video-trigger{padding:9px 12px 9px 9px;min-width:0;gap:10px}.inox-hero-video-icon{width:46px;height:46px;font-size:18px}.inox-hero-video-copy strong{font-size:13px}.inox-hero-video-copy small{font-size:8px}}
+  .inox-video-dialog{position:fixed;inset:0;margin:auto;width:min(1000px,calc(100vw - 32px));max-width:none;max-height:calc(100vh - 32px);padding:0;border:1px solid #385260;background:#071b28;color:#fff;box-shadow:0 30px 100px #000b;overflow:auto}
+  .inox-video-dialog::backdrop{background:rgba(0,9,16,.82)}
+  .inox-video-bar,.inox-video-controls{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 18px;font-size:11px;letter-spacing:.08em}
+  .inox-video-bar button,.inox-video-controls button{background:transparent;color:white;border:1px solid #536e7b;padding:8px 12px;font:inherit;font-size:12px;cursor:pointer}
+  .inox-video-bar button span{color:#ff7417;font-size:19px;margin-left:7px}
+  .inox-video-dialog video{display:block;width:100%;aspect-ratio:16/9;height:auto;background:#07111e}
+  .inox-video-controls{color:#afc3cd}
+  @media(max-width:520px){.inox-video-bar strong{font-size:9px;letter-spacing:.02em}.inox-video-bar,.inox-video-controls{padding:10px}.inox-video-controls>span{font-size:9px}}
+
+</style>
+
+<script define:vars={{ geometryForms: forms }}>
+
+  function initGeometryShowcase() {
+
+    const root = document.querySelector('[data-geometry-showcase]');
+
+    if (!root || root.dataset.ready === 'true') return;
+
+    root.dataset.ready = 'true';
+
+    const image = root.querySelector('[data-geometry-image]');
+
+    const feature = root.querySelector('[data-geometry-feature]');
+
+    const name = root.querySelector('[data-geometry-name]');
+
+    const description = root.querySelector('[data-geometry-description]');
+
+    const counter = root.querySelector('[data-geometry-count]');
+
+    const link = root.querySelector('[data-geometry-link]');
+
+    const buttons = [...root.querySelectorAll('[data-geometry-index]')];
+
+    function selectGeometry(button) {
+
+      const index = Number(button.dataset.geometryIndex);
+
+      const form = geometryForms[index];
+
+      if (!form) return;
+
+      if (image.getAttribute('src') !== form.image) {
+
+        image.src = form.image;
+
+        image.alt = form.alt;
+
+      }
+
+      feature.href = form.href;
+
+      name.textContent = form.name;
+
+      description.textContent = form.short;
+
+      counter.textContent = form.number;
+
+      link.href = form.href;
+
+      buttons.forEach((item) => {
+
+        const selected = item === button;
+
+        item.classList.toggle('is-active', selected);
+
+        if (selected) item.setAttribute('aria-current','true'); else item.removeAttribute('aria-current');
+
+      });
+
     }
-    .forms-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  @media (max-width: 980px) {
-    .hero__content {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-    .hero__specs {
-      display: none;
-    }
-    .intro {
-      grid-template-columns: 1fr;
-      gap: 24px;
-      padding: 30px 0;
-    }
-    .feature-duo__grid {
-      grid-template-columns: 1fr;
-    }
-    .feature-card {
-      min-height: 480px;
-    }
-    .feature-card--geometry .feature-card__content {
-      width: 70%;
-    }
-    .applications__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    .steps {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px 0;
-    }
-    .steps article {
-      border-left: 0;
-      border-top: 1px solid #c9d2d8;
-      padding: 18px 0 0;
-    }
-    .steps article:first-child {
-      border-top: 0;
-      padding-top: 0;
-    }
-    .steps article:not(:last-child)::after {
-      display: none;
-    }
-    .cta__inner {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-  @media (max-width: 768px) {
-    .forms-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (max-width: 640px) {
-    .wrap {
-      width: min(100% - 24px, 1440px);
-    }
-    .hero {
-      min-height: 580px;
-    }
-    .hero__content {
-      padding-top: 100px;
-      padding-bottom: 40px;
-    }
-    .hero h1 {
-      font-size: 32px;
-    }
-    .hero__lead {
-      font-size: 14px;
-    }
-    .intro {
-      padding: 24px 0;
-    }
-    .forms-section,
-    .feature-duo,
-    .applications,
-    .process {
-      padding: 48px 0;
-    }
-    .section-head {
-      display: block;
-      margin-bottom: 24px;
-    }
-    .section-head > p {
-      margin-top: 14px;
-    }
-    .forms-grid {
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-    .feature-card {
-      min-height: 440px;
-    }
-    .feature-card__content,
-    .feature-card--geometry .feature-card__content {
-      padding: 24px;
-      width: 100%;
-    }
-    .feature-card__facts {
-      grid-template-columns: 1fr;
-    }
-    .feature-card__facts span,
-    .feature-card__facts span:nth-child(2n) {
-      border-right: 0;
-      padding-left: 0;
-    }
-    .feature-card__facts span:nth-child(n + 2) {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .applications__grid {
-      grid-template-columns: 1fr;
-    }
-    .steps {
-      grid-template-columns: 1fr;
-    }
-    .cta {
-      min-height: 340px;
-    }
-    .cta > img {
-      object-position: 60% center;
-    }
-    .cta__inner {
-      padding: 40px 0;
-    }
+
+    buttons.forEach((button) => {
+
+      // Desktop: samo pređi mišem preko forme, bez klika.
+
+      button.addEventListener('pointerenter', (event) => {
+
+        if (event.pointerType === 'mouse' || event.pointerType === 'pen') {
+
+          selectGeometry(button);
+
+        }
+
+      });
+
+      // Tastatura: fokus daje isti pregled.
+
+      button.addEventListener('focus', () => selectGeometry(button));
+
+      // Klik bilo gde na redu otvara stranicu proizvoda.
+
+    });
+
   }
 
-  /* =====================================================
-     HYBRID PREMIUM / INOX 2.0
-     Dorada u jednom fajlu, bez dodatnog JavaScripta.
-     ===================================================== */
-  .inox-page {
-    --premium-ink: #071725;
-    --premium-soft: #f7f8f8;
-    --premium-steel: #758592;
+  initGeometryShowcase();
+
+  document.addEventListener('astro:page-load', initGeometryShowcase);
+
+</script>
+
+<script>
+  function initInoxVideoDialog() {
+    const trigger = document.querySelector('[data-open-inox-video]');
+    const dialog = document.querySelector('[data-inox-video-dialog]');
+    const video = document.querySelector('[data-inox-video]');
+    const close = document.querySelector('[data-close-inox-video]');
+    const toggle = document.querySelector('[data-toggle-inox-video]');
+    if (!(trigger instanceof HTMLButtonElement) || !(dialog instanceof HTMLDialogElement) || !(video instanceof HTMLVideoElement) || !(close instanceof HTMLButtonElement) || !(toggle instanceof HTMLButtonElement)) return;
+    if (dialog.dataset.ready === 'true') return;
+    dialog.dataset.ready = 'true';
+    const update = () => { toggle.textContent = video.paused ? 'Pokreni video' : 'Pauziraj video'; };
+    trigger.addEventListener('click', () => {
+      if (dialog.open) return;
+      dialog.showModal();
+      video.muted = true;
+      video.volume = 0;
+      video.play().catch(update);
+      update();
+    });
+    close.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', () => { video.pause(); video.currentTime = 0; update(); });
+    toggle.addEventListener('click', () => {
+      video.muted = true;
+      video.volume = 0;
+      if (video.paused) video.play().catch(update);
+      else video.pause();
+      update();
+    });
+    video.addEventListener('play', update);
+    video.addEventListener('pause', update);
   }
-  .inox-page :is(a, button):focus-visible {
-    outline: 3px solid #ff8b38;
-    outline-offset: 4px;
-  }
-  .hero {
-    min-height: min(860px, 94svh);
-    overflow: hidden;
-    align-items: flex-end;
-    border-bottom: 1px solid rgba(255, 255, 255, .15);
-  }
-  .hero__video {
-    transform: scale(1.025);
-  }
-  .hero__shade {
-    background:
-      linear-gradient(90deg, rgba(3, 16, 28, .88) 0%, rgba(3, 16, 28, .65) 37%, rgba(3, 16, 28, .15) 80%),
-      linear-gradient(0deg, rgba(3, 16, 28, .94) 0%, rgba(3, 16, 28, .15) 45%);
-  }
-  .hero__content {
-    position: relative;
-    width: min(1320px, calc(100% - 48px));
-    padding-top: 180px;
-    padding-bottom: 182px;
-    gap: 72px;
-    grid-template-columns: minmax(0, 730px) minmax(0, 250px);
-  }
-  .hero h1 {
-    font-size: clamp(43px, 5.1vw, 76px);
-    max-width: 850px;
-    letter-spacing: -.052em;
-    line-height: 1.015;
-  }
-  .hero__lead {
-    max-width: 620px;
-    color: #e0e7eb;
-    font-size: clamp(15px, 1.25vw, 17px);
-    line-height: 1.65;
-  }
-  .hero__specs {
-    padding: 14px 0 14px 24px;
-    background: linear-gradient(90deg, rgba(2, 15, 26, .54), transparent);
-    gap: 21px;
-  }
-  .hero__specs strong { font-size: 15px; }
-  .hero__quicknav {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(3, 16, 28, .82);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border-top: 1px solid rgba(255,255,255,.19);
-    z-index: 4;
-  }
-  .hero__quicknav-inner {
-    display: grid;
-    grid-template-columns: 142px repeat(5, minmax(0, 1fr));
-    align-items: stretch;
-    width: min(1320px, calc(100% - 48px));
-  }
-  .hero__quicknav-caption {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2px;
-    color: #b5c5d0;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .14em;
-  }
-  .hero__quicknav-caption strong {
-    color: var(--orange);
-    font-size: 22px;
-    letter-spacing: -.02em;
-  }
-  .hero__quicknav a {
-    display: flex;
-    align-items: center;
-    min-height: 91px;
-    padding: 20px 12px;
-    border-left: 1px solid rgba(255,255,255,.12);
-    color: #eef3f5;
-    gap: 9px;
-    text-decoration: none;
-    transition: background-color .2s ease;
-  }
-  .hero__quicknav a:hover { background: rgba(255,105,0,.14); }
-  .hero__quicknav a span {
-    color: var(--orange);
-    font-size: 10px;
-    font-weight: 800;
-  }
-  .hero__quicknav a strong {
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.3;
-  }
-  .hero__quicknav a b {
-    color: var(--orange);
-    margin-left: auto;
-    font-size: 15px;
-  }
-  .intro {
-    padding-block: clamp(72px, 7vw, 112px);
-    grid-template-columns: .95fr 1.05fr;
-    gap: clamp(36px, 5vw, 88px);
-  }
-  .intro h2, .section-head h2, .process h2 {
-    font-size: clamp(34px, 3.7vw, 52px);
-  }
-  .intro__text > p {
-    font-size: 16px;
-    line-height: 1.85;
-  }
-  .intro__metrics {
-    margin-top: 35px;
-    border-bottom: none;
-  }
-  .intro__metrics div { padding-top: 18px; }
-  .intro__metrics strong { font-size: 24px; }
-  .intro__metrics span { font-size: 12px; }
-  .forms-section {
-    padding-block: clamp(68px, 7vw, 106px);
-    scroll-margin-top: 90px;
-    background: #eff2f3;
-  }
-  .forms-section .section-head { margin-bottom: 42px; }
-  .forms-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 18px;
-  }
-  .form-card {
-    min-width: 0;
-    border-color: #dbe3e8;
-    border-radius: 2px;
-    box-shadow: 0 9px 28px rgba(6,19,31,.055);
-  }
-  .form-card:first-child {
-    grid-column: span 2;
-    grid-row: span 2;
-    background: #fbfbfa;
-  }
-  .form-card__image {
-    aspect-ratio: 1.2;
-    min-height: 190px;
-    padding: 12px;
-    background: radial-gradient(circle at 58% 42%, #fff, #f0f1f0);
-  }
-  .form-card:first-child .form-card__image {
-    flex: 1;
-    aspect-ratio: auto;
-    min-height: 390px;
-    padding: clamp(14px, 2.5vw, 35px);
-  }
-  .form-card__body { padding: 22px; }
-  .form-card:first-child .form-card__body { padding: 26px 30px 32px; flex: 0; }
-  .form-card h3 { font-size: clamp(16px, 1.3vw, 21px); }
-  .form-card:first-child h3 { font-size: clamp(23px, 2.3vw, 32px); }
-  .form-card__link { font-size: 11px; }
-  .feature-duo {
-    padding-block: clamp(68px, 7vw, 108px);
-    background: #061521;
-  }
-  .studio__heading {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: end;
-    margin-bottom: 36px;
-  }
-  .studio__heading h2 {
-    max-width: 780px;
-    margin-top: 12px;
-    color: #fff;
-    font-size: clamp(34px, 4.3vw, 62px);
-    line-height: 1.04;
-    letter-spacing: -.05em;
-    font-weight: 800;
-  }
-  .studio__heading h2 em { color: var(--orange); font-style: normal; }
-  .studio__heading p {
-    max-width: 480px;
-    color: #aebfc9;
-    font-size: 15px;
-    line-height: 1.75;
-  }
-  .feature-duo__grid { gap: 22px; }
-  .feature-card { min-height: 575px; }
-  .feature-card__content { padding: clamp(25px, 3vw, 46px); box-sizing: border-box; }
-  .feature-card--geometry .feature-card__content { width: 70%; }
-  .feature-card__content > p { font-size: 14px; }
-  .applications { padding-block: clamp(70px, 8vw, 120px); }
-  .applications__grid {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: 25px;
-  }
-  .applications figure { grid-column: span 4; min-width: 0; }
-  .applications figure:nth-child(-n+2) { grid-column: span 6; }
-  .application__image { aspect-ratio: 1.55; border-radius: 2px; }
-  .applications figure:nth-child(-n+2) .application__image { aspect-ratio: 1.55; }
-  .applications figcaption { padding-top: 14px; }
-  .applications figcaption strong { font-size: 16px; }
-  .applications figcaption span { font-size: 10px; }
-  .process { padding-block: clamp(70px, 7vw, 106px); }
-  .steps { margin-top: 50px; }
-  .steps article { min-height: 160px; }
-  .steps h3 { font-size: 16px; }
-  .steps p { font-size: 13px; line-height: 1.6; }
-  .cta { min-height: 350px; }
-  .cta h2 { font-size: clamp(32px, 3.6vw, 50px); }
-  .cta p { font-size: 15px; }
-  @media (max-width: 1180px) {
-    .hero__quicknav-inner { grid-template-columns: repeat(5, minmax(0,1fr)); }
-    .hero__quicknav-caption { display: none; }
-    .hero__quicknav a { padding: 15px 9px; }
-    .forms-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    .form-card:first-child { grid-column: span 2; grid-row: auto; }
-    .form-card:first-child .form-card__image { min-height: 320px; aspect-ratio: 2.1; }
-    .feature-card--geometry .feature-card__content { width: 85%; }
-  }
-  @media (max-width: 980px) {
-    .hero__content { grid-template-columns: 1fr; gap: 26px; padding-top: 135px; padding-bottom: 142px; }
-    .hero__specs { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); padding: 16px; border-left: 0; border-top: 1px solid rgba(255,255,255,.22); }
-    .hero { min-height: 780px; }
-    .intro { grid-template-columns: 1fr; }
-    .studio__heading { grid-template-columns: 1fr; gap: 15px; }
-    .feature-card--geometry .feature-card__content { width: 75%; }
-    .applications figure, .applications figure:nth-child(-n+2) { grid-column: span 6; }
-  }
-  @media (max-width: 640px) {
-    .hero { min-height: 705px; }
-    .hero__content { width: min(100% - 28px, 1320px); padding-top: 110px; padding-bottom: 132px; }
-    .hero h1 { font-size: clamp(32px, 8.8vw, 47px); }
-    .hero__specs { grid-template-columns: 1fr 1fr; gap: 12px; }
-    .hero__specs strong { font-size: 12px; }
-    .hero__specs span { font-size: 9px; }
-    .hero__quicknav { overflow-x: auto; scrollbar-width: thin; }
-    .hero__quicknav-inner { width: max-content; min-width: 100%; grid-template-columns: repeat(5, 145px); }
-    .hero__quicknav a { min-height: 76px; }
-    .forms-grid { grid-template-columns: 1fr; }
-    .form-card:first-child { grid-column: span 1; }
-    .form-card:first-child .form-card__image { min-height: 260px; aspect-ratio: 1.3; }
-    .studio__heading h2 { font-size: 37px; }
-    .feature-card, .feature-card--geometry { min-height: 490px; }
-    .feature-card--geometry .feature-card__content { width: 100%; }
-    .applications figure, .applications figure:nth-child(-n+2) { grid-column: span 12; }
-    .steps article { min-height: auto; padding-bottom: 12px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .form-card, .feature-card > img, .application__image img { transition: none; }
-  }
-</style>
+  initInoxVideoDialog();
+  document.addEventListener('astro:page-load', initInoxVideoDialog);
+</script>

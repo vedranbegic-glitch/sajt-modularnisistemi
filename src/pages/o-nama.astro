@@ -1,724 +1,205 @@
 ---
+
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { CONTACT } from '../data/siteData';
 
-const canonicalURL = 'https://modularnisistemi.com/o-nama/';
-const pageTitle = 'O nama · Inženjerski pristup';
-const pageDescription = 'Ne prodajemo samo proizvod. Projektujemo rešenje prema prostoru. Saznajte više o inženjerskom pristupu brenda MODULARNI SISTEMI.';
-const ogImage = '/images/inox/pejzazni-lucni-inox-kanal-perforirana-resetka-parter.webp';
 
-const koraci = [
-  {
-    num: '01',
-    title: 'Upit i crtež',
-    text: 'Pošaljete nam crtež, skicu ili samo opis prostora. Dovoljno je da znamo šta gradite i šta vam je potrebno.',
-  },
-  {
-    num: '02',
-    title: 'Inženjerska analiza',
-    text: 'Naš inženjer pregleda zadate dimenzije, padove i opterećenja i predlaže rešenje prilagođeno vašem objektu.',
-  },
-  {
-    num: '03',
-    title: 'Fabrička izrada',
-    text: 'Elementi se izrađuju prema usvojenom crtežu, sa kontrolisanim tolerancijama, kako bi se na terenu montirali bez improvizacije.',
-  },
-  {
-    num: '04',
-    title: 'Montaža i podrška',
-    text: 'Tokom ugradnje ostajemo na raspolaganju izvođaču i projektantu za sva pitanja i dopune.',
-  },
+
+const steps = [
+
+  { number: '01', title: 'Razumevanje zadatka', description: 'Polazimo od namene, prostora, skice, crteža ili konkretnog tehničkog problema.' },
+
+  { number: '02', title: 'Razrada konstrukcije', description: 'Usklađujemo geometriju, materijale, mehanizme i način povezivanja elemenata.' },
+
+  { number: '03', title: 'Projektovanje i priprema', description: 'Razrađujemo model i detalje potrebne za proizvodnju i proveru rešenja.' },
+
+  { number: '04', title: 'Izrada i realizacija', description: 'Od usaglašene konstrukcije prelazimo na izradu i praktičnu primenu.' },
+
 ];
+
+
+
+const disciplines = [
+
+  { number: '01', label: 'PROIZVODNI SISTEMI', title: 'Inox odvodnjavanje', copy: 'Od pravih linija do složenih geometrija. Konstrukcija i dimenzije prema konkretnom zadatku.', href: '/inox-sistemi-odvodnjavanja/' },
+
+  { number: '02', label: 'MODULARNE KONSTRUKCIJE', title: 'Čelične podkonstrukcije', copy: 'Čelična osnova za podeste, platforme, tehničke i industrijske površine. Završna obloga po izboru.', href: '/proizvodi/' },
+
+  { number: '03', label: 'PROIZVOD I FUNKCIJA', title: 'Fire Pit Grill', copy: 'Proizvod u kome se čelična konstrukcija, obrada materijala i funkcija susreću u jednoj celini.', href: '/fire-pit-grill/' },
+
+  { number: '04', label: 'INŽENJERSKE USLUGE', title: 'Projektovanje i mašinska izrada', copy: 'Modelovanje, mehanizmi, pneumatska i elektromehanička rešenja — pristup prema potrebama projekta.', href: '/kontakt/' },
+
+];
+
 ---
 
+
+
 <BaseLayout
-  title={pageTitle}
-  description={pageDescription}
-  canonical={canonicalURL}
-  ogImage={ogImage}
+
+  title="O nama · Inženjering i proizvodnja"
+
+  description="Modularni Sistemi — projektovanje, konstrukcija i izrada proizvoda i tehničkih rešenja prema konkretnom zadatku. Inox sistemi, čelične podkonstrukcije i mašinska izrada."
+
+  canonical="https://modularnisistemi.com/o-nama/"
+
+  ogImage="/images/inox/s-forma-tehnicki-list.webp"
+
 >
-  <div class="onama-page">
-    <!-- HERO SEKCIJA (BEZ SLIKA, AKCENAT NA TEKSTU) -->
-    <section class="hero">
-      <div class="hero__glow"></div>
-      <div class="hero__grid"></div>
 
-      <div class="hero__content wrap">
-        <div class="hero__copy">
-          <div class="eyebrow">
-            <span></span>
-            Inženjering · Arhitektura · Modularnost
+  <div class="about-page">
+
+    <section class="about-hero" aria-labelledby="about-title">
+
+      <div class="wrap hero-grid">
+
+        <div class="hero-copy">
+
+          <div class="eyebrow">MODULARNI SISTEMI / PREMIUM ENGINEERING</div>
+
+          <h1 id="about-title">Razmišljamo kroz <span>konstrukciju.</span></h1>
+
+          <p class="hero-lead">Od prve ideje do funkcionalnog rešenja. Spajamo projektovanje, tehničku razradu i izradu proizvoda koji odgovaraju stvarnom zadatku.</p>
+
+          <div class="hero-actions">
+
+            <a class="button-primary" href="/proizvodi/">Istražite proizvode <span aria-hidden="true">↗</span></a>
+
+            <a class="button-outline" href="/kontakt/">Kontaktirajte nas <span aria-hidden="true">↗</span></a>
+
           </div>
 
-          <h1>
-            Tehnička preciznost.<br />
-            <em>Inženjerski pristup prostoru.</em>
-          </h1>
+          <div class="hero-motto"><span></span> OBLIK. FUNKCIJA. KONSTRUKCIJA.</div>
 
-          <p class="hero__lead">
-            Ne prodajemo samo proizvod. Projektujemo rešenje prema prostoru.
-            Specijalizovani smo za razvoj i proizvodnju preciznih modularnih sistema u oblastima
-            linijskog i radijalnog inox odvodnjavanja, savremene arhitektonske rasvete,
-            monoblok podova i Fire Pit Grill ložišta.
-          </p>
-
-          <div class="hero__actions">
-            <a class="btn btn--orange" href="/proizvodi/">
-              Pogledajte sisteme <b>→</b>
-            </a>
-            <a class="btn btn--ghost" href="/posaljite-projekat/">
-              Pošaljite nam projekat <b>↗</b>
-            </a>
-          </div>
         </div>
 
-        <div class="hero__specs">
-          <div>
-            <strong>01 / PREFABRIKACIJA</strong>
-            <span>Fabrički kontrolisane tolerancije</span>
+        <div class="hero-board" aria-label="Naš inženjerski pristup">
+
+          <div class="board-top"><span>MS / ENGINEERING STUDY</span><span>01 — 04</span></div>
+
+          <div class="board-body">
+
+            <div class="board-caption">OD IDEJE DO IZRADE</div>
+
+            <div class="board-statement">Rešenje prati <span>zadatak.</span></div>
+
+            <div class="board-lines" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
           </div>
-          <div>
-            <strong>02 / MATERIJALI</strong>
-            <span>AISI 304/316 i toplo pocinkovani čelik</span>
-          </div>
-          <div>
-            <strong>03 / BEZ KOMPROMISA</strong>
-            <span>Forma prati crtež, a ne obrnuto</span>
-          </div>
-          <div>
-            <strong>04 / PODRŠKA PARTNERIMA</strong>
-            <span>Direktna veza sa inženjerskim timom</span>
-          </div>
+
+          <div class="board-bottom"><span>PROJEKTOVANJE / KONSTRUKCIJA / IZRADA</span><span>↗</span></div>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- INŽENJERSKI MANIFEST (DVE KOLONE) -->
-    <section class="manifest-section">
-      <div class="wrap manifest-grid">
-        <div class="manifest-left">
-          <div class="eyebrow">
-            <span></span>
-            Naša filozofija
-          </div>
-          <h2>Sistemi konfigurisani prema <em>zahtevima gradilišta.</em></h2>
 
-          <p class="manifest-desc">
-            Standardni serijski proizvodi često nameću nepotrebne kompromise na terenu:
-            sečenje gotovih profila, nepravilno lomljenje krivina, vidljive spojnice i trajni
-            rizik od curenja vode u slojeve hidroizolacije.
-          </p>
 
-          <p class="manifest-desc">
-            <strong>MODULARNI SISTEMI</strong> postavlja suprotan inženjerski princip. Polazimo direktno od geometrije vašeg crteža. Kroz saradnju sa arhitektama, konstruktivnim inženjerima i izvođačima definišemo dužine segmenata, radijuse i pozicije odvoda pre početka proizvodnje.
-          </p>
+    <section class="statement section-light" aria-labelledby="statement-title">
 
-          <div class="quote-box">
-            <span class="quote-tag">Suština modularnog razmišljanja</span>
-            <p>
-              „Prefabrikovani elementi sa fabrički kontrolisanim tolerancijama omogućavaju brzu montažu bez improvizacija, uz postizanje monolitnog vizuelnog sklada u završnoj oblozi poda."
-            </p>
-          </div>
-        </div>
-
-        <div class="manifest-right">
-          <div class="value-card">
-            <span class="value-num">01 / GEOMETRIJSKO PRILAGOĐAVANJE</span>
-            <h3>Forma prati arhitekturu</h3>
-            <p>
-              Projektujemo pravolinijske kanale, radijalne segmente po meri i uske podužne proreze koji precizno prate ivice bazena, fasada i popločanih platoa.
-            </p>
-          </div>
-
-          <div class="value-card">
-            <span class="value-num">02 / POUZDANOST MATERIJALA</span>
-            <h3>Otpornost na agresivna okruženja</h3>
-            <p>
-              Izrada od nerđajućeg čelika (AISI 304 i kiselootpornog AISI 316) obezbeđuje dugovečnost u kontaktu sa bazenskom vodom, industrijskim tečnostima i solima.
-            </p>
-          </div>
-
-          <div class="value-card">
-            <span class="value-num">03 / SARADNJA SA STRUČNJACIMA</span>
-            <h3>Direktna inženjerska veza</h3>
-            <p>
-              Svaki upit preuzima inženjer koji analizira zadate padove, protoke i opterećenja i priprema tehničku specifikaciju spremnu za izvođenje.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- NAČIN RADA -->
-    <section class="process-section">
       <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">
-              <span></span>
-              Način rada
-            </div>
-            <h2>Od crteža do <em>gotovog sistema.</em></h2>
-          </div>
-          <p>
-            Jasan tok saradnje u četiri koraka, od prvog upita do ugradnje na objektu.
-          </p>
+
+        <div class="section-heading">
+
+          <div><div class="eyebrow">NAŠ PRISTUP</div><h2 id="statement-title">Ne polazimo od šablona.<br /><span>Polazimo od zadatka.</span></h2></div>
+
+          <p>Svaki prostor, proces ili proizvod postavlja drugačije zahteve. Naš pristup je da prvo razumemo funkciju, a zatim razvijemo odgovarajuću konstrukciju.</p>
+
         </div>
 
-        <div class="process-grid">
-          {koraci.map((k) => (
-            <div class="process-card">
-              <span class="process-num">{k.num}</span>
-              <h3>{k.title}</h3>
-              <p>{k.text}</p>
-            </div>
+        <div class="principle-grid">
+
+          <article class="principle-primary"><span class="mini">01 / OSNOVNI PRINCIP</span><h3>Sistem se prilagođava prostoru.<br /><em>Ne prostor sistemu.</em></h3><p>Geometrija, materijal i detalji izrade određuju se prema nameni — umesto prilagođavanja projekta unapred zadatom obliku.</p></article>
+
+          <div class="principle-stack"><article><span class="mini">02 / PRECIZNOST</span><h3>Detalj ima svoju funkciju.</h3><p>Posebnu pažnju posvećujemo spojevima, završecima, osloncima i načinu montaže.</p></article><article><span class="mini">03 / FLEKSIBILNOST</span><h3>Od proizvoda do posebnog rešenja.</h3><p>Jednako ozbiljno pristupamo razradi sistema i pojedinačnog tehničkog zadatka.</p></article></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <section class="capabilities section-dark" aria-labelledby="capabilities-title">
+
+      <div class="wrap">
+
+        <div class="section-heading"><div><div class="eyebrow">OBLASTI RADA</div><h2 id="capabilities-title">Različiti zadaci.<br /><span>Jedan inženjerski pristup.</span></h2></div><p>Naš rad nije ograničen na jedan proizvodni program. Iza svake oblasti stoje konstrukcija, razrada i primena.</p></div>
+
+        <div class="discipline-list">
+
+          {disciplines.map((item) => (
+
+            <a href={item.href} class="discipline-item"><span class="discipline-num">{item.number}</span><span class="discipline-info"><span class="mini">{item.label}</span><strong>{item.title}</strong><span class="discipline-copy">{item.copy}</span></span><span class="discipline-arrow" aria-hidden="true">↗</span></a>
+
           ))}
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- CTA BANER IZNAD FOOTERA (BEZ SLIKE) -->
-    <section class="cta">
-      <div class="cta__glow"></div>
-      <div class="wrap cta__inner">
-        <div>
-          <div class="eyebrow">
-            <span></span>
-            Projektantski dijalog
-          </div>
-          <h2>Planirate nov objekat <em>ili rekonstrukciju?</em></h2>
-          <p>
-            Povežite nas sa vašim projektantskim timom u ranoj fazi kako bismo zajednički
-            definisali optimalne drenažne, svetlosne i podne linije bez improvizacija na terenu.
-          </p>
-        </div>
-        <div class="cta__actions">
-          <a class="btn btn--orange" href="/posaljite-projekat/">
-            Pošaljite nacrt na analizu <b>→</b>
-          </a>
-          <a class="btn btn--ghost" href={`tel:${CONTACT.phoneFormatted || '+38166241386'}`}>
-            Pozovite: {CONTACT.phone || '066 241 386'} <b>↗</b>
-          </a>
-        </div>
+
+
+    <section class="process section-light" aria-labelledby="process-title">
+
+      <div class="wrap">
+
+        <div class="section-heading"><div><div class="eyebrow">NAČIN RADA</div><h2 id="process-title">Prvo razumevanje.<br /><span>Zatim realizacija.</span></h2></div><p>Jasan sled od prve informacije do izrade. Obim tehničke razrade prilagođavamo složenosti zadatka.</p></div>
+
+        <div class="steps">{steps.map((step) => (<article class="step"><span class="step-num">{step.number}</span><h3>{step.title}</h3><p>{step.description}</p></article>))}</div>
+
       </div>
+
     </section>
+
+
+
+    <section class="about-cta" aria-labelledby="cta-title"><div class="wrap cta-grid"><div><div class="eyebrow">VAŠ ZADATAK / NAŠA KONSTRUKCIJA</div><h2 id="cta-title">Imate ideju?<br /><span>Razradimo rešenje.</span></h2><p>Fotografija, skica, crtež ili opis problema dovoljni su za početak razgovora.</p></div><div class="cta-links"><a class="button-primary" href="/kontakt/">Pošaljite upit <span aria-hidden="true">↗</span></a><a class="email-link" href="mailto:kontakt@modularnisistemi.com">kontakt@modularnisistemi.com <span aria-hidden="true">↗</span></a></div></div></section>
+
   </div>
 
-  <style>
-    :global(html) {
-      scroll-behavior: smooth;
-    }
-
-    :global(body) {
-      margin: 0;
-      background: #f6f7f9;
-      color: #07111e;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .onama-page {
-      --navy: #06131f;
-      --navy2: #0b1d2b;
-      --orange: #ff6900;
-      --orange-hover: #e85e00;
-      --line: #dce2e7;
-      --muted: #64717c;
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    .wrap {
-      width: min(1280px, calc(100% - 40px));
-      margin-inline: auto;
-    }
-
-    h1, h2, h3, p {
-      margin: 0;
-    }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--orange);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow span {
-      display: inline-block;
-      width: 20px;
-      height: 2px;
-      background: var(--orange);
-      flex-shrink: 0;
-    }
-
-    em {
-      font-style: normal;
-      color: var(--orange);
-    }
-
-    /* ========== HERO ========== */
-    .hero {
-      position: relative;
-      min-height: 560px;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
-      color: #fff;
-      isolation: isolate;
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
-    }
-
-    .hero__glow {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 70% at 85% 20%, rgba(255, 105, 0, 0.16), transparent 70%),
-        radial-gradient(ellipse 50% 60% at 10% 100%, rgba(255, 255, 255, 0.05), transparent 70%);
-      z-index: -2;
-    }
-
-    .hero__grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: linear-gradient(90deg, black, transparent 80%);
-      -webkit-mask-image: linear-gradient(90deg, black, transparent 80%);
-      z-index: -1;
-    }
-
-    .hero__content {
-      padding-top: 120px;
-      padding-bottom: 64px;
-      display: grid;
-      grid-template-columns: minmax(0, 720px) 1fr;
-      gap: 50px;
-      align-items: end;
-    }
-
-    .hero h1 {
-      margin-top: 18px;
-      max-width: 860px;
-      font-size: clamp(36px, 4.4vw, 56px);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .hero__lead {
-      margin-top: 20px;
-      max-width: 640px;
-      color: #d4dee4;
-      font-size: 15px;
-      line-height: 1.65;
-    }
-
-    .hero__actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 32px;
-    }
-
-    .btn {
-      min-height: 48px;
-      padding: 0 24px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: all 0.25s ease;
-      cursor: pointer;
-    }
-
-    .btn b {
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .btn--orange {
-      background: var(--orange);
-      color: #fff;
-      border: 1px solid var(--orange);
-    }
-
-    .btn--orange:hover {
-      background: var(--orange-hover);
-      border-color: var(--orange-hover);
-      transform: translateY(-2px);
-    }
-
-    .btn--ghost {
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      color: #fff;
-      background: rgba(0, 0, 0, 0.15);
-    }
-
-    .btn--ghost:hover {
-      background: #fff;
-      color: var(--navy);
-      border-color: #fff;
-    }
-
-    .hero__specs {
-      border-left: 1px solid rgba(255, 255, 255, 0.2);
-      padding-left: 28px;
-      display: grid;
-      gap: 20px;
-    }
-
-    .hero__specs strong {
-      display: block;
-      font-size: 14px;
-      letter-spacing: 0.03em;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .hero__specs span {
-      display: block;
-      margin-top: 4px;
-      color: #94a3ad;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-    }
-
-    /* ========== MANIFEST ========== */
-    .manifest-section {
-      padding: 88px 0;
-      background: #fff;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .manifest-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
-      gap: 56px;
-      align-items: start;
-    }
-
-    .manifest-left h2 {
-      margin-top: 12px;
-      font-size: clamp(28px, 3.2vw, 42px);
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      color: #07111e;
-    }
-
-    .manifest-desc {
-      margin-top: 18px;
-      font-size: 15px;
-      line-height: 1.7;
-      color: #55636e;
-    }
-
-    .manifest-desc strong {
-      color: #07111e;
-    }
-
-    .quote-box {
-      margin-top: 30px;
-      padding: 24px;
-      background: #f6f7f9;
-      border-left: 3px solid var(--orange);
-      border-radius: 2px;
-    }
-
-    .quote-tag {
-      display: block;
-      color: var(--orange);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .quote-box p {
-      font-size: 14px;
-      line-height: 1.65;
-      font-style: italic;
-      color: #07111e;
-    }
-
-    .manifest-right {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .value-card {
-      background: #f6f7f9;
-      border: 1px solid var(--line);
-      border-radius: 2px;
-      padding: 26px;
-      transition: all 0.25s ease;
-    }
-
-    .value-card:hover {
-      border-color: var(--orange);
-      background: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(6, 19, 31, 0.05);
-    }
-
-    .value-num {
-      color: var(--orange);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .value-card h3 {
-      font-size: 16px;
-      font-weight: 800;
-      color: #07111e;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-    }
-
-    .value-card p {
-      margin-top: 8px;
-      font-size: 13.5px;
-      line-height: 1.6;
-      color: #55636e;
-    }
-
-    /* ========== NAČIN RADA ========== */
-    .process-section {
-      padding: 88px 0;
-      background: #eef1f4;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 36px;
-      margin-bottom: 36px;
-    }
-
-    .section-head > div {
-      max-width: 680px;
-    }
-
-    .section-head > p {
-      max-width: 360px;
-      padding-bottom: 4px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
-    .section-head h2 {
-      margin-top: 12px;
-      font-size: clamp(30px, 3.4vw, 46px);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      color: #07111e;
-    }
-
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .process-card {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-top: 3px solid var(--orange);
-      border-radius: 2px;
-      padding: 26px 22px 28px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 16px rgba(6, 19, 31, 0.04);
-    }
-
-    .process-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 36px rgba(6, 19, 31, 0.09);
-    }
-
-    .process-num {
-      display: block;
-      color: var(--orange);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-    }
-
-    .process-card h3 {
-      margin-top: 10px;
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      color: #07111e;
-    }
-
-    .process-card p {
-      margin-top: 10px;
-      color: #55636e;
-      font-size: 13.5px;
-      line-height: 1.6;
-    }
-
-    /* ========== CTA ========== */
-    .cta {
-      position: relative;
-      min-height: 300px;
-      display: flex;
-      align-items: center;
-      color: #fff;
-      overflow: hidden;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
-      isolation: isolate;
-    }
-
-    .cta__glow {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 50% 90% at 90% 50%, rgba(255, 105, 0, 0.14), transparent 70%);
-      z-index: -1;
-    }
-
-    .cta__inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 36px;
-      padding: 56px 0;
-    }
-
-    .cta h2 {
-      margin-top: 12px;
-      font-size: clamp(26px, 3.3vw, 42px);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .cta p {
-      margin-top: 12px;
-      max-width: 520px;
-      color: #b5c2ca;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .cta__actions {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 1024px) {
-      .manifest-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      .process-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 980px) {
-      .hero__content {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .hero__specs {
-        border-left: 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-        padding-left: 0;
-        padding-top: 24px;
-      }
-
-      .section-head {
-        display: block;
-        margin-bottom: 24px;
-      }
-
-      .section-head > p {
-        margin-top: 12px;
-      }
-
-      .cta__inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .cta__actions {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .wrap {
-        width: min(100% - 24px, 1280px);
-      }
-
-      .hero {
-        min-height: 0;
-      }
-
-      .hero__content {
-        padding-top: 90px;
-        padding-bottom: 40px;
-      }
-
-      .hero h1 {
-        font-size: 32px;
-      }
-
-      .manifest-section,
-      .process-section {
-        padding: 56px 0;
-      }
-
-      .process-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cta__inner {
-        padding: 40px 0;
-      }
-
-      .cta__actions {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .cta__actions .btn {
-        width: 100%;
-      }
-    }
-  </style>
 </BaseLayout>
+
+
+
+<style>
+
+  .about-page{--ink:#061b28;--navy:#061925;--navy-deep:#03111d;--surface:#eef2f4;--orange:#ff6900;--muted:#718694;color:var(--ink);font-family:Manrope,Montserrat,system-ui,sans-serif;overflow:clip}
+
+  .wrap{width:min(1200px,calc(100% - 48px));margin-inline:auto}
+
+  .eyebrow{display:flex;align-items:center;gap:12px;color:var(--orange);font-size:10px;letter-spacing:.14em;font-weight:800;text-transform:uppercase}.eyebrow:before{content:"";height:2px;width:20px;background:var(--orange);flex:none}
+
+  h1,h2,h3,p{margin:0}h1,h2{letter-spacing:-.048em} .about-page a{text-decoration:none} .about-page a:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+
+  .about-hero{background:radial-gradient(circle at 67% 35%,#0b2737,var(--navy) 58%,var(--navy-deep));color:#fff;border-bottom:1px solid #233643}
+
+  .hero-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:center;gap:clamp(42px,6vw,100px);padding-block:75px 65px}
+
+  .hero-copy h1{font-size:clamp(42px,5vw,70px);line-height:1.04;font-weight:800;margin:26px 0 20px;max-width:660px}.hero-copy h1 span{color:var(--orange)}.hero-lead{font-size:15px;line-height:1.75;max-width:465px;color:#aec4d0}.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+
+  .button-primary,.button-outline{min-height:46px;padding:0 20px;display:inline-flex;align-items:center;justify-content:space-between;gap:35px;font-size:12px;font-weight:800;transition:background .2s,color .2s}.button-primary{background:var(--orange);color:#07111e}.button-primary:hover{background:#ff8429}.button-outline{border:1px solid #61717a;color:white}.button-outline:hover{background:#213442}.hero-motto{font-size:10px;color:#7892a2;letter-spacing:.12em;font-weight:700;display:flex;gap:12px;align-items:center;margin-top:44px}.hero-motto span{width:22px;height:1px;background:var(--orange)}
+
+  .hero-board{border:1px solid #35505e;background:#0b2331;min-height:385px;display:flex;flex-direction:column;box-shadow:18px 18px 0 rgba(0,0,0,.12)}.board-top,.board-bottom{display:flex;justify-content:space-between;gap:14px;padding:14px 18px;font-size:10px;letter-spacing:.12em;color:#9db3c0;border-bottom:1px solid #28414f}.board-bottom{border:0;border-top:1px solid #28414f;margin-top:auto}.board-bottom span:last-child{color:var(--orange);font-size:16px}.board-body{position:relative;flex:1;padding:68px 35px 35px;overflow:hidden;background-image:linear-gradient(#ffffff07 1px,transparent 1px),linear-gradient(90deg,#ffffff07 1px,transparent 1px);background-size:30px 30px}.board-caption,.mini{font-size:10px;letter-spacing:.12em;font-weight:800;color:var(--orange);text-transform:uppercase}.board-statement{font-size:clamp(28px,3.2vw,49px);font-weight:800;line-height:1.12;max-width:370px;letter-spacing:-.045em;margin-top:18px;position:relative;z-index:1}.board-statement span{color:var(--orange)}.board-lines{position:absolute;right:-50px;bottom:10px;width:300px;height:170px;transform:rotate(-25deg);opacity:.35}.board-lines i{display:block;height:1px;background:#86adbe;margin:26px 0;transform:skewY(-10deg)}
+
+  .section-light{background:var(--surface)}.section-dark{background:var(--navy);color:white}.statement,.capabilities,.process{padding-block:76px 82px}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:30px}.section-heading h2{font-size:clamp(32px,3.4vw,46px);font-weight:800;line-height:1.13;margin-top:18px}.section-heading h2 span{color:var(--orange)}.section-heading>p{font-size:13px;line-height:1.75;max-width:345px;color:#69808d}.section-dark .section-heading>p{color:#9eb6c3}
+
+  .principle-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:12px}.principle-primary{background:var(--navy);color:white;padding:40px;min-height:315px;display:flex;flex-direction:column;align-items:flex-start}.principle-primary h3{font-size:clamp(25px,2.6vw,38px);line-height:1.17;letter-spacing:-.04em;margin-top:48px}.principle-primary h3 em{color:var(--orange);font-style:normal}.principle-primary p{color:#a5bdca;font-size:13px;line-height:1.7;max-width:540px;margin-top:18px}.principle-stack{display:grid;gap:12px}.principle-stack article{background:white;border:1px solid #d9e1e5;padding:27px 30px}.principle-stack h3{font-size:18px;line-height:1.25;margin-top:10px}.principle-stack p{color:#637885;font-size:13px;line-height:1.65;margin-top:10px}
+
+  .discipline-list{border-top:1px solid #31505f}.discipline-item{display:grid;grid-template-columns:65px 1fr 30px;gap:12px;align-items:center;padding:22px 14px;border-bottom:1px solid #31505f;color:#fff;transition:background .2s}.discipline-item:hover,.discipline-item:focus-visible{background:#123345}.discipline-num{color:var(--orange);font-weight:800;font-size:12px}.discipline-info{display:grid;grid-template-columns:minmax(170px,.65fr) minmax(170px,1fr) 1.6fr;gap:18px;align-items:center}.discipline-info .mini{color:#9bb8c7}.discipline-info strong{font-size:18px}.discipline-copy{color:#a3bac6;line-height:1.65;font-size:12px}.discipline-arrow{font-size:24px;color:var(--orange);text-align:right}
+
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #cfd9dd}.step{padding:25px 22px 10px 0;border-right:1px solid #cfd9dd}.step:not(:first-child){padding-left:22px}.step:last-child{border-right:0}.step-num{display:block;color:var(--orange);font-size:12px;font-weight:800}.step h3{font-size:17px;margin-top:25px}.step p{color:#627987;font-size:13px;line-height:1.7;margin-top:10px}
+
+  .about-cta{background:#071e2b;color:white;padding:62px 0}.cta-grid{display:grid;grid-template-columns:1fr 275px;align-items:center;gap:35px}.cta-grid h2{font-size:clamp(32px,3.5vw,46px);line-height:1.12;margin:16px 0}.cta-grid h2 span{color:var(--orange)}.cta-grid p{color:#a9bdc8;font-size:13px;line-height:1.6}.cta-links{display:grid;gap:14px}.email-link{color:#bed1db;border-bottom:1px solid #3f5865;display:flex;justify-content:space-between;gap:10px;padding:6px 0 12px;font-size:12px}.email-link span{color:var(--orange)}
+
+  @media(max-width:1000px){.hero-grid{gap:30px}.hero-board{min-height:310px}.discipline-info{grid-template-columns:1fr 1.2fr}.discipline-info .mini{grid-column:1/-1}.steps{grid-template-columns:repeat(2,1fr)}.step:nth-child(2){border-right:0}.step:nth-child(n+3){border-top:1px solid #cfd9dd}}
+
+  @media(max-width:720px){.wrap{width:calc(100% - 32px)}.hero-grid{grid-template-columns:1fr;padding-block:46px 45px}.hero-copy h1{font-size:clamp(36px,9.5vw,54px);margin-top:22px}.hero-motto{margin-top:25px}.hero-board{min-height:265px;box-shadow:none}.board-body{padding:38px 20px 25px}.statement,.capabilities,.process{padding-block:54px}.section-heading{display:block}.section-heading>p{margin-top:16px}.principle-grid{grid-template-columns:1fr}.principle-primary{padding:28px;min-height:270px}.principle-primary h3{margin-top:35px}.discipline-item{grid-template-columns:36px 1fr 20px;padding-inline:5px}.discipline-info{grid-template-columns:1fr;gap:6px}.discipline-info .mini{grid-column:auto}.discipline-info strong{font-size:17px}.steps{grid-template-columns:1fr}.step,.step:not(:first-child){padding:22px 0;border-right:0;border-top:1px solid #cfd9dd}.step:first-child{border-top:0}.step h3{margin-top:12px}.cta-grid{grid-template-columns:1fr}.cta-links{max-width:100%}.about-cta{padding:54px 0}}
+
+  @media(prefers-reduced-motion:reduce){.about-page *{transition:none!important;scroll-behavior:auto!important}}
+
+</style>

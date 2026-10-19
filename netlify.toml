@@ -5,20 +5,33 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# Stara adresa stranice za upit vodi na novu
+# Stara adresa za upit vodi na postojecu stranicu za slanje projekta
 [[redirects]]
-  from = "/posaljite-projekat/"
-  to = "/posaljite-upit/"
+  from = "/posaljite-upit/"
+  to = "/posaljite-projekat/"
   status = 301
   force = true
 
 [[redirects]]
-  from = "/posaljite-projekat"
-  to = "/posaljite-upit/"
+  from = "/posaljite-upit"
+  to = "/posaljite-projekat/"
   status = 301
   force = true
 
-# Bezbednosni zaglavlja za ceo sajt
+# Ranija adresa projektantske stranice vodi na novi URL
+[[redirects]]
+  from = "/3d-modelovanje-i-mehanizmi/"
+  to = "/projektovanje-i-3d-modelovanje/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/3d-modelovanje-i-mehanizmi"
+  to = "/projektovanje-i-3d-modelovanje/"
+  status = 301
+  force = true
+
+# Bezbednosna zaglavlja za ceo sajt
 [[headers]]
   for = "/*"
   [headers.values]
@@ -27,13 +40,13 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
-# Astro generiše fajlove sa hešom u imenu, pa se mogu trajno keširati
+# Astro generise fajlove sa hesom u imenu, pa se mogu trajno kesirati
 [[headers]]
   for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Slike se ponekad menjaju pod istim imenom, zato kraći rok
+# Slike se ponekad menjaju pod istim imenom, zato kraci rok
 [[headers]]
   for = "/images/*"
   [headers.values]
