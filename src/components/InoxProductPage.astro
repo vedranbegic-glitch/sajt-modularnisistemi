@@ -98,7 +98,7 @@ const technicalSheetPrefix = slugKey.includes('s-form') ? 's-forma'
 
 const technicalSheetImage = `/images/inox/${technicalSheetPrefix}-tehnicki-list.webp`;
 
-const technicalSheetPdf = `/inox/${technicalSheetPrefix}-tehnicki-list.pdf`;
+const technicalSheetPdf = slugKey.includes('ravni') ? '/inox/ravna-inox-kanalica-tehnicki-list.pdf' : `/inox/${technicalSheetPrefix}-tehnicki-list.pdf`;
 
 const breadcrumbSchema = {
 
@@ -248,7 +248,7 @@ const breadcrumbSchema = {
 
         <div class="sheet-zoom-stage" data-sheet-stage>
 
-          <img src={technicalSheetImage} alt={`Tehnički list u punoj veličini — ${product.name}`} data-sheet-zoom-image draggable="false" />
+          <img src={technicalSheetImage} alt={`Tehnički list u punoj veličini — ${product.name}`} data-sheet-zoom-image draggable="false" loading="lazy" />
 
         </div>
 

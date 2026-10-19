@@ -115,7 +115,7 @@ export const INOX_PAGE_DATA = {
     {
       number: '1',
       title: 'Dostavljanje projekta ili skice',
-      desc: 'Pošaljite nam vaš DWG crtež, idejni projekat partera ili običnu skicu prostora sa dimenzijama na projekti@modularnisistemi.com.',
+      desc: 'Pošaljite nam vaš DWG crtež, idejni projekat partera ili običnu skicu prostora sa dimenzijama na kontakt@modularnisistemi.com.',
     },
     {
       number: '2',
@@ -225,7 +225,7 @@ export const CATEGORIES_DATA = {
   },
   podniSistemi: {
     id: 'modularni-podni-sistemi',
-    slug: '/modularni-podni-sistemi/',
+    slug: '/modularne-celicne-podkonstrukcije/',
     title: 'MODULARNI PODNI SISTEMI',
     headline: 'Fleksibilna podna rešenja za različite prostore i namene.',
     conceptStatements: [

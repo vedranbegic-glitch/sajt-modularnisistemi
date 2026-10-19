@@ -5,16 +5,29 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# Stara adresa za upit vodi na postojecu stranicu za slanje projekta
+# Ranija adresa za projekat vodi na postojecu stranicu za upit
 [[redirects]]
-  from = "/posaljite-upit/"
-  to = "/posaljite-projekat/"
+  from = "/posaljite-projekat/"
+  to = "/posaljite-upit/"
   status = 301
   force = true
 
 [[redirects]]
-  from = "/posaljite-upit"
-  to = "/posaljite-projekat/"
+  from = "/posaljite-projekat"
+  to = "/posaljite-upit/"
+  status = 301
+  force = true
+
+# Ranija adresa podnih sistema vodi na celicne podkonstrukcije
+[[redirects]]
+  from = "/modularni-podni-sistemi/"
+  to = "/modularne-celicne-podkonstrukcije/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/modularni-podni-sistemi"
+  to = "/modularne-celicne-podkonstrukcije/"
   status = 301
   force = true
 

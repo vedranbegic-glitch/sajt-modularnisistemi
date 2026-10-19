@@ -8,23 +8,14 @@ const staticRoutes = [
   '/',
   '/proizvodi/',
   '/inox-sistemi-odvodnjavanja/',
-  '/moderna-rasveta/',
-  '/modularni-podni-sistemi/',
+  '/modularne-celicne-podkonstrukcije/',
   '/fire-pit-grill/',
   '/projektovanje-i-3d-modelovanje/',
   '/galerija/',
   '/o-nama/',
   '/partneri/',
   '/kontakt/',
-  '/posaljite-projekat/',
-];
-
-// Postojeće podstranice podnih sistema.
-const PODNI_IDS = [
-  'eco-green-monoblok',
-  'wpc-compound-monoblok',
-  'gres-premium-monoblok',
-  'heavy-duty-monoblok',
+  '/posaljite-upit/',
 ];
 
 export const GET: APIRoute = async () => {
@@ -32,12 +23,8 @@ export const GET: APIRoute = async () => {
     (product) => `/inox-sistemi-odvodnjavanja/${product.slug}/`
   );
 
-  const dynamicPodniRoutes = PODNI_IDS.map(
-    (id) => `/modularni-podni-sistemi/${id}/`
-  );
-
   const allUrls = Array.from(
-    new Set([...staticRoutes, ...dynamicInoxRoutes, ...dynamicPodniRoutes])
+    new Set([...staticRoutes, ...dynamicInoxRoutes])
   );
 
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>

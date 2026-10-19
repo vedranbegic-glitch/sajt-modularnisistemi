@@ -62,7 +62,7 @@ export const PHONE_DISPLAY = '+381 66 241 386';
 
 export const PHONE_HREF = 'tel:+38166241386';
 
-export const PROJECT_URL = '/posaljite-projekat/';
+export const PROJECT_URL = '/posaljite-upit/';
 
 
 

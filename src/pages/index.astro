@@ -48,7 +48,7 @@ const programs = [
 
     family: "Čelik / modularna konstrukcija",
 
-    href: "/modularni-podni-sistemi/",
+    href: "/modularne-celicne-podkonstrukcije/",
 
     hero: "/images/podovi/modularni-pod-terasa-kamene-staze-basta-2.webp",
 
@@ -164,7 +164,7 @@ const number = (i: number) => String(i + 1).padStart(2, "0");
 
             <a class="eng-button eng-button--primary" href="#programi">Istražite programe <span aria-hidden="true">↗</span></a>
 
-            <a class="eng-button eng-button--secondary" href="/posaljite-projekat/">Pošaljite upit <span aria-hidden="true">↗</span></a>
+            <a class="eng-button eng-button--secondary" href="/posaljite-upit/">Pošaljite upit <span aria-hidden="true">↗</span></a>
 
           </div>
 
@@ -182,7 +182,7 @@ const number = (i: number) => String(i + 1).padStart(2, "0");
 
                 {p.studio && <img class="eng-hero__backdrop" src={p.hero} alt="" aria-hidden="true" loading="lazy" decoding="async" /> }
 
-                <img class="eng-hero__main" src={p.hero} alt="" loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : "auto"} decoding="async" width={p.studio ? 1086 : 1600} height={p.studio ? 1448 : 900} style={`object-position:${p.position}`} />
+                <img class="eng-hero__main" src={p.hero} alt={p.heroAlt} loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : "auto"} decoding="async" width={p.studio ? 1086 : 1600} height={p.studio ? 1448 : 900} style={`object-position:${p.position}`} />
 
               </div>
 
@@ -280,7 +280,7 @@ const number = (i: number) => String(i + 1).padStart(2, "0");
 
                 <div class:list={["eng-explorer__image", { "is-active": i === 0, "is-studio": p.studio }]} data-explorer-image>
 
-                  <img src={p.preview} alt="" width="1500" height="1050" loading="lazy" decoding="async" />
+                  <img src={p.preview} alt={p.previewAlt} width="1500" height="1050" loading="lazy" decoding="async" />
 
                 </div>
 
@@ -386,7 +386,7 @@ const number = (i: number) => String(i + 1).padStart(2, "0");
 
         <div class="eng-contact__right">
 
-          <a class="eng-button eng-button--primary" href="/posaljite-projekat/">Pošaljite upit <span aria-hidden="true">↗</span></a>
+          <a class="eng-button eng-button--primary" href="/posaljite-upit/">Pošaljite upit <span aria-hidden="true">↗</span></a>
 
           <a class="eng-contact__email" href="mailto:kontakt@modularnisistemi.com">kontakt@modularnisistemi.com <span aria-hidden="true">↗</span></a>
 
