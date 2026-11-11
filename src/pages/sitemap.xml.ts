@@ -11,6 +11,7 @@ const staticRoutes = [
   '/modularne-celicne-podkonstrukcije/',
   '/fire-pit-grill/',
   '/projektovanje-i-3d-modelovanje/',
+  '/tehnicka-priprema-nabavke/',
   '/galerija/',
   '/o-nama/',
   '/partneri/',

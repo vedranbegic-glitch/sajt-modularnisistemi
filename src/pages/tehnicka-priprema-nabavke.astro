@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const inquiry = '/posaljite-upit/?oblast=nabavka#forma';
+const steps = [
+  ['01', 'Definišemo zahtev', 'Namena, dimenzije, mesto ugradnje, materijali i potrebna dokumentacija. Polazimo od vaše skice, fotografije ili proizvoda koji ste pronašli.'],
+  ['02', 'Pripremamo tehničke podloge', 'Prema dogovorenom obimu izrađujemo 3D model, crteže i specifikaciju za slanje proizvođačima.'],
+  ['03', 'Usaglašavamo ponudu', 'Poredimo ponuđenu opremu i obim isporuke sa zahtevom. Sa proizvođačem razjašnjavamo tehničke detalje i otvorena pitanja.'],
+  ['04', 'Pripremamo realizaciju', 'Usklađujemo dokumentaciju i zahteve za ugradnju. Organizacija montaže dogovara se prema proizvodu i lokaciji.'],
+];
+const questions = [
+  ['Da li moram da imam gotov crtež?', 'Ne. Za početak su dovoljni opis namene, okvirne mere i fotografija prostora ili link proizvoda. Obim projektovanja dogovaramo nakon pregleda.'],
+  ['Mogu li da pošaljem ponudu koju već imam?', 'Da. Pošaljite ponudu i prateću dokumentaciju. Možemo da pomognemo u razjašnjenju tehničkih karakteristika, sadržaja isporuke i podataka koji nedostaju.'],
+  ['Ko ugovara i plaća proizvod?', 'Kod direktne nabavke kupac ugovara i plaća proizvod proizvođaču. Naša usluga projektovanja i tehničke podrške ugovara se zasebno, uz unapred definisan obim i naknadu.'],
+  ['Kako se procenjuje ukupna cena?', 'Na osnovu konkretne ponude i dogovorenih uslova isporuke. U poređenje ulaze proizvod, transport, uvozni troškovi, potrebni radovi i montaža. Uštedu procenjujemo tek kada su ponude uporedive.'],
+];
+---
+<BaseLayout title="Tehnička priprema nabavke i projektantska podrška" description="Od skice do usaglašene ponude proizvođača. Projektovanje, tehnička dokumentacija i podrška pri direktnoj nabavci iz Kine, Turske i drugih zemalja." canonical="https://modularnisistemi.com/tehnicka-priprema-nabavke/">
+  <div class="sourcing">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">MODULARNI SISTEMI / PREMIUM ENGINEERING</p>
+          <h1>Pronašli ste proizvod.<br /><span>Definišimo detalje.</span></h1>
+          <p class="lead">Projektovanje i tehnička podrška pri direktnoj nabavci. Pretvaramo vašu ideju u jasan zahtev za proizvođača — od dimenzija i materijala do dokumentacije i obima isporuke.</p>
+          <a class="button" href={inquiry}>Pošaljite proizvod ili skicu <span aria-hidden="true">↗</span></a>
+          <p class="hero-note">KINA / TURSKA / DRUGA TRŽIŠTA</p>
+        </div>
+        <aside class="brief" aria-label="Šta nam možete poslati">
+          <p class="eyebrow">VAŠ PRVI KORAK</p>
+          <h2>Ne morate da znate<br />svaki tehnički detalj.</h2>
+          <p>Pošaljite ono što imate. Zajedno definišemo šta treba razraditi pre naručivanja.</p>
+          <ul><li>Link proizvoda ili ponudu fabrike</li><li>Skicu i okvirne dimenzije</li><li>Fotografije i mesto ugradnje</li><li>Opis namene i željenog rezultata</li></ul>
+          <a href="/projektovanje-i-3d-modelovanje/">Pogledajte naše projektovanje <span aria-hidden="true">↗</span></a>
+        </aside>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow">OD ZAHTEVA DO REALIZACIJE</p>
+        <h2>Jasne podloge.<br /><span>Usaglašena narudžbina.</span></h2>
+        <div class="steps">{steps.map(([id,title,description]) => <article><small>{id} / KORAK</small><h3>{title}</h3><p>{description}</p></article>)}</div>
+      </div>
+    </section>
+    <section class="section pale">
+      <div class="wrap two-col">
+        <div><p class="eyebrow">PRIMENA NA VAŠEM PROJEKTU</p><h2>Podrška tamo gde<br /><span>detalji odlučuju.</span></h2><p class="body-copy">Pergole i nadstrešnice, inox odvodnjavanje, modularne konstrukcije i drugi proizvodi koji zahtevaju precizno definisanje pre izrade i nabavke.</p></div>
+        <div class="scope"><h3>Obim prema konkretnom zadatku</h3><p>Možete angažovati podršku za početnu specifikaciju, 3D model i crteže ili tehničko usaglašavanje sa proizvođačem. Potrebne provere, dokumentaciju i eventualno uključivanje drugih stručnjaka definišemo prema vrsti proizvoda.</p><p>Pre početka dogovaramo šta preuzimamo, šta dostavlja proizvođač i šta organizuje kupac.</p></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap faq"><p class="eyebrow">PITANJA PRE SARADNJE</p><h2>Šta je potrebno<br /><span>za početak?</span></h2>{questions.map(([question,answer]) => <details><summary>{question}</summary><p>{answer}</p></details>)}</div>
+    </section>
+    <section class="contact"><div class="wrap two-col"><div><p class="eyebrow">VAŠ PROJEKAT / NAŠA PODRŠKA</p><h2>Imate proizvod na umu?<br /><span>Pošaljite nam polazne podatke.</span></h2><p>Skicu, fotografiju, link ili postojeću ponudu.</p></div><div class="contact-actions"><a class="button" href={inquiry}>Pošaljite upit <span aria-hidden="true">↗</span></a><a class="email" href="mailto:kontakt@modularnisistemi.com">kontakt@modularnisistemi.com</a></div></div></section>
+  </div>
+</BaseLayout>
+<style>
+.sourcing{--orange:#ff6900;--navy:#061b28;color:#102637;font-family:inherit}.wrap{width:min(1180px,calc(100% - 48px));margin-inline:auto}.sourcing :is(h1,h2,h3,p){margin:0}.eyebrow{color:#e9630a;font-size:10px;font-weight:800;letter-spacing:.13em;line-height:1.7;margin-bottom:20px!important}.hero,.contact{background:#061b28;color:#fff}.hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:center;padding-block:72px}.hero h1{font-size:clamp(36px,4.2vw,60px);letter-spacing:-.05em;line-height:1.12;font-weight:800}h1 span,h2 span{color:var(--orange)}.lead{max-width:550px;line-height:1.8;font-size:16px;color:#b9ccd6;margin-top:24px!important}.button{display:inline-flex;justify-content:space-between;align-items:center;gap:24px;background:var(--orange);color:#061b28;padding:16px 20px;font-size:13px;font-weight:800;text-decoration:none;min-height:48px}.hero .button{margin-top:28px}.button:hover{background:#ff8939}.hero-note{font-size:10px;letter-spacing:.1em;color:#99b3c2;margin-top:28px!important}.brief{border:1px solid #34515f;background:#0b2635;padding:32px}.brief h2{font-size:clamp(24px,2.5vw,34px);line-height:1.2;letter-spacing:-.035em}.brief p:not(.eyebrow){color:#b9ccd6;font-size:14px;line-height:1.75;margin-top:18px}.brief ul{list-style:none;margin:24px 0;padding:0}.brief li{padding:12px 0;border-top:1px solid #34515f;font-size:13px;line-height:1.6}.brief a{color:#ff944d;font-size:13px;line-height:1.6}.section{padding:70px 0;background:#f5f7f8}.section h2,.contact h2{font-size:clamp(29px,3.2vw,43px);line-height:1.13;letter-spacing:-.04em;font-weight:800}.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:32px}.steps article{border:1px solid #dce4e8;background:white;padding:24px}.steps small{color:#b64a00;font-weight:800;font-size:11px}.steps h3{margin-top:26px;font-size:19px;line-height:1.3}.steps p,.scope p,.body-copy{color:#526b79;font-size:14px;line-height:1.8;margin-top:14px!important}.pale{background:#e8eff2}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}.scope{padding:30px;background:#fff;border:1px solid #d7e0e4}.scope h3{font-size:23px;line-height:1.3}.faq{max-width:900px}.faq h2{margin-bottom:30px}.faq details{border-top:1px solid #c9d5dc;padding:20px 0}.faq details:last-child{border-bottom:1px solid #c9d5dc}.faq summary{cursor:pointer;font-size:17px;font-weight:700;line-height:1.5}.faq details p{font-size:15px;line-height:1.8;color:#526b79;margin-top:16px;max-width:750px}.contact{padding:60px 0}.contact p:not(.eyebrow){color:#b9ccd6;line-height:1.7;margin-top:18px}.contact-actions{display:grid;gap:18px;justify-self:end;max-width:100%}.email{color:#b9ccd6;overflow-wrap:anywhere;font-size:14px}a:focus-visible,summary:focus-visible{outline:3px solid #ff6900;outline-offset:5px}@media(max-width:950px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-grid,.two-col{gap:30px}}@media(max-width:700px){.wrap{width:calc(100% - 32px)}.hero-grid,.two-col{grid-template-columns:1fr}.hero-grid{padding-block:44px}.hero h1{font-size:clamp(32px,8.5vw,46px)}.brief{padding:24px}.section{padding:46px 0}.contact-actions{justify-self:start}.steps{grid-template-columns:1fr}.steps h3{margin-top:16px}.contact{padding:44px 0}}
+</style>
