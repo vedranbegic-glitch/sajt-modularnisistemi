@@ -108,15 +108,15 @@ export const inoxProducts: InoxProduct[] = [
 
     alt: 'Ravni modularni inox kanal za odvodnjavanje',
 
-    metaTitle: 'Ravna inox kanalica za odvodnjavanje po meri',
+    metaTitle: 'Ravna inox kanalica po meri',
 
     metaDescription:
 
-      'Ravni modularni inox kanal čiste linije, izrađen u dužinama prema projektu, sa integrisanim padom i nivelirajućim stopama.',
+      'Ravna inox kanalica za linijsko odvodnjavanje terasa, staza i ulaza. Modularni kanali od nerđajućeg čelika, sa geometrijom i dimenzijama po meri.',
 
     h1: ['Ravna', 'inox kanalica'],
 
-    lead: 'Ravni modularni inox kanal čiste linije, izrađen u dužinama prema projektu, sa integrisanim padom i nivelirajućim stopama.',
+    lead: 'Ravna inox kanalica za linijsko odvodnjavanje terasa, staza i ulaza. Modularni kanali izrađuju se u dužinama prema projektu, sa nivelirajućim stopama.',
 
     usage: 'Terase, pešačke staze, ulazi u objekte, parkinzi i javni trgovi.',
 
@@ -198,15 +198,15 @@ export const inoxProducts: InoxProduct[] = [
 
     alt: 'Lučni inox kanal za linijsko odvodnjavanje',
 
-    metaTitle: 'Lučna inox kanalica za odvodnjavanje po meri',
+    metaTitle: 'Lučna inox kanalica po meri',
 
     metaDescription:
 
-      'Lučni modularni inox kanal prilagođen blagim i izraženim radijusima — za kružne staze, bazenske ivice i zakrivljene partere.',
+      'Lučna inox kanalica za odvodnjavanje zakrivljenih površina, terasa i prostora uz bazen. Radijus, ugao luka i dimenzije prilagođavaju se projektu.',
 
     h1: ['Lučna', 'inox kanalica'],
 
-    lead: 'Lučni modularni inox kanal prilagođen blagim i izraženim radijusima, za praćenje kružnih staza, bazenskih ivica i zakrivljenih partera.',
+    lead: 'Lučna inox kanalica za odvodnjavanje zakrivljenih površina. Radijus i ugao luka prilagođavaju se liniji terase, staze ili prostora uz bazen.',
 
     usage: 'Zakrivljeni parteri, bazenske ivice, kružne staze i terase sa blagom krivinom.',
 
@@ -292,15 +292,15 @@ export const inoxProducts: InoxProduct[] = [
 
     alt: 'Kružni inox kanal za odvodnjavanje',
 
-    metaTitle: 'Kružna inox kanalica za odvodnjavanje po meri',
+    metaTitle: 'Kružna inox kanalica po meri',
 
     metaDescription:
 
-      'Zatvoreni kružni modularni inox kanal za fontane, rotundaste platoe i postolja žardinjera, izrađen prema projektu.',
+      'Kružna inox kanalica za odvodnjavanje oko fontana, žardinjera i kružnih platoa. Modularni sistem od nerđajućeg čelika, izrađen prema zadatom prečniku.',
 
     h1: ['Kružna', 'inox kanalica'],
 
-    lead: 'Zatvoreni kružni drenažni element za fontane, rotundaste platoe i postolja žardinjera, izrađen prema zadatom prečniku.',
+    lead: 'Kružna inox kanalica za odvodnjavanje oko fontana, žardinjera i kružnih platoa. Modularni segmenti formiraju zatvorenu liniju prema zadatom prečniku.',
 
     usage: 'Fontane, rotundaste platoe, postolja žardinjera i kružni trgovi.',
 
@@ -386,15 +386,15 @@ export const inoxProducts: InoxProduct[] = [
 
     alt: 'Elipsasti inox kanal za odvodnjavanje',
 
-    metaTitle: 'Elipsasta inox kanalica za odvodnjavanje po meri',
+    metaTitle: 'Elipsasta inox kanalica po meri',
 
     metaDescription:
 
-      'Elipsasti modularni inox kanal promenljivog radijusa za organske i eliptične oblike modernih atrijuma i javnih prostora.',
+      'Elipsasta inox kanalica za odvodnjavanje oko fontana i u atrijumima. Oblik, dimenzije i spojevi modularnog kanala usaglašavaju se prema projektu.',
 
     h1: ['Elipsasta', 'inox kanalica'],
 
-    lead: 'Konfiguracija promenljivog radijusa za organske i eliptične oblike modernih atrijuma, projektovana prema geometriji prostora.',
+    lead: 'Elipsasta inox kanalica za odvodnjavanje oko fontana i u atrijumima. Promenljiv radijus prati eliptičnu konturu prostora, sa geometrijom i dimenzijama po meri.',
 
     usage: 'Atrijumi, poslovni objekti, javni prostori i uređeni eksterijeri.',
 
@@ -480,15 +480,15 @@ export const inoxProducts: InoxProduct[] = [
 
     alt: 'S-forma inox kanalica za odvodnjavanje',
 
-    metaTitle: 'S-forma inox kanalica za odvodnjavanje po meri',
+    metaTitle: 'Skrivena S-forma inox kanalica',
 
     metaDescription:
 
-      'Kompleksne drenažne S-linije koje povezuju različite krivine u jednu neprekinutu celinu — izrada prema geometriji prostora.',
+      'S-forma inox kanalica za skriveno odvodnjavanje uz bazene, staze i terase. Telo kanala je ispod obloge, a na površini ostaje vidljiv odvodni prorez.',
 
     h1: ['S-forma', 'inox kanalica'],
 
-    lead: 'Kompleksne drenažne S-linije koje povezuju različite krivine u jednu neprekinutu celinu, izrađene prema stvarnoj geometriji prostora.',
+    lead: 'S-forma inox kanalica za skriveno odvodnjavanje uz bazene, staze i terase. Telo kanala ugrađuje se ispod kamena ili keramike; na površini ostaje vidljiv odvodni prorez.',
 
     usage: 'Bazeni i suve plaže, organske staze, terase slobodnih oblika i javni prostori.',
 
